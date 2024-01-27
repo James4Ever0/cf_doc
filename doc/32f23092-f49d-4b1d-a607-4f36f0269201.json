@@ -1,0 +1,10 @@
+{
+    "summary": "This code defines a function that sets the dynamic content as the poster for an HTML element. The function takes no parameters and assigns the string \"data:text/plain,This will be printed as poster\\n\\rThis in second line\" to the \"plnrep\" variable. It then uses document.getElementById(\"main_player_window\") to find the desired HTML element and set its \"poster\" attribute using setAttribute with the value of \"plnrep\". The code aims for a dynamic solution rather than relying on external web requests.",
+    "details": [
+        {
+            "comment": "This code defines a function that sets the dynamic content as the poster for an HTML element. The function takes no parameters and assigns the string \"data:text/plain,This will be printed as poster\\n\\rThis in second line\" to the \"plnrep\" variable. It then uses document.getElementById(\"main_player_window\") to find the desired HTML element and set its \"poster\" attribute using setAttribute with the value of \"plnrep\". The code aims for a dynamic solution rather than relying on external web requests.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_render/hide_button.js\":0-4",
+            "content": "// where do we store the dynamic content?\n// request it from the web? nice but dumb! we need to be dynamic.\nfunction myFunction(){\nvar plnrep=\"data:text/plain,This will be printed as poster\\n\\rThis in second line\";\ndocument.getElementById(\"main_player_window\").setAttribute(\"poster\",plnrep);}"
+        }
+    ]
+}

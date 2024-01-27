@@ -1,0 +1,21 @@
+damn small iso collection for rdp and console emulation 
+
+https://codegolf.stackexchange.com/questions/4732/emulate-an-intel-8086-cpu
+
+so it is easier to do this without the help of docker, which always have issue with us.
+
+https://www.nakivo.com/blog/how-to-install-virtualbox-extension-pack/#:~:text=Open%20Launchpad%2C%20run%20VirtualBox%2C%20then%20go%20to%20Tools,from%20the%20VirtualBox%20site%20%28Oracle_VM_VirtualBox_Extension_Pack-6.0.8.vbox-extpack%20in%20this%20case%29.
+
+https://cloudbase.it/freerdp-for-windows-nightly-builds/
+
+https://www.gryphel.com/c/minivmac/
+
+floppy disk problem. iso problem. vbox com problem.
+
+cpu problem. ram problem. network problem.
+
+storage problem. persistance problem. telnet/ctty problem.
+
+visual problem. input problem. comprehension problem.
+
+ethical problem. identity problem. maintainence problem.

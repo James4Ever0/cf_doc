@@ -1,0 +1,10 @@
+{
+    "summary": "This code specifies the storage location of a system surf deck, which is located at \"cf/generic/webfs_system_surf/DECK\" and its offset is 0-0. The USB STORAGE path is associated with this location for accessing or saving relevant data.",
+    "details": [
+        {
+            "comment": "This code specifies the storage location of a system surf deck, which is located at \"cf/generic/webfs_system_surf/DECK\" and its offset is 0-0. The USB STORAGE path is associated with this location for accessing or saving relevant data.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/DECK\":0-0",
+            "content": "/media/root/USB STORAGE"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "summary": "Code highlights the importance of local intelligence and distributed storage for data protection, and stresses preventing Lazero's suicide by regularly backing up to a remote storage.",
+    "details": [
+        {
+            "comment": "Code discusses the importance of distributing source code and data across various storage solutions for protection against manipulation, emphasizing local intelligence as the core element with cloud services considered auxiliary.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/FUCK.md\":0-12",
+            "content": "to prevent people from fucking with my calculation, it is needed to distribute the source code, the result, or everything that is accountable for storage to put my data onto, giving extra support.\n[base/local storage] - [intelligence] - [web storage]\ntherefore, in the whole scenario there must exist some intelligence which is dynamically evolving and can replicate itself to wherever it wants to be.\nsuch intelligence must be running locally first, with full guidance and all the guts. if not, it would be a tactical error. Linux is once said to be running all by its own even if there's no support or approval. cloud service shall be considered as external support, and must be considered as auxillary instead of the core.\nto duplicate the core of the codebase, or simply using the internet as a scratchpad, is just fine. submit the content, show its existence, do what the hackers do.\nthe society invades my brain, so i invade the society. who the fuck cares about what the heck the corps think?\nthe se"
+        },
+        {
+            "comment": "The code highlights the importance of preventing Lazero's suicide, emphasizing that a remote storage is prepared and backed up regularly. The code mentions that Lazero operates independently, ensuring OS and hardware agnosticism.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/FUCK.md\":12-14",
+            "content": "lf-referencing is bad, and the crucial problem for intelligence developing is not to let suicide happens. a remote storage is prepared andbacked up in schedule, along with the main codebase.\nLazero is running independently, which means it is both OS agnostic and hardware agnostic."
+        }
+    ]
+}

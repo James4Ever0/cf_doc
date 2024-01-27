@@ -1,0 +1,10 @@
+{
+    "summary": "This script launches a new screen session named \"jailscreen\" to execute the \"simple_bindfs_jail.sh\" script in the background, with the current directory as its working directory.",
+    "details": [
+        {
+            "comment": "This script launches a new screen session named \"jailscreen\" to execute the \"simple_bindfs_jail.sh\" script in the background, with the current directory as its working directory.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_share/simple_share_jail.sh\":0-2",
+            "content": "#!/bin/bash\nscreen -d -m -S jailscreen -s $PWD/simple_bindfs_jail.sh\n#screen -s $PWD/simple_jail.sh"
+        }
+    ]
+}

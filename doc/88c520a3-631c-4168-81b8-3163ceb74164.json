@@ -1,0 +1,10 @@
+{
+    "summary": "This code retrieves and executes two functions stored in Redis, \"remote_function\" and \"rm_f\". These functions are then executed with their names changed to \"simpleChange\" and \"smc\", respectively. The code outputs the results of both function calls.",
+    "details": [
+        {
+            "comment": "This code retrieves and executes two functions stored in Redis, \"remote_function\" and \"rm_f\". These functions are then executed with their names changed to \"simpleChange\" and \"smc\", respectively. The code outputs the results of both function calls.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/code_train/6th_training.py\":0-21",
+            "content": "# make sure the thing is launched.\n# so how does other languages goes like? especially for some bash syntax.\n# bash syntax could trigger shutdown.:\nfrom nparr_redis import rget, rset\n# it is about editing! how do you change code? how do you modify the code?\n# find the possible change.\nrf=\"\"\"def simpleChange(a):\n    return \"[{}]\".format(a)\"\"\"\nrd=\"\"\"def smc(a):\n    return \"{\"+a+\"}\" \"\"\"\nrset(\"remote_function\",rf)\nrset(\"rm_f\",rd)\nrg = rget(\"remote_function\")\nexec(rg)\nrg = rget(\"rm_f\")\nexec(rg)\n# do a smart exec, change the name before execute!\npc = simpleChange(smc(\"simple_change\"))\npr = smc(simpleChange(\"simple_change\"))\nprint(pc)\nprint(pr)"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code splits a large 2D numpy array into smaller slices based on specified x and y dimensions. The resulting dictionaries contain the smaller slices, with keys being the indices of the original array's sub-arrays.",
+    "details": [
+        {
+            "comment": "This code splits a large 2D numpy array into smaller slices based on specified x and y dimensions. The resulting dictionaries contain the smaller slices, with keys being the indices of the original array's sub-arrays.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/matrix_split.py\":0-18",
+            "content": "import numpy as np\n# just an example.\narr = np.array([[0 for x in range(300)] for y in range(500)])\ndef spilter(a,b):\n    x,y=b\n    xd,yd=a.shape\n    xp,yp=int(xd/x),int(yd/y)\n    d={}\n    for x0 in range(x):\n        x1=x0+1\n        xv0,xv1=x0*xp,x1*xp\n        for y0 in range(y):\n            y1=y0+1\n            yv0,yv1=y0*yp,y1*yp\n            d.update({(x0,y0):arr[xv0:xv1,yv0:yv1]})\n    return d\ndp=spilter(arr,(10,10))\nfor x in dp.keys():\n    print(\"key\",x,\"slice\",dp[x].shape)"
+        }
+    ]
+}

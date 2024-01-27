@@ -1,0 +1,10 @@
+{
+    "summary": "This Bash script listens on all network connections, filters the output to find TCP sockets listening on port 4312.",
+    "details": [
+        {
+            "comment": "This Bash script listens on all network connections, filters the output to find TCP sockets listening on port 4312.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/check_telnet.sh\":0-1",
+            "content": "#!/bin/bash\nss -tuln |  grep 4312"
+        }
+    ]
+}

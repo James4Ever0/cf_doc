@@ -1,0 +1,10 @@
+{
+    "summary": "This code uses a SystemRandom object to generate random indices and extract substrings from the input string, then creates a dictionary where each key is a substring and its value is a random number.",
+    "details": [
+        {
+            "comment": "This code uses a SystemRandom object to generate random indices and extract substrings from the input string, then creates a dictionary where each key is a substring and its value is a random number.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/shell-imagine.py\":0-18",
+            "content": "import random\nrng=random.SystemRandom()\ndef imagine(x):\n    z=len(x) # remaining.\n    f=z\n    y=[]\n    while (z>0):\n        k=f-z\n        s=range(1,1+z)\n        # this is astonishing.\n        s=rng.choice(s)\n        y.append(x[k:k+s])\n        z-=s\n    return y\nsample=\"rm -rf *\"\n# you are not going to execute it.\ny=imagine(sample)\ndic={k:rng.random() for k in y}\nprint(dic)"
+        }
+    ]
+}

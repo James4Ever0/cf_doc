@@ -1,0 +1,10 @@
+{
+    "summary": "This Bash script uses Scrapy, a Python web scraping framework, to crawl a website called 'example'. The output is piped into grep with a context of 5 lines before and after the matching pattern. This allows for easy identification of specific content related to 'localhost' within the scraped data.",
+    "details": [
+        {
+            "comment": "This Bash script uses Scrapy, a Python web scraping framework, to crawl a website called 'example'. The output is piped into grep with a context of 5 lines before and after the matching pattern. This allows for easy identification of specific content related to 'localhost' within the scraped data.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/tscrap/test.sh\":0-1",
+            "content": "#!/bin/bash\nscrapy crawl example | grep -C 5 localhost"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "summary": "This code defines functions for splitting an array 'a' based on the shape of another array 'b', creating dictionaries mapping (x,y) pairs to subarrays. The provided code splits array 'arr' into slices using 'splitter' function and prints keys with their corresponding slice shapes.",
+    "details": [
+        {
+            "comment": "This code defines several functions for splitting an array 'a' into subarrays based on the shape of another array 'b'. The resulting dictionaries map (x,y) pairs to corresponding subarrays.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/ms3.py\":0-33",
+            "content": "import numpy as np\n#from numba import jit\n# just an example.\n#arr = np.array([[[0 for x in range(3)] for y in range(500)] for x in range(300)])\n#@jit(nogil=True)\n# there's no speedup.\ndef gv1(b,binary=True):\n    if binary:\n        return (str((x,y)).encode() for x in range(b[0]) for y in range(b[1]))\n    return ((x,y) for x in range(b[0]) for y in range(b[1]))\ndef gv2(b,binary=True):\n    if binary:\n        return ((str((x,y)).encode() for x in range(b[0])) for y in range(b[1]))\n    return (((x,y) for x in range(b[0])) for y in range(b[1]))\ndef gv3(b,binary=True):\n    if binary:\n        return ((str((x,y)).encode() for y in range(b[1])) for x in range(b[0]))\n    return (((x,y) for y in range(b[1])) for x in range(b[0]))\ndef spilter(a,b):\n    x,y=b\n    xd,yd,_=a.shape\n#    print(a.shape)\n    xp,yp=int(xd/x),int(yd/y)\n    d={}\n    for x0 in range(x):\n        x1=x0+1\n        xv0,xv1=x0*xp,x1*xp\n        for y0 in range(y):\n            y1=y0+1\n            yv0,yv1=y0*yp,y1*yp\n            d.update({(x0,y0):a[xv0:xv1,yv0:yv1,:]})"
+        },
+        {
+            "comment": "Code splits the array 'arr' into slices of shape (10, 10) using 'splitter' function and iterates over keys of the result to print each key and its corresponding slice shape.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/ms3.py\":34-37",
+            "content": "    return d\n#dp=spilter(arr,(10,10))\n#for x in dp.keys():\n#    print(\"key\",x,\"slice\",dp[x].shape)"
+        }
+    ]
+}

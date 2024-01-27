@@ -1,0 +1,10 @@
+{
+    "summary": "This script uses Podman to run a read-only container with the BusyBox image, limiting CPU usage and memory allocation for visual and communication tasks.",
+    "details": [
+        {
+            "comment": "This script uses Podman to run a read-only container with the BusyBox image, limiting CPU usage and memory allocation for visual and communication tasks.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/docker_ro_image/start_ro.sh\":0-4",
+            "content": "#!/bin/bash\n# use podman? but we have not had the image!\npodman run --rm --read-only -ti --cpus 0.01 --memory 2m localhost/busybox\n# t -> visual\n# i -> communication"
+        }
+    ]
+}

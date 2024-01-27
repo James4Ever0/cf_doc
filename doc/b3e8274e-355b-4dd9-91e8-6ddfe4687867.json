@@ -1,0 +1,10 @@
+{
+    "summary": "This script uses Ruby to find and count duplicate lines in a file. It reads the given input file, and for each line, it checks if it's the last column value (accessed with `$F[-1]`), increments its count in the hash `h`, and prints the line if it's a duplicate (count > 1). The results are saved in 'duplicates.txt'.",
+    "details": [
+        {
+            "comment": "This script uses Ruby to find and count duplicate lines in a file. It reads the given input file, and for each line, it checks if it's the last column value (accessed with `$F[-1]`), increments its count in the hash `h`, and prints the line if it's a duplicate (count > 1). The results are saved in 'duplicates.txt'.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/math_train/ULTIMATE\":0-2",
+            "content": "#!/bin/bash\nruby -F, -ane 'BEGIN{h=Hash.new(0)}; ARGV.size==1 ? h[$F[-1]]+=1 :\n                 h[$F[-1]]>1 && print' duplicates.txt duplicates.txt"
+        }
+    ]
+}

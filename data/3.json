@@ -1,0 +1,539 @@
+{
+    "300": {
+        "file_id": 67,
+        "content": "/generic/vb_charec_bootstrap/mapdemo.py",
+        "type": "filepath"
+    },
+    "301": {
+        "file_id": 67,
+        "content": "The code generates permutations and combinations, initializes a list of numpy arrays, generates keys from shapes, retrieves values, calculates execution times for two methods, and proposes data classification using recursion.",
+        "type": "summary"
+    },
+    "302": {
+        "file_id": 67,
+        "content": "import numpy as np\n# mark with 1d 2d 3d and so on? inter-relationship.\n# use eval or nothing will happen.\n# extract sparse matrix?\nimport random\nimport itertools, time\nrng = random.SystemRandom()\ndef csampler(keys,max_sample=200):\n    pm = list(itertools.combinations(keys,r=2))\n    if len(pm) > max_sample:\n        # use generator instead?\n        pm = rng.sample(pm,max_sample)\n    return pm\ndef cprec(lk,l=0):\n    if l == 0:\n        lk -=1\n    if lk>0:\n        return cprec(lk-1,l+lk)\n    else:\n        return l\ndef tsort(a,b):\n    if (hash(a)>hash(b)):\n        return (a,b)\n    else:\n        return (b,a)\ndef nograt(keys,lk,prev):\n    # what about previous permutations?\n    # do it later: random pop?\n    r = np.random.permutation(keys)\n    r = [tsort(tuple(r[x]),keys[x]) for x in range(lk)]\n    r = filter(lambda x: not np.array_equal(x[0],x[1]),r)\n    prev = prev.union(set(r))\n    return prev\n# never know the upper bound.\n# this is slow.\ndef cs_mp(keys,max_sample=200):\n    # first, calculate the need for doing this.\n    lk = len(keys)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/mapdemo.py:1-44"
+    },
+    "303": {
+        "file_id": 67,
+        "content": "The code defines functions for creating permutations of a given list of keys, sampling pairs from these permutations, and generating random permutations. It also checks if pairs are equal and sorts them based on hash values. The purpose seems to be creating various combinations of key pairs with some constraints like maximum sample size, sorting, or avoiding previous permutations.",
+        "type": "comment"
+    },
+    "304": {
+        "file_id": 67,
+        "content": "    cp = cprec(lk)\n    ip = int(2*max_sample/3)\n    idx = lk < ip\n    if cp > max_sample:\n        prev = set([])\n        while len(prev)<max_sample:\n            if idx:\n                prev = nograt(keys,lk,prev)\n            else:\n                prev = nograt(rng.sample(keys,ip),lk,prev)\n        for x in range(len(prev) - max_sample):\n            prev.pop()\n        return list(prev)\n    else:\n        return csampler(keys,max_sample)\ndef genkey(tup):\n    # check args length?\n    # max recursion 3?\n    base_list=[()]\n    for x in range(len(tup)):\n        base_list = [(*z,y) for z in base_list for y in range(tup[x])]\n    return base_list\ndef recget(a,x):\n    tar = a\n    for z in x:\n        tar = tar[z]\n    return tar\n# better use this in pypy? but how? use separate process or one single process? \n\"\"\"\na = np.array([0,0,0])\nb = np.array([0,1,1])\ne = np.array([1,1,1])\nd = np.array([0,0,1])\nc = np.array([0,0,1])\n\"\"\"\n# generate sparse matrix for individual pixels.\n# group them together.\ndef tgen(lst,a):\n    shape = a.shape\n    keys = genkey(shape)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/mapdemo.py:45-89"
+    },
+    "305": {
+        "file_id": 67,
+        "content": "This code defines several functions, including `cp` and `ip` calculations, `nograt`, `genkey`, `recget`, and `tgen`. The main functionality is related to generating keys from a tuple of shapes and getting values from a matrix using these keys. It also generates sparse matrices for individual pixels and groups them together.",
+        "type": "comment"
+    },
+    "306": {
+        "file_id": 67,
+        "content": "    typegen= {k:{0:[],1:[]} for k in keys}\n    for k in lst.keys():\n        f=lst[k]\n        for x in keys:\n            y=recget(f,x)\n            typegen[x][y].append(k)\n    return typegen\nlst = [np.array([x,y,z,e,f,g,h,i,j,k]) for x in range(2) for y in range(2) for z in range(2) for e in range(2) for f in range(2) for g in range(2) for h in range(2) for i in range(2) for j in range(2) for k in range(2)]\nlst = [np.array([x,y]) for x in lst for y in lst]\na=lst[0]\nlst = {\"a_{}\".format(k): lst[k] for k in range(len(lst))}\n#lst = {\"a\":a,\"b\":b,\"c\":c,\"d\":d,\"e\":e}\ntypegen=tgen(lst,a)\n#print(typegen)\nashp=genkey(a.shape)\nt0=time.time()\ncs = cs_mp(ashp,max_sample=5000)\n# still slower when not big enough.\nprint(cs,time.time()-t0)\nt0=time.time()\n# still slow?\ncs = csampler(ashp,max_sample=5000)\nprint(cs,time.time()-t0)\n# how do you map the logic? random plots?\n\"\"\"\nprint(keys)\n# use these keys to get data!\nfor dx in lst:\n    for x in keys:\n        print(x,recget(dx,x))\n\"\"\"\n# classify these things by what? better use a dict.\n# a recursive function?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/mapdemo.py:90-123"
+    },
+    "307": {
+        "file_id": 67,
+        "content": "The code initializes a list of numpy arrays and uses it to generate keys and store data. It then generates a dictionary with keys as strings in the format \"a_0\", \"a_1\", etc., and creates an empty type generator dictionary. The code calls a function tgen to generate type-specific generators for each key in the dictionary and prints the results. Next, it calculates the shape of array 'a' and generates keys based on it. It measures the execution time for two different methods (cs_mp and csampler) that process the data and prints their output along with the execution times. The code then suggests printing the keys and using them to retrieve data from the list, but comments it out. Finally, it proposes classifying the data by creating a recursive function and storing the data in a dictionary structure.",
+        "type": "comment"
+    },
+    "308": {
+        "file_id": 68,
+        "content": "/generic/vb_charec_bootstrap/matrix_split.py",
+        "type": "filepath"
+    },
+    "309": {
+        "file_id": 68,
+        "content": "This code splits a large 2D numpy array into smaller slices based on specified x and y dimensions. The resulting dictionaries contain the smaller slices, with keys being the indices of the original array's sub-arrays.",
+        "type": "summary"
+    },
+    "310": {
+        "file_id": 68,
+        "content": "import numpy as np\n# just an example.\narr = np.array([[0 for x in range(300)] for y in range(500)])\ndef spilter(a,b):\n    x,y=b\n    xd,yd=a.shape\n    xp,yp=int(xd/x),int(yd/y)\n    d={}\n    for x0 in range(x):\n        x1=x0+1\n        xv0,xv1=x0*xp,x1*xp\n        for y0 in range(y):\n            y1=y0+1\n            yv0,yv1=y0*yp,y1*yp\n            d.update({(x0,y0):arr[xv0:xv1,yv0:yv1]})\n    return d\ndp=spilter(arr,(10,10))\nfor x in dp.keys():\n    print(\"key\",x,\"slice\",dp[x].shape)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/matrix_split.py:1-19"
+    },
+    "311": {
+        "file_id": 68,
+        "content": "This code splits a large 2D numpy array into smaller slices based on specified x and y dimensions. The resulting dictionaries contain the smaller slices, with keys being the indices of the original array's sub-arrays.",
+        "type": "comment"
+    },
+    "312": {
+        "file_id": 69,
+        "content": "/generic/vb_charec_bootstrap/measure_console.py",
+        "type": "filepath"
+    },
+    "313": {
+        "file_id": 69,
+        "content": "This code uses SSIM to compare images, displays differentials and thresholds, detects contours, crops regions, stores them in a dictionary, and allows visualization using matplotlib. It handles exceptions for key errors and provides image shape info.",
+        "type": "summary"
+    },
+    "314": {
+        "file_id": 69,
+        "content": "# import the necessary packages\nfrom skimage.measure import compare_ssim\nimport imutils\nimport cv2\nimport matplotlib.pyplot as plt\n# construct the argument parse and parse the arguments\n# load the two input images\n# two individual images.\ndef tight(imageA, imageB):\n# convert the images to grayscale\n    grayA = cv2.cvtColor(imageA, cv2.COLOR_BGR2GRAY)\n    grayB = cv2.cvtColor(imageB, cv2.COLOR_BGR2GRAY)\n# compute the Structural Similarity Index (SSIM) between the two\n# images, ensuring that the difference image is returned\n    (score, diff) = compare_ssim(grayA, grayB, full=True)\n    diff = (diff * 255).astype(\"uint8\")\n    print(\"SSIM: {}\".format(score))\n# threshold the difference image, followed by finding contours to\n# obtain the regions of the two input images that differ\n    thresh = cv2.threshold(diff, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]\n    cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)\n# what is that shit?\n    cnts = imutils.grab_contours(cnts)\n# loop over the contours",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/measure_console.py:1-27"
+    },
+    "315": {
+        "file_id": 69,
+        "content": "The code is importing necessary packages, defining a function to compare two input images using SSIM (Structural Similarity Index), converting the images to grayscale, calculating SSIM, thresholding the difference image, finding contours in the thresholded image, and looping over the contours.",
+        "type": "comment"
+    },
+    "316": {
+        "file_id": 69,
+        "content": "# save the original buffer under some pickle object?\n    for c in cnts:\n\t# compute the bounding box of the contour and then draw the\n\t# bounding box on both input images to represent where the two\n\t# images differ\n        (x, y, w, h) = cv2.boundingRect(c)\n        cv2.rectangle(imageA, (x, y), (x + w, y + h), (0, 0, 255), 2)\n        cv2.rectangle(imageB, (x, y), (x + w, y + h), (0, 0, 255), 2)\n# show the output images\n    cv2.imshow(\"Original\", imageA)\n    cv2.imshow(\"Modified\", imageB)\n    cv2.imshow(\"Diff\", diff)\n    cv2.imshow(\"Thresh\", thresh)\n    cv2.waitKey(0)\ndef btight(imageA, imageB):\n# convert the images to grayscale\n# but the pictures are not grayscale at all, though.\n    grayA = cv2.cvtColor(imageA, cv2.COLOR_BGR2GRAY)\n    grayB = cv2.cvtColor(imageB, cv2.COLOR_BGR2GRAY)\n# imageA and imageB are both 3 channels.\n# compute the Structural Similarity Index (SSIM) between the two\n# images, ensuring that the difference image is returned\n    (score, diff) = compare_ssim(grayA, grayB, full=True)\n    diff = (diff * 255).astype(\"uint8\")",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/measure_console.py:28-52"
+    },
+    "317": {
+        "file_id": 69,
+        "content": "Code is performing image differencing using the Structural Similarity Index (SSIM) method. It converts input images to grayscale, computes SSIM between them and displays original, modified, difference, and thresholded images.",
+        "type": "comment"
+    },
+    "318": {
+        "file_id": 69,
+        "content": "    print(\"SSIM: {}\".format(score))\n# threshold the difference image, followed by finding contours to\n# obtain the regions of the two input images that differ\n    thresh = cv2.threshold(diff, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]\n    cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)\n# what is that shit?\n    cnts = imutils.grab_contours(cnts)\n# loop over the contours\n# save the original buffer under some pickle object?\n# just crop these shits.\n    crp = []\n    for c in cnts:\n\t# compute the bounding box of the contour and then draw the\n\t# bounding box on both input images to represent where the two\n\t# images differ\n        (x, y, w, h) = cv2.boundingRect(c)\n#        cv2.rectangle(imageA, (x, y), (x + w, y + h), (0, 0, 255), 2)\n# show the output images\n        cropping = imageA[y:y+h,x:x+w]\n        crp.append(cropping.copy())\n        cropping = imageB[y:y+h,x:x+w]\n        crp.append(cropping.copy())\n    return crp\ndef ctight(imageA, imageB):\n# convert the images to grayscale",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/measure_console.py:53-80"
+    },
+    "319": {
+        "file_id": 69,
+        "content": "This code measures the SSIM (Structural Similarity Index) between two images and thresholds the difference image to find contours. It then crops regions where the images differ and returns them in a list.",
+        "type": "comment"
+    },
+    "320": {
+        "file_id": 69,
+        "content": "# but the pictures are not grayscale at all, though.\n    clo = len(imageA.shape)\n    if clo == len(imageB.shape):\n        if clo >=2 :\n            pass\n        else:\n            raise Exception(\"dimension smaller than 2\")\n    else:\n        raise Exception(\"dimension not the same\")\n    grayA = cv2.cvtColor(imageA, cv2.COLOR_BGR2GRAY)\n    grayB = cv2.cvtColor(imageB, cv2.COLOR_BGR2GRAY)\n# imageA and imageB are both 3 channels.\n# compute the Structural Similarity Index (SSIM) between the two\n# images, ensuring that the difference image is returned\n    (score, diff) = compare_ssim(grayA, grayB, full=True)\n    diff = (diff * 255).astype(\"uint8\")\n    print(\"SSIM: {}\".format(score))\n# threshold the difference image, followed by finding contours to\n# obtain the regions of the two input images that differ\n    thresh = cv2.threshold(diff, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]\n    cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)\n# what is that shit?\n    cnts = imutils.grab_contours(cnts)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/measure_console.py:81-104"
+    },
+    "321": {
+        "file_id": 69,
+        "content": "This code checks if the images have the same dimensions, converts them to grayscale, computes the Structural Similarity Index (SSIM) between them, and then finds contours in the difference image to identify regions that differ between the two input images. The SSIM score is printed, and the contours are extracted using imutils library.",
+        "type": "comment"
+    },
+    "322": {
+        "file_id": 69,
+        "content": "# loop over the contours\n# save the original buffer under some pickle object?\n# just crop these shits.\n    crp = []\n    for c in cnts:\n\t# compute the bounding box of the contour and then draw the\n\t# bounding box on both input images to represent where the two\n\t# images differ\n        (x, y, w, h) = cv2.boundingRect(c)\n#        cv2.rectangle(imageA, (x, y), (x + w, y + h), (0, 0, 255), 2)\n# show the output images\n# a is original.\n        #    cf = (imageA[y:y+h,x:x+w,:].copy(), imageB[y:y+h,x:x+w,:].copy() )\n        cf = (imageA[y:y+h,x:x+w].copy(), imageB[y:y+h,x:x+w].copy())\n        crx = {(x,y,w,h):cf}\n        crp.append(crx)\n    return crp\n        # view them altogether?\n#        print(x,y,w,h)\n#        print(cropping.shape)\ndef dplot(array):\n    width=5\n    height=10\n    rows = 5\n    cols = 10\n    axes=[]\n    fig=plt.figure()\n    for a in range(rows*cols):\n#    b = np.random.randint(7, size=(height,width))\n        try:\n#            print(\"key\",cos[a])\n#        b = hs[cos[a]]\n            b = array[a]\n            axes.append(fig.add_subplot(rows, cols, a+1) )",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/measure_console.py:106-140"
+    },
+    "323": {
+        "file_id": 69,
+        "content": "This code performs contour detection on input images, then crops the detected regions and stores them in a dictionary. It also allows for visualization of the cropped regions using matplotlib. The function dplot can be used to display these regions in a grid layout.",
+        "type": "comment"
+    },
+    "324": {
+        "file_id": 69,
+        "content": "            subplot_title=(\"Subplot\"+str(a))\n            axes[-1].set_title(\"number \"+str(a))\n            plt.imshow(b)\n        except:\n            print(\"error on key\",cos[a])\n    fig.tight_layout()    \n    plt.show()\n\"\"\"        cv2.imshow(\"Original\", cropping)\n        cv2.waitKey(0)\n        cropping = imageB[x:x+w,y:y+h,:]\n        print(cropping.shape)\n        cv2.imshow(\"Modified\", cropping)\"\"\"\n#    cv2.imshow(\"Diff\", diff)\n#    cv2.imshow(\"Thresh\", thresh)\n#        cv2.waitKey(0)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/measure_console.py:141-156"
+    },
+    "325": {
+        "file_id": 69,
+        "content": "The code snippet creates subplots, sets titles, and displays images using matplotlib. It handles exceptions for key errors in the `cos` list and prints shapes of cropped images. Additionally, it uses OpenCV to display original, modified, and potentially other images but is currently commented out.",
+        "type": "comment"
+    },
+    "326": {
+        "file_id": 70,
+        "content": "/generic/vb_charec_bootstrap/mixer.py",
+        "type": "filepath"
+    },
+    "327": {
+        "file_id": 70,
+        "content": "Code imports random module and ethic function, defines lin_repeat to create a repeated pattern of characters with varying lengths, and safe_lr to generate a random string using lin_repeat and ethic function for validation.",
+        "type": "summary"
+    },
+    "328": {
+        "file_id": 70,
+        "content": "import random\nfrom id_func import ethic\nrng = random.SystemRandom()\ndef lin_repeat(a,b=3):\n    # this is pattern.\n    f=\"\"\n    for x in a:\n        f+=x*rng.choice(range(1,b+1))\n    return f\ndef safe_lr(a,b=3):\n    while True:\n        c = lin_repeat(a,b)\n        c2 = c*2\n        e = ethic(c,c2,c=True,mix=1)\n        if len(e) == 0:\n            return c",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/mixer.py:1-18"
+    },
+    "329": {
+        "file_id": 70,
+        "content": "Code imports random module and ethic function, defines lin_repeat to create a repeated pattern of characters with varying lengths, and safe_lr to generate a random string using lin_repeat and ethic function for validation.",
+        "type": "comment"
+    },
+    "330": {
+        "file_id": 71,
+        "content": "/generic/vb_charec_bootstrap/mp_func.py",
+        "type": "filepath"
+    },
+    "331": {
+        "file_id": 71,
+        "content": "This code utilizes functions for sampling combinations, sorting and excluding duplicates in permutations. It calculates key list lengths and generates a dictionary mapping data types of each key to their corresponding keys using numpy arrays to create sparse matrices for pixels.",
+        "type": "summary"
+    },
+    "332": {
+        "file_id": 71,
+        "content": "import numpy as np\n# mark with 1d 2d 3d and so on? inter-relationship.\n# use eval or nothing will happen.\n# extract sparse matrix?\nimport random\nimport itertools\nrng = random.SystemRandom()\ndef csampler(keys,max_sample=200):\n    pm = list(itertools.combinations(keys,r=2))\n    if len(pm) > max_sample:\n        # use generator instead?\n        pm = rng.sample(pm,max_sample)\n    return pm\ndef cprec(lk,l=0):\n    if l == 0:\n        lk -=1\n    if lk>0:\n        return cprec(lk-1,l+lk)\n    else:\n        return l\ndef tsort(a,b):\n    if (hash(a)>hash(b)):\n        return (a,b)\n    else:\n        return (b,a)\ndef nograt(keys,lk,prev):\n    # what about previous permutations?\n    # do it later: random pop?\n    r = np.random.permutation(keys)\n    r = [tsort(tuple(r[x]),keys[x]) for x in range(lk)]\n    r = filter(lambda x: not np.array_equal(x[0],x[1]),r)\n    prev = prev.union(set(r))\n    return prev\n# never know the upper bound.\n# this is slow.\ndef cs_mp(keys,max_sample=200):\n    # first, calculate the need for doing this.\n    lk = len(keys)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/mp_func.py:1-44"
+    },
+    "333": {
+        "file_id": 71,
+        "content": "This code defines two functions, `csampler` and `cprec`, which seem to be related to sampling combinations from a list of keys and performing calculations based on the length of the key list. The `tsort` function is used to sort tuples based on their hash values. The `nograt` function generates permutations of the keys, excluding those that are equal to their sorted versions, and stores them in a set. Finally, the `cs_mp` function calculates the length of the key list and likely uses it as an upper bound for sampling combinations.",
+        "type": "comment"
+    },
+    "334": {
+        "file_id": 71,
+        "content": "    cp = cprec(lk)\n    ip = int(2*max_sample/3)\n    idx = lk < ip\n    if cp > max_sample:\n        prev = set([])\n        while len(prev)<max_sample:\n            if idx:\n                prev = nograt(keys,lk,prev)\n            else:\n                prev = nograt(rng.sample(keys,ip),lk,prev)\n        for x in range(len(prev) - max_sample):\n            prev.pop()\n        return list(prev)\n    else:\n        return csampler(keys,max_sample)\ndef genkey(tup):\n    # check args length?\n    # max recursion 3?\n    base_list=[()]\n    for x in range(len(tup)):\n        base_list = [(*z,y) for z in base_list for y in range(tup[x])]\n    return base_list\ndef recget(a,x):\n    tar = a\n    for z in x:\n        tar = tar[z]\n    return tar\n# better use this in pypy? but how? use separate process or one single process? \n\"\"\"\na = np.array([0,0,0])\nb = np.array([0,1,1])\ne = np.array([1,1,1])\nd = np.array([0,0,1])\nc = np.array([0,0,1])\n\"\"\"\n# generate sparse matrix for individual pixels.\n# group them together.\ndef tgen(lst,a):\n    shape = a.shape\n    keys = genkey(shape)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/mp_func.py:45-89"
+    },
+    "335": {
+        "file_id": 71,
+        "content": "Code is initializing variables, defining functions for generating keys and accessing specific elements of arrays. It also includes comments about potentially using a different Python implementation (Pypy) but doesn't specify the method. The code seems to be working with numpy arrays and creating sparse matrices for individual pixels.",
+        "type": "comment"
+    },
+    "336": {
+        "file_id": 71,
+        "content": "    typegen= {k:{0:[],1:[]} for k in keys}\n    for k in lst.keys():\n        f=lst[k]\n        for x in keys:\n            y=recget(f,x)\n            typegen[x][y].append(k)\n    return typegen\n# how do you map the logic? random plots?\n\"\"\"\nprint(keys)\n# use these keys to get data!\nfor dx in lst:\n    for x in keys:\n        print(x,recget(dx,x))\n\"\"\"\n# classify these things by what? better use a dict.\n# a recursive function?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/mp_func.py:90-107"
+    },
+    "337": {
+        "file_id": 71,
+        "content": "This code generates a dictionary that maps the data types of each key in 'lst' to their corresponding keys. It does this by iterating over the keys and values in 'lst', extracting the values for each key, and then storing the keys with their respective data type in the resulting dictionary.",
+        "type": "comment"
+    },
+    "338": {
+        "file_id": 72,
+        "content": "/generic/vb_charec_bootstrap/ms3.py",
+        "type": "filepath"
+    },
+    "339": {
+        "file_id": 72,
+        "content": "This code defines functions for splitting an array 'a' based on the shape of another array 'b', creating dictionaries mapping (x,y) pairs to subarrays. The provided code splits array 'arr' into slices using 'splitter' function and prints keys with their corresponding slice shapes.",
+        "type": "summary"
+    },
+    "340": {
+        "file_id": 72,
+        "content": "import numpy as np\n#from numba import jit\n# just an example.\n#arr = np.array([[[0 for x in range(3)] for y in range(500)] for x in range(300)])\n#@jit(nogil=True)\n# there's no speedup.\ndef gv1(b,binary=True):\n    if binary:\n        return (str((x,y)).encode() for x in range(b[0]) for y in range(b[1]))\n    return ((x,y) for x in range(b[0]) for y in range(b[1]))\ndef gv2(b,binary=True):\n    if binary:\n        return ((str((x,y)).encode() for x in range(b[0])) for y in range(b[1]))\n    return (((x,y) for x in range(b[0])) for y in range(b[1]))\ndef gv3(b,binary=True):\n    if binary:\n        return ((str((x,y)).encode() for y in range(b[1])) for x in range(b[0]))\n    return (((x,y) for y in range(b[1])) for x in range(b[0]))\ndef spilter(a,b):\n    x,y=b\n    xd,yd,_=a.shape\n#    print(a.shape)\n    xp,yp=int(xd/x),int(yd/y)\n    d={}\n    for x0 in range(x):\n        x1=x0+1\n        xv0,xv1=x0*xp,x1*xp\n        for y0 in range(y):\n            y1=y0+1\n            yv0,yv1=y0*yp,y1*yp\n            d.update({(x0,y0):a[xv0:xv1,yv0:yv1,:]})",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/ms3.py:1-34"
+    },
+    "341": {
+        "file_id": 72,
+        "content": "This code defines several functions for splitting an array 'a' into subarrays based on the shape of another array 'b'. The resulting dictionaries map (x,y) pairs to corresponding subarrays.",
+        "type": "comment"
+    },
+    "342": {
+        "file_id": 72,
+        "content": "    return d\n#dp=spilter(arr,(10,10))\n#for x in dp.keys():\n#    print(\"key\",x,\"slice\",dp[x].shape)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/ms3.py:35-38"
+    },
+    "343": {
+        "file_id": 72,
+        "content": "Code splits the array 'arr' into slices of shape (10, 10) using 'splitter' function and iterates over keys of the result to print each key and its corresponding slice shape.",
+        "type": "comment"
+    },
+    "344": {
+        "file_id": 73,
+        "content": "/generic/vb_charec_bootstrap/nparr_redis.py",
+        "type": "filepath"
+    },
+    "345": {
+        "file_id": 73,
+        "content": "This code imports Redis and numpy libraries for efficient data storage. It defines functions for setting, getting, and picking/unpickling values with expiration. The threading function processes key-value pairs one by one.",
+        "type": "summary"
+    },
+    "346": {
+        "file_id": 73,
+        "content": "import redis\nimport numpy as np\nimport pickle\nimport threading\nr=redis.StrictRedis(host='localhost', port=6379, decode_responses=False)\n#r.set(\"sample_np_array\",arr.tobytes())\ndef npset(x,arr):\n    # use batch mode.\n    # and with expiration.\n    try:\n        orig = pickle.dumps(arr)\n        r.set(x,orig)\n        return True\n    except:\n        return False\ndef rset(k,x):\n    try:\n        r.set(k,x)\n#        print(\"setting\",k,x)\n        return True\n    except:\n#        print(\"error setting\",k,x)\n        return False\ndef rsetex(k,x,ex=1):\n    try:\n        r.setex(k,ex,x)\n#        print(\"setting\",k,x)\n        return True\n    except:\n#        print(\"error setting\",k,x)\n        return False\ndef rget(k):\n    try:\n        return r[k]\n    except:\n        return None\n# learning one by one.\ndef sov(dic,key,gple):\n    dic[key] = pickle.dumps(dic[key])\n    gple[0]+=1\ndef sod(dic,key,gple):\n    dic[key] = pickle.loads(dic[key])\n    gple[0]+=1\ndef bp_changer(x_arr):\n    lst,i=[0],len(list(x_arr.keys()))\n    for k in x_arr.keys():\n        tx = threading.Thread(target = sov,args=(x_arr,k,lst))",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/nparr_redis.py:1-53"
+    },
+    "347": {
+        "file_id": 73,
+        "content": "This code imports Redis and numpy libraries, defines functions for setting and getting values from Redis cache with expiration. It also includes a function to pickle and unpickle numpy arrays before storing them in Redis. Lastly, it has a threading function to process key-value pairs one by one.",
+        "type": "comment"
+    },
+    "348": {
+        "file_id": 73,
+        "content": "        tx.setDaemon(True)\n        tx.start()\n    while True:\n        if lst[0] == i:\n            break\n        time.sleep(0.001)\n#    print(\"conv complete!\")\n#    print(x_arr)\n    return x_arr\ndef npbset(x_arr,exp=2):\n    pipe = r.pipeline()\n    # use batch mode.\n    # and with expiration.\n    # threading?\n    x_arr = bp_changer(x_arr)\n    if exp == 0:\n        for key in x_arr.keys():\n            pipe.set(key, x_arr[key])\n        pipe.execute()\n    elif exp > 0 and type(exp) == int:\n        for key in x_arr.keys():\n            pipe.setex(key, exp, x_arr[key])\n        pipe.execute()\n    else:\n        print(\"invalid expire time!\")\n        return False\n#    print(\"execution done!\")\n# check keys then.\n#        orig = pickle.dumps(arr)\n#       r.set(x,orig)\n    return True\n#    except:\n#        return False\ndef npret(x):\n    try:\n        f=r.get(x)\n        return pickle.loads(f)\n    except:\n        return None\n#    else:",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/nparr_redis.py:54-95"
+    },
+    "349": {
+        "file_id": 73,
+        "content": "This code appears to handle the interaction with Redis, a data storage server. The \"npbset\" function uses Redis' pipeline feature and can set or setex (with expiration) multiple keys in batch mode. It takes an array of key-value pairs as input. The \"npret\" function retrieves values from Redis using the provided key. The code also includes functions for threading, time-based operations, and error handling.",
+        "type": "comment"
+    },
+    "350": {
+        "file_id": 74,
+        "content": "/generic/vb_charec_bootstrap/ocr_redis.py",
+        "type": "filepath"
+    },
+    "351": {
+        "file_id": 74,
+        "content": "This code, part of a larger system interacting with Redis for data storage and retrieval, reads keys, decodes tables, applies functions, checks hashes, and generates subplots using matplotlib. Its overall purpose remains unclear without context.",
+        "type": "summary"
+    },
+    "352": {
+        "file_id": 74,
+        "content": "from nparr_redis import rget\nfrom sm_func import get_table, s2Check, choky , dec_dict\nfrom ms3 import gv1\nfrom id_func import ethic\nimport matplotlib.pyplot as plt\n#import time\n# you still need to double-check.\n#while True:\n# not knowing the length.\n# maybe you need to train it though.\n# you need to trust something somehow?\npr = rget(\"recent_keys\")\nprint(pr)\ntb = get_table()\n#print(len(tb))\nkeys, cons = dec_dict(tb,flatten = True)\n# better walk throuogh.\nthreash, shp, cod, cov ,jcod = choky(cons,gua = 0.6)\n#print(hs)\n#print(len(hs))\n# not self-repeating.\ncod = {k:s2Check(tb[k],cov,jcod,shp,threash) for k in tb.keys()}\ncol = tuple(cod[k] for k in gv1((25,80)))\n#print(col)\ncos = ethic(pr,col)[0]\n#print(cos)\n# they are the same. but getting hash is not enough.\nwidth=5\nheight=5\nrows = 2\ncols = 5\naxes=[]\nfig=plt.figure()\nfor a in range(rows*cols):\n#    b = np.random.randint(7, size=(height,width))\n    try:\n        print(\"key\",cos[a])\n#        b = hs[cos[a]]\n        b = cov[cos[a]]\n        axes.append( fig.add_subplot(rows, cols, a+1) )",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/ocr_redis.py:1-41"
+    },
+    "353": {
+        "file_id": 74,
+        "content": "This code appears to be part of a larger system that interacts with Redis for data storage and retrieval. It uses various functions from different modules, likely for data preprocessing and analysis. The code snippet reads recent keys from Redis, decodes a table, applies a choking function, checks the hash of specific items in the table, and plots them on a figure. However, it is unclear what the overall purpose or functionality of the entire system is without additional context.",
+        "type": "comment"
+    },
+    "354": {
+        "file_id": 74,
+        "content": "        subplot_title=(\"Subplot\"+str(a))\n        axes[-1].set_title(\"number \"+chr(pr[a]))\n        plt.imshow(b)\n    except:\n        print(\"error on key\",cos[a])\nfig.tight_layout()    \nplt.show()\n# print(col)\n# so time to get it ordered.\n#print(cod)\n# this is the code. then find the pattern!\n# why that much?\n#print(len(tb),type(tb))\n# then, get all keys?\n# not sure whether we can decode the thing or not? but only targeting readable chars.\n# hashing while parsing?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/ocr_redis.py:42-57"
+    },
+    "355": {
+        "file_id": 74,
+        "content": "The code seems to be generating subplots, setting titles for each subplot, and displaying an image using matplotlib. It handles potential errors with key values and performs some data manipulation before trying to find patterns or decode information. The purpose of the code is unclear without context.",
+        "type": "comment"
+    },
+    "356": {
+        "file_id": 75,
+        "content": "/generic/vb_charec_bootstrap/odd.py",
+        "type": "filepath"
+    },
+    "357": {
+        "file_id": 75,
+        "content": "This code defines functions for string manipulation, comparison and substring matching. The 'ethic' function checks for exact matches or appends values and prints results twice with different arguments.",
+        "type": "summary"
+    },
+    "358": {
+        "file_id": 75,
+        "content": "a,b = \"abcde\", \"bcdef\"\na,b = a*20, b*20\nb = \"random stuff of unrelated shits\"+b\nb = b*2\n# fuzzy logic.\n# what is repeating anyway?\ndef uniq(a):\n    # start with 0.\n    i = 0\n    d={}\n    k=[]\n    for x in a:\n        if x in d.keys():\n            pass\n        else:\n            d.update({x:i})\n            i+=1\n        k.append(d[x])\n    return k,d\ndef npall(a,b):\n    try:\n        return sum([int(a[x]==b[x]) for x in range(len(a))])\n    except:\n        return 0\ndef ethic(a,b,c=True):\n    # slide the b.\n    ad, _ = uniq(a)\n    N = len(a)\n    N0 = N-1\n    ln = len(b)-N0\n    if not c:\n        for x in range(ln):\n            bn = b[x:x+N]\n            bd, _ = uniq(bn)\n#            print(\"x\",x,\"bd\",bd)\n            if N==npall(ad,bd):\n            # check all possible match? maybe later.\n                return bn\n        return None\n    else:\n        can = []\n        preb = 0\n        for x in range(ln):\n            xpreb = x+preb\n            if xpreb<ln:\n                bn = b[xpreb:xpreb+N]\n                bd, _ = uniq(bn)\n                if N==npall(ad,bd):",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/odd.py:1-50"
+    },
+    "359": {
+        "file_id": 75,
+        "content": "This code defines functions for string manipulation and comparison. It checks if two strings, 'a' and 'b', have the same characters at corresponding indices. If 'c' is False, it searches 'b' for a substring that matches 'a'. Otherwise, it checks each possible substring of length equal to the length of 'a' in 'b' and returns the first match found. It also includes helper functions for converting strings to unique integers and counting the number of matching characters between two strings.",
+        "type": "comment"
+    },
+    "360": {
+        "file_id": 75,
+        "content": "                # must skip.\n                    preb+=N0\n                    can.append(bn)\n            else:\n                break\n        return can \nprint(ethic(a,b,False))\nprint(ethic(a,b))\n# find the exact match. using what?\n# i mean it is what? learning to forget?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/odd.py:51-61"
+    },
+    "361": {
+        "file_id": 75,
+        "content": "The code appears to be checking for exact matches and appending values accordingly. If no exact match is found, it returns a list containing the original value(s). The 'ethic' function takes three parameters (a, b, and False) and prints its result twice with slightly different arguments. It's not clear what the purpose of this code or why it's named \"ethic\".",
+        "type": "comment"
+    },
+    "362": {
+        "file_id": 76,
+        "content": "/generic/vb_charec_bootstrap/or_func.py",
+        "type": "filepath"
+    },
+    "363": {
+        "file_id": 76,
+        "content": "This code imports libraries and defines functions for data processing, conversion, safe eval, logic operations with ranges, attention calculation, getting/saving data buffers, differencing data, string to bytes conversion, creating attention-based sets, and retrieving recent keys. It compares two arrays to find key differences, extracts color tuples from the screen, evaluates based on ethic score, and returns computed keys or None depending on 'rp' value.",
+        "type": "summary"
+    },
+    "364": {
+        "file_id": 76,
+        "content": "from nparr_redis import rget, rsetex\nfrom sm_func import get_table\nfrom ms3 import gv1\n# get bytes to string and to tuple?\n# use eval? or safe eval.\nfrom id_func import ethic\n#import time\nimport ast\nimport numpy as np\nimport pickle, os\nrph = \"/dev/shm/ocf.pickle\"\n# get it into the pickle.\n# use some magic.\ndef seval(a):\n    try:\n        if type(a)==bytes:\n            a = a.decode()\n            return ast.literal_eval(a)\n        elif type(a) == str:\n            return ast.literal_eval(a)\n        else:\n            return a\n    except:\n        return None\ndef rlogic(a,c,b=False):\n    if b:\n        if a > c:\n            return a\n        else:\n            return c\n    else:\n        if a > c:\n            return c \n        else:\n            return a\ndef atrange(a,stdrange,b=5):\n    xv=set([])\n    c,d = a\n    e,f = stdrange\n    c0, d0 = rlogic(c-b,0,True),rlogic(d-b,0,True)\n    c1, d1 = rlogic(c+b,e),rlogic(d+b,f)\n    for x0 in range(c0,c1):\n        for y0 in range(d0,d1):\n            xv.add((x0,y0))\n    return xv\ndef attension(a,stdrange,b = 5):",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/or_func.py:1-48"
+    },
+    "365": {
+        "file_id": 76,
+        "content": "Code imports necessary libraries and functions. It defines functions to convert bytes to string or tuple, use safe eval, handle logic operations with ranges, and calculate attention within specified standard ranges. The code then ends with the \"attension\" function definition.",
+        "type": "comment"
+    },
+    "366": {
+        "file_id": 76,
+        "content": "    # return candidates.\n    f=set([])\n    for x in a:\n        x = seval(x)\n#        c,d = x\n        cd = atrange(x,stdrange,b)\n        f = f.union(cd)\n    return f\ndef getbuff():\n    if os.path.exists(rph):\n        with open(rph,\"rb\") as f:\n            return pickle.loads(f.read())\n    return None\ndef savebuff(a):\n    with open(rph,\"wb+\") as f:\n        f.write(pickle.dumps(a))\n# you still need to double-check.\ndef strify(a,b=False):\n    a=str(a)\n    if b:\n        return a\n    else:\n        return a.encode()\ndef ddiff(a,b,c,d=None):\n    if d is None:\n        d = lambda x: x\n    e={}\n    for x in c:\n        if np.all(d(a[x]) == d(b[x])):\n            pass\n        else:\n                # append that thing?\n            e.update({x:(a[x],b[x])})\n    return e if e != {} else None\ndef atdic(d,stdrange,b=5):\n    ex = d.keys()\n    ef = attension(ex,stdrange,b)\n    return ef\n# save to ram buffer.\ndef trusty(stdrange):\n    # both are bytes. do not worry.\n    k = rget(\"recent_key\")\n    tb = get_table()\n    buff = getbuff()\n    rp = buff is not None",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/or_func.py:49-99"
+    },
+    "367": {
+        "file_id": 76,
+        "content": "This code contains multiple functions for data processing and storage. It includes functions for getting, saving, and differencing data buffers, as well as converting strings to bytes and creating attention-based sets. The \"trusty\" function retrieves a recent key and checks if there is an existing buffer in memory.",
+        "type": "comment"
+    },
+    "368": {
+        "file_id": 76,
+        "content": "    rg = rget(\"raw_reign\")\n    if not rp:\n        rg = b\"None\"\n    elif rg is None:\n        rg = b\"None\"\n    else:\n        rg = pickle.loads(rg)\n#    if len(buff) == 1:\n#    print(\"rp\",rp)\n# use another range?\n# you'd better see it all. otherwise you have to clean the reign.\n# set it into the redis.\n    if rp:\n        if rg == b\"None\":\n            k0 = ddiff(tb,buff,gv1(stdrange))\n            #k0 = ddiff(tb,buff,gv1((25,80)))\n        else:\n            k0 = ddiff(tb,buff,[strify(xb) for xb in rg])\n        if k0 is None:\n            rg = b\"None\"\n        else:\n            rg = atdic(k0,stdrange)\n            #print(\"roi\",rg)\n        #rg = atdic(k0,(25,80))\n        # do things here.\n    else:\n        pass\n    savebuff(tb)\n    rg = pickle.dumps(rg)\n    rsetex(\"raw_reign\",rg)\n#    print(\"k\",k,\"k0\",k0)\n        # it is saved. but this rp is what?\n    if rp:\n        return k,k0\n    return None,None\n# still need to store at somewhere?\n# may you call me from the web?\n#    keys, cons = dec_dict(tb)\n#    hs = hashy(cons,h=False)\n#    cod = {k:simCheck(tb[k],hs) for k in tb.keys()}",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/or_func.py:100-139"
+    },
+    "369": {
+        "file_id": 76,
+        "content": "This code retrieves the \"raw_reign\" value from storage and checks if it's empty. If so, sets it to \"None\". Then, it computes a difference between two arrays to determine key positions where values differ. If \"raw_reign\" is not \"None\", applies these key positions to create a new array. It then pickles the result and stores it back in storage. Finally, if the 'rp' value is set, returns the computed keys and key differences; otherwise, returns None.",
+        "type": "comment"
+    },
+    "370": {
+        "file_id": 76,
+        "content": "#    col = tuple(cod[k] for k in gv1((25,80)))\n#    cos = ethic(pr,col)[0]",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/or_func.py:140-141"
+    },
+    "371": {
+        "file_id": 76,
+        "content": "This code extracts a color tuple from the screen at specific coordinates and evaluates it based on an ethic score.",
+        "type": "comment"
+    },
+    "372": {
+        "file_id": 77,
+        "content": "/generic/vb_charec_bootstrap/pickle_nparray.sh",
+        "type": "filepath"
+    },
+    "373": {
+        "file_id": 77,
+        "content": "This script runs a Python program that generates an array, then passes the output to another Python program to extract slices from it. The first program fails if numpy module is not available.",
+        "type": "summary"
+    },
+    "374": {
+        "file_id": 77,
+        "content": "#!/bin/bash\npython3 genparr.py | pypy3 getslice.py\n# no np module. pickle will fail.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/pickle_nparray.sh:1-3"
+    },
+    "375": {
+        "file_id": 77,
+        "content": "This script runs a Python program that generates an array, then passes the output to another Python program to extract slices from it. The first program fails if numpy module is not available.",
+        "type": "comment"
+    },
+    "376": {
+        "file_id": 78,
+        "content": "/generic/vb_charec_bootstrap/process_tool.py",
+        "type": "filepath"
+    },
+    "377": {
+        "file_id": 78,
+        "content": "The code processes dictionaries, retrieves unique elements, and calculates intersection hashes. It defines functions for finding the most frequent characters in a list and organizing data into hierarchical structures.",
+        "type": "summary"
+    },
+    "378": {
+        "file_id": 78,
+        "content": "def combine(b):\n    f=list(filter(lambda x:x['fd']==0,b))\n    f0=list(filter(lambda x:x['fd']!=0,b))\n    return f,f0\n#fuck efficiency.\nimport random\nrng=random.SystemRandom()\ndef still(a):\n    return list(map(lambda x:x['data'],a))\ndef flat(a):\n    return \"\\x00\".join([b.decode() for b in a])\ndef comb(a):\n    c,d=combine(a)\n    return {flat(still(c)):still(d)}\nfrom byte_compare import given_array as func\ndef tailer(a):\n    t=func(a)\n    return t\ndef reform(h):\n    y={}\n    for x in h:\n        y.update(x)\n    return y\ndef merge_dict(a,b):\n    bk=list(b.keys())\n    for k in a.keys():\n        if k in bk:\n            b[k]+=a[k]\n        else:\n            b.update({k:a[k]})\n    return b\nimport statistics as math\ndef hascode(a,b):\n    return len(a.intersection(b))>0\ndef getjob(a):\n    a0=[a[x] for x in a.keys()]\n    a1=set([])\n    for x in a0:\n        a1.update(x)\n    return a1\ndef hashope(a,b):\n    a0,b0=getjob(a),getjob(b)\n    return hascode(a0,b0)\ndef enf(f):\n    #print('start',f)\n    prev,pk=None,None\n    dx,dy=[],[]\n    for x in range(len(f)):",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/process_tool.py:1-58"
+    },
+    "379": {
+        "file_id": 78,
+        "content": "The code defines several functions for manipulating and comparing dictionaries of data, including combining lists based on a specific field value, converting lists to binary strings, merging dictionaries, and calculating intersection hashes. It also includes functions for retrieving unique elements from a dictionary, creating a set of keys in the dictionary, and returning the intersection hash. The code begins processing a list called \"f\".",
+        "type": "comment"
+    },
+    "380": {
+        "file_id": 78,
+        "content": "        #print('loop',x)\n        x0=f[x]\n        x0=[(k,x0[k]) for k in x0.keys()]\n        if len(x0)==0 or x == len(f)-1:\n            #print('here')\n            if len(f)==1:\n                x0=list(x0)[0]\n                pk,prev=x0\n                dx+=[pk]\n                dy+=[len(prev)]\n            return dx,dy\n        x0=reversed(sorted(x0))\n        if prev is not None:\n            if hashope(f[x-1],f[x]):\n                i=False\n                for k,y in x0:\n                    #print(k,y)\n                    h=hascode(prev,y)\n                    if h:\n                        prev,pk=y,k\n                        dx+=[k]\n                        dy+=[len(y)]\n                        #print(dx,dy)\n                        i=True\n                        continue\n                if i:\n                    continue\n                else:\n                    #print('pop')\n                    f[x-1].pop(k)\n                    return enf(f)\n            else:\n                #print('hopeless')\n                return dx,dy\n        else:",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/process_tool.py:59-93"
+    },
+    "381": {
+        "file_id": 78,
+        "content": "This code appears to be part of a function that iterates through a list of dictionaries (f) and checks for overlapping keys. If an overlap is found, it appends the key to the dx list and its length to dy. The code also handles edge cases where the list is empty or contains only one dictionary. It continues the iteration in a reversed order if no overlap is found.",
+        "type": "comment"
+    },
+    "382": {
+        "file_id": 78,
+        "content": "            x0=list(x0)[0]\n            pk,prev=x0\n            dx+=[pk]\n            dy+=[len(prev)]\n    return dx,dy\ndef rush(b,enforce=True):\n    f=min([len(x) for x in b])\n    if not enforce:\n        df=[]\n        dy=[]\n        for x in range(f):\n            st=[k[x] for k in b]\n            sv=set(st)\n            sd={k:st.count(k) for k in sv}\n            sm=max([sd[k] for k in sd.keys()])\n            dy.append(sm)\n            sp=[k for k in sd.keys() if sd[k]==sm]\n            sg=len(sp)\n            sk=None\n            if sg>1:\n                sk=rng.choice(sp)\n            else:\n                sk=sp[0]\n            df.append(sk)\n        return df, math.mean(dy)\n    else:\n        f0=[]\n        for x in range(f):\n            st=[k[x] for k in b]\n            sd=set(st)\n            sp={k:set([v for v in range(len(st)) if st[v]==k]) for k in sd}\n            f0.append(sp)\n        df,dy= enf(f0)\n        #print(df,dy)\n        return df, math.mean(dy)\ndef pdict(a,enforce=True):\n    for k in a.keys():\n        b=a[k]\n        a[k]=rush(b,enforce)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/process_tool.py:94-134"
+    },
+    "383": {
+        "file_id": 78,
+        "content": "The code defines a function `rush` that takes a list of character sequences (b) and returns a list (df) containing the most frequent characters in each sequence and the mean length of the sequences. It also provides an optional parameter `enforce` which, if False, calculates df and the average length separately. The function `pdict` applies the rush function to each key-value pair in a dictionary.",
+        "type": "comment"
+    },
+    "384": {
+        "file_id": 78,
+        "content": "    return a\ndef getSingleSession(a):\n    fb,bf=[],[]\n    for b in a:\n        fd=b['fd']\n        if fd == 0:\n            #print(b)\n            if bf!=[]:\n                fb.append(bf)\n            bf=[b]\n        else:\n            bf.append(b)\n    fb.append(bf)\n    # here.\n    h=list(map(lambda x:comb(x),fb))\n    h=reform(h)\n    #print(h)\n    for x in h.keys():\n        dx=h[x]\n        hd={}\n        #print(dx)\n        for z in dx:\n            t=tailer(z)\n            merge_dict(t,hd)\n        #phd=pdict(hd,enforce=False)\n        phd=pdict(hd,enforce=True)\n        print(phd)\n            #print(t)\n        '''t=tailer(dx)\n        print(t)'''\n    return fb\n# logical cluster.\n# do we need time cluster?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/process_tool.py:135-168"
+    },
+    "385": {
+        "file_id": 78,
+        "content": "The code defines a function 'getSingleSession' that takes in a list of dictionaries (a) and processes them into a hierarchical dictionary structure. It first separates the items based on their 'fd' value, then uses mapping and additional functions to form a nested dictionary structure. Finally, it prints out the resulting dictionary. The purpose of this function seems to be organizing data into a specific format, potentially for further processing or analysis.",
+        "type": "comment"
+    },
+    "386": {
+        "file_id": 79,
+        "content": "/generic/vb_charec_bootstrap/pypy_xwd.py",
+        "type": "filepath"
+    },
+    "387": {
+        "file_id": 79,
+        "content": "This Python class parses XWD files, supports error handling and cross-version compatibility, ensures TrueColor visual class, checks RGB masks for uniqueness, and handles pixel data in images. It reads and parses XWD files in 'info' or 'raw' mode, returning an XWD object with window dimensions, name, and utility functions for bit manipulation using binary I/O streams and Python's getopt library.",
+        "type": "summary"
+    },
+    "388": {
+        "file_id": 79,
+        "content": "#!/usr/bin/env pypy3\nfrom __future__ import division, print_function, unicode_literals\nimport getopt\nimport itertools\nimport json\nimport re\nimport struct\nimport sys\nimport pickle\n# :python3:buffer: we need to get a binary stream in both\n# Python 2 and Python 3.\ndef binary(stream):\n    if hasattr(stream, \"buffer\"):\n        return stream.buffer\n    else:\n        return stream\nclass FormatError(Exception):\n    pass\nclass NotImplemented(Exception):\n    pass\nclass Channel:\n    def __init__(self, **k):\n        self.__dict__.update(k)\nclass XWD:\n    def __init__(self, input, xwd_header=None):\n        if xwd_header:\n            self.__dict__.update(xwd_header)\n        self.xwd_header = xwd_header\n        self.info_dict = dict(\n            h=self.pixmap_height, w=self.pixmap_width, xwd_header=xwd_header\n        )\n        self.input = input\n    def info(self):\n        return dict(self.info_dict)\n    def uni_format(self):\n        \"\"\"\n        Return the \"universal format\" for the XWD file.\n        As a side effect, compute and cache various",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/pypy_xwd.py:1-51"
+    },
+    "389": {
+        "file_id": 79,
+        "content": "This code is a Python class definition for handling XWD files. It includes functions to parse the file's header and convert its data into a universal format. The code also handles potential format errors and uses buffer for compatibility with both Python 2 and 3.",
+        "type": "comment"
+    },
+    "390": {
+        "file_id": 79,
+        "content": "        intermediate values (such as shifts and depths).\n        \"\"\"\n        if \"_uni_format\" in self.__dict__:\n            return self._uni_format\n        # Check visual_class.\n        # The following table from http://www.opensource.apple.com/source/tcl/tcl-87/tk/tk/xlib/X11/X.h is assumed:\n        # StaticGray    0\n        # GrayScale     1\n        # StaticColor   2\n        # PseudoColor   3\n        # TrueColor     4\n        # DirectColor   5\n        if self.visual_class != 4:\n            # TrueColor\n            raise NotImplemented(\n                \"Cannot handle visual_class {!r}\".format(self.visual_class)\n            )\n        # Associate each mask with its channel colour.\n        channels = [\n            Channel(name=\"R\", mask=self.red_mask),\n            Channel(name=\"G\", mask=self.green_mask),\n            Channel(name=\"B\", mask=self.blue_mask),\n        ]\n        # If fails: some masks are the same.\n        assert len(set(c.mask for c in channels)) == 3\n        # Sort Most Significant first\n        channels = sorted(channels, key=lambda x: x.mask, reverse=True)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/pypy_xwd.py:52-84"
+    },
+    "391": {
+        "file_id": 79,
+        "content": "This code checks the visual_class and ensures it's TrueColor before creating channels for RGB masks. It asserts that all masks are different and sorts them by Most Significant first.",
+        "type": "comment"
+    },
+    "392": {
+        "file_id": 79,
+        "content": "        # Check that each mask is contiguous.\n        for channel in channels:\n            assert is_contiguous(channel.mask)\n        # Check that each mask abuts the next...\n        for channel, successor in zip(channels, channels[1:]):\n            assert is_contiguous(channel.mask + successor.mask)\n        # ... check that the last mask is on the right.\n        # If fails: least significant bit is unused.\n        # :todo: if it ever occurs in wild, implement a padding\n        # channel, eg: RGB5X1.\n        assert channels[-1].mask & 1\n        # Annotate each channel with its shift and bitdepth.\n        for c in channels:\n            c.shift = ffs(c.mask)\n            c.bits = (c.mask >> c.shift).bit_length()\n        self.channels = channels\n        v = \"\"\n        for (bits, chans) in itertools.groupby(channels, lambda c: c.bits):\n            v += \"\".join(c.name for c in chans)\n            v += str(bits)\n        self._uni_format = v\n        return self.uni_format()\n    def __iter__(self):\n        while True:\n            bs = self.input.read(self.bytes_per_line)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/pypy_xwd.py:86-116"
+    },
+    "393": {
+        "file_id": 79,
+        "content": "This code checks the contiguity of masks for each channel, ensures that masks abut next, verifies the least significant bit is not unused, assigns shift and bit depth to channels, generates a unified format string, and creates an iterator for processing data.",
+        "type": "comment"
+    },
+    "394": {
+        "file_id": 79,
+        "content": "            if len(bs) == 0:\n                break\n            yield list(itertools.chain(*self.pixels(bs)))\n    def __len__(self):\n        return self.pixmap_height\n    def pixels(self, row):\n        self.uni_format()\n        # bytes per pixel\n        bpp = self.bits_per_pixel // 8\n        if bpp * 8 != self.bits_per_pixel or bpp > 4:\n            raise NotImplemented(\n                \"Cannot handle bits_per_pixel of {!r}\".format(self.bits_per_pixel)\n            )\n        for s in range(0, len(row), bpp):\n            pix = row[s : s + bpp]\n            # pad to 4 bytes\n            pad = b\"\\x00\" * (4 - len(pix))\n            if self.byte_order == 1:\n                fmt = \">L\"\n                pix = pad + pix\n            else:\n                fmt = \"<L\"\n                pix = pix + pad\n            v, = struct.unpack(fmt, pix)\n            cs = self.channels\n            # Note: Could permute channels here\n            # by permuting the `cs` list;\n            # for example to convert BGR to RGB.\n            pixel = tuple((v & c.mask) >> c.shift for c in cs)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/pypy_xwd.py:117-150"
+    },
+    "395": {
+        "file_id": 79,
+        "content": "The code handles the pixel data in a pixmap image with a specific number of bits per pixel. It raises an exception if it cannot handle the given bits_per_pixel value, which should be a multiple of 8. The code also ensures that the byte order is consistent and pads the bytes to 4 for proper formatting. If needed, the channels in the pixel can be permuted to change the color format such as converting BGR to RGB.",
+        "type": "comment"
+    },
+    "396": {
+        "file_id": 79,
+        "content": "            yield pixel\ndef xwd_open(f):\n    # From XWDFile.h:\n    # \"Values in the file are most significant byte first.\"\n    fmt = \">L\"\n    header = f.read(8)\n    header_size, = struct.unpack(fmt, header[:4])\n    # There are no magic numbers, so as a sanity check,\n    # we check that the size is \"reasonable\" (< 65536)\n    if header_size >= 65536:\n        raise FormatError(\"header_size too big: {!r}\".format(header[:4]))\n    version, = struct.unpack(fmt, header[4:8])\n    if version != 7:\n        raise FormatError(\n            \"Sorry only version 7 supported, not version {!r}\".format(version)\n        )\n    fields = [\n        \"pixmap_format\",\n        \"pixmap_depth\",\n        \"pixmap_width\",\n        \"pixmap_height\",\n        \"xoffset\",\n        \"byte_order\",\n        \"bitmap_unit\",\n        \"bitmap_bit_order\",\n        \"bitmap_pad\",\n        \"bits_per_pixel\",\n        \"bytes_per_line\",\n        \"visual_class\",\n        \"red_mask\",\n        \"green_mask\",\n        \"blue_mask\",\n        \"bits_per_rgb\",\n        \"colormap_entries\",\n        \"ncolors\",",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/pypy_xwd.py:152-193"
+    },
+    "397": {
+        "file_id": 79,
+        "content": "This function reads the first 8 bytes of an XWD file, checks if the header size is reasonable (less than 65536), and verifies that the version is 7. If any issues are found, it raises a FormatError. The code then prepares to parse other fields in the file based on this initial information.",
+        "type": "comment"
+    },
+    "398": {
+        "file_id": 79,
+        "content": "        \"window_width\",\n        \"window_height\",\n        \"window_x\",\n        \"window_y\",\n        \"window_bdrwidth\",\n    ]\n    res = dict(header_size=header_size, version=version)\n    for field in fields:\n        v, = struct.unpack(fmt, f.read(4))\n        res[field] = v\n    xwd_header_size = 8 + 4 * len(fields)\n    window_name_len = header_size - xwd_header_size\n    if window_name_len <= 0:\n        raise FormatError(\"Size in header, {!r}, is too small\".format(size))\n    window_name = f.read(window_name_len)[:-1]\n    res[\"window_name\"] = window_name\n    # read, but ignore, the colours\n    color_fmt = fmt + \">H\" * 3 + \"B\" + \"B\"\n    for i in range(res[\"ncolors\"]):\n        f.read(12)\n    xwd = XWD(input=f, xwd_header=res)\n    return xwd\ndef ffs(x):\n    \"\"\"\n    Returns the index, counting from 0, of the\n    least significant set bit in `x`.\n    \"\"\"\n    return (x & -x).bit_length() - 1\ndef is_contiguous(x):\n    \"\"\"\n    Check that x is a contiguous series of binary bits.\n    \"\"\"\n    return is_power_of_2((x >> ffs(x)) + 1)\ndef is_power_of_2(x):",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/pypy_xwd.py:194-239"
+    },
+    "399": {
+        "file_id": 79,
+        "content": "This code reads an XWD file, extracts the header information including window dimensions and name, ignores color data, and returns the XWD object. It also includes utility functions for finding the least significant set bit in a number and checking if a series of binary bits is a power of 2.",
+        "type": "comment"
+    }
+}

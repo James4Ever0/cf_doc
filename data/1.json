@@ -1,0 +1,529 @@
+{
+    "100": {
+        "file_id": 22,
+        "content": "def known_bytes(y):\n    z=set(y)\n    z={k:list(map(lambda f:f==k,y)) for k in z}\n    z={k:[f for f in range(len(z[k])) if z[k][f]] for k in z.keys()}\n    return z\ndef given_array(y):\n    z=known_bytes(y)\n    l=len(y)\n    return {k:[y[d:l] for d in z[k]] for k in z.keys()}",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/byte_compare.py:1-10"
+    },
+    "101": {
+        "file_id": 22,
+        "content": "This code defines two functions: \"known_bytes\" and \"given_array\". The \"known_bytes\" function takes an array of bytes as input, creates a set of unique byte values in the array, then constructs a dictionary where keys are the unique byte values and values are lists of indices where that byte value appears in the input array. The \"given_array\" function uses the output of \"known_bytes\" to create a new dictionary, where keys are the same as in the \"known_bytes\" dictionary, but values are lists of subarrays in the original input array where each byte in the subarray matches the key's value.",
+        "type": "comment"
+    },
+    "102": {
+        "file_id": 23,
+        "content": "/generic/vb_charec_bootstrap/byte_processor.py",
+        "type": "filepath"
+    },
+    "103": {
+        "file_id": 23,
+        "content": "This code reads input from stdin, converts it to a bytearray, and then applies two different methods (stock market approach and native approach) to process the data. It prints the rawinput and bytearray before applying these methods. The final result is a matrix representation of the input data based on the chosen method.",
+        "type": "summary"
+    },
+    "104": {
+        "file_id": 23,
+        "content": "import sys\nfrom byte_compare import given_array\nfor x in sys.stdin.buffer:\n    print(\"rawinput: \",x)\n    y=list(x)\n    print(\"bytearray: \",y)\n    # what we can do about this thing? the stock market approach. or the native approach.\n    z=given_array(y)\n    \"\"\"z=set(y)\n    z={k:list(map(lambda f:f==k,y)) for k in z}\n    z={k:[f for f in range(len(z[k])) if z[k][f]] for k in z.keys()}\"\"\"\n    #print(\"matrix: \",z)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/byte_processor.py:1-13"
+    },
+    "105": {
+        "file_id": 23,
+        "content": "This code reads input from stdin, converts it to a bytearray, and then applies two different methods (stock market approach and native approach) to process the data. It prints the rawinput and bytearray before applying these methods. The final result is a matrix representation of the input data based on the chosen method.",
+        "type": "comment"
+    },
+    "106": {
+        "file_id": 24,
+        "content": "/generic/vb_charec_bootstrap/charec.py",
+        "type": "filepath"
+    },
+    "107": {
+        "file_id": 24,
+        "content": "The code is a part of a larger OCR program using Redis and Numpy libraries. It contains functions for shape calculation, array summation, similarity comparison, and data processing/manipulation.",
+        "type": "summary"
+    },
+    "108": {
+        "file_id": 24,
+        "content": "# charec stub. for quickly parsing console optical chars.\n#     \n#      [console chars] -----------------\n#      /            \\                   \\\n# [inside-chars]   [outside-chars]   [ASCII/Console Art]\n#     |                        |              |\n# [can be gen with keyboard] [non-ascii?]  [Merge ROI] \n#     |                        |              |\n# [type/store/rec]  <-     [DL/tesseract]-----/\n# when name is unknown, we can use statistics to find similarities.\n# we'll assign random name to random templates.\n# or just a special name. even hash.\nimport redis\nimport numpy as np\nfrom ms3 import spilter\n# similarity check\n# maybe shall know about the location of chars?\n# or recheck?\ndef cyber_whale(a,s=1):\n    # the shape.\n    s*=a[0]\n    if len(a)==1:\n        return s \n    else:\n        return cyber_whale(a[1:],s)\ndef sum_all(n):\n    l = len(n.shape)\n    for x in range(l):\n        n=sum(n)\n    return n\ndef fsum(n):\n    return np.sum(n.flatten())\ndef sim(a,b,c=0.998):\n    nr = fsum(a == b)\n    cy = cyber_whale(a.shape)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/charec.py:1-42"
+    },
+    "109": {
+        "file_id": 24,
+        "content": "This code appears to be a part of a larger program, specifically targeting console optical character recognition (OCR). It utilizes the Redis library for storing and retrieving data, along with Numpy for efficient numerical computations. The functions defined within this chunk include:\n1. `cyber_whale(a, s=1)`: Calculates the size of a shape recursively based on its dimensions.\n2. `sum_all(n)`: Sums all elements in a given numpy array.\n3. `fsum(n)`: Flattens and sums all elements of a numpy array.\n4. `sim(a, b, c=0.998)`: Compares two arrays by finding the number of equal elements and returns the similarity score.",
+        "type": "comment"
+    },
+    "110": {
+        "file_id": 24,
+        "content": "    return np.all((nr/cy) > c)\n\"\"\"\ndef checkCode(y):\n    return tuple(int(x) for x in bin(y)[2:])\n\"\"\"\ndef checkCode(y):\n    base_list=[()]\n    for d in range(y):\n        base_list=[(*z,x) for z in base_list for x in range(2)]\n    return base_list\ndef sparse(x):\n    base_list=[()]\n    blist = checkCode(x)\n    # this is not the way to do it?\n    # nope this is not.\n    for d in range(2):\n        # it is about y.\n        base_list = [(*z,*y) for z in base_list for y in blist]\n    return base_list\ndef roundme(a,x):\n    return a[:x]\ndef rcomp(a,b):\n    x=min(len(a),len(b))\n    return roundme(a,x)==roundme(b,x)\ndef s2p(a):\n    s=int(len(a)/2)\n    return a[:s],a[s:]\ndef r2comp(a,b):\n    a0,a1 = s2p(a)\n    b0,b1 = s2p(b)\n    return rcomp(a0,b0) and rcomp(a1,b1)\n# rounding algorithm.\n# check and update? assign random names? randomly picking shits up?\n# you can have microname.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/charec.py:43-82"
+    },
+    "111": {
+        "file_id": 24,
+        "content": "Code snippet includes functions for checking code, creating sparse lists, rounding values, comparing binary representations, and splitting strings. It appears to be related to some data processing or manipulation.",
+        "type": "comment"
+    },
+    "112": {
+        "file_id": 25,
+        "content": "/generic/vb_charec_bootstrap/cmd_dosbox.py",
+        "type": "filepath"
+    },
+    "113": {
+        "file_id": 25,
+        "content": "This code sets up a recursive program with signal and exception handlers, functions for executing commands, and threads to continuously run the main command using xdotool. It also creates a daemon thread 't0' to run an unknown function 'run_main', starts a new thread 't' for execution, and keeps the main thread idle by printing \"idle main thread\".",
+        "type": "summary"
+    },
+    "114": {
+        "file_id": 25,
+        "content": "# this is recursive programming.\n# 25 x 80\nimport threading\nimport subprocess\nimport signal, sys\nimport time\ndef sigint_handler(signal,frame):\n    print(\"interrupted!\")\n    time.sleep(0.1)\n    sys.exit(0)\ndef my_except_hook(exctype,value,traceback):\n    time.sleep(0.1)\n    sys.__excepthook__(exctype,value,traceback)\n    sys.exit(0)\n    # is it lethal?\nsys.excepthook = my_except_hook\nsignal.signal(signal.SIGINT,sigint_handler)\ndef run_main_v2(cmdline,env):\n    for x in cmdline:\n        subprocess.run(x,env=env)\n        print(\"completed!\",cmdline)\ndef run_main(cmdline):\n    subprocess.run(cmdline)\n    print(\"completed!\",cmdline)\ndef rep_main(cmdline,env):\n    while True:\n        time.sleep(0.5)\n        run_main_v2(cmdline,env)\n    # right into the output.\n    #subprocess.run([\"./sep_dosbox.sh\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n    # where's the output?\n    # if you cannot count, why bother math?\nimport os\nenv = os.environ.copy()\n#env = copy.deepcopy(os.environ)\nenv[\"DISPLAY\"]=\":9\"\ncraft=(\"0123456789\")*20\nt0=threading.Thread(target=rep_main,args=([",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/cmd_dosbox.py:1-42"
+    },
+    "115": {
+        "file_id": 25,
+        "content": "This code sets up a recursive program with signal and exception handlers, multiple functions for executing commands, and a thread to continuously run the main command. It also defines an environment variable and creates a thread to repeatedly execute a given command.",
+        "type": "comment"
+    },
+    "116": {
+        "file_id": 25,
+        "content": "[\"xdotool\", \"type\", craft],\n[\"xdotool\", \"key\", \"0xff0d\"]\n    ],env))\nt0.setDaemon(True)\nt0.start()\n# better end this thread? check if properly closed.\nt=threading.Thread(target=run_main,args=([\"./sep_dosbox.sh\"],))\nt.setDaemon(True)\nt.start()\n# better end this thread? check if properly closed.\nwhile True:\n    time.sleep(1)\n    print(\"idle main thread\")",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/cmd_dosbox.py:43-57"
+    },
+    "117": {
+        "file_id": 25,
+        "content": "Code executes commands using xdotool to simulate typing and pressing enter key on craft variable, creates a daemon thread 't0' to run an unknown function 'run_main', starts a new thread 't' with arguments \"./sep_dosbox.sh\" for execution, keeps the main thread idle by printing \"idle main thread\" every second until terminated or closed properly.",
+        "type": "comment"
+    },
+    "118": {
+        "file_id": 26,
+        "content": "/generic/vb_charec_bootstrap/commander.py",
+        "type": "filepath"
+    },
+    "119": {
+        "file_id": 26,
+        "content": "Code runs two separate shell scripts: one executing a walker.sh and another running listener.py, using subprocess Popen to spawn processes. Threading is used for communication with the walker.sh process. Communication result is printed from both stdout and stderr of the listener.py script.",
+        "type": "summary"
+    },
+    "120": {
+        "file_id": 26,
+        "content": "# run another shell script? or spawn a process.\nimport subprocess\nimport threading\ns=subprocess.Popen([\"./walker.sh\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\ns0=subprocess.Popen([\"python3\",\"listener.py\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\nt=threading.Thread(target=s.communicate)\nt.start()\nstdout,stderr = s0.communicate()\nprint(\"communication result: \",stdout,stderr)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/commander.py:1-10"
+    },
+    "121": {
+        "file_id": 26,
+        "content": "Code runs two separate shell scripts: one executing a walker.sh and another running listener.py, using subprocess Popen to spawn processes. Threading is used for communication with the walker.sh process. Communication result is printed from both stdout and stderr of the listener.py script.",
+        "type": "comment"
+    },
+    "122": {
+        "file_id": 27,
+        "content": "/generic/vb_charec_bootstrap/core.lua",
+        "type": "filepath"
+    },
+    "123": {
+        "file_id": 27,
+        "content": "The code defines a function called 'max' that returns the maximum of two numbers. It then defines 'short_mem', which checks if its first or second argument has changed and assigns it to 'shortmem'. If neither have changed, it sets 'result' to nil. The code includes commented out test print statements for testing purposes. Finally, there is a function 'remem' that uses the 'max' and 'short_mem' functions to return either 'memo' or nil based on a random chance.",
+        "type": "summary"
+    },
+    "124": {
+        "file_id": 27,
+        "content": "function max(num1, num2)\n   if (num1 > num2) then\n      result = num1;\n   else\n      result = num2;\n   end\n   return result; \nend\nshortmem = nil\nfunction short_mem(mem0, mem1)\n\tresult = nil\n\tif (mem0 ~= shortmem) then\n\t\tif (mem0 ~= nil) then\n\t\t\tresult = mem0;\n\t\telse if (mem1 ~= nil) then\n\t\t\tresult = mem1;\n\t\tend\n\tend\n\telse if (mem1 ~= shortmem) then\n\t\tif (mem1 ~= nil) then\n\t\t\tresult = mem1;\n\t\tend\n\t\telse if (mem0 ~= nil) then\n\t\t\tresult = mem0;\n\t\tend\n\tend\nend\n\tshortmem = result;\n\treturn result;\nend\n--[[ print(short_mem(1,2))\nprint(short_mem(1,2))\nprint(short_mem(1,2))\n]]\nfunction remem(memo)\n\tmath.randomseed(os.time())\n\trandom = math.random(0,1)\n\tif (random >= 0.5) then\n\t\tresult = short_mem(memo,nil)\n\telse\n\t\tresult = short_mem(nil,memo)\n\tend\n\treturn result;\nend\n-- print(max(2,1))\n-- this is not the end. just tell me what happened? what do you need to process?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/core.lua:1-51"
+    },
+    "125": {
+        "file_id": 27,
+        "content": "The code defines a function called 'max' that returns the maximum of two numbers. It then defines 'short_mem', which checks if its first or second argument has changed and assigns it to 'shortmem'. If neither have changed, it sets 'result' to nil. The code includes commented out test print statements for testing purposes. Finally, there is a function 'remem' that uses the 'max' and 'short_mem' functions to return either 'memo' or nil based on a random chance.",
+        "type": "comment"
+    },
+    "126": {
+        "file_id": 28,
+        "content": "/generic/vb_charec_bootstrap/crdemo.py",
+        "type": "filepath"
+    },
+    "127": {
+        "file_id": 28,
+        "content": "The code generates and manages base lists, arrays, sparse matrices, and dictionaries for organizing data, then prints the resulting typegen dictionary. It could benefit from improved organization and possible refactoring of the recget function for better efficiency.",
+        "type": "summary"
+    },
+    "128": {
+        "file_id": 28,
+        "content": "import numpy as np\n# use eval or nothing will happen.\n# extract sparse matrix?\ndef genkey(tup):\n    # check args length?\n    # max recursion 3?\n    base_list=[()]\n    for x in range(len(tup)):\n        base_list = [(*z,y) for z in base_list for y in range(tup[x])]\n    return base_list\ndef recget(a,x):\n    tar = a\n    for z in x:\n        tar = tar[z]\n    return tar\n# better use this in pypy? but how? use separate process or one single process? \na = np.array([0,0,0])\nb = np.array([0,1,1])\ne = np.array([1,1,1])\nd = np.array([0,0,1])\nc = np.array([0,0,1])\n# generate sparse matrix for individual pixels.\n# group them together.\ndef tgen(lst,a):\n    shape = a.shape\n    keys = genkey(shape)\n    typegen= {k:{0:[],1:[]} for k in keys}\n    for k in lst.keys():\n        f=lst[k]\n        for x in keys:\n            y=recget(f,x)\n            typegen[x][y].append(k)\n    return typegen\nlst = {\"a\":a,\"b\":b,\"c\":c,\"d\":d,\"e\":e}\ntypegen=tgen(lst,a)\nprint(typegen)\n# how do you map the logic? random plots?\n\"\"\"\nprint(keys)\n# use these keys to get data!\nfor dx in lst:",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/crdemo.py:1-43"
+    },
+    "129": {
+        "file_id": 28,
+        "content": "The code defines a function genkey for generating base lists, recget for retrieving elements from the arrays, and tgen to generate a sparse matrix for individual pixels. It creates a dictionary lst with array keys and uses these keys in tgen to create a typegen dictionary with keys as sparse matrix keys and values as lists of corresponding array keys. Finally, it prints the typegen dictionary.",
+        "type": "comment"
+    },
+    "130": {
+        "file_id": 28,
+        "content": "    for x in keys:\n        print(x,recget(dx,x))\n\"\"\"\n# classify these things by what? better use a dict.\n# a recursive function?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/crdemo.py:44-48"
+    },
+    "131": {
+        "file_id": 28,
+        "content": "This code seems to iterate over the keys and print them along with their corresponding values retrieved from a dictionary (recget function). It suggests improving organization by using a dictionary and potentially refactoring the recget function for better efficiency.",
+        "type": "comment"
+    },
+    "132": {
+        "file_id": 29,
+        "content": "/generic/vb_charec_bootstrap/demo_nparr_redis.py",
+        "type": "filepath"
+    },
+    "133": {
+        "file_id": 29,
+        "content": "This code imports the necessary libraries and uses Redis to store a numpy array as bytes. It demonstrates the usage of pickle for serialization and deserialization, and prints keys and associated data from Redis.",
+        "type": "summary"
+    },
+    "134": {
+        "file_id": 29,
+        "content": "import redis\nimport numpy as np\n#import struct\nimport pickle\narr = np.array([1,2])\n# all bytes!\nrail=\"sample_np_array\"\nr=redis.StrictRedis(host='localhost', port=6379, decode_responses=False)\norig = pickle.dumps(arr)\nprint(\"original: \",orig)\nr.set(rail,orig)\n#r.set(\"sample_np_array\",arr.tobytes())\nfor x in r.keys():\n    print(\"key: \",x)\n    f=r.get(x)\n    # dump will get unwanted offset.\n    print(\"data: \",f,type(f))\n    if x.decode() == rail:\n        print(\"decode_numpy: \",pickle.loads(f))\n#    else:\n#        print(\">>>keys compare:\",str(x),rail)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/demo_nparr_redis.py:1-22"
+    },
+    "135": {
+        "file_id": 29,
+        "content": "This code imports the necessary libraries and uses Redis to store a numpy array as bytes. It demonstrates the usage of pickle for serialization and deserialization, and prints keys and associated data from Redis.",
+        "type": "comment"
+    },
+    "136": {
+        "file_id": 30,
+        "content": "/generic/vb_charec_bootstrap/dnrcheck.py",
+        "type": "filepath"
+    },
+    "137": {
+        "file_id": 30,
+        "content": "Code imports redis, numpy, and other libraries. It connects to a local Redis server and iterates over all keys, attempting to decode each key containing \"(\" as a pickled numpy array.",
+        "type": "summary"
+    },
+    "138": {
+        "file_id": 30,
+        "content": "import redis\nimport numpy as np\n#import struct\nimport pickle\nimport random\nrng = random.SystemRandom()\n# all bytes!\nr=redis.StrictRedis(host='localhost', port=6379, decode_responses=False)\n#r.set(\"sample_np_array\",arr.tobytes())\nfor x in r.keys():\n    try:\n        print(\"key: \",x)\n        f=r.get(x)\n    # dump will get unwanted offset.\n        print(\"data: \",f,type(f))\n        if \"(\" in x.decode():\n            print(\"decode_numpy: \",pickle.loads(f))\n            break\n    except:\n        pass\n#    else:\n#        print(\">>>keys compare:\",str(x),rail)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dnrcheck.py:1-23"
+    },
+    "139": {
+        "file_id": 30,
+        "content": "Code imports redis, numpy, and other libraries. It connects to a local Redis server and iterates over all keys, attempting to decode each key containing \"(\" as a pickled numpy array.",
+        "type": "comment"
+    },
+    "140": {
+        "file_id": 31,
+        "content": "/generic/vb_charec_bootstrap/docker_ro_image/README",
+        "type": "filepath"
+    },
+    "141": {
+        "file_id": 31,
+        "content": "This code describes Docker as a unified syntax provider with variations, mentions Podman's unavailability on Windows except with Superglue, and suggests running a terminal server without Tmux or Screen.",
+        "type": "summary"
+    },
+    "142": {
+        "file_id": 31,
+        "content": "docker is just a unified syntax provider.\nthere are many differences inbetween.\npodman is not avaliable on windows unless using superglue.\nhint: run the terminal server.\nno tmux. screen donno how to take shot.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/docker_ro_image/README:1-9"
+    },
+    "143": {
+        "file_id": 31,
+        "content": "This code describes Docker as a unified syntax provider with variations, mentions Podman's unavailability on Windows except with Superglue, and suggests running a terminal server without Tmux or Screen.",
+        "type": "comment"
+    },
+    "144": {
+        "file_id": 32,
+        "content": "/generic/vb_charec_bootstrap/docker_ro_image/killall.sh",
+        "type": "filepath"
+    },
+    "145": {
+        "file_id": 32,
+        "content": "This script uses Podman to terminate all running containers.",
+        "type": "summary"
+    },
+    "146": {
+        "file_id": 32,
+        "content": "#!/bin/bash\npodman kill -a",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/docker_ro_image/killall.sh:1-2"
+    },
+    "147": {
+        "file_id": 32,
+        "content": "This script uses Podman to terminate all running containers.",
+        "type": "comment"
+    },
+    "148": {
+        "file_id": 33,
+        "content": "/generic/vb_charec_bootstrap/docker_ro_image/start_ro.sh",
+        "type": "filepath"
+    },
+    "149": {
+        "file_id": 33,
+        "content": "This script uses Podman to run a read-only container with the BusyBox image, limiting CPU usage and memory allocation for visual and communication tasks.",
+        "type": "summary"
+    },
+    "150": {
+        "file_id": 33,
+        "content": "#!/bin/bash\n# use podman? but we have not had the image!\npodman run --rm --read-only -ti --cpus 0.01 --memory 2m localhost/busybox\n# t -> visual\n# i -> communication",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/docker_ro_image/start_ro.sh:1-5"
+    },
+    "151": {
+        "file_id": 33,
+        "content": "This script uses Podman to run a read-only container with the BusyBox image, limiting CPU usage and memory allocation for visual and communication tasks.",
+        "type": "comment"
+    },
+    "152": {
+        "file_id": 34,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/README",
+        "type": "filepath"
+    },
+    "153": {
+        "file_id": 34,
+        "content": "This code indicates that the OS being discussed is not designed for multi-user environments. It is focused on single-user usage, meaning it does not support concurrent access or separate user profiles.",
+        "type": "summary"
+    },
+    "154": {
+        "file_id": 34,
+        "content": "it is not a multi-user OS.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/README:1-1"
+    },
+    "155": {
+        "file_id": 34,
+        "content": "This code indicates that the OS being discussed is not designed for multi-user environments. It is focused on single-user usage, meaning it does not support concurrent access or separate user profiles.",
+        "type": "comment"
+    },
+    "156": {
+        "file_id": 35,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/SUCKING",
+        "type": "filepath"
+    },
+    "157": {
+        "file_id": 35,
+        "content": "This code appears to express negative sentiments towards serial devices and Android QEMU emulation, potentially indicating frustration or dissatisfaction.",
+        "type": "summary"
+    },
+    "158": {
+        "file_id": 35,
+        "content": "all serial device sucks.\nandroid qemu sucks.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/SUCKING:1-3"
+    },
+    "159": {
+        "file_id": 35,
+        "content": "This code appears to express negative sentiments towards serial devices and Android QEMU emulation, potentially indicating frustration or dissatisfaction.",
+        "type": "comment"
+    },
+    "160": {
+        "file_id": 36,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/check_telnet.sh",
+        "type": "filepath"
+    },
+    "161": {
+        "file_id": 36,
+        "content": "This Bash script listens on all network connections, filters the output to find TCP sockets listening on port 4312.",
+        "type": "summary"
+    },
+    "162": {
+        "file_id": 36,
+        "content": "#!/bin/bash\nss -tuln |  grep 4312",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/check_telnet.sh:1-2"
+    },
+    "163": {
+        "file_id": 36,
+        "content": "This Bash script listens on all network connections, filters the output to find TCP sockets listening on port 4312.",
+        "type": "comment"
+    },
+    "164": {
+        "file_id": 37,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/connect_telnet_dos.cmd",
+        "type": "filepath"
+    },
+    "165": {
+        "file_id": 37,
+        "content": "This batch file disables echo and establishes a Telnet connection to localhost on port 4312 without specifying a character mode.",
+        "type": "summary"
+    },
+    "166": {
+        "file_id": 37,
+        "content": "@echo off\ntelnet -e \"\" localhost 4312 \nREM #echo \"mode character\" | telnet -e \"\" localhost 4312 ",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/connect_telnet_dos.cmd:1-3"
+    },
+    "167": {
+        "file_id": 37,
+        "content": "This batch file disables echo and establishes a Telnet connection to localhost on port 4312 without specifying a character mode.",
+        "type": "comment"
+    },
+    "168": {
+        "file_id": 38,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/connect_telnet_dos.sh",
+        "type": "filepath"
+    },
+    "169": {
+        "file_id": 38,
+        "content": "This Bash script uses telnet to connect to localhost on port 4312. The command \"echo \\\"mode character\\\" |\" is commented out, indicating it may be used for additional functionality but is currently inactive.",
+        "type": "summary"
+    },
+    "170": {
+        "file_id": 38,
+        "content": "#!/bin/bash\ntelnet -e \"\" localhost 4312 \n#echo \"mode character\" | telnet -e \"\" localhost 4312 ",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/connect_telnet_dos.sh:1-3"
+    },
+    "171": {
+        "file_id": 38,
+        "content": "This Bash script uses telnet to connect to localhost on port 4312. The command \"echo \\\"mode character\\\" |\" is commented out, indicating it may be used for additional functionality but is currently inactive.",
+        "type": "comment"
+    },
+    "172": {
+        "file_id": 39,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/headless_dos.sh",
+        "type": "filepath"
+    },
+    "173": {
+        "file_id": 39,
+        "content": "This script is launching a QEMU virtual machine using KVM acceleration, without graphics (nographic), loading an HDD image from file 'c.hd', and booting from device 'd'.",
+        "type": "summary"
+    },
+    "174": {
+        "file_id": 39,
+        "content": "#!/bin/bash\nqemu-system-i386 -enable-kvm -nographic -hda c.hd -boot d",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/headless_dos.sh:1-2"
+    },
+    "175": {
+        "file_id": 39,
+        "content": "This script is launching a QEMU virtual machine using KVM acceleration, without graphics (nographic), loading an HDD image from file 'c.hd', and booting from device 'd'.",
+        "type": "comment"
+    },
+    "176": {
+        "file_id": 40,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/kvm_telnet_dos.sh",
+        "type": "filepath"
+    },
+    "177": {
+        "file_id": 40,
+        "content": "This script launches a virtual machine with the QEMU emulator, enabling KVM acceleration and configuring serial output over Telnet. The VM boots from the specified hard disk (c.hd) and uses the provided disk image (-hda).",
+        "type": "summary"
+    },
+    "178": {
+        "file_id": 40,
+        "content": "#!/bin/bash\n#qemu-system-i386 -nographic  -serial telnet:localhost:4312,server,nowait  -hda c.hd -boot d\nqemu-system-i386 -nographic -enable-kvm -serial telnet:localhost:4312,server,nowait  -hda c.hd -boot d",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/kvm_telnet_dos.sh:1-3"
+    },
+    "179": {
+        "file_id": 40,
+        "content": "This script launches a virtual machine with the QEMU emulator, enabling KVM acceleration and configuring serial output over Telnet. The VM boots from the specified hard disk (c.hd) and uses the provided disk image (-hda).",
+        "type": "comment"
+    },
+    "180": {
+        "file_id": 41,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/loadram.sh",
+        "type": "filepath"
+    },
+    "181": {
+        "file_id": 41,
+        "content": "This script executes a series of commands: runs unloadram.sh, creates a ramdisk directory with permissions, and mounts a 10MiB tmpfs filesystem named myramdisk into the ramdisk directory.",
+        "type": "summary"
+    },
+    "182": {
+        "file_id": 41,
+        "content": "#!/bin/bash\n./unloadram.sh\nsudo mkdir ramdisk\nsudo chmod 777 ramdisk\nsudo mount -t tmpfs -o size=10m myramdisk ramdisk",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/loadram.sh:1-5"
+    },
+    "183": {
+        "file_id": 41,
+        "content": "This script executes a series of commands: runs unloadram.sh, creates a ramdisk directory with permissions, and mounts a 10MiB tmpfs filesystem named myramdisk into the ramdisk directory.",
+        "type": "comment"
+    },
+    "184": {
+        "file_id": 42,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/run_dos.cmd",
+        "type": "filepath"
+    },
+    "185": {
+        "file_id": 42,
+        "content": "This script is running a DOS command to launch QEMU, a virtual machine emulator, for an Android emulation. It checks if the latest version is required and specifies memory allocations and disk image file. The provided path references indicate the locations of relevant files on the system.",
+        "type": "summary"
+    },
+    "186": {
+        "file_id": 42,
+        "content": "@echo off\nREM do we need latest?\nREM \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\"  -enable-hax -m 2M,maxmem=5M -mem-path R:\\ -hda c.hd -boot d\n\"E:\\Program Files\\qemu\\qemu-system-x86_64.exe\" -accel hax -m 2M,slots=2,maxmem=5M  -hda c.hd -boot d\nREM \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"\nREM D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\\kvmvapic.bin\nREM this is not native one.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/run_dos.cmd:1-7"
+    },
+    "187": {
+        "file_id": 42,
+        "content": "This script is running a DOS command to launch QEMU, a virtual machine emulator, for an Android emulation. It checks if the latest version is required and specifies memory allocations and disk image file. The provided path references indicate the locations of relevant files on the system.",
+        "type": "comment"
+    },
+    "188": {
+        "file_id": 43,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/run_dos.sh",
+        "type": "filepath"
+    },
+    "189": {
+        "file_id": 43,
+        "content": "This script loads a RAM disk using loadram.sh, then launches QEMU emulator with KVM enabled and memory limits set for an i386 system, booting from the specified disk image \"c.hd\".",
+        "type": "summary"
+    },
+    "190": {
+        "file_id": 43,
+        "content": "#!/bin/bash\n./loadram.sh\nqemu-system-i386 -enable-kvm -m 5M,maxmem=10M -mem-path $PWD/ramdisk -hda c.hd -boot d",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/run_dos.sh:1-3"
+    },
+    "191": {
+        "file_id": 43,
+        "content": "This script loads a RAM disk using loadram.sh, then launches QEMU emulator with KVM enabled and memory limits set for an i386 system, booting from the specified disk image \"c.hd\".",
+        "type": "comment"
+    },
+    "192": {
+        "file_id": 44,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu.cmd",
+        "type": "filepath"
+    },
+    "193": {
+        "file_id": 44,
+        "content": "This batch file launches an Android emulator using QEMU, setting the maximum memory and specifying the BIOS files. It first checks if the latest version is needed before running the command with specified options for the emulator execution.",
+        "type": "summary"
+    },
+    "194": {
+        "file_id": 44,
+        "content": "@echo off\nREM do we need latest?\nREM \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\"  -enable-hax -m 2M,maxmem=5M -mem-path R:\\ -hda c.hd -boot d\n\"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\" -L \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\" -L \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\" -m 2M,slots=2,maxmem=5M  -hda c.hd -boot d\nREM \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"\nREM D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\\kvmvapic.bin\nREM this is not native one.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu.cmd:1-7"
+    },
+    "195": {
+        "file_id": 44,
+        "content": "This batch file launches an Android emulator using QEMU, setting the maximum memory and specifying the BIOS files. It first checks if the latest version is needed before running the command with specified options for the emulator execution.",
+        "type": "comment"
+    },
+    "196": {
+        "file_id": 45,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu_serial.cmd",
+        "type": "filepath"
+    },
+    "197": {
+        "file_id": 45,
+        "content": "This batch file is launching an Android emulator using QEMU on a Windows system. It checks if the latest version is needed and sets the memory configuration, path to BIOS files, and hard disk file for booting. The command also includes options for a serial connection, potential fallback to MATLAB's IDELink, and possibly using Com0Com software for the serial port emulation.",
+        "type": "summary"
+    },
+    "198": {
+        "file_id": 45,
+        "content": "@echo off\nREM do we need latest?\nREM \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\"  -enable-hax -m 2M,maxmem=5M -mem-path R:\\ -hda c.hd -boot d\n\"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\" -L \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\" -L \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"  -m 2M,slots=2,maxmem=5M  -nographic -serial COM3  -hda c.hd -boot d\nREM \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"\nREM it is\nREM D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\\kvmvapic.bin\nREM this is not native one.\nREM D:\\Program Files\\MATLAB\\R2018a\\toolbox\\idelink\\foundation\\hostapps\\PUTTY.EXE\nREM \"D:\\Program Files (x86)\\com0com\\setupc.exe\"",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu_serial.cmd:1-10"
+    },
+    "199": {
+        "file_id": 45,
+        "content": "This batch file is launching an Android emulator using QEMU on a Windows system. It checks if the latest version is needed and sets the memory configuration, path to BIOS files, and hard disk file for booting. The command also includes options for a serial connection, potential fallback to MATLAB's IDELink, and possibly using Com0Com software for the serial port emulation.",
+        "type": "comment"
+    }
+}

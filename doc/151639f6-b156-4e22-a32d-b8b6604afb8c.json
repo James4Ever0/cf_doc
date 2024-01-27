@@ -1,0 +1,10 @@
+{
+    "summary": "Reads two image files \"buf0.png\" and \"buf1.png\", applies brightness adjustment function btight, then plots the result using dplot function.",
+    "details": [
+        {
+            "comment": "Reads two image files \"buf0.png\" and \"buf1.png\", applies brightness adjustment function btight, then plots the result using dplot function.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/test_mc.py\":0-6",
+            "content": "from measure_console import btight, dplot\nimport cv2\nimageA = cv2.imread(\"buf0.png\")\nimageB = cv2.imread(\"buf1.png\")\ncrx = btight(imageA,imageB)\ndplot(crx)"
+        }
+    ]
+}

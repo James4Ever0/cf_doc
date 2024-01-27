@@ -1,0 +1,10 @@
+{
+    "summary": "This script sets up a virtual display environment for running graphical applications like Gnome Shell or MWM on Linux, using Xvfb. It removes any existing xvfb directory, creates a new one, starts the Xvfb server with specific configuration options and runs an application (MWM in this case) on a virtual display. The script also sleeps for 1 second before starting Gnome Shell or MWM, but it seems commented out. It then ends by leaving the comment section open for further commands execution.",
+    "details": [
+        {
+            "comment": "This script sets up a virtual display environment for running graphical applications like Gnome Shell or MWM on Linux, using Xvfb. It removes any existing xvfb directory, creates a new one, starts the Xvfb server with specific configuration options and runs an application (MWM in this case) on a virtual display. The script also sleeps for 1 second before starting Gnome Shell or MWM, but it seems commented out. It then ends by leaving the comment section open for further commands execution.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/winauto/mwm_virtual.sh\":0-7",
+            "content": "#!/bin/bash\nrm -rf /dev/shm/xvfb\nmkdir /dev/shm/xvfb\nxvfb-run -f ~/.Xauthority -n 7 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb\" burpsuite & echo xvfb_session_pid $!\nsleep 1\n#gnome-shell --display :7\nmwm -display :7\n#xvfb-run -f ~/.Xauthority -n 1 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -listen tcp \" xterm"
+        }
+    ]
+}

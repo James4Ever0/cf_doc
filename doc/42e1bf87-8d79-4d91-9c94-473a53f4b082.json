@@ -1,0 +1,10 @@
+{
+    "summary": "This script uses ADB and su to manage a symbolic link for the touch demo. It creates a directory \"dummy\" in /dev/input, then creates a symbolic link named \"event1\" pointing to the \"dummy/event1\" file, and finally removes the symbolic link if necessary.",
+    "details": [
+        {
+            "comment": "This script uses ADB and su to manage a symbolic link for the touch demo. It creates a directory \"dummy\" in /dev/input, then creates a symbolic link named \"event1\" pointing to the \"dummy/event1\" file, and finally removes the symbolic link if necessary.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/android/native/root/enable_touch_demo.bat\":0-3",
+            "content": "@echo off\nREM adb shell su -c \"cd /dev/input \\&\\& mkdir ../dummy\"\nadb shell su -c \"cd /dev/input \\&\\& ln -n ../dummy/event1 event1\"\nREM adb shell su -c \"cd /dev/input \\&\\& rm -rf event1\""
+        }
+    ]
+}

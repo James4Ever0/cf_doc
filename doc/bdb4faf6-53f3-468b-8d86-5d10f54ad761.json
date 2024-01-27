@@ -1,0 +1,10 @@
+{
+    "summary": "This code seems to be checking if there is a way to create new tools on equivalent items and then suggesting to get a PDF for further reading. If a similar pattern is found in the PDF, it suggests that something will happen (\"boom\").",
+    "details": [
+        {
+            "comment": "This code seems to be checking if there is a way to create new tools on equivalent items and then suggesting to get a PDF for further reading. If a similar pattern is found in the PDF, it suggests that something will happen (\"boom\").",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/self_train/SELF_TRAINING\":0-2",
+            "content": "check if there's a way to create new tools on equivalent things.\nget me a pdf and let's read. if there's similar pattern then boom."
+        }
+    ]
+}

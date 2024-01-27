@@ -1,0 +1,10 @@
+{
+    "summary": "Function \"poster\" sends data to a server using POST method. If the data cannot be serialized as JSON, it attempts pickling. After receiving a response, it prints the content of each attribute of the response object.",
+    "details": [
+        {
+            "comment": "Function \"poster\" sends data to a server using POST method. If the data cannot be serialized as JSON, it attempts pickling. After receiving a response, it prints the content of each attribute of the response object.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/hook_bash/wdiff.py\":0-20",
+            "content": "import requests\nimport json\nimport traceback\nimport pickle\ndef poster(s):\n    data=None\n    try:\n        data=json.dumps(s)\n    except:\n        data=pickle.dumps(s)\n#data= json.dumps({\"terminal\":\"terminal\"})\n    try:\n        r=requests.post(\"http://localhost:8888\",data=data)\n#        print(type(r),dir(r))\n        pr = dir(r)\n        for py in pr:\n            print(\"content of {}\".format(py))\n            print(eval(\"r.\"+py))\n    except:\n        traceback.print_exc()"
+        }
+    ]
+}

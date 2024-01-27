@@ -1,0 +1,10 @@
+{
+    "summary": "The code describes a system-level reversible operation within a virtualbox, allowing for safe execution of various operations including launching potentially malicious viruses. It features memory restoration and differentiates between timelines and virtual restores for operational purposes.",
+    "details": [
+        {
+            "comment": "The code describes a system-level reversible operation within a virtualbox, allowing for safe execution of various operations including launching potentially malicious viruses. It features memory restoration and differentiates between timelines and virtual restores for operational purposes.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/REV.md\":0-5",
+            "content": "inside the virtualbox we've got the system-level reversable operation.\nand thus we can safely doing all kinds of operation even it is about launching creepy virus!\n[Timeline] - [Memory Restore]\n    |                  |\n[Virtual Timeline] - [Virtual Restore (Operational)]"
+        }
+    ]
+}

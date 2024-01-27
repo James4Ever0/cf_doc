@@ -1,0 +1,10 @@
+{
+    "summary": "This code reads \"anytext.sh\", applies different sed substitutions based on the input and produces two output scripts: one with replacements 'world' to 'shit' and 'fuck' to 'screw', another with 'world' to 'hell' and 'fuck' to 'jerk'. The final step is to make the second script executable.",
+    "details": [
+        {
+            "comment": "This code reads \"anytext.sh\", applies different sed substitutions based on the input and produces two output scripts: one with replacements 'world' to 'shit' and 'fuck' to 'screw', another with 'world' to 'hell' and 'fuck' to 'jerk'. The final step is to make the second script executable.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/math_train/the_processor.sh\":0-3",
+            "content": "#!/bin/bash\ncat anytext.sh | sed \"s\\world\\shit\\g\" | sed \"s\\fuck\\screw\\g\"\ncat anytext.sh | sed \"s\\world\\hell\\g\" | sed \"s\\fuck\\jerk\\g\"\n#chmod +x shit.sh"
+        }
+    ]
+}

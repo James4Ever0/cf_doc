@@ -1,0 +1,10 @@
+{
+    "summary": "This Python script reads two files (anytext.sh and shit.sh), compares their contents using difflib's ndiff function, and modifies the first file (anytext.sh) by replacing lines that are only present in the second file (shit.sh). The result is then printed as a joined string.",
+    "details": [
+        {
+            "comment": "This Python script reads two files (anytext.sh and shit.sh), compares their contents using difflib's ndiff function, and modifies the first file (anytext.sh) by replacing lines that are only present in the second file (shit.sh). The result is then printed as a joined string.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/math_train/creplace.py\":0-21",
+            "content": "import difflib\nimport copy\na = open(\"anytext.sh\",\"r\").read()\nb = open(\"shit.sh\",\"r\").read()\n#dir(difflib)\n#rnd = \"round one.                   \"*20\nrnd = copy.copy(a)\nrnd = [x for x in rnd]\n# generate some function. this is it. whatever it means.\nx0 = [x for x in difflib.ndiff(a,b)]\nfor xp in range(len(x0)):\n    xf = x0[xp]\n    if xf[0]==\" \":\n        pass\n    elif xf[0]==\"-\":\n        rnd[xp]=\"\"\n    else:\n        # this is insertion.\n#        rnd[xp]=xf[2]\n        rnd[xp:xp]=xf[2]\nprint(\"\".join(rnd))"
+        }
+    ]
+}

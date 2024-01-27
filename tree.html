@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="github-markdown.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <title>Project structure of: /x00e0d991e368/cf</title>
+    <style>
+        .directory:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        :target {
+            background-color: yellow !important;
+        }
+
+        .folded::before {
+            content: '\25B6';
+            margin-right: 8px;
+            /* Add space between marker and text */
+        }
+
+        .expanded::before {
+            content: '\25BC';
+            margin-right: 8px;
+            /* Add space between marker and text */
+        }
+    </style>
+    <script>
+        function toggleVisibility(element) {
+            let mclass = element.getAttribute("class");
+            if (mclass == "expanded") {
+                element.setAttribute('class', 'folded');
+            } else {
+                element.setAttribute('class', 'expanded');
+            }
+            const siblings = element.parentNode.children;
+            for (const sibling of siblings) {
+                if (sibling !== element) {
+                    sibling.style.display = (sibling.style.display === 'none') ? 'block' : 'none';
+                }
+            }
+        }
+    </script>
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+
+            .partial-repository-url {
+                display: none;
+            }
+        }
+
+        ul {
+            list-style: none;
+        }
+        #feeling-lucky:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <article class="markdown-body">
+        <h2>Project structure<span hierarchy="0" class="partial-repository-url"> of: /x00e0d991e368/cf</span><div style="float: right;"><a title="Document index" style="margin:3.5px;" href="index.html"><i class="bi bi-search"></i></a><a title="Feeling lucky" style="margin:3.5px;" id="feeling-lucky" href="#"><i class="bi bi-dice-3"></i></a><a title="Expand tree" style="margin:3.5px;" href="tree.html?full=true" id="expand-tree"><i class="bi bi-caret-down-square"></i></a></div></h2>
+<ul>
+<li><span hierarchy="0" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/"><code>cf</code></strong> <em>Root directory or top-level directory</em></span><ul>
+<li><span hierarchy="1" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/android/"><code>android</code></strong> <em>Android native tools and accessibility integration.</em></span><ul>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/android/linux_emu/"><code>linux&UnderBar;emu</code></strong></span><ul>
+<li><a class="file_link" href="index.html?q=/android/linux_emu/README" id="/android/linux_emu/README"><code>README</code></a> <em>VirtualBox works, SDL may not surpass Termux's TTY.</em></li>
+</ul>
+</li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/android/native/"><code>native</code></strong> <em>Android native tools initialization and accessibility</em></span><ul>
+<li><a class="file_link" href="index.html?q=/android/native/init.bat" id="/android/native/init.bat"><code>init&period;bat</code></a> <em>Initializes PATH for Android SDK tools.</em></li>
+<li><a class="file_link" href="index.html?q=/android/native/README" id="/android/native/README"><code>README</code></a> <em>Android accessibility service disables screen section, explains lock feature.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/android/native/root/"><code>root</code></strong> <em>Android native root scripts for touch demo enable/disable</em></span><ul>
+<li><a class="file_link" href="index.html?q=/android/native/root/disable_touch_demo.bat" id="/android/native/root/disable_touch_demo.bat"><code>disable&UnderBar;touch&UnderBar;demo&period;bat</code></a> <em>Removes touch input, creates dummy device.</em></li>
+<li><a class="file_link" href="index.html?q=/android/native/root/enable_touch_demo.bat" id="/android/native/root/enable_touch_demo.bat"><code>enable&UnderBar;touch&UnderBar;demo&period;bat</code></a> <em>Enable touch demo via symbolic link</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/android/README" id="/android/README"><code>README</code></a> <em>Integrates touch blocker, Appium, Uiautomator2, Beaker Browser.</em></li>
+</ul>
+</li>
+<li><span hierarchy="1" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/"><code>generic</code></strong> <em>Generic utility content: Universal, adaptable digital tools.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/README" id="/generic/README"><code>README</code></a> <em>Modify and rebuild existing project</em></li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/vb_charec_bootstrap/"><code>vb&UnderBar;charec&UnderBar;bootstrap</code></strong> <em>Virtual Boy Framework: Scraping, Processing, Updates</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/blm.py" id="/generic/vb_charec_bootstrap/blm.py"><code>blm&period;py</code></a> <em>Create, display, wait, close, 50x50 black image.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/BOX.md" id="/generic/vb_charec_bootstrap/BOX.md"><code>BOX&period;md</code></a> <em>Lazero hardware architecture and input sources.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/byte_compare.py" id="/generic/vb_charec_bootstrap/byte_compare.py"><code>byte&UnderBar;compare&period;py</code></a> <em>Byte comparison functions: unique bytes, subarray matching.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/byte_processor.py" id="/generic/vb_charec_bootstrap/byte_processor.py"><code>byte&UnderBar;processor&period;py</code></a> <em>Python code reads input, converts to bytearray, applies methods, prints, outputs matrix.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/charec.py" id="/generic/vb_charec_bootstrap/charec.py"><code>charec&period;py</code></a> <em>OCR program: Redis, Numpy, shape, summation, similarity</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/cmd_dosbox.py" id="/generic/vb_charec_bootstrap/cmd_dosbox.py"><code>cmd&UnderBar;dosbox&period;py</code></a> <em>Bootstrap script for recursive program with signal/exception handlers and xdotool.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/commander.py" id="/generic/vb_charec_bootstrap/commander.py"><code>commander&period;py</code></a> <em>Commander.py: dual shell script runner with threaded communication and error printing.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/core.lua" id="/generic/vb_charec_bootstrap/core.lua"><code>core&period;lua</code></a> <em>max, short_mem, remem, memo or nil based on chance</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/crdemo.py" id="/generic/vb_charec_bootstrap/crdemo.py"><code>crdemo&period;py</code></a> <em>Refactored, organized code for data management and printing.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/CRITERION.md" id="/generic/vb_charec_bootstrap/CRITERION.md"><code>CRITERION&period;md</code></a> <em>Ensures uninterrupted interaction, preventing closure. Gnome allows system control in idle mode but lacks multi-window interactivity.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/demo_nparr_redis.py" id="/generic/vb_charec_bootstrap/demo_nparr_redis.py"><code>demo&UnderBar;nparr&UnderBar;redis&period;py</code></a> <em>Redis stores numpy array via pickle.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dnrcheck.py" id="/generic/vb_charec_bootstrap/dnrcheck.py"><code>dnrcheck&period;py</code></a> <em>Decodes Redis keys as pickled numpy arrays.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/vb_charec_bootstrap/docker_ro_image/"><code>docker&UnderBar;ro&UnderBar;image</code></strong> <em>Docker, Podman, Superglue, RO container, BusyBox, CPU/memory limits, bootstrap directory</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/docker_ro_image/killall.sh" id="/generic/vb_charec_bootstrap/docker_ro_image/killall.sh"><code>killall&period;sh</code></a> <em>Terminates all running containers with Podman.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/docker_ro_image/README" id="/generic/vb_charec_bootstrap/docker_ro_image/README"><code>README</code></a> <em>Docker syntax, Podman with Superglue, terminal server without Tmux/Screen.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/docker_ro_image/start_ro.sh" id="/generic/vb_charec_bootstrap/docker_ro_image/start_ro.sh"><code>start&UnderBar;ro&period;sh</code></a> <em>Start RO container with BusyBox, CPU/memory limits</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/DONT.md" id="/generic/vb_charec_bootstrap/DONT.md"><code>DONT&period;md</code></a> <em>Visual languages bridge human intent and machine interpretation.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/vb_charec_bootstrap/dos_runner/"><code>dos&UnderBar;runner</code></strong> <em>DOS QEMU scripts and config for Android emulation.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/check_telnet.sh" id="/generic/vb_charec_bootstrap/dos_runner/check_telnet.sh"><code>check&UnderBar;telnet&period;sh</code></a> <em>Checks port 4312 for TCP sockets.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/connect_telnet_dos.cmd" id="/generic/vb_charec_bootstrap/dos_runner/connect_telnet_dos.cmd"><code>connect&UnderBar;telnet&UnderBar;dos&period;cmd</code></a> <em>Telnet connection, localhost, port 4312.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/connect_telnet_dos.sh" id="/generic/vb_charec_bootstrap/dos_runner/connect_telnet_dos.sh"><code>connect&UnderBar;telnet&UnderBar;dos&period;sh</code></a> <em>Telnet connects localhost on port 4312 with possible mode character support.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/headless_dos.sh" id="/generic/vb_charec_bootstrap/dos_runner/headless_dos.sh"><code>headless&UnderBar;dos&period;sh</code></a> <em>Headless dos KVM QEMU HDD image booting</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/kvm_telnet_dos.sh" id="/generic/vb_charec_bootstrap/dos_runner/kvm_telnet_dos.sh"><code>kvm&UnderBar;telnet&UnderBar;dos&period;sh</code></a> <em>Launch QEMU KVM VM with Telnet serial output.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/loadram.sh" id="/generic/vb_charec_bootstrap/dos_runner/loadram.sh"><code>loadram&period;sh</code></a> <em>Loads ramdisk, mounts tmpfs, unloads previous.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/README" id="/generic/vb_charec_bootstrap/dos_runner/README"><code>README</code></a> <em>Single-user OS, no multi-user support.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/run_dos.cmd" id="/generic/vb_charec_bootstrap/dos_runner/run_dos.cmd"><code>run&UnderBar;dos&period;cmd</code></a> <em>Run DOS command to launch Android emulation with QEMU.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/run_dos.sh" id="/generic/vb_charec_bootstrap/dos_runner/run_dos.sh"><code>run&UnderBar;dos&period;sh</code></a> <em>Loads RAM disk, launches QEMU with KVM &amp; boots "c.hd" image.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu.cmd" id="/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu.cmd"><code>run&UnderBar;dos&UnderBar;android&UnderBar;emu&period;cmd</code></a> <em>Launch Android emulator with QEMU. Checks for latest version, sets memory limit and BIOS files.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu_serial.cmd" id="/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu_serial.cmd"><code>run&UnderBar;dos&UnderBar;android&UnderBar;emu&UnderBar;serial&period;cmd</code></a> <em>Launch Windows QEMU Android emulator with memory, BIOS, and disk config</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu_telnet.cmd" id="/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu_telnet.cmd"><code>run&UnderBar;dos&UnderBar;android&UnderBar;emu&UnderBar;telnet&period;cmd</code></a> <em>Launch Windows Android emulator with QEMU.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/run_dos_nographic.cmd" id="/generic/vb_charec_bootstrap/dos_runner/run_dos_nographic.cmd"><code>run&UnderBar;dos&UnderBar;nographic&period;cmd</code></a> <em>Run DOS program with QEMU, non-graphic mode, virtual drive "c.hd" and boot from D.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/run_dos_serial.cmd" id="/generic/vb_charec_bootstrap/dos_runner/run_dos_serial.cmd"><code>run&UnderBar;dos&UnderBar;serial&period;cmd</code></a> <em>Configures QEMU virtual machine with memory limits and serial port.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/run_dos_telnet.cmd" id="/generic/vb_charec_bootstrap/dos_runner/run_dos_telnet.cmd"><code>run&UnderBar;dos&UnderBar;telnet&period;cmd</code></a> <em>Run DOS program in QEMU emulator.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/serial_dos.sh" id="/generic/vb_charec_bootstrap/dos_runner/serial_dos.sh"><code>serial&UnderBar;dos&period;sh</code></a> <em>Run QEMU with KVM, serial options, and DOS boot.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/SUCKING" id="/generic/vb_charec_bootstrap/dos_runner/SUCKING"><code>SUCKING</code></a> <em>Negative sentiment towards serial devices and Android QEMU emulation.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dos_runner/unloadram.sh" id="/generic/vb_charec_bootstrap/dos_runner/unloadram.sh"><code>unloadram&period;sh</code></a> <em>Unmounts ramdisk, deletes directory.</em></li>
+</ul>
+</li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/vb_charec_bootstrap/ds_iso/"><code>ds&UnderBar;iso</code></strong> <em>VirtualBox ISOs for directory hierarchy emulation.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/ds_iso/brief.cmd" id="/generic/vb_charec_bootstrap/ds_iso/brief.cmd"><code>brief&period;cmd</code></a> <em>Batch script to list files and folders in directory hierarchy.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/ds_iso/README" id="/generic/vb_charec_bootstrap/ds_iso/README"><code>README</code></a> <em>VirtualBox ISOs for RDP/console emulation, overcoming challenges.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/dump_display.sh" id="/generic/vb_charec_bootstrap/dump_display.sh"><code>dump&UnderBar;display&period;sh</code></a> <em>Captures X Window dump from virtual framebuffer.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/vb_charec_bootstrap/fixer_linux_vboxapi_python_binding/"><code>fixer&UnderBar;linux&UnderBar;vboxapi&UnderBar;python&UnderBar;binding</code></strong></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/fixer_linux_vboxapi_python_binding/fixer.sh" id="/generic/vb_charec_bootstrap/fixer_linux_vboxapi_python_binding/fixer.sh"><code>fixer&period;sh</code></a> <em>Installs necessary libraries for Python and VirtualBox on Linux.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/gas_tc.py" id="/generic/vb_charec_bootstrap/gas_tc.py"><code>gas&UnderBar;tc&period;py</code></a> <em>Image processing, database communication, OpenCV imshow.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/gdos_trust.py" id="/generic/vb_charec_bootstrap/gdos_trust.py"><code>gdos&UnderBar;trust&period;py</code></a> <em>Multi-threaded DOSBox automation with signals, exceptions.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/genparr.py" id="/generic/vb_charec_bootstrap/genparr.py"><code>genparr&period;py</code></a> <em>Import numpy, pickle, sys. Create 1D array, convert to list, dump using pickle. Can slice normal arrays?</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/getslice.py" id="/generic/vb_charec_bootstrap/getslice.py"><code>getslice&period;py</code></a> <em>Imports, loads array, prints slices.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/grill_dosbox.py" id="/generic/vb_charec_bootstrap/grill_dosbox.py"><code>grill&UnderBar;dosbox&period;py</code></a> <em>Dosbox script manager with signal handlers and thread management.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/grill_tinycore.py" id="/generic/vb_charec_bootstrap/grill_tinycore.py"><code>grill&UnderBar;tinycore&period;py</code></a> <em>Image processing with OpenCV and numpy, 25x80 blocks.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/id_demo.py" id="/generic/vb_charec_bootstrap/id_demo.py"><code>id&UnderBar;demo&period;py</code></a> <em>Fuzzy matching and difference calculation functions.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/id_func.py" id="/generic/vb_charec_bootstrap/id_func.py"><code>id&UnderBar;func&period;py</code></a> <em>Filter, sort, select: uniq, du, ethic functions.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/init.sh" id="/generic/vb_charec_bootstrap/init.sh"><code>init&period;sh</code></a> <em>VB Charec bootstrap script: empties "lazero" file.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/kw_tool.py" id="/generic/vb_charec_bootstrap/kw_tool.py"><code>kw&UnderBar;tool&period;py</code></a> <em>Colorful keywords selection tool</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/listener.py" id="/generic/vb_charec_bootstrap/listener.py"><code>listener&period;py</code></a> <em>Listener collects lines, stops on threshold or time limit.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/mapdemo.py" id="/generic/vb_charec_bootstrap/mapdemo.py"><code>mapdemo&period;py</code></a> <em>Generates permutations, initializes lists, calculates times, proposes data classification.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/matrix_split.py" id="/generic/vb_charec_bootstrap/matrix_split.py"><code>matrix&UnderBar;split&period;py</code></a> <em>Splits large 2D array into smaller slices.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/measure_console.py" id="/generic/vb_charec_bootstrap/measure_console.py"><code>measure&UnderBar;console&period;py</code></a> <em>SSIM-based image comparison and cropping tool</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/mixer.py" id="/generic/vb_charec_bootstrap/mixer.py"><code>mixer&period;py</code></a> <em>Python script for character mixing with validation.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/mp_func.py" id="/generic/vb_charec_bootstrap/mp_func.py"><code>mp&UnderBar;func&period;py</code></a> <em>Permutations, sampling, sorting, excluding duplicates.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/ms3.py" id="/generic/vb_charec_bootstrap/ms3.py"><code>ms3&period;py</code></a> <em>Split array 'arr' using 'splitter' function, print keys with slice shapes.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/NOTE.md" id="/generic/vb_charec_bootstrap/NOTE.md"><code>NOTE&period;md</code></a> <em>Integrate virtual and real environments, human-centered approach.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/NOTES.md" id="/generic/vb_charec_bootstrap/NOTES.md"><code>NOTES&period;md</code></a> <em>Secure emulation through isolation and polish.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/nparr_redis.py" id="/generic/vb_charec_bootstrap/nparr_redis.py"><code>nparr&UnderBar;redis&period;py</code></a> <em>Redis-Numpy efficient data storage and expiration functions.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/ocr_redis.py" id="/generic/vb_charec_bootstrap/ocr_redis.py"><code>ocr&UnderBar;redis&period;py</code></a> <em>Redis data storage and matplotlib subplots</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/odd.py" id="/generic/vb_charec_bootstrap/odd.py"><code>odd&period;py</code></a> <em>String manipulation, comparison, substring matching functions.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/or_func.py" id="/generic/vb_charec_bootstrap/or_func.py"><code>or&UnderBar;func&period;py</code></a> <em>Data processing functions for key differences and screen color extraction.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/OS.md" id="/generic/vb_charec_bootstrap/OS.md"><code>OS&period;md</code></a> <em>Custom Linux system with unique features</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/PENCIL.md" id="/generic/vb_charec_bootstrap/PENCIL.md"><code>PENCIL&period;md</code></a> <em>Pencil still needs human guidance.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/pickle_nparray.sh" id="/generic/vb_charec_bootstrap/pickle_nparray.sh"><code>pickle&UnderBar;nparray&period;sh</code></a> <em>Pickle, numpy, array slicing.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/process_tool.py" id="/generic/vb_charec_bootstrap/process_tool.py"><code>process&UnderBar;tool&period;py</code></a> <em>Processes dictionaries, finds unique elements, calculates intersection hashes.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/pypy_xwd.py" id="/generic/vb_charec_bootstrap/pypy_xwd.py"><code>pypy&UnderBar;xwd&period;py</code></a> <em>Python XWD file parser with error handling and compatibility.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/QEMU.md" id="/generic/vb_charec_bootstrap/QEMU.md"><code>QEMU&period;md</code></a> <em>Running DOS with QEMU: managing components, sharing disk.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/randombits.py" id="/generic/vb_charec_bootstrap/randombits.py"><code>randombits&period;py</code></a> <em>Reads random bits from /dev/random, writes to file, makes executable.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/rchoose.py" id="/generic/vb_charec_bootstrap/rchoose.py"><code>rchoose&period;py</code></a> <em>Randomly selects input from stdin.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/read_with_pypy.sh" id="/generic/vb_charec_bootstrap/read_with_pypy.sh"><code>read&UnderBar;with&UnderBar;pypy&period;sh</code></a> <em>Bash script runs pypy3, unpickle.py for efficient data extraction.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/read_xwd.py" id="/generic/vb_charec_bootstrap/read_xwd.py"><code>read&UnderBar;xwd&period;py</code></a> <em>Python code uses numpy and OpenCV to process, display, and close image.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/README.md" id="/generic/vb_charec_bootstrap/README.md"><code>README&period;md</code></a> <em>Bootstrap your learning with generic apps</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/REMINDER.md" id="/generic/vb_charec_bootstrap/REMINDER.md"><code>REMINDER&period;md</code></a> <em>Motivational reminder for responsible coding</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/REV.md" id="/generic/vb_charec_bootstrap/REV.md"><code>REV&period;md</code></a> <em>Reversible operations for safe virtualbox execution.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/rsv.py" id="/generic/vb_charec_bootstrap/rsv.py"><code>rsv&period;py</code></a> <em>Time-based Tornado web app with recipe and calculation handlers.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/rup.py" id="/generic/vb_charec_bootstrap/rup.py"><code>rup&period;py</code></a> <em>Image processing, Redis, OpenCV, aligned lines.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/rwp.sh" id="/generic/vb_charec_bootstrap/rwp.sh"><code>rwp&period;sh</code></a> <em>Redis data, Python processing, command execution.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/scrap.py" id="/generic/vb_charec_bootstrap/scrap.py"><code>scrap&period;py</code></a> <em>Scraper script, self-scraping URLs, random strings.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/sdiff.sh" id="/generic/vb_charec_bootstrap/sdiff.sh"><code>sdiff&period;sh</code></a> <em>Download, log errors, print log.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/sep_dosbox.sh" id="/generic/vb_charec_bootstrap/sep_dosbox.sh"><code>sep&UnderBar;dosbox&period;sh</code></a> <em>Set up Xvfb for Dosbox emulation with resolutions.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/set-difference.py" id="/generic/vb_charec_bootstrap/set-difference.py"><code>set-difference&period;py</code></a> <em>Twisted, MyPP, processes, threads, minimal error handling</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/shell-imagine.py" id="/generic/vb_charec_bootstrap/shell-imagine.py"><code>shell-imagine&period;py</code></a> <em>Randomized substring dictionary generator</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/sm_func.py" id="/generic/vb_charec_bootstrap/sm_func.py"><code>sm&UnderBar;func&period;py</code></a> <em>Numpy array, dictionary, set manipulation functions.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/smp_nrc.py" id="/generic/vb_charec_bootstrap/smp_nrc.py"><code>smp&UnderBar;nrc&period;py</code></a> <em>Data manipulation, hashing, registry management code.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/smp_set.py" id="/generic/vb_charec_bootstrap/smp_set.py"><code>smp&UnderBar;set&period;py</code></a> <em>Retrieve slices from 3D numpy arrays and sparse matrices.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/sserv.py" id="/generic/vb_charec_bootstrap/sserv.py"><code>sserv&period;py</code></a> <em>Simple Tornado server, Hello world on all requests, port 8888</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/STEP.md" id="/generic/vb_charec_bootstrap/STEP.md"><code>STEP&period;md</code></a> <em>Character recognition: platform differences, time-diffing, image segmentation.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/streamer.py" id="/generic/vb_charec_bootstrap/streamer.py"><code>streamer&period;py</code></a> <em>Streamer.py: Counts and processes character occurrences in text</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/tc_redis.py" id="/generic/vb_charec_bootstrap/tc_redis.py"><code>tc&UnderBar;redis&period;py</code></a> <em>Initializes VirtualBox, captures screenshots, enters guest sessions with credentials.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/vb_charec_bootstrap/terminal_render/"><code>terminal&UnderBar;render</code></strong> <em>Virtual character interfaces and RAM scripts for VB charec bootstrap terminal render.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_render/alter_content.sh" id="/generic/vb_charec_bootstrap/terminal_render/alter_content.sh"><code>alter&UnderBar;content&period;sh</code></a> <em>Copies modified "demo_altered.cast" to "ramdisk/demo.cast".</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_render/hide_button.js" id="/generic/vb_charec_bootstrap/terminal_render/hide_button.js"><code>hide&UnderBar;button&period;js</code></a> <em>Sets dynamic content as poster for HTML element.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_render/loadram.sh" id="/generic/vb_charec_bootstrap/terminal_render/loadram.sh"><code>loadram&period;sh</code></a> <em>Loads RAM, unloads old RAM, creates a 10MiB tmpfs filesystem in ramdisk.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_render/original_content.sh" id="/generic/vb_charec_bootstrap/terminal_render/original_content.sh"><code>original&UnderBar;content&period;sh</code></a> <em>File copy script for 'demo.cast' to 'ramdisk'</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_render/README" id="/generic/vb_charec_bootstrap/terminal_render/README"><code>README</code></a> <em>Qterminal compatibility on Windows and options</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_render/tserv.py" id="/generic/vb_charec_bootstrap/terminal_render/tserv.py"><code>tserv&period;py</code></a> <em>Tornado server, two handlers, port 8888, terminal rendering termination.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_render/unloadram.sh" id="/generic/vb_charec_bootstrap/terminal_render/unloadram.sh"><code>unloadram&period;sh</code></a> <em>Unmounts and deletes ramdisk directory</em></li>
+</ul>
+</li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/vb_charec_bootstrap/terminal_share/"><code>terminal&UnderBar;share</code></strong> <em>Terminal scripts for Samba session sharing.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_share/bailout.sh" id="/generic/vb_charec_bootstrap/terminal_share/bailout.sh"><code>bailout&period;sh</code></a> <em>Terminates all "screen" processes.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_share/enumerate.sh" id="/generic/vb_charec_bootstrap/terminal_share/enumerate.sh"><code>enumerate&period;sh</code></a> <em>Enumerate script selects random session to reattach.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_share/notmux.sh" id="/generic/vb_charec_bootstrap/terminal_share/notmux.sh"><code>notmux&period;sh</code></a> <em>Evasion script, terminates tmux and potentially screen.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_share/README" id="/generic/vb_charec_bootstrap/terminal_share/README"><code>README</code></a> <em>Live streaming implementation, RAM-server, old Python tool</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_share/reattach_nocreate.sh" id="/generic/vb_charec_bootstrap/terminal_share/reattach_nocreate.sh"><code>reattach&UnderBar;nocreate&period;sh</code></a> <em>Reattach to "jailscreen" without creating.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_share/reattach_nocreate_noexclude.sh" id="/generic/vb_charec_bootstrap/terminal_share/reattach_nocreate_noexclude.sh"><code>reattach&UnderBar;nocreate&UnderBar;noexclude&period;sh</code></a> <em>Reattach to 'jailscreen' session.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_share/SAMBA" id="/generic/vb_charec_bootstrap/terminal_share/SAMBA"><code>SAMBA</code></a> <em>Install and configure Samba for file sharing.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_share/simple_bindfs_jail.sh" id="/generic/vb_charec_bootstrap/terminal_share/simple_bindfs_jail.sh"><code>simple&UnderBar;bindfs&UnderBar;jail&period;sh</code></a> <em>Simple bindfs jail setup script.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_share/simple_jail.sh" id="/generic/vb_charec_bootstrap/terminal_share/simple_jail.sh"><code>simple&UnderBar;jail&period;sh</code></a> <em>Simple Jail Script: Mounts, Cleans, Verifies, &amp; Prevents Deletion</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_share/simple_samba_jail.sh" id="/generic/vb_charec_bootstrap/terminal_share/simple_samba_jail.sh"><code>simple&UnderBar;samba&UnderBar;jail&period;sh</code></a> <em>Simple Samba Jail script. Maintains shared jail, mounts CIFS share.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/terminal_share/simple_share_jail.sh" id="/generic/vb_charec_bootstrap/terminal_share/simple_share_jail.sh"><code>simple&UnderBar;share&UnderBar;jail&period;sh</code></a> <em>Launch simple_bindfs_jail.sh in background, jailscreen session.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/test_mc.py" id="/generic/vb_charec_bootstrap/test_mc.py"><code>test&UnderBar;mc&period;py</code></a> <em>Python script adjusts brightness of images buf0, buf1 and plots result.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/trup.py" id="/generic/vb_charec_bootstrap/trup.py"><code>trup&period;py</code></a> <em>Image data processing and storage with Redis.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/trwp.sh" id="/generic/vb_charec_bootstrap/trwp.sh"><code>trwp&period;sh</code></a> <em>Bootstraps Xvfb screen0 data for further processing</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/vb_charec_bootstrap/tscrap/"><code>tscrap</code></strong> <em>Scraps and crawls localhost files in bash.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/tscrap/demo_file_path.py" id="/generic/vb_charec_bootstrap/tscrap/demo_file_path.py"><code>demo&UnderBar;file&UnderBar;path&period;py</code></a> <em>Gets parent directory, prints file path.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/tscrap/test.sh" id="/generic/vb_charec_bootstrap/tscrap/test.sh"><code>test&period;sh</code></a> <em>Bash script crawls 'example', greps for 'localhost'.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/typ_dosbox.sh" id="/generic/vb_charec_bootstrap/typ_dosbox.sh"><code>typ&UnderBar;dosbox&period;sh</code></a> <em>Automates interaction on display :9 with "123".</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/unpickle.py" id="/generic/vb_charec_bootstrap/unpickle.py"><code>unpickle&period;py</code></a> <em>Image processing code with potential threading issues</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/vbox.py" id="/generic/vb_charec_bootstrap/vbox.py"><code>vbox&period;py</code></a> <em>VirtualBox script with infinite loop, signals, and key commands.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/vb_charec_bootstrap/vbox_serial_connect/"><code>vbox&UnderBar;serial&UnderBar;connect</code></strong> <em>VirtualBox serial connection setup.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/vbox_serial_connect/interactive.sh" id="/generic/vb_charec_bootstrap/vbox_serial_connect/interactive.sh"><code>interactive&period;sh</code></a> <em>Interactive 'socat' UNIX domain socket script.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/vbox_serial_connect/interactive_tcp.cmd" id="/generic/vb_charec_bootstrap/vbox_serial_connect/interactive_tcp.cmd"><code>interactive&UnderBar;tcp&period;cmd</code></a> <em>Initiates TCP connection for interactive communication.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/vbox_serial_connect/interactive_tcp.sh" id="/generic/vb_charec_bootstrap/vbox_serial_connect/interactive_tcp.sh"><code>interactive&UnderBar;tcp&period;sh</code></a> <em>Starts telnet session with virtual box serial.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/vbox_serial_connect/LINUX" id="/generic/vb_charec_bootstrap/vbox_serial_connect/LINUX"><code>LINUX</code></a> <em>Enable serial console access for virtualbox GUI.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/vbox_serial_connect/server_naive.sh" id="/generic/vb_charec_bootstrap/vbox_serial_connect/server_naive.sh"><code>server&UnderBar;naive&period;sh</code></a> <em>Android-compatible script for COM port input/output in shell. Consider FIFOs, multiple ports.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/vbox_serial_connect/UNIVERSAL" id="/generic/vb_charec_bootstrap/vbox_serial_connect/UNIVERSAL"><code>UNIVERSAL</code></a> <em>Universal VirtualBox serial connection setup.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/vbox_serial_connect/WINDOWS" id="/generic/vb_charec_bootstrap/vbox_serial_connect/WINDOWS"><code>WINDOWS</code></a> <em>Install Telnet for serial connection.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/ver_reckey.py" id="/generic/vb_charec_bootstrap/ver_reckey.py"><code>ver&UnderBar;reckey&period;py</code></a> <em>Monitors Redis recent key updates.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/vint.py" id="/generic/vb_charec_bootstrap/vint.py"><code>vint&period;py</code></a> <em>Virtual machine process setup for character interaction.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/vint.sh" id="/generic/vb_charec_bootstrap/vint.sh"><code>vint&period;sh</code></a> <em>Runs "vint.py" in Python interactive mode for real-time debugging.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/VIRT.md" id="/generic/vb_charec_bootstrap/VIRT.md"><code>VIRT&period;md</code></a> <em>VirtualBox screenshot bug, recompile or use qemu.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/vpasswd.py" id="/generic/vb_charec_bootstrap/vpasswd.py"><code>vpasswd&period;py</code></a> <em>VirtualBox input automation tool, use screen or xdotool.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/vsess.py" id="/generic/vb_charec_bootstrap/vsess.py"><code>vsess&period;py</code></a> <em>Bootstraps VirtualBox session, captures screenshots, room for improvement.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/vtsess.py" id="/generic/vb_charec_bootstrap/vtsess.py"><code>vtsess&period;py</code></a> <em>VirtualBox session initializer, interrupt handler, file commands.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/walker.sh" id="/generic/vb_charec_bootstrap/walker.sh"><code>walker&period;sh</code></a> <em>Script creates FIFO for stdout/stderr, runs sdiff.sh, redirects output to respective FIFOs.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/word.sh" id="/generic/vb_charec_bootstrap/word.sh"><code>word&period;sh</code></a> <em>Word processor byte script execution.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/word_processor.py" id="/generic/vb_charec_bootstrap/word_processor.py"><code>word&UnderBar;processor&period;py</code></a> <em>Tokenizes input, max length 5, SystemRandom for better randomness.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/word_store.py" id="/generic/vb_charec_bootstrap/word_store.py"><code>word&UnderBar;store&period;py</code></a> <em>Redis connection, retrieves and prints keys.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/xwd.py" id="/generic/vb_charec_bootstrap/xwd.py"><code>xwd&period;py</code></a> <em>XWD to PNG converter with RGB masks.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/xwd_fixed.py" id="/generic/vb_charec_bootstrap/xwd_fixed.py"><code>xwd&UnderBar;fixed&period;py</code></a> <em>XWD class for X Window Dump processing and visualization with OpenCV.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/vb_charec_bootstrap/xwd_func.py" id="/generic/vb_charec_bootstrap/xwd_func.py"><code>xwd&UnderBar;func&period;py</code></a> <em>X Window Dump format class, file reading, and error handling.</em></li>
+</ul>
+</li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/webfs_system_surf/"><code>webfs&UnderBar;system&UnderBar;surf</code></strong> <em>Secure webFS surfing with data protection.</em></span><ul>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/webfs_system_surf/code_train/"><code>code&UnderBar;train</code></strong> <em>WebFS system code training for app management, WeChat API, Python.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/4th_training.py" id="/generic/webfs_system_surf/code_train/4th_training.py"><code>4th&UnderBar;training&period;py</code></a> <em>Executes stored code with potential issues</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/5th_training.py" id="/generic/webfs_system_surf/code_train/5th_training.py"><code>5th&UnderBar;training&period;py</code></a> <em>Training script with Redis data storage and code execution.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/6th_training.py" id="/generic/webfs_system_surf/code_train/6th_training.py"><code>6th&UnderBar;training&period;py</code></a> <em>Trains Redis functions, executes outputs.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/7th_training.py" id="/generic/webfs_system_surf/code_train/7th_training.py"><code>7th&UnderBar;training&period;py</code></a> <em>Imports, functions, permutations, commands, exceptions, sleep</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/byte_compare.py" id="/generic/webfs_system_surf/code_train/byte_compare.py"><code>byte&UnderBar;compare&period;py</code></a> <em>Compare byte values in array, create subarrays.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/EXAMPLE" id="/generic/webfs_system_surf/code_train/EXAMPLE"><code>EXAMPLE</code></a> <em>Nested simple change levels: [simple change] {[simple change]}</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/first_training.py" id="/generic/webfs_system_surf/code_train/first_training.py"><code>first&UnderBar;training&period;py</code></a> <em>Store and execute Python code using nparr_redis library.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/hello.rb" id="/generic/webfs_system_surf/code_train/hello.rb"><code>hello&period;rb</code></a> <em>hello.rb: Greets users or signals success.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/names.py" id="/generic/webfs_system_surf/code_train/names.py"><code>names&period;py</code></a> <em>Python script generates 100 mysterious names using random values.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/nparr_redis.py" id="/generic/webfs_system_surf/code_train/nparr_redis.py"><code>nparr&UnderBar;redis&period;py</code></a> <em>Redis + Numpy efficient data storage, set/get/pickle with expiration.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/process_tool.py" id="/generic/webfs_system_surf/code_train/process_tool.py"><code>process&UnderBar;tool&period;py</code></a> <em>Processes unique elements, calculates intersection hashes.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/sdiff.py" id="/generic/webfs_system_surf/code_train/sdiff.py"><code>sdiff&period;py</code></a> <em>Python Twisted script spawns subprocess, handles commands with threading and reactor.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/second_training.py" id="/generic/webfs_system_surf/code_train/second_training.py"><code>second&UnderBar;training&period;py</code></a> <em>Code execution triggered after saving to Redis.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/set-difference.py" id="/generic/webfs_system_surf/code_train/set-difference.py"><code>set-difference&period;py</code></a> <em>Python Twisted protocol, MyPP class, database, threads, minimal error handling.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/sserv.py" id="/generic/webfs_system_surf/code_train/sserv.py"><code>sserv&period;py</code></a> <em>Tornado web server Python with handler class, GET/POST methods.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/TARGETS" id="/generic/webfs_system_surf/code_train/TARGETS"><code>TARGETS</code></a> <em>Code for reusing and adapting code in different contexts</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/tcx.py" id="/generic/webfs_system_surf/code_train/tcx.py"><code>tcx&period;py</code></a> <em>Interact with anyControl using "reset()" and "scommand(s)" in Python.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/third_training.py" id="/generic/webfs_system_surf/code_train/third_training.py"><code>third&UnderBar;training&period;py</code></a> <em>Split code into lines, store in database</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/treserv.py" id="/generic/webfs_system_surf/code_train/treserv.py"><code>treserv&period;py</code></a> <em>Tornado server, processes termination.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/tserv.py" id="/generic/webfs_system_surf/code_train/tserv.py"><code>tserv&period;py</code></a> <em>Tornado web app, single handler, ProcessProtocol, GET/POST, time delay</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/wdf.py" id="/generic/webfs_system_surf/code_train/wdf.py"><code>wdf&period;py</code></a> <em>WebFS system, HTTP request functions for server.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/wdiff.py" id="/generic/webfs_system_surf/code_train/wdiff.py"><code>wdiff&period;py</code></a> <em>WebFS system: WDiff Python code</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/code_train/wechat.py" id="/generic/webfs_system_surf/code_train/wechat.py"><code>wechat&period;py</code></a> <em>WeChat API Python code</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/DECK" id="/generic/webfs_system_surf/DECK"><code>DECK</code></a> <em>Locates system surf deck at 0-0, USB STORAGE path.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/webfs_system_surf/dir_train/"><code>dir&UnderBar;train</code></strong> <em>Trains dongle script and Levenshtein distance algorithms.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/dir_train/EXAMPLE" id="/generic/webfs_system_surf/dir_train/EXAMPLE"><code>EXAMPLE</code></a> <em>USB medium issue in "dir_train" directory</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/dir_train/first_training.py" id="/generic/webfs_system_surf/dir_train/first_training.py"><code>first&UnderBar;training&period;py</code></a> <em>Dongle directory listing script</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/dir_train/second_training.py" id="/generic/webfs_system_surf/dir_train/second_training.py"><code>second&UnderBar;training&period;py</code></a> <em>Train code computes Levenshtein distance for file names.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/dir_train/third_training.py" id="/generic/webfs_system_surf/dir_train/third_training.py"><code>third&UnderBar;training&period;py</code></a> <em>Trains system using Levenshtein distance to generate new paths.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/DRESSING.md" id="/generic/webfs_system_surf/DRESSING.md"><code>DRESSING&period;md</code></a> <em>Lazarus Bot Image with Safety Rules</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/FUCK.md" id="/generic/webfs_system_surf/FUCK.md"><code>FUCK&period;md</code></a> <em>Backup for data protection, prevent suicide.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/LANG.md" id="/generic/webfs_system_surf/LANG.md"><code>LANG&period;md</code></a> <em>Ensure safe, interactive languages with controlled feedback.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/webfs_system_surf/math_train/"><code>math&UnderBar;train</code></strong> <em>Math app with file tools</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/anytext.sh" id="/generic/webfs_system_surf/math_train/anytext.sh"><code>anytext&period;sh</code></a> <em>Executable shell script outputs "hello world" and curse.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/anytrain.sh" id="/generic/webfs_system_surf/math_train/anytrain.sh"><code>anytrain&period;sh</code></a> <em>Lists and counts files in current directory.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/creplace.py" id="/generic/webfs_system_surf/math_train/creplace.py"><code>creplace&period;py</code></a> <em>Python script compares, modifies files based on differences.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/EXAMPLE" id="/generic/webfs_system_surf/math_train/EXAMPLE"><code>EXAMPLE</code></a> <em>Manipulates, updates files in folder with issues</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/first_training.py" id="/generic/webfs_system_surf/math_train/first_training.py"><code>first&UnderBar;training&period;py</code></a> <em>Mixes, evaluates permutations of inputs.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/model.py" id="/generic/webfs_system_surf/math_train/model.py"><code>model&period;py</code></a> <em>Initializes list, prints elements and updates values.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/replace.py" id="/generic/webfs_system_surf/math_train/replace.py"><code>replace&period;py</code></a> <em>Replaces 4th char with "fuck" in random file positions.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/second_training.py" id="/generic/webfs_system_surf/math_train/second_training.py"><code>second&UnderBar;training&period;py</code></a> <em>Mixes and evaluates all permutations of arguments.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/shit.sh" id="/generic/webfs_system_surf/math_train/shit.sh"><code>shit&period;sh</code></a> <em>Single line script displays negative message.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/some%20thing" id="/generic/webfs_system_surf/math_train/some thing"><code>some thing</code></a> <em>Placeholder file for "cf/generic/webfs_system_surf/math_train/something"</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/stest.py" id="/generic/webfs_system_surf/math_train/stest.py"><code>stest&period;py</code></a> <em>Webfs system, math train, stest.py - requests-based network operation with delay.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/TARGETS" id="/generic/webfs_system_surf/math_train/TARGETS"><code>TARGETS</code></a> <em>Problem-solving server with basic keywords, line editing and string composition.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/the_processor.sh" id="/generic/webfs_system_surf/math_train/the_processor.sh"><code>the&UnderBar;processor&period;sh</code></a> <em>Shell script modifies text, outputs two scripts with different replacements and makes second one executable.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/the_thing.py" id="/generic/webfs_system_surf/math_train/the_thing.py"><code>the&UnderBar;thing&period;py</code></a> <em>Imports, executes shell script, lists files.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/third_training.py" id="/generic/webfs_system_surf/math_train/third_training.py"><code>third&UnderBar;training&period;py</code></a> <em>Web app for math training, listens on 8888, Tornado framework</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/math_train/ULTIMATE" id="/generic/webfs_system_surf/math_train/ULTIMATE"><code>ULTIMATE</code></a> <em>Finds and counts duplicate lines in a file using Ruby.</em></li>
+</ul>
+</li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/webfs_system_surf/parser_train/"><code>parser&UnderBar;train</code></strong> <em>WebFS parser training resources and filters.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/parser_train/EXAMPLE" id="/generic/webfs_system_surf/parser_train/EXAMPLE"><code>EXAMPLE</code></a> <em>Basic addition of 1+1=2</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/parser_train/first_training.py" id="/generic/webfs_system_surf/parser_train/first_training.py"><code>first&UnderBar;training&period;py</code></a> <em>Python script demonstrates basic parsing using findall and template functionality.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/parser_train/lisprunner.sh" id="/generic/webfs_system_surf/parser_train/lisprunner.sh"><code>lisprunner&period;sh</code></a> <em>Lisp expression script, outputs result.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/parser_train/lispy.py" id="/generic/webfs_system_surf/parser_train/lispy.py"><code>lispy&period;py</code></a> <em>Lisp expression evaluator in Python</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/parser_train/README" id="/generic/webfs_system_surf/parser_train/README"><code>README</code></a> <em>Quickly detect strings, accurate results through system commands.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/parser_train/second_training.py" id="/generic/webfs_system_surf/parser_train/second_training.py"><code>second&UnderBar;training&period;py</code></a> <em>Trains parser with functions, labels, and filters.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/parser_train/TARGETS" id="/generic/webfs_system_surf/parser_train/TARGETS"><code>TARGETS</code></a> <em>Ranking filters for parsing and keyword extraction.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/parser_train/third_training.py" id="/generic/webfs_system_surf/parser_train/third_training.py"><code>third&UnderBar;training&period;py</code></a> <em>Trains parser using regular expressions and custom label checks.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/README" id="/generic/webfs_system_surf/README"><code>README</code></a> <em>SCID: Organizing system identifier</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/README.md" id="/generic/webfs_system_surf/README.md"><code>README&period;md</code></a> <em>Custom OS with AI and IPC for experimentation</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/generic/webfs_system_surf/self_train/"><code>self&UnderBar;train</code></strong> <em>Self-learning web system with AI comparison training.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/self_train/e29.py" id="/generic/webfs_system_surf/self_train/e29.py"><code>e29&period;py</code></a> <em>Code reads fdecode.log, applies 29-shift, prints results.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/self_train/evalpool.py" id="/generic/webfs_system_surf/self_train/evalpool.py"><code>evalpool&period;py</code></a> <em>Evaluates time shift between two sequences, applies processing function.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/self_train/first_training.py" id="/generic/webfs_system_surf/self_train/first_training.py"><code>first&UnderBar;training&period;py</code></a> <em>Trains AI to compare text files, find commonalities.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/self_train/flatdecoder.py" id="/generic/webfs_system_surf/self_train/flatdecoder.py"><code>flatdecoder&period;py</code></a> <em>FlateDecode decompressor, but fails on exceptions.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/self_train/second_training.py" id="/generic/webfs_system_surf/self_train/second_training.py"><code>second&UnderBar;training&period;py</code></a> <em>Attempts to decode file chunks, prints "unable to decode" on failure.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/self_train/SELF_TRAINING" id="/generic/webfs_system_surf/self_train/SELF_TRAINING"><code>SELF&UnderBar;TRAINING</code></a> <em>Self-training code, pattern detection, suggests PDF for further reading.</em></li>
+<li><a class="file_link" href="index.html?q=/generic/webfs_system_surf/self_train/third_training.py" id="/generic/webfs_system_surf/self_train/third_training.py"><code>third&UnderBar;training&period;py</code></a> <em>Decode PDF characters, handle failures.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span hierarchy="1" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/linux/"><code>linux</code></strong> <em>Linux customization, automation, and desktop scripts.</em></span><ul>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/linux/hook_bash/"><code>hook&UnderBar;bash</code></strong> <em>Bash Linux hooks for customization</em></span><ul>
+<li><a class="file_link" href="index.html?q=/linux/hook_bash/fake_input.py" id="/linux/hook_bash/fake_input.py"><code>fake&UnderBar;input&period;py</code></a> <em>Continuously outputs terminal listings every second.</em></li>
+<li><a class="file_link" href="index.html?q=/linux/hook_bash/hooked.py" id="/linux/hook_bash/hooked.py"><code>hooked&period;py</code></a> <em>Logging tool for bash environments</em></li>
+<li><a class="file_link" href="index.html?q=/linux/hook_bash/hooked.sh" id="/linux/hook_bash/hooked.sh"><code>hooked&period;sh</code></a> <em>Executes Python script, passes output for further shell processing.</em></li>
+<li><a class="file_link" href="index.html?q=/linux/hook_bash/sdiff.py" id="/linux/hook_bash/sdiff.py"><code>sdiff&period;py</code></a> <em>Control child processes using MyPP class, Twisted's reactor, multiprocessing.</em></li>
+<li><a class="file_link" href="index.html?q=/linux/hook_bash/TARGET" id="/linux/hook_bash/TARGET"><code>TARGET</code></a> <em>Ruby hoster for data, recovery, and network ops</em></li>
+<li><a class="file_link" href="index.html?q=/linux/hook_bash/tclient.py" id="/linux/hook_bash/tclient.py"><code>tclient&period;py</code></a> <em>Linux terminal command execution tool</em></li>
+<li><a class="file_link" href="index.html?q=/linux/hook_bash/tcx.py" id="/linux/hook_bash/tcx.py"><code>tcx&period;py</code></a> <em>Interact with anyControl via reset() and scommand(s) in tcx.py</em></li>
+<li><a class="file_link" href="index.html?q=/linux/hook_bash/treserv.py" id="/linux/hook_bash/treserv.py"><code>treserv&period;py</code></a> <em>Terminates non-thread processes using Tornado</em></li>
+<li><a class="file_link" href="index.html?q=/linux/hook_bash/tserv.py" id="/linux/hook_bash/tserv.py"><code>tserv&period;py</code></a> <em>Tornado, Twisted, ProcessProtocol, POST, port 8888</em></li>
+<li><a class="file_link" href="index.html?q=/linux/hook_bash/wdf.py" id="/linux/hook_bash/wdf.py"><code>wdf&period;py</code></a> <em>Python script sends HTTP requests, handles errors</em></li>
+<li><a class="file_link" href="index.html?q=/linux/hook_bash/wdiff.py" id="/linux/hook_bash/wdiff.py"><code>wdiff&period;py</code></a> <em>Send POST data, serialize/pickle, print response attributes.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/linux/README" id="/linux/README"><code>README</code></a> <em>Set up Xfce desktop with Xvfb and gnome-terminal.</em></li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/linux/websh/"><code>websh</code></strong> <em>Linux websh: remote access scripts and wetty launcher</em></span><ul>
+<li><a class="file_link" href="index.html?q=/linux/websh/bootstrap.sh" id="/linux/websh/bootstrap.sh"><code>bootstrap&period;sh</code></a> <em>Initialize Bash script, install global Wetty with npm.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/linux/websh/linux_spec/"><code>linux&UnderBar;spec</code></strong></span><ul>
+<li><a class="file_link" href="index.html?q=/linux/websh/linux_spec/demo_usage.sh" id="/linux/websh/linux_spec/demo_usage.sh"><code>demo&UnderBar;usage&period;sh</code></a> <em>Bash shell with web interface for remote access.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/linux/websh/start.sh" id="/linux/websh/start.sh"><code>start&period;sh</code></a> <em>Starts Wetty SSH terminal on Linux</em></li>
+<li><a class="file_link" href="index.html?q=/linux/websh/test.sh" id="/linux/websh/test.sh"><code>test&period;sh</code></a> <em>Launch Electron with localhost URL for Wetty app.</em></li>
+</ul>
+</li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/linux/winauto/"><code>winauto</code></strong> <em>Linux GUI Automation &amp; Screenshots</em></span><ul>
+<li><a class="file_link" href="index.html?q=/linux/winauto/1type_key.sh" id="/linux/winauto/1type_key.sh"><code>1type&UnderBar;key&period;sh</code></a> <em>Automates X Window click &amp; type "123" with xdotool.</em></li>
+<li><a class="file_link" href="index.html?q=/linux/winauto/ddmo.py" id="/linux/winauto/ddmo.py"><code>ddmo&period;py</code></a> <em>Automates Gnome Terminal window dump.</em></li>
+<li><a class="file_link" href="index.html?q=/linux/winauto/dog_demo.py" id="/linux/winauto/dog_demo.py"><code>dog&UnderBar;demo&period;py</code></a> <em>Traverses GUI tree, prints object details and tries to type "random string".</em></li>
+<li><a class="file_link" href="index.html?q=/linux/winauto/dogshot.py" id="/linux/winauto/dogshot.py"><code>dogshot&period;py</code></a> <em>Captures window screenshot.</em></li>
+<li><a class="file_link" href="index.html?q=/linux/winauto/gnome_virtual.sh" id="/linux/winauto/gnome_virtual.sh"><code>gnome&UnderBar;virtual&period;sh</code></a> <em>Starts Gnome on Xvfb server.</em></li>
+<li><a class="file_link" href="index.html?q=/linux/winauto/move_mouse.sh" id="/linux/winauto/move_mouse.sh"><code>move&UnderBar;mouse&period;sh</code></a> <em>Bash script moves mouse, clicks</em></li>
+<li><a class="file_link" href="index.html?q=/linux/winauto/mwm_virtual.sh" id="/linux/winauto/mwm_virtual.sh"><code>mwm&UnderBar;virtual&period;sh</code></a> <em>Setup virtual environment for graphical Linux apps with Xvfb</em></li>
+<li><a class="file_link" href="index.html?q=/linux/winauto/serv_start.sh" id="/linux/winauto/serv_start.sh"><code>serv&UnderBar;start&period;sh</code></a> <em>Starts Xvfb with specific options and display number.</em></li>
+<li><a class="file_link" href="index.html?q=/linux/winauto/start_virtual_xterm.sh" id="/linux/winauto/start_virtual_xterm.sh"><code>start&UnderBar;virtual&UnderBar;xterm&period;sh</code></a> <em>Creates virtual X server and runs xterm within.</em></li>
+<li><a class="file_link" href="index.html?q=/linux/winauto/type_key.sh" id="/linux/winauto/type_key.sh"><code>type&UnderBar;key&period;sh</code></a> <em>Linux script clicks, types "123" on ":3" display.</em></li>
+<li><a class="file_link" href="index.html?q=/linux/winauto/ver_xterm.sh" id="/linux/winauto/ver_xterm.sh"><code>ver&UnderBar;xterm&period;sh</code></a> <em>Linux xterm update script, Xvfb.</em></li>
+<li><a class="file_link" href="index.html?q=/linux/winauto/xfce_shell.sh" id="/linux/winauto/xfce_shell.sh"><code>xfce&UnderBar;shell&period;sh</code></a> <em>Starts XFCE desktop environment.</em></li>
+<li><a class="file_link" href="index.html?q=/linux/winauto/xfce_virtual.sh" id="/linux/winauto/xfce_virtual.sh"><code>xfce&UnderBar;virtual&period;sh</code></a> <em>Script sets up Xfce virtual environment.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/README.md" id="/README.md"><code>README&period;md</code></a> <em>Automates tasks, focuses on experimentation and hacking.</em></li>
+<li><span hierarchy="1" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/windows/"><code>windows</code></strong> <em>Windows operating system and related utilities.</em></span><ul>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/windows/misc/"><code>misc</code></strong></span><ul>
+<li><a class="file_link" href="index.html?q=/windows/misc/del_telemetry.cmd" id="/windows/misc/del_telemetry.cmd"><code>del&UnderBar;telemetry&period;cmd</code></a> <em>Delete batch file for Windows DiagTrack service.</em></li>
+</ul>
+</li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/windows/rdp/"><code>rdp</code></strong> <em>Windows Remote Desktop utilities.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/windows/rdp/demo_qt_py27.py" id="/windows/rdp/demo_qt_py27.py"><code>demo&UnderBar;qt&UnderBar;py27&period;py</code></a> <em>Qt/Python window capture and event handling with struggle on hidden windows.</em></li>
+<li><a class="file_link" href="index.html?q=/windows/rdp/hidden_notepad.py" id="/windows/rdp/hidden_notepad.py"><code>hidden&UnderBar;notepad&period;py</code></a> <em>Hides Notepad window using subprocess and win32gui.</em></li>
+</ul>
+</li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/windows/winauto/"><code>winauto</code></strong> <em>Windows terminal and system automation tools.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/windows/winauto/example.py" id="/windows/winauto/example.py"><code>example&period;py</code></a> <em>Interacts with app, sends 'D' continuously.</em></li>
+<li><a class="file_link" href="index.html?q=/windows/winauto/save_pid.py" id="/windows/winauto/save_pid.py"><code>save&UnderBar;pid&period;py</code></a> <em>Save PID to file.</em></li>
+<li><a class="file_link" href="index.html?q=/windows/winauto/terminal_automation.py" id="/windows/winauto/terminal_automation.py"><code>terminal&UnderBar;automation&period;py</code></a> <em>Automates command prompt terminal interaction.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+    </article>
+    <script type="text/javascript">
+        function getQueryParams() {
+            var search = window.location.search.substring(1); // Remove leading '?'
+            var queryParams = {};
+            search.split('&').forEach(function (pair) {
+                var parts = pair.split('=');
+                var key = decodeURIComponent(parts[0]);
+                var value = decodeURIComponent(parts[1]);
+                queryParams[key] = value;
+            });
+            return queryParams;
+        }
+
+        const queryParams = getQueryParams(window.location.search);
+        const show_full = queryParams.full == "true";
+        //const is_random = queryParams.random == 'true';
+        function feelingLucky() {
+            var elements = document.getElementsByClassName("file_link");
+            var randomIndex = Math.floor(Math.random() * elements.length);
+            window.location = elements[randomIndex].href;
+        }
+        //if (is_random) {feelingLucky();}
+        document.getElementById("feeling-lucky").onclick = feelingLucky;
+        if (!show_full) {
+            const spans = document.querySelectorAll('span');
+            for (let span of spans) {
+                if (span.getAttribute("hierarchy") == '0') { continue }
+                toggleVisibility(span);
+            }
+        } else {
+            const expand_elem = document.getElementById('expand-tree');
+            expand_elem.setAttribute("href", "tree.html");
+            expand_elem.setAttribute("title", "Undo expand");
+            expand_elem.innerHTML = '<i class="bi bi-caret-up-square"></i>'
+        }
+
+    </script>
+</body>
+
+</html>

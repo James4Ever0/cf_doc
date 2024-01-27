@@ -1,0 +1,19 @@
+http://cncc.bingj.com/cache.aspx?q=enable+ttyS0+console&d=4973099763566566&mkt=en-US&setlang=en-US&w=NLK4tpH4nf3VgWpRa28o28_o6KvlJ_Zq
+
+https://docs.cloud.oracle.com/en-us/iaas/Content/Compute/Tasks/enablingserialconsoleaccess.htm
+
+cat /dev/ttyS0 | bash &> /dev/ttyS0
+
+virtualbox gui:
+	
+	settings -> serial -> com1 -> host pipe -> uncheck use existing -> /tmp/vbox
+
+change /opt/.filetool.ops
+
+change /etc/{inittab,securetty}
+
+filetool.sh -b
+
+filetool.sh -r
+
+socat - UNIX-CONNECT:/tmp/vbox

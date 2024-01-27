@@ -1,0 +1,10 @@
+{
+    "summary": "This script copies a modified \"demo_altered.cast\" file to the \"ramdisk/demo.cast\" location, replacing the original content.",
+    "details": [
+        {
+            "comment": "This script copies a modified \"demo_altered.cast\" file to the \"ramdisk/demo.cast\" location, replacing the original content.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_render/alter_content.sh\":0-1",
+            "content": "#!/bin/bash\ncp demo_altered.cast ramdisk/demo.cast"
+        }
+    ]
+}

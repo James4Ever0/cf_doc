@@ -1,0 +1,531 @@
+{
+    "200": {
+        "file_id": 46,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu_telnet.cmd",
+        "type": "filepath"
+    },
+    "201": {
+        "file_id": 46,
+        "content": "This code launches an Android emulator using QEMU on a Windows machine, specifically targeting x86_64 architecture. It checks for the latest version of the emulator files and sets memory allocation to 2M with a maximum of 5M, enabling HAX acceleration. It also runs the emulator in nographic mode, allowing communication through telnet, and uses an HDA file named \"c.hd\" as the hard drive image, booting from the D partition. The code also notes that some BIOS files are not native and suggests alternative locations for specific files.",
+        "type": "summary"
+    },
+    "202": {
+        "file_id": 46,
+        "content": "@echo off\nREM do we need latest?\nREM \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\"  -enable-hax -m 2M,maxmem=5M -mem-path R:\\ -hda c.hd -boot d\n\"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\" -L \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\" -L \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"  -m 2M,slots=2,maxmem=5M  -nographic -serial  telnet:localhost:4312,server,nowait -hda c.hd -boot d\nREM \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"\nREM it is fucked.\nREM D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\\kvmvapic.bin\nREM this is not native one.\nREM D:\\Program Files\\MATLAB\\R2018a\\toolbox\\idelink\\foundation\\hostapps\\PUTTY.EXE\nREM \"D:\\Program Files (x86)\\com0com\\setupc.exe\"",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu_telnet.cmd:1-10"
+    },
+    "203": {
+        "file_id": 46,
+        "content": "This code launches an Android emulator using QEMU on a Windows machine, specifically targeting x86_64 architecture. It checks for the latest version of the emulator files and sets memory allocation to 2M with a maximum of 5M, enabling HAX acceleration. It also runs the emulator in nographic mode, allowing communication through telnet, and uses an HDA file named \"c.hd\" as the hard drive image, booting from the D partition. The code also notes that some BIOS files are not native and suggests alternative locations for specific files.",
+        "type": "comment"
+    },
+    "204": {
+        "file_id": 47,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/run_dos_nographic.cmd",
+        "type": "filepath"
+    },
+    "205": {
+        "file_id": 47,
+        "content": "The code is running a DOS program using QEMU emulator with HAX acceleration, configuring memory size and max mem, running in non-graphic mode, using virtual hard drive 'c.hd', and booting from drive D. It mentions alternative paths for executables and files, indicating potential use of different installations or versions.",
+        "type": "summary"
+    },
+    "206": {
+        "file_id": 47,
+        "content": "@echo off\nREM do we need latest?\nREM \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\"  -enable-hax -m 2M,maxmem=5M -mem-path R:\\ -hda c.hd -boot d\nREM \"E:\\Program Files\\qemu\\qemu-system-x86_64.exe\"  -accel hax -m 2M,slots=2,maxmem=5M  -nographic -serial mon:stdio -hda c.hd -boot d\n\"E:\\Program Files\\qemu\\qemu-system-x86_64.exe\"  -accel hax -m 2M,slots=2,maxmem=5M  -nographic -hda c.hd -boot d\nREM \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"\nREM it is\nREM D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\\kvmvapic.bin\nREM this is not native one.\nREM D:\\Program Files\\MATLAB\\R2018a\\toolbox\\idelink\\foundation\\hostapps\\PUTTY.EXE\nREM \"D:\\Program Files (x86)\\com0com\\setupc.exe\"",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/run_dos_nographic.cmd:1-11"
+    },
+    "207": {
+        "file_id": 47,
+        "content": "The code is running a DOS program using QEMU emulator with HAX acceleration, configuring memory size and max mem, running in non-graphic mode, using virtual hard drive 'c.hd', and booting from drive D. It mentions alternative paths for executables and files, indicating potential use of different installations or versions.",
+        "type": "comment"
+    },
+    "208": {
+        "file_id": 48,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/run_dos_serial.cmd",
+        "type": "filepath"
+    },
+    "209": {
+        "file_id": 48,
+        "content": "This script configures and runs a virtual machine using QEMU emulator. It checks if the latest version is needed, sets memory limits, selects serial port for communication, and executes the virtual machine.",
+        "type": "summary"
+    },
+    "210": {
+        "file_id": 48,
+        "content": "@echo off\nREM do we need latest?\nREM \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\"  -enable-hax -m 2M,maxmem=5M -mem-path R:\\ -hda c.hd -boot d\n\"E:\\Program Files\\qemu\\qemu-system-x86_64.exe\"  -accel hax -m 2M,slots=2,maxmem=5M  -nographic -serial COM4 -hda c.hd -boot d\nREM \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"\nREM it is\nREM D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\\kvmvapic.bin\nREM this is not native one.\nREM D:\\Program Files\\MATLAB\\R2018a\\toolbox\\idelink\\foundation\\hostapps\\PUTTY.EXE\nREM \"D:\\Program Files (x86)\\com0com\\setupc.exe\"",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/run_dos_serial.cmd:1-10"
+    },
+    "211": {
+        "file_id": 48,
+        "content": "This script configures and runs a virtual machine using QEMU emulator. It checks if the latest version is needed, sets memory limits, selects serial port for communication, and executes the virtual machine.",
+        "type": "comment"
+    },
+    "212": {
+        "file_id": 49,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/run_dos_telnet.cmd",
+        "type": "filepath"
+    },
+    "213": {
+        "file_id": 49,
+        "content": "This code is used to run a DOS-based program within the QEMU emulator. It checks if it needs the latest version of QEMU and specifies memory settings, boot drive, and network serial connection for the emulation. Some paths in the script may be outdated or referencing non-native files.",
+        "type": "summary"
+    },
+    "214": {
+        "file_id": 49,
+        "content": "@echo off\nREM do we need latest?\nREM \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\"  -enable-hax -m 2M,maxmem=5M -mem-path R:\\ -hda c.hd -boot d\n\"E:\\Program Files\\qemu\\qemu-system-x86_64.exe\"  -accel hax -m 2M,slots=2,maxmem=5M  -nographic -serial  telnet:localhost:4312,server,nowait -hda c.hd -boot d\nREM \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"\nREM it is fucked.\nREM D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\\kvmvapic.bin\nREM this is not native one.\nREM D:\\Program Files\\MATLAB\\R2018a\\toolbox\\idelink\\foundation\\hostapps\\PUTTY.EXE\nREM \"D:\\Program Files (x86)\\com0com\\setupc.exe\"",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/run_dos_telnet.cmd:1-10"
+    },
+    "215": {
+        "file_id": 49,
+        "content": "This code is used to run a DOS-based program within the QEMU emulator. It checks if it needs the latest version of QEMU and specifies memory settings, boot drive, and network serial connection for the emulation. Some paths in the script may be outdated or referencing non-native files.",
+        "type": "comment"
+    },
+    "216": {
+        "file_id": 50,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/serial_dos.sh",
+        "type": "filepath"
+    },
+    "217": {
+        "file_id": 50,
+        "content": "This code is used to run QEMU, an open-source virtual machine emulator, for i386 architecture in a Unix environment. It uses KVM (Kernel-based Virtual Machine) for hardware virtualization and the -nographic flag enables text console output on standard out. The serial parameter specifies different methods for connecting to the virtual machine's serial port: mon:stdio, vc:800x600, /dev/ttyS0, or COM1. HDA refers to a hard disk image file and -boot d sets DOS as the boot option.",
+        "type": "summary"
+    },
+    "218": {
+        "file_id": 50,
+        "content": "#!/bin/bash\nqemu-system-i386 -enable-kvm -nographic -serial mon:stdio  -hda c.hd -boot d\n# this is unix only.\n# qemu-system-i386 -enable-kvm -nographic -serial vc:800x600  -hda c.hd -boot d\n# qemu-system-i386 -enable-kvm -nographic -serial /dev/ttyS0 -hda c.hd -boot d\n# qemu-system-i386 -enable-kvm -nographic -serial /dev/ttyS0  -hda c.hd -boot d\n# qemu-system-i386 -enable-kvm -nographic -serial COM1  -hda c.hd -boot d\n# you can use telnet! or unix socket.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/serial_dos.sh:1-8"
+    },
+    "219": {
+        "file_id": 50,
+        "content": "This code is used to run QEMU, an open-source virtual machine emulator, for i386 architecture in a Unix environment. It uses KVM (Kernel-based Virtual Machine) for hardware virtualization and the -nographic flag enables text console output on standard out. The serial parameter specifies different methods for connecting to the virtual machine's serial port: mon:stdio, vc:800x600, /dev/ttyS0, or COM1. HDA refers to a hard disk image file and -boot d sets DOS as the boot option.",
+        "type": "comment"
+    },
+    "220": {
+        "file_id": 51,
+        "content": "/generic/vb_charec_bootstrap/dos_runner/unloadram.sh",
+        "type": "filepath"
+    },
+    "221": {
+        "file_id": 51,
+        "content": "This script unmounts the ramdisk and deletes its directory, ensuring no residual files or processes remain after an operation.",
+        "type": "summary"
+    },
+    "222": {
+        "file_id": 51,
+        "content": "#!/bin/bash\nsudo umount ramdisk\nsudo rm -rf ramdisk",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/unloadram.sh:1-3"
+    },
+    "223": {
+        "file_id": 51,
+        "content": "This script unmounts the ramdisk and deletes its directory, ensuring no residual files or processes remain after an operation.",
+        "type": "comment"
+    },
+    "224": {
+        "file_id": 52,
+        "content": "/generic/vb_charec_bootstrap/ds_iso/README",
+        "type": "filepath"
+    },
+    "225": {
+        "file_id": 52,
+        "content": "This code snippet describes a collection of small ISOs for RDP and console emulation. It mentions using VirtualBox without Docker due to issues faced, and provides links to relevant resources. The text highlights various problems such as storage, network, persistence, and visual issues, among others, indicating the challenges encountered in this process.",
+        "type": "summary"
+    },
+    "226": {
+        "file_id": 52,
+        "content": "damn small iso collection for rdp and console emulation \nhttps://codegolf.stackexchange.com/questions/4732/emulate-an-intel-8086-cpu\nso it is easier to do this without the help of docker, which always have issue with us.\nhttps://www.nakivo.com/blog/how-to-install-virtualbox-extension-pack/#:~:text=Open%20Launchpad%2C%20run%20VirtualBox%2C%20then%20go%20to%20Tools,from%20the%20VirtualBox%20site%20%28Oracle_VM_VirtualBox_Extension_Pack-6.0.8.vbox-extpack%20in%20this%20case%29.\nhttps://cloudbase.it/freerdp-for-windows-nightly-builds/\nhttps://www.gryphel.com/c/minivmac/\nfloppy disk problem. iso problem. vbox com problem.\ncpu problem. ram problem. network problem.\nstorage problem. persistance problem. telnet/ctty problem.\nvisual problem. input problem. comprehension problem.\nethical problem. identity problem. maintainence problem.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/ds_iso/README:1-21"
+    },
+    "227": {
+        "file_id": 52,
+        "content": "This code snippet describes a collection of small ISOs for RDP and console emulation. It mentions using VirtualBox without Docker due to issues faced, and provides links to relevant resources. The text highlights various problems such as storage, network, persistence, and visual issues, among others, indicating the challenges encountered in this process.",
+        "type": "comment"
+    },
+    "228": {
+        "file_id": 53,
+        "content": "/generic/vb_charec_bootstrap/ds_iso/brief.cmd",
+        "type": "filepath"
+    },
+    "229": {
+        "file_id": 53,
+        "content": "This code sets an batch script to list all files and folders within a directory and its subdirectories, then outputs the results to 'brief.log'.",
+        "type": "summary"
+    },
+    "230": {
+        "file_id": 53,
+        "content": "@echo off\ndir /b /s > brief.log",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/ds_iso/brief.cmd:1-2"
+    },
+    "231": {
+        "file_id": 53,
+        "content": "This code sets an batch script to list all files and folders within a directory and its subdirectories, then outputs the results to 'brief.log'.",
+        "type": "comment"
+    },
+    "232": {
+        "file_id": 54,
+        "content": "/generic/vb_charec_bootstrap/dump_display.sh",
+        "type": "filepath"
+    },
+    "233": {
+        "file_id": 54,
+        "content": "This Bash script copies an X Window Dump (xwd.dump) from a virtual framebuffer (Xvfb_screen0) to the current directory, potentially for displaying graphical content. The original code includes comments to set the DISPLAY environment variable and uses xwd to capture the screen contents as an image file.",
+        "type": "summary"
+    },
+    "234": {
+        "file_id": 54,
+        "content": "#!/bin/bash\n#set DISPLAY=:9\n# get it processed.\ncp /dev/shm/xvfb/Xvfb_screen0 xwd.dump\n#xwd -display 9 -root -out xwd.dump",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dump_display.sh:1-5"
+    },
+    "235": {
+        "file_id": 54,
+        "content": "This Bash script copies an X Window Dump (xwd.dump) from a virtual framebuffer (Xvfb_screen0) to the current directory, potentially for displaying graphical content. The original code includes comments to set the DISPLAY environment variable and uses xwd to capture the screen contents as an image file.",
+        "type": "comment"
+    },
+    "236": {
+        "file_id": 55,
+        "content": "/generic/vb_charec_bootstrap/fixer_linux_vboxapi_python_binding/fixer.sh",
+        "type": "filepath"
+    },
+    "237": {
+        "file_id": 55,
+        "content": "This script copies necessary files and folders to Python's dist-packages directories for both Python 3 and 2.7, as well as the VirtualBox directory. It ensures the required libraries are in place for the codebase to run properly on Linux with VirtualBox installed.",
+        "type": "summary"
+    },
+    "238": {
+        "file_id": 55,
+        "content": "#!/bin/bash\ncp -R vboxapi /usr/lib/python3/dist-packages/\ncp -R xpcom /usr/lib/python3/dist-packages/\ncp -R vboxapi /usr/lib/python2.7/dist-packages/\ncp -R xpcom  /usr/lib/python2.7/dist-packages/\ncp VBoxPython* /usr/lib/virtualbox/",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/fixer_linux_vboxapi_python_binding/fixer.sh:1-6"
+    },
+    "239": {
+        "file_id": 55,
+        "content": "This script copies necessary files and folders to Python's dist-packages directories for both Python 3 and 2.7, as well as the VirtualBox directory. It ensures the required libraries are in place for the codebase to run properly on Linux with VirtualBox installed.",
+        "type": "comment"
+    },
+    "240": {
+        "file_id": 56,
+        "content": "/generic/vb_charec_bootstrap/gas_tc.py",
+        "type": "filepath"
+    },
+    "241": {
+        "file_id": 56,
+        "content": "This code defines functions for image processing, communication with databases, and performs operations like array concatenation, alignment, and threading. It utilizes OpenCV's imshow function to display images and prints timing information.",
+        "type": "summary"
+    },
+    "242": {
+        "file_id": 56,
+        "content": "from ms3 import spilter\nimport cv2\nimport numpy as np\nimport time, threading\nfrom nparr_redis import npbset\n# there has to be persistent knowledge between code and database.\n# i guess python is full of translation here. translating calls into simple reusable stubs.\ndef concat(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=0)\n    n=np.concatenate((n,b),axis=0)\n    return n\ndef concat_h(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=1)\n    n=np.concatenate((n,b),axis=1)\n    return n\ndef genline_h(a,b):\n    return np.ones((a,1,b))\ndef genline(a,b):\n    return np.ones((1,a,b))\ndef grill(img,t0):\n    s=spilter(img,(25,80))\n    # here it is.\n    s0={str(k):s[k].copy() for k in s.keys()}\n    tx = threading.Thread(target=npbset,args=(s0,0))\n    tx.setDaemon(True)\n    tx.start()\n    # separate thread.\n    # same config for that tinycore.\n    rk=list(s.keys())[0]\n    rk=s[rk]\n    _,y,x = rk.shape\n    base_t=None\n    # this is vertical alignment. but what is vertical?\n    for x0 in range(80):\n        base = genline(y,x)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/gas_tc.py:1-41"
+    },
+    "243": {
+        "file_id": 56,
+        "content": "This code defines functions for image processing and communication between code and database. It concatenates arrays horizontally or vertically, generates line arrays, and performs vertical alignment. The 'grill' function splits an image and stores the parts in a separate thread to Redis using persistent knowledge.",
+        "type": "comment"
+    },
+    "244": {
+        "file_id": 56,
+        "content": "        for y0 in range(25):\n            base=concat(base,genline(y,x),s[(y0,x0)])\n        if base_t is None:\n#            print(\"init\",base.shape)\n            base_t = base.copy()\n        else:\n            z,_,_=base.shape\n#            print(\"looping\",base_t.shape,base.shape)\n            base_t = concat_h(base_t,base,genline_h(z,x))\n    #input class: <class '_io.BufferedReader'>    \n    # paint multiple images onto the same window.\n    cv2.imshow(\"sample\",base_t)\n    print(\"timing: \",time.time()-t0)\n    cv2.waitKey(0)\n    cv2.destroyAllWindows()",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/gas_tc.py:42-56"
+    },
+    "245": {
+        "file_id": 56,
+        "content": "This code is looping through a range of values, concatenating the results with previous concatentations and checking the shape of base_t and base. It displays multiple images on the same window using OpenCV's imshow function and prints timing information.",
+        "type": "comment"
+    },
+    "246": {
+        "file_id": 57,
+        "content": "/generic/vb_charec_bootstrap/gdos_trust.py",
+        "type": "filepath"
+    },
+    "247": {
+        "file_id": 57,
+        "content": "This code handles signals and exceptions, sets up a signal handler for interrupts and an exception hook, and includes functions for executing commands with callbacks and delays. It creates a multi-threaded process using Python's threading module to simulate user input and run DOSBox shell scripts for testing or automation tasks.",
+        "type": "summary"
+    },
+    "248": {
+        "file_id": 57,
+        "content": "# this is recursive programming.\n# 25 x 80\nimport threading\nimport subprocess\nimport signal, sys\nimport time\nfrom nparr_redis import rset\nfrom or_func import trusty\nimport requests\ndef repo():\n    requests.get(\"http://localhost:8888/r\")\ndef unwarp(a):\n    return [x for y in a for x in y]\ndef uwp(a,r=1):\n    for x in range(r):\n        a=unwarp(a)\n#    print(a)\n    return a\n# current_key = None\n# use a separate thread to get the image loaded!\n# communicate to the thread? bidirectional?\n# stdin?\ndef sigint_handler(signal,frame):\n    print(\"interrupted!\")\n    time.sleep(0.1)\n    sys.exit(0)\ndef my_except_hook(exctype,value,traceback):\n    time.sleep(0.1)\n    sys.__excepthook__(exctype,value,traceback)\n    sys.exit(0)\n    # is it lethal?\nsys.excepthook = my_except_hook\nsignal.signal(signal.SIGINT,sigint_handler)\ndef run_main_v2(cmdline,env,callback=None,delay_3=None):\n    print(\"started!\",cmdline)\n    if callback is None:\n        callback = lambda x: None\n    if delay_3 is None:\n        delay_3 = 0\n    for x in cmdline:\n        time.sleep(delay_3)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/gdos_trust.py:1-43"
+    },
+    "249": {
+        "file_id": 57,
+        "content": "Code is for a program that handles signals and exceptions, recursive programming, and defines functions for processing data. It also sets up a signal handler for interrupts and an exception hook to handle crashes gracefully. The code includes functions like \"repo\", \"unwarp\", \"uwp\" and \"run_main_v2\".",
+        "type": "comment"
+    },
+    "250": {
+        "file_id": 57,
+        "content": "        subprocess.run(x,env=env)\n        callback(x)\ndef run_main(cmdline,callback=None):\n    print(\"started!\",cmdline)\n    if callback is None:\n        callback = lambda x: None\n    subprocess.run(cmdline)\n    callback(cmdline)\ndef recent_key_cb(cmdline,callback=None,callback_v2=None):\n#    print(\"running callback reckeycb\")\n    if callback is None:\n        callback = lambda x: None\n    if callback_v2 is None:\n        callback_v2 = lambda : None\n    if len(cmdline)==3:\n        if cmdline[0]==\"xdotool\":\n            if cmdline[1]==\"type\":\n                callback(cmdline[2])\n    elif cmdline[0]==\"./trwp.sh\":\n        callback_v2()\ndef rep_main(cmdline,env,delay=0,callback=None,delay_2=0.5):\n    time.sleep(delay)\n    if callback is None:\n        callback = lambda x: None\n    if env is not None:\n        while True:\n            time.sleep(delay_2)\n#            callback(cmdline)\n            run_main_v2(cmdline,env,callback)\n    else:\n        while True:\n            time.sleep(delay_2)\n#            callback(cmdline)\n            run_main(cmdline,callback)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/gdos_trust.py:44-80"
+    },
+    "251": {
+        "file_id": 57,
+        "content": "The code defines three functions: `run_main`, `recent_key_cb`, and `rep_main`. The `run_main` function executes a command line with an optional callback function. The `recent_key_cb` function is a callback for a specific command line argument combination, and the `rep_main` function continuously executes the main function with a delay and optionally an environment variable.",
+        "type": "comment"
+    },
+    "252": {
+        "file_id": 57,
+        "content": "    # right into the output.\n    #subprocess.run([\"./sep_dosbox.sh\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n    # where's the output?\n    # if you cannot count, why bother math?\nimport os\nenv = os.environ.copy()\n#env = copy.deepcopy(os.environ)\nenv[\"DISPLAY\"]=\":9\"\ncraft=(\"0123456789\")*20\n# this is for cell counting.\n# merge the func of checking screen and receiving keys.\n# not just rset, but a whole thing.\nt0=threading.Thread(target=rep_main,args=([\n*uwp([[[\"xdotool\", \"type\", craft[d]],[\"./trwp.sh\"]] for d in range(len(craft))],r=1),\n[\"xdotool\", \"key\", \"0xff0d\"],\n],env,0.5,lambda x:recent_key_cb(x,lambda y:rset(\"recent_key\",y),repo)))\nt0.setDaemon(True)\nt0.start()\n# better end this thread? check if properly closed.\n# this is the launcher.\nt=threading.Thread(target=run_main,args=([\"./sep_dosbox.sh\"],))\nt.setDaemon(True)\nt.start()\n# better end this thread? check if properly closed.\n#t1=threading.Thread(target=rep_main,args=([\"./rwp.sh\"],None,2))\n#t1.setDaemon(True)\n#t1.start()\n#\nwhile True:\n    time.sleep(1)\n    print(\"idle main thread\")",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/gdos_trust.py:82-112"
+    },
+    "253": {
+        "file_id": 57,
+        "content": "This code sets up a multi-threaded process using Python's threading module. It creates two threads: one to simulate user input, and another to run a DOSBox shell script. The script uses xdotool to type in a generated sequence of keys and then presses enter. This is likely used for some kind of testing or automation task. The code also includes a while loop that keeps the main thread running, printing \"idle main thread\" every second.",
+        "type": "comment"
+    },
+    "254": {
+        "file_id": 58,
+        "content": "/generic/vb_charec_bootstrap/genparr.py",
+        "type": "filepath"
+    },
+    "255": {
+        "file_id": 58,
+        "content": "The code imports numpy, pickle, and sys libraries. It creates a 1D array with values [1, 2, 3] and converts it to a list. Then, it dumps the list using pickle into the standard output buffer. The comment asks if we can slice normal arrays like this.",
+        "type": "summary"
+    },
+    "256": {
+        "file_id": 58,
+        "content": "import numpy, pickle, sys\narr = numpy.array([1,2,3]).tolist()\npickle.dump(arr,sys.stdout.buffer)\n# i mean can we slice normal array like this?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/genparr.py:1-4"
+    },
+    "257": {
+        "file_id": 58,
+        "content": "The code imports numpy, pickle, and sys libraries. It creates a 1D array with values [1, 2, 3] and converts it to a list. Then, it dumps the list using pickle into the standard output buffer. The comment asks if we can slice normal arrays like this.",
+        "type": "comment"
+    },
+    "258": {
+        "file_id": 59,
+        "content": "/generic/vb_charec_bootstrap/getslice.py",
+        "type": "filepath"
+    },
+    "259": {
+        "file_id": 59,
+        "content": "The code imports the pickle and sys modules, loads an array from standard input using pickle's load function, and then prints the entire array along with slices of it (first element and first two elements) and the type of the array.",
+        "type": "summary"
+    },
+    "260": {
+        "file_id": 59,
+        "content": "import pickle, sys\narr = pickle.load(sys.stdin.buffer)\nprint(arr,arr[0:1],arr[0:2],type(arr))",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/getslice.py:1-3"
+    },
+    "261": {
+        "file_id": 59,
+        "content": "The code imports the pickle and sys modules, loads an array from standard input using pickle's load function, and then prints the entire array along with slices of it (first element and first two elements) and the type of the array.",
+        "type": "comment"
+    },
+    "262": {
+        "file_id": 60,
+        "content": "/generic/vb_charec_bootstrap/grill_dosbox.py",
+        "type": "filepath"
+    },
+    "263": {
+        "file_id": 60,
+        "content": "This code sets up signal handlers, executes commands with callbacks, and manages threads running different scripts, continuously checking for proper closure. It initializes a thread for \"sep_dosbox.sh\", another for \"rwp.sh\" with specific arguments, while keeping the main thread idle.",
+        "type": "summary"
+    },
+    "264": {
+        "file_id": 60,
+        "content": "# this is recursive programming.\n# 25 x 80\nimport threading\nimport subprocess\nimport signal, sys\nimport time\nfrom nparr_redis import rset\n# use a separate thread to get the image loaded!\n# communicate to the thread? bidirectional?\n# stdin?\ndef sigint_handler(signal,frame):\n    print(\"interrupted!\")\n    time.sleep(0.1)\n    sys.exit(0)\ndef my_except_hook(exctype,value,traceback):\n    time.sleep(0.1)\n    sys.__excepthook__(exctype,value,traceback)\n    sys.exit(0)\n    # is it lethal?\nsys.excepthook = my_except_hook\nsignal.signal(signal.SIGINT,sigint_handler)\ndef run_main_v2(cmdline,env,callback=None):\n    if callback is None:\n        callback = lambda x: None\n    for x in cmdline:\n        subprocess.run(x,env=env)\n        callback(x)\n        print(\"completed!\",cmdline)\ndef run_main(cmdline,callback=None):\n    if callback is None:\n        callback = lambda x: None\n    subprocess.run(cmdline)\n    callback(cmdline)\n    print(\"completed!\",cmdline)\ndef recent_key_cb(cmdline,callback=None):\n#    print(\"running calback reckeycb\")\n    if callback is None:",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/grill_dosbox.py:1-39"
+    },
+    "265": {
+        "file_id": 60,
+        "content": "This code defines functions to handle signals, exceptions, and run subprocess commands. It sets up signal handlers for interrupts and exceptions, as well as callback functions for running commands and handling completed processes. The code also includes a function to recursively execute commands using separate threads and communicate with the thread using callbacks.",
+        "type": "comment"
+    },
+    "266": {
+        "file_id": 60,
+        "content": "        callback = lambda x: None\n    if len(cmdline)==3:\n        if cmdline[0]==\"xdotool\":\n            if cmdline[1]==\"type\":\n                callback(cmdline[2])\ndef rep_main(cmdline,env,delay=0,callback=None):\n    time.sleep(delay)\n    if callback is None:\n        callback = lambda x: None\n    if env is not None:\n        while True:\n            time.sleep(0.5)\n#            callback(cmdline)\n            run_main_v2(cmdline,env,callback)\n    else:\n        while True:\n            time.sleep(0.5)\n#            callback(cmdline)\n            run_main(cmdline,callback)\n    # right into the output.\n    #subprocess.run([\"./sep_dosbox.sh\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n    # where's the output?\n    # if you cannot count, why bother math?\nimport os\nfrom mixer import safe_lr as lin_repeat\nenv = os.environ.copy()\n#env = copy.deepcopy(os.environ)\nenv[\"DISPLAY\"]=\":9\"\narcade = lin_repeat(\"0123456789\")\nal = len(arcade)\ncraft=arcade*20\nt0=threading.Thread(target=rep_main,args=([\n[\"xdotool\", \"type\", craft],\n[\"xdotool\", \"key\", \"0xff0d\"]",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/grill_dosbox.py:40-75"
+    },
+    "267": {
+        "file_id": 60,
+        "content": "Function rep_main runs a loop that waits for a specified delay before executing the given command line with a callback function. If an environment variable is provided, it enters another loop where it continuously calls run_main_v2 or run_main depending on whether env is not None. It also attempts to execute a script but fails due to missing output. The code copies and modifies some environment variables and repeats the value of \"0123456789\" 20 times for later use in the command line.",
+        "type": "comment"
+    },
+    "268": {
+        "file_id": 60,
+        "content": "],env,0,lambda x:recent_key_cb(x,lambda y:rset(\"recent_keys\",y[:2*al]))))\nt0.setDaemon(True)\nt0.start()\n# better end this thread? check if properly closed.\nt=threading.Thread(target=run_main,args=([\"./sep_dosbox.sh\"],))\nt.setDaemon(True)\nt.start()\n# better end this thread? check if properly closed.\nt1=threading.Thread(target=rep_main,args=([\"./rwp.sh\"],None,2))\nt1.setDaemon(True)\nt1.start()\n#\nwhile True:\n    time.sleep(1)\n    print(\"idle main thread\")",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/grill_dosbox.py:76-91"
+    },
+    "269": {
+        "file_id": 60,
+        "content": "This code initializes multiple threads to run different scripts and continuously checks if they are properly closed. It creates a thread for running \"sep_dosbox.sh\", another for running \"rwp.sh\" with specific arguments, and keeps the main thread idle with a print statement.",
+        "type": "comment"
+    },
+    "270": {
+        "file_id": 61,
+        "content": "/generic/vb_charec_bootstrap/grill_tinycore.py",
+        "type": "filepath"
+    },
+    "271": {
+        "file_id": 61,
+        "content": "This code performs image processing using OpenCV and numpy libraries, with functions for array creation and alignment. It handles an image split into 25x80 blocks and measures execution time.",
+        "type": "summary"
+    },
+    "272": {
+        "file_id": 61,
+        "content": "from ms3 import spilter\nimport cv2\nimport numpy as np\nimport time\n# i guess python is full of translation here. translating calls into simple reusable stubs.\ndef concat(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=0)\n    n=np.concatenate((n,b),axis=0)\n    return n\ndef concat_h(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=1)\n    n=np.concatenate((n,b),axis=1)\n    return n\ndef genline_h(a,b):\n    return np.ones((a,1,b))\ndef genline(a,b):\n    return np.ones((1,a,b))\ndef grill(img,t0):\n    s=spilter(img,(25,80))\n    # same config for that tinycore.\n    rk=list(s.keys())[0]\n    rk=s[rk]\n    _,y,x = rk.shape\n    base_t=None\n    # this is vertical alignment. but what is vertical?\n    # not happy with raw key input.\n    for x0 in range(80):\n        base = genline(y,x)\n        for y0 in range(25):\n            base=concat(base,genline(y,x),s[(y0,x0)])\n        if base_t is None:\n#            print(\"init\",base.shape)\n            base_t = base.copy()\n        else:\n            z,_,_=base.shape\n#            print(\"looping\",base_t.shape,base.shape)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/grill_tinycore.py:1-42"
+    },
+    "273": {
+        "file_id": 61,
+        "content": "This code is for image processing and seems to be a part of a larger function or class. It uses the numpy library for array manipulation, cv2 for OpenCV functionality, spilter from ms3 for splitting an image into blocks based on certain criteria, and time for timing operations. The functions concat, concat_h, genline, and genline_h are used to create arrays for image processing purposes, while grill is likely the main function that performs some form of image alignment using these arrays and spilter data. The code seems to be working with an image divided into 25x80 blocks and creating a new array based on their configuration.",
+        "type": "comment"
+    },
+    "274": {
+        "file_id": 61,
+        "content": "            base_t = concat_h(base_t,base,genline_h(z,x))\n    #input class: <class '_io.BufferedReader'>    \n    # paint multiple images onto the same window.\n    cv2.imshow(\"sample\",base_t)\n    print(\"timing: \",time.time()-t0)\n    cv2.waitKey(0)\n    cv2.destroyAllWindows()",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/grill_tinycore.py:43-49"
+    },
+    "275": {
+        "file_id": 61,
+        "content": "This code snippet shows image processing using OpenCV library in Python. It displays multiple images on the same window, measures execution time, waits for a key press, and then closes the window.",
+        "type": "comment"
+    },
+    "276": {
+        "file_id": 62,
+        "content": "/generic/vb_charec_bootstrap/id_demo.py",
+        "type": "filepath"
+    },
+    "277": {
+        "file_id": 62,
+        "content": "This code defines functions for pattern matching and difference calculation using fuzzy logic. The \"ethic\" function searches for exact matches between two arguments and returns the list of matches found.",
+        "type": "summary"
+    },
+    "278": {
+        "file_id": 62,
+        "content": "a,b = \"abcde\", \"bcdef\"\na,b = a*20, b*20\nb = \"random stuff of unrelated shits\"+b\nb = b*2\n# fuzzy logic.\n# what is repeating anyway?\nimport numpy as np\ndef uniq(a):\n    # start with 0.\n    i = 0\n    d={}\n    k=[]\n    for x in a:\n        if x in d.keys():\n            pass\n        else:\n            d.update({x:i})\n            i+=1\n        k.append(d[x])\n    return np.array(k),d\ndef du(a):\n    return np.diff(a)\ndef ethic(a,b,c=True):\n    # slide the b.\n    ad, _ = uniq(a)\n    N = len(a)\n    N0 = N-1\n    ln = len(b)-N0\n    if not c:\n        for x in range(ln):\n            bn = b[x:x+N]\n            bd, _ = uniq(bn)\n#            print(\"x\",x,\"bd\",bd)\n            if np.all(ad == bd):\n            # check all possible match? maybe later.\n                return bn\n        return None\n    else:\n        can = []\n        preb = 0\n        for x in range(ln):\n            xpreb = x+preb\n            if xpreb<ln:\n                bn = b[xpreb:xpreb+N]\n                bd, _ = uniq(bn)\n                if np.all(ad == bd):\n                # must skip.\n                    preb+=N0",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/id_demo.py:1-50"
+    },
+    "279": {
+        "file_id": 62,
+        "content": "This code defines functions for pattern matching and difference calculation. It uses fuzzy logic to find repeated patterns in a given string 'a' within another string 'b'. If the argument 'c' is True, it returns all possible matches; otherwise, it returns only the first match found. The code also makes use of numpy library for efficient array operations.",
+        "type": "comment"
+    },
+    "280": {
+        "file_id": 62,
+        "content": "                    can.append(bn)\n            else:\n                break\n        return can \nprint(ethic(a,b,False))\nprint(ethic(a,b))\n# find the exact match. using what?\n# i mean it is what? learning to forget?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/id_demo.py:51-59"
+    },
+    "281": {
+        "file_id": 62,
+        "content": "This code defines a function \"ethic\" that takes two arguments, 'a' and 'b'. It iterates through each item in the range starting from zero until it finds an exact match between 'a' and 'b'. If no match is found, the loop breaks. The function returns the list of matches found ('can'). The code then calls \"ethic(a, b, False)\" and \"ethic(a, b)\" to test the function with different parameters.",
+        "type": "comment"
+    },
+    "282": {
+        "file_id": 63,
+        "content": "/generic/vb_charec_bootstrap/id_func.py",
+        "type": "filepath"
+    },
+    "283": {
+        "file_id": 63,
+        "content": "This code defines three functions (uniq, du, ethic) that process data based on a condition by filtering, sorting, and selecting specified values.",
+        "type": "summary"
+    },
+    "284": {
+        "file_id": 63,
+        "content": "import numpy as np\ndef uniq(a):\n    # start with 0.\n    i = 0\n    d={}\n    k=[]\n    for x in a:\n        if x in d.keys():\n            pass\n        else:\n            d.update({x:i})\n            i+=1\n        k.append(d[x])\n    return np.array(k),d\ndef du(a):\n    return np.diff(a)\ndef ethic(a,b,c=True,mix=0.7,filter_num = 3):\n    # slide the b.\n    ad, _ = uniq(a)\n    N = len(a)\n    N0 = N-1\n    ln = len(b)-N0\n    if not c:\n        for x in range(ln):\n#            print(\"iteration\",x)\n            bn = b[x:x+N]\n            bd, _ = uniq(bn)\n#            print(\"x\",x,\"bd\",bd)\n            if np.all(ad == bd):\n            # check all possible match? maybe later.\n                return bn\n        return None\n    else:\n        can = []\n        preb = 0\n        for x in range(ln):\n#            print(\"iteration\",x)\n            xpreb = x+preb\n            if xpreb<ln:\n                bn = b[xpreb:xpreb+N]\n                bd, _ = uniq(bn)\n                nr = (ad == bd)\n                snr = sum(nr)\n#                if snr > N*0.7:\n#                    print(\"expected\",N,\"actual\",snr,\"max\",len(nr))",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/id_func.py:1-47"
+    },
+    "285": {
+        "file_id": 63,
+        "content": "The code defines three functions: `uniq`, `du`, and `ethic`. The `uniq` function uniquely identifies elements in a list and assigns an index to each unique element. The `du` function calculates the difference between consecutive elements in a list. The `ethic` function uses these two functions to slide another list against the first one and returns the matched segment or None if no match is found. It also includes optional parameters for controlling filtering and mixing.",
+        "type": "comment"
+    },
+    "286": {
+        "file_id": 63,
+        "content": "                if snr > N*mix:\n                # must skip.\n                    preb+=N0\n                    # append the value instead? floating point.\n                    can.append((bn,-snr/N))\n            else:\n                break\n        fn = sorted(can,key = lambda x: x[1])\n        kan = []\n        for x in fn:\n            if filter_num>0:\n                kan.append(x[0])\n                filter_num-=1\n            else:\n                break\n        return kan",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/id_func.py:48-63"
+    },
+    "287": {
+        "file_id": 63,
+        "content": "This code appears to be filtering and processing data based on a certain condition. It skips values when the SNR (Signal-to-Noise Ratio) exceeds a threshold, appends others as floating point values, sorts them by their second element, selects a specified number of values from the sorted list, and then returns them. The code uses functions like append, sorting, filtering, and lambda functions.",
+        "type": "comment"
+    },
+    "288": {
+        "file_id": 64,
+        "content": "/generic/vb_charec_bootstrap/init.sh",
+        "type": "filepath"
+    },
+    "289": {
+        "file_id": 64,
+        "content": "This script is an initialization (bootstrap) shell script for VB Charec, which empties the \"lazero\" file.",
+        "type": "summary"
+    },
+    "290": {
+        "file_id": 64,
+        "content": "#!/bin/bash\necho \"\" > lazero",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/init.sh:1-2"
+    },
+    "291": {
+        "file_id": 64,
+        "content": "This script is an initialization (bootstrap) shell script for VB Charec, which empties the \"lazero\" file.",
+        "type": "comment"
+    },
+    "292": {
+        "file_id": 65,
+        "content": "/generic/vb_charec_bootstrap/kw_tool.py",
+        "type": "filepath"
+    },
+    "293": {
+        "file_id": 65,
+        "content": "This code reads all files in the current directory, randomly selects a subset of their keywords, and prints them in colorful format. It uses threading for concurrency and random selection from SystemRandom for unpredictability. If an error occurs during file reading, it is suppressed.",
+        "type": "summary"
+    },
+    "294": {
+        "file_id": 65,
+        "content": "import os\nimport random\nimport threading, time\nfrom colorama import Fore, Style\nrng = random.SystemRandom()\ndef rdk(a):\n    cl=[Fore.RED,Fore.GREEN,Fore.BLUE]\n    return \" \".join([rng.choice(cl)+x+Style.RESET_ALL for x in a])\ndef nb_read(a,b,c):\n    try:\n        c[0] = open(a,b)\n        return c\n    except:\n        return None\nmax_read = 5\nfor x in os.listdir(\".\"):\n    #try:\n    f=[None]\n    t=threading.Thread(target=nb_read,args=(x,\"r\",f))\n    t.setDaemon(True)\n    t.start()\n    time.sleep(0.001)\n    if f[0] is not None:\n        try:\n            f=f[0]\n            k = set(f.read().split())\n            if len(k)<=max_read:\n                pass\n            else:\n                k = rng.sample(k,max_read)\n                print(Fore.YELLOW+\"file name: \"+Style.RESET_ALL,x)\n                print(\">>>keywords: \",rdk(k))\n        except:\n            pass\n    #except:\n    #    print(\"error opening\",x)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/kw_tool.py:1-40"
+    },
+    "295": {
+        "file_id": 65,
+        "content": "This code reads all files in the current directory, randomly selects a subset of their keywords, and prints them in colorful format. It uses threading for concurrency and random selection from SystemRandom for unpredictability. If an error occurs during file reading, it is suppressed.",
+        "type": "comment"
+    },
+    "296": {
+        "file_id": 66,
+        "content": "/generic/vb_charec_bootstrap/listener.py",
+        "type": "filepath"
+    },
+    "297": {
+        "file_id": 66,
+        "content": "The code reads lines from stdout and stderr in separate threads, collecting them into a list. It stops when the number of collected lines reaches a certain threshold or after a maximum idle time. Finally, it prints all collected lines.",
+        "type": "summary"
+    },
+    "298": {
+        "file_id": 66,
+        "content": "import threading\nimport time\nMAX_IDLE=3\nMIN_COLLECT=1\nMAX_COLLECT=10\ncol=[]\ndef listen(a):\n    with open(a,'r') as f:\n        while True:\n            r=f.readline()\n            if len(r)==0:\n                pass\n            else:\n#                print(a,r,type(r),len(r))\n                col.append(r)\n            time.sleep(0.1)\n# what if not sleeping?\n# then things will go shit.\nt=threading.Thread(target=listen,args=('stdout',))\nt1=threading.Thread(target=listen,args=('stderr',))\nt.setDaemon(True)\nt1.setDaemon(True)\nt.start()\nt1.start()\n# guess on windows there are pipe apis. offtopic!\n# self-init.\ncounter=0\nwhile True:\n    l=len(col)\n    #print('idle main thread',l,counter)\n    # max idle time 5\n    if l<MIN_COLLECT:\n        pass\n    else:\n        if l >= MAX_COLLECT:\n            break\n        elif counter>=MAX_IDLE:\n            break\n        counter+=1\n    time.sleep(0.1)\n# do random choice here?\nprint(\" \".join(col))",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/listener.py:1-45"
+    },
+    "299": {
+        "file_id": 66,
+        "content": "The code reads lines from stdout and stderr in separate threads, collecting them into a list. It stops when the number of collected lines reaches a certain threshold or after a maximum idle time. Finally, it prints all collected lines.",
+        "type": "comment"
+    }
+}

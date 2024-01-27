@@ -1,0 +1,10 @@
+{
+    "summary": "This code uses the requests library to send and receive data over a network. It takes in arguments (math operations) and sends them to a local server, printing the received response after a small delay. The code then gets the final result from the server by making a GET request.",
+    "details": [
+        {
+            "comment": "This code uses the requests library to send and receive data over a network. It takes in arguments (math operations) and sends them to a local server, printing the received response after a small delay. The code then gets the final result from the server by making a GET request.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/math_train/stest.py\":0-16",
+            "content": "# remember or get some code.\nimport requests\nimport time\ndef mix_and_eval(*args):\n    for x in args:\n        r = requests.post(\"http://localhost:8888\",x)\n        print(\"data received:\",r.content)\n        time.sleep(0.1)\n    r=requests.get(\"http://localhost:8888\")\n    print(r.content)\nf = [\"1\",\"+\",\"1\"]\nmix_and_eval(*f)\nf0 = [\"1\",\"-\",\"1\"]\nmix_and_eval(*f0)\nf1 = [\"1\",\"1\"]\nmix_and_eval(*f1)"
+        }
+    ]
+}

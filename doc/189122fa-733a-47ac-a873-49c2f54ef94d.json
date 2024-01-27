@@ -1,0 +1,10 @@
+{
+    "summary": "This script launches Electron using a localhost URL for the web-based terminal app, Wetty.",
+    "details": [
+        {
+            "comment": "This script launches Electron using a localhost URL for the web-based terminal app, Wetty.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/websh/test.sh\":0-1",
+            "content": "#!/bin/bash\nelectron http://localhost:3000/wetty"
+        }
+    ]
+}

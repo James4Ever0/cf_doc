@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the redis library and connects to a local Redis server. It sets a value of 2077 for key 2020, pushes integers 2 and 3 into list 2033, retrieves and prints the value of key 2020 and list 2033, and then iterates over all keys in Redis and prints them.",
+    "details": [
+        {
+            "comment": "This code imports the redis library and connects to a local Redis server. It sets a value of 2077 for key 2020, pushes integers 2 and 3 into list 2033, retrieves and prints the value of key 2020 and list 2033, and then iterates over all keys in Redis and prints them.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/word_store.py\":0-10",
+            "content": "import redis\nr=redis.Redis(host='localhost', port=6379, decode_responses=True)\nr.set(2020,2077)\nf=r.get(2020)\nr.lpush(2033,2)\nr.lpush(2033,3)\nh=r.lrange(2033,0,-1)\nprint(f,h)\nfor x in r.keys():\n    print(\"key: \",x)"
+        }
+    ]
+}

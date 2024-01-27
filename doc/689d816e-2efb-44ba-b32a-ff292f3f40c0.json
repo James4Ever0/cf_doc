@@ -1,0 +1,10 @@
+{
+    "summary": "Code imports redis, numpy, and other libraries. It connects to a local Redis server and iterates over all keys, attempting to decode each key containing \"(\" as a pickled numpy array.",
+    "details": [
+        {
+            "comment": "Code imports redis, numpy, and other libraries. It connects to a local Redis server and iterates over all keys, attempting to decode each key containing \"(\" as a pickled numpy array.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dnrcheck.py\":0-22",
+            "content": "import redis\nimport numpy as np\n#import struct\nimport pickle\nimport random\nrng = random.SystemRandom()\n# all bytes!\nr=redis.StrictRedis(host='localhost', port=6379, decode_responses=False)\n#r.set(\"sample_np_array\",arr.tobytes())\nfor x in r.keys():\n    try:\n        print(\"key: \",x)\n        f=r.get(x)\n    # dump will get unwanted offset.\n        print(\"data: \",f,type(f))\n        if \"(\" in x.decode():\n            print(\"decode_numpy: \",pickle.loads(f))\n            break\n    except:\n        pass\n#    else:\n#        print(\">>>keys compare:\",str(x),rail)"
+        }
+    ]
+}

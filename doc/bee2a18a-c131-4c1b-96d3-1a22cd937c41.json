@@ -1,0 +1,10 @@
+{
+    "summary": "This code appears to be manipulating and updating files within a folder, possibly for organizational or testing purposes. It involves changing words, running processes, and counting the number of existing files in the folder. However, the current state of the code seems to have some issues (referred to as \"shitty\" in the code).",
+    "details": [
+        {
+            "comment": "This code appears to be manipulating and updating files within a folder, possibly for organizational or testing purposes. It involves changing words, running processes, and counting the number of existing files in the folder. However, the current state of the code seems to have some issues (referred to as \"shitty\" in the code).",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/math_train/EXAMPLE\":0-10",
+            "content": "1+1 = 2\n1 1 -> 2\ncount how many files are there in this shitty folder.\nchange a word, replace it and run.\nchange a serial of words.\ngive out multiple changes, all with different routes."
+        }
+    ]
+}

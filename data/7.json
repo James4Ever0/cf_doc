@@ -1,0 +1,539 @@
+{
+    "700": {
+        "file_id": 135,
+        "content": "/generic/vb_charec_bootstrap/vsess.py",
+        "type": "filepath"
+    },
+    "701": {
+        "file_id": 135,
+        "content": "This code initializes a VirtualBox session, handles signals and exceptions, takes screenshots of VMs, saves them as PNGs, displays with OpenCV, and manages sessions. Potential improvements include dedicated images for DOS and reading characters from the canvas. Console parsing limitations make it slow.",
+        "type": "summary"
+    },
+    "702": {
+        "file_id": 135,
+        "content": "# run with python2! bug present.\n# fixed?\nimport virtualbox\nimport time\nimport signal, sys\nimport cv2\nimport numpy as np\nfrom grill_tinycore import grill\n#from gevent import monkey\n#monkey.patch_all()\n# consider taking that too.\n# the pipe must be initialized. use another thread to initialize the pipe.\nimport threading\nimport subprocess\n# or you can be careless anyway.\nvbox = virtualbox.VirtualBox()\nsession = virtualbox.Session()\nmachine = vbox.find_machine(\"TinyPlus\")\ndef sigint_handler(signal,frame):\n    print(\"interrupted!\")\n    session.console.power_down()\n    time.sleep(0.1)\n    sys.exit(0)\ndef my_except_hook(exctype,value,traceback):\n    session.console.power_down()\n    time.sleep(0.1)\n    sys.__excepthook__(exctype,value,traceback)\n    sys.exit(0)\n    # is it lethal?\nsys.excepthook = my_except_hook\nsignal.signal(signal.SIGINT,sigint_handler)\n#signal.signal(signal.SIGKILL,sigint_handler)\n#virtualbox.library_ext.machine.IMachine\n#print(dir(machine),type(machine))\n# you can close this window anyway, or minimize it using another thread?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vsess.py:1-37"
+    },
+    "703": {
+        "file_id": 135,
+        "content": "This code initializes a VirtualBox session and finds a machine named \"TinyPlus\". It sets up signal handlers to handle interrupts and exceptions, ensuring the session is properly closed upon interruption. The code also handles potential exceptions and ensures the session is powered down when needed.",
+        "type": "comment"
+    },
+    "704": {
+        "file_id": 135,
+        "content": "progress=machine.launch_vm_process(session,\"gui\",\"\")\nprogress.wait_for_completion()\n# how to pass it around?\n# must be keys. but what is keys?\ntime.sleep(5)\n# not receiving shit.\n# connect to existing session if possible? or close that thing.\ndef init():\n    time.sleep(0.2)\n    subprocess.run([\"./init.sh\"])\ndef shot(sess):\n    t0=time.time()\n#    png = virtualbox.library.BitmapFormat(541544016) \n    res = sess.console.display.get_screen_resolution(0)\n    arr = sess.console.display.take_screen_shot_to_array(0,res[0],res[1],virtualbox.library.BitmapFormat.png)\n    arr = np.fromstring(arr,dtype='uint8')\n    arr = cv2.imdecode(arr,flags=1)\n#    cv2.imshow(\"sample\",img)\n#    cv2.waitKey(0)\n    print(\"shot_shape: \", arr.shape,type(arr))\n    grill(arr,t0)\n# check this?\n    # taking pictures?\n\"\"\"def shot(sess):\n    s=sess.console.display\"\"\"\ndef shotsess(sess):\n    while True:\n        shot(sess)\n        time.sleep(1)\nt = threading.Thread(target=shotsess,args=(session,))\nt.setDaemon(True)\nt.start()\nwhile True:\n    print('main thread sleeping.')",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vsess.py:38-76"
+    },
+    "705": {
+        "file_id": 135,
+        "content": "The code initializes a virtual machine process, waits for its completion, then takes screenshots of the VM and saves them to a file. A separate thread is created to continuously take shots with 1 second intervals. The code also includes functions to initialize and display the captured images using OpenCV library. The session is passed as an argument to different functions for various operations.",
+        "type": "comment"
+    },
+    "706": {
+        "file_id": 135,
+        "content": "    time.sleep(2)\n# session.console.display\n# make init user and then prepare for login.\n# get_screen_resolution\n# take_screen_shot_to_array\n# take_screen_shot_to_array(self, screen_id, width, height, bitmap_format)\n# \"PNG\"\n# virtualbox.library.BitmapFormat\n# BitmapFormat(541544016) -> PNG\n\"\"\"\n>>> res = session.console.display.get_screen_resolution(0)\n>>> res\n(720, 400, 0, 0, 0, GuestMonitorStatus(1))\n>>> arr = session.console.display.take_screen_shot_to_array(0,res[0],res[1],\"PNG\")\n\"\"\"\n#guest_session = session.console.guest.create_session(\"tc\",\"root\")\n#session.console.keyboard.put_keys(\"Hello, world!\")\n# maybe a dedicated image for dos and more.\n# first we have to check how to read chars from the canvas or something.\n# remember that is way too slow to parse info from console. i mean THAT.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vsess.py:77-96"
+    },
+    "707": {
+        "file_id": 135,
+        "content": "This code snippet is related to virtual machine (VM) management. It sets up the display and takes a screenshot of the VM's desktop, creates a guest session, and sends keyboard input. It uses the PNG image format for screenshots. The code mentions potential improvements like dedicated images for DOS and checking how to read characters from the canvas. Due to console parsing limitations, this task is considered too slow.",
+        "type": "comment"
+    },
+    "708": {
+        "file_id": 136,
+        "content": "/generic/vb_charec_bootstrap/vtsess.py",
+        "type": "filepath"
+    },
+    "709": {
+        "file_id": 136,
+        "content": "This code initializes a VirtualBox session, handles interrupt signals, uses threading, and reads commands from a file for potential keyboard inputs. It aims to avoid parsing info from the console due to its slowness.",
+        "type": "summary"
+    },
+    "710": {
+        "file_id": 136,
+        "content": "import virtualbox\nimport time\nimport signal, sys\n#from gevent import monkey\n#monkey.patch_all()\n# consider taking that too.\n# the pipe must be initialized. use another thread to initialize the pipe.\nimport threading\nimport subprocess\n# or you can be careless anyway.\nvbox = virtualbox.VirtualBox()\nsession = virtualbox.Session()\nmachine=vbox.find_machine(\"TinyPlus\")\ndef sigint_handler(signal,frame):\n    print(\"interrupted!\")\n    session.console.power_down()\n    time.sleep(0.1)\n    sys.exit(0)\nsignal.signal(signal.SIGINT,sigint_handler)\n#virtualbox.library_ext.machine.IMachine\n#print(dir(machine),type(machine))\n# you can close this window anyway, or minimize it using another thread?\nprogress=machine.launch_vm_process(session,\"gui\",\"\")\nprogress.wait_for_completion()\n# how to pass it around?\n# must be keys. but what is keys?\ntime.sleep(5)\n# not receiving shit.\n# connect to existing session if possible? or close that thing.\n# the virtualbox can get separate input while dosbox cannot. if want to must use a separate screen. xdotool.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vtsess.py:1-30"
+    },
+    "711": {
+        "file_id": 136,
+        "content": "The code is initializing a VirtualBox session, finding a machine named \"TinyPlus\", and launching its process. It also handles interrupt signals to properly power down the machine, uses threading for pipe initialization, and waits for completion before potentially sleeping or dealing with a progress bar.",
+        "type": "comment"
+    },
+    "712": {
+        "file_id": 136,
+        "content": "def init():\n    time.sleep(0.2)\n    subprocess.run([\"./init.sh\"])\n\"\"\"def shot(sess):\n    s=sess.console.display\"\"\"\ndef typekey(key):\n    session.console.keyboard.put_keys(key)\nt=threading.Thread(target=init)\nt.setDaemon(True)\nt.start()\nbuff=[\"passwd\",\"root\",\"root\",\"su - tc\",\"passwd\",\"tinypluscore\",\"tinypluscore\",\"exit\",\"clear\",\"stty size\"]\n#buff=[\"passwd\",\"root\",\"root\",\"su - tc\",\"passwd\",\"tinypluscore\",\"tinypluscore\",\"exit\",\"clear\",\"bash\",\"echo $LINES\",\"echo $COLUMNS\"]\nfor x in buff:\n    time.sleep(0.2)\n    typekey(x+\"\\n\")\n# guest_session = session.console.guest.create_session(\"root\",\"root\")\n# the shit just will not start.\n# it's nothing. fuck this shit. cannot login.\n\"\"\"\nwith open(\"lazero\",\"r\") as f:\n    while True:\n        r=f.readline()\n        # be properly decoded.\n        # return included.\n        if len(r)==0:\n            pass\n        else:\n            cmd=r.split()\n            print(\"command:\",cmd)\n            proc,stdout,stderr = guest_session.execute(\"/bin/bash\",cmd)\n            print(\"proc:\",proc)\n            print(\"stdout:\",stdout)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vtsess.py:31-65"
+    },
+    "713": {
+        "file_id": 136,
+        "content": "This code sets up a session and executes commands in a virtual terminal. It initializes by sleeping for 0.2 seconds, running an init script, and populating a list of commands. Then, it executes each command with a small delay between them using a separate thread. Finally, it reads commands from a file line-by-line and executes them in the virtual terminal, printing relevant information.",
+        "type": "comment"
+    },
+    "714": {
+        "file_id": 136,
+        "content": "            print(\"stderr:\",stderr)\n        time.sleep(0.1)\n\"\"\"\n#        print(\">>> visible delay?\",time.time())\n#session.console.keyboard.put_keys(\"Hello, world!\")\n# maybe a dedicated image for dos and more.\n# first we have to check how to read chars from the canvas or something.\n# remember that is way too slow to parse info from console. i mean THAT.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vtsess.py:66-73"
+    },
+    "715": {
+        "file_id": 136,
+        "content": "The code is attempting to log any stderr errors, and then delay for 0.1 seconds before potentially interacting with the console using keyboard inputs like \"Hello, world!\". It mentions exploring the possibility of a dedicated image, but first needs to figure out how to read characters from the canvas or similar sources. The author notes that parsing info from the console is too slow and should be avoided.",
+        "type": "comment"
+    },
+    "716": {
+        "file_id": 137,
+        "content": "/generic/vb_charec_bootstrap/walker.sh",
+        "type": "filepath"
+    },
+    "717": {
+        "file_id": 137,
+        "content": "This script creates a FIFO (named pipe) for both stdout and stderr, then runs the sdiff.sh script, redirecting its output to the respective FIFOs.",
+        "type": "summary"
+    },
+    "718": {
+        "file_id": 137,
+        "content": "#!/bin/bash\nmkfifo {stdout,stderr}\n./sdiff.sh 1> stdout 2> stderr",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/walker.sh:1-3"
+    },
+    "719": {
+        "file_id": 137,
+        "content": "This script creates a FIFO (named pipe) for both stdout and stderr, then runs the sdiff.sh script, redirecting its output to the respective FIFOs.",
+        "type": "comment"
+    },
+    "720": {
+        "file_id": 138,
+        "content": "/generic/vb_charec_bootstrap/word.sh",
+        "type": "filepath"
+    },
+    "721": {
+        "file_id": 138,
+        "content": "The script takes a file from the given path, passes it through two separate Python scripts, first processing it with 'word_processor.py' and then with 'byte_processor.py', likely for text manipulation or transformation tasks.",
+        "type": "summary"
+    },
+    "722": {
+        "file_id": 138,
+        "content": "#!/bin/bash\ncat /data/data/com.termux/files/home/lazero/bootstrap/legacy/concentration/brainfuck/theMonkey/blower.py | python3 word_processor.py | python3 byte_processor.py",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/word.sh:1-2"
+    },
+    "723": {
+        "file_id": 138,
+        "content": "The script takes a file from the given path, passes it through two separate Python scripts, first processing it with 'word_processor.py' and then with 'byte_processor.py', likely for text manipulation or transformation tasks.",
+        "type": "comment"
+    },
+    "724": {
+        "file_id": 139,
+        "content": "/generic/vb_charec_bootstrap/word_processor.py",
+        "type": "filepath"
+    },
+    "725": {
+        "file_id": 139,
+        "content": "This code reads input from stdin, tokenizes it into chunks of maximum length 5, and outputs the tokens one by one. It uses a SystemRandom instance to ensure better randomness.",
+        "type": "summary"
+    },
+    "726": {
+        "file_id": 139,
+        "content": "import sys\nimport random\nrng = random.SystemRandom()\nmaxToken=5\nfor x in sys.stdin:\n    z=len(x) # remaining.\n    f=z\n    print(\"input: \",x)\n    while (z>0):\n        k=f-z\n        s=range(1,min(maxToken,1+z))\n        s=rng.choice(s)\n        y=x[k:k+s]\n        z-=s\n        print(\"output:\",y)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/word_processor.py:1-17"
+    },
+    "727": {
+        "file_id": 139,
+        "content": "This code reads input from stdin, tokenizes it into chunks of maximum length 5, and outputs the tokens one by one. It uses a SystemRandom instance to ensure better randomness.",
+        "type": "comment"
+    },
+    "728": {
+        "file_id": 140,
+        "content": "/generic/vb_charec_bootstrap/word_store.py",
+        "type": "filepath"
+    },
+    "729": {
+        "file_id": 140,
+        "content": "This code imports the redis library and connects to a local Redis server. It sets a value of 2077 for key 2020, pushes integers 2 and 3 into list 2033, retrieves and prints the value of key 2020 and list 2033, and then iterates over all keys in Redis and prints them.",
+        "type": "summary"
+    },
+    "730": {
+        "file_id": 140,
+        "content": "import redis\nr=redis.Redis(host='localhost', port=6379, decode_responses=True)\nr.set(2020,2077)\nf=r.get(2020)\nr.lpush(2033,2)\nr.lpush(2033,3)\nh=r.lrange(2033,0,-1)\nprint(f,h)\nfor x in r.keys():\n    print(\"key: \",x)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/word_store.py:1-11"
+    },
+    "731": {
+        "file_id": 140,
+        "content": "This code imports the redis library and connects to a local Redis server. It sets a value of 2077 for key 2020, pushes integers 2 and 3 into list 2033, retrieves and prints the value of key 2020 and list 2033, and then iterates over all keys in Redis and prints them.",
+        "type": "comment"
+    },
+    "732": {
+        "file_id": 141,
+        "content": "/generic/vb_charec_bootstrap/xwd.py",
+        "type": "filepath"
+    },
+    "733": {
+        "file_id": 141,
+        "content": "The script reads XWD image files, checks for TrueColor visual class, creates RGB masks and reads pixel data. It also includes helper functions to process XWD file information and convert it to PNG format with 8-bit RGB.",
+        "type": "summary"
+    },
+    "734": {
+        "file_id": 141,
+        "content": "#!/usr/bin/env python3\nfrom __future__ import division, print_function, unicode_literals\nimport getopt\nimport itertools\nimport json\nimport re\nimport struct\nimport sys\n# :python3:buffer: we need to get a binary stream in both\n# Python 2 and Python 3.\ndef binary(stream):\n    if hasattr(stream, \"buffer\"):\n        return stream.buffer\n    else:\n        return stream\nclass FormatError(Exception):\n    pass\nclass NotImplemented(Exception):\n    pass\nclass Channel:\n    def __init__(self, **k):\n        self.__dict__.update(k)\nclass XWD:\n    def __init__(self, input, xwd_header=None):\n        if xwd_header:\n            self.__dict__.update(xwd_header)\n        self.xwd_header = xwd_header\n        self.info_dict = dict(\n            h=self.pixmap_height, w=self.pixmap_width, xwd_header=xwd_header\n        )\n        self.input = input\n    def info(self):\n        return dict(self.info_dict)\n    def uni_format(self):\n        \"\"\"\n        Return the \"universal format\" for the XWD file.\n        As a side effect, compute and cache various\n        intermediate values (such as shifts and depths).",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd.py:1-51"
+    },
+    "735": {
+        "file_id": 141,
+        "content": "This Python script defines a class `XWD` for processing XWD image files. It takes an input file and optionally an XWD header, and provides methods to extract information about the image's dimensions and format. The class also computes and caches intermediate values needed for further processing.",
+        "type": "comment"
+    },
+    "736": {
+        "file_id": 141,
+        "content": "        \"\"\"\n        if \"_uni_format\" in self.__dict__:\n            return self._uni_format\n        # Check visual_class.\n        # The following table from http://www.opensource.apple.com/source/tcl/tcl-87/tk/tk/xlib/X11/X.h is assumed:\n        # StaticGray    0\n        # GrayScale     1\n        # StaticColor   2\n        # PseudoColor   3\n        # TrueColor     4\n        # DirectColor   5\n        if self.visual_class != 4:\n            # TrueColor\n            raise NotImplemented(\n                \"Cannot handle visual_class {!r}\".format(self.visual_class)\n            )\n        # Associate each mask with its channel colour.\n        channels = [\n            Channel(name=\"R\", mask=self.red_mask),\n            Channel(name=\"G\", mask=self.green_mask),\n            Channel(name=\"B\", mask=self.blue_mask),\n        ]\n        # If fails: some masks are the same.\n        assert len(set(c.mask for c in channels)) == 3\n        # Sort Most Significant first\n        channels = sorted(channels, key=lambda x: x.mask, reverse=True)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd.py:52-83"
+    },
+    "737": {
+        "file_id": 141,
+        "content": "This code checks the visual_class and ensures it is TrueColor. It then creates channels for RGB masks, asserting that all masks are unique, sorts them by Most Significant first.",
+        "type": "comment"
+    },
+    "738": {
+        "file_id": 141,
+        "content": "        # Check that each mask is contiguous.\n        for channel in channels:\n            assert is_contiguous(channel.mask)\n        # Check that each mask abuts the next...\n        for channel, successor in zip(channels, channels[1:]):\n            assert is_contiguous(channel.mask + successor.mask)\n        # ... check that the last mask is on the right.\n        # If fails: least significant bit is unused.\n        # :todo: if it ever occurs in wild, implement a padding\n        # channel, eg: RGB5X1.\n        assert channels[-1].mask & 1\n        # Annotate each channel with its shift and bitdepth.\n        for c in channels:\n            c.shift = ffs(c.mask)\n            c.bits = (c.mask >> c.shift).bit_length()\n        self.channels = channels\n        v = \"\"\n        for (bits, chans) in itertools.groupby(channels, lambda c: c.bits):\n            v += \"\".join(c.name for c in chans)\n            v += str(bits)\n        self._uni_format = v\n        return self.uni_format()\n    def __iter__(self):\n        while True:\n            bs = self.input.read(self.bytes_per_line)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd.py:85-115"
+    },
+    "739": {
+        "file_id": 141,
+        "content": "Code iterates over channels, checks contiguity of masks, ensures masks abut next, verifies the last mask is on the right, calculates shift and bit depth for each channel, groups channels by bits, stores the grouped format, and returns a function for retrieving the formatted string. It also implements an iterator method.",
+        "type": "comment"
+    },
+    "740": {
+        "file_id": 141,
+        "content": "            if len(bs) == 0:\n                break\n            yield list(itertools.chain(*self.pixels(bs)))\n    def __len__(self):\n        return self.pixmap_height\n    def pixels(self, row):\n        self.uni_format()\n        # bytes per pixel\n        bpp = self.bits_per_pixel // 8\n        if bpp * 8 != self.bits_per_pixel or bpp > 4:\n            raise NotImplemented(\n                \"Cannot handle bits_per_pixel of {!r}\".format(self.bits_per_pixel)\n            )\n        for s in range(0, len(row), bpp):\n            pix = row[s : s + bpp]\n            # pad to 4 bytes\n            pad = b\"\\x00\" * (4 - len(pix))\n            if self.byte_order == 1:\n                fmt = \">L\"\n                pix = pad + pix\n            else:\n                fmt = \"<L\"\n                pix = pix + pad\n            v, = struct.unpack(fmt, pix)\n            cs = self.channels\n            # Note: Could permute channels here\n            # by permuting the `cs` list;\n            # for example to convert BGR to RGB.\n            pixel = tuple((v & c.mask) >> c.shift for c in cs)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd.py:116-149"
+    },
+    "741": {
+        "file_id": 141,
+        "content": "This code is part of a class that reads pixel data from a binary file and converts it into usable pixel values. It checks the bits_per_pixel value to ensure compatibility, iterates through rows in chunks, unpacks pixel data using struct module, and handles channel permutation if needed. The length of the object is based on pixmap_height attribute. If there are no more bytes in the binary file, it breaks the loop. The code also raises a NotImplemented exception if bits_per_pixel is not divisible by 8 or greater than 4.",
+        "type": "comment"
+    },
+    "742": {
+        "file_id": 141,
+        "content": "            yield pixel\ndef xwd_open(f):\n    # From XWDFile.h:\n    # \"Values in the file are most significant byte first.\"\n    fmt = \">L\"\n    header = f.read(8)\n    header_size, = struct.unpack(fmt, header[:4])\n    # There are no magic numbers, so as a sanity check,\n    # we check that the size is \"reasonable\" (< 65536)\n    if header_size >= 65536:\n        raise FormatError(\"header_size too big: {!r}\".format(header[:4]))\n    version, = struct.unpack(fmt, header[4:8])\n    if version != 7:\n        raise FormatError(\n            \"Sorry only version 7 supported, not version {!r}\".format(version)\n        )\n    fields = [\n        \"pixmap_format\",\n        \"pixmap_depth\",\n        \"pixmap_width\",\n        \"pixmap_height\",\n        \"xoffset\",\n        \"byte_order\",\n        \"bitmap_unit\",\n        \"bitmap_bit_order\",\n        \"bitmap_pad\",\n        \"bits_per_pixel\",\n        \"bytes_per_line\",\n        \"visual_class\",\n        \"red_mask\",\n        \"green_mask\",\n        \"blue_mask\",\n        \"bits_per_rgb\",\n        \"colormap_entries\",\n        \"ncolors\",",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd.py:151-192"
+    },
+    "743": {
+        "file_id": 141,
+        "content": "This function xwd_open reads an XWD file header, checks for a reasonable size (<65536), and ensures the version is 7. It then defines fields for further processing of the image data in the XWD file.",
+        "type": "comment"
+    },
+    "744": {
+        "file_id": 141,
+        "content": "        \"window_width\",\n        \"window_height\",\n        \"window_x\",\n        \"window_y\",\n        \"window_bdrwidth\",\n    ]\n    res = dict(header_size=header_size, version=version)\n    for field in fields:\n        v, = struct.unpack(fmt, f.read(4))\n        res[field] = v\n    xwd_header_size = 8 + 4 * len(fields)\n    window_name_len = header_size - xwd_header_size\n    if window_name_len <= 0:\n        raise FormatError(\"Size in header, {!r}, is too small\".format(size))\n    window_name = f.read(window_name_len)[:-1]\n    res[\"window_name\"] = window_name\n    # read, but ignore, the colours\n    color_fmt = fmt + \">H\" * 3 + \"B\" + \"B\"\n    for i in range(res[\"ncolors\"]):\n        f.read(12)\n    xwd = XWD(input=f, xwd_header=res)\n    return xwd\ndef ffs(x):\n    \"\"\"\n    Returns the index, counting from 0, of the\n    least significant set bit in `x`.\n    \"\"\"\n    return (x & -x).bit_length() - 1\ndef is_contiguous(x):\n    \"\"\"\n    Check that x is a contiguous series of binary bits.\n    \"\"\"\n    return is_power_of_2((x >> ffs(x)) + 1)\ndef is_power_of_2(x):",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd.py:193-238"
+    },
+    "745": {
+        "file_id": 141,
+        "content": "This code reads an X Window Dump (XWD) file and parses its header to create an XWD object. It extracts fields such as window dimensions, position, border width, version, and the window name from the file. The code also includes helper functions like ffs(), is_contiguous(), and is_power_of_2() for bit manipulation and checking if a number is a power of 2 or a contiguous series of binary bits.",
+        "type": "comment"
+    },
+    "746": {
+        "file_id": 141,
+        "content": "    assert x > 0\n    return not (x & (x - 1))\ndef main(argv=None):\n    if argv is None:\n        argv = sys.argv\n    opts, args = getopt.getopt(argv[1:], \"i\", [\"info\", \"raw\"])\n    options = [o for o, v in opts]\n    if len(args) == 0:\n        inp = binary(sys.stdin)\n        out = binary(sys.stdout)\n    else:\n        inp = open(args[0], \"rb\")\n        out = None\n    xwd = xwd_open(inp)\n    if \"-i\" in options or \"--info\" in options:\n        info = xwd.info()\n        dprint(info)\n        return 0\n    if \"--raw\" in options:\n        for row in xwd:\n            print(*row)\n        return 0\n    if out is None:\n        try:\n            inp.name\n        except AttributeError:\n            out = \"xwd2png_out.png\"\n        else:\n            out = re.sub(r\"(\\..*|)$\", \".png\", inp.name)\n            if out == inp.name:\n                # avoid overwriting input,\n                # if, for some reason,\n                # input is mysteriously named: input.png\n                output_name += \".png\"\n    format = xwd.uni_format()\n    assert format == \"RGB8\"",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd.py:239-285"
+    },
+    "747": {
+        "file_id": 141,
+        "content": "This code appears to be a function that reads an XWD file and can output information about it or convert it to PNG format. It takes command-line options for \"--info\" or \"--raw\", and if no input filename is provided, it defaults to outputting a file named \"xwd2png_out.png\". The function also ensures that the XWD file's format is set to \"RGB8\".",
+        "type": "comment"
+    },
+    "748": {
+        "file_id": 141,
+        "content": "    import png\n    apng = png.from_array(xwd, \"RGB;8\")\n    apng.save(out)\ndef dprint(o, indent=0):\n    for k, v in sorted(o.items()):\n        print(\" \" * indent, end=\"\")\n        if isinstance(v, dict):\n            print(k + \":\")\n            dprint(v, indent=indent + 2)\n            continue\n        if \"mask\" in k:\n            v = \"{:#x}\".format(v)\n        print(k, v)\nif __name__ == \"__main__\":\n    main()",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd.py:287-306"
+    },
+    "749": {
+        "file_id": 141,
+        "content": "Imports png module, converts xwd to APNG using 8-bit RGB format, saves APNG file with given name. Includes a function dprint() that recursively prints dictionary contents with optional indentation, handles hex values in \"mask\" keys. Main function is executed if script is run directly.",
+        "type": "comment"
+    },
+    "750": {
+        "file_id": 142,
+        "content": "/generic/vb_charec_bootstrap/xwd_fixed.py",
+        "type": "filepath"
+    },
+    "751": {
+        "file_id": 142,
+        "content": "The code introduces a class `XWD` to handle X Window Dump file format, supports image processing, and enables iteration and visualization with OpenCV.",
+        "type": "summary"
+    },
+    "752": {
+        "file_id": 142,
+        "content": "#!/usr/bin/env python3\nfrom __future__ import division, print_function, unicode_literals\nimport getopt\nimport itertools\nimport json\nimport re\nimport struct\nimport sys\n# :python3:buffer: we need to get a binary stream in both\n# Python 2 and Python 3.\ndef binary(stream):\n    if hasattr(stream, \"buffer\"):\n        return stream.buffer\n    else:\n        return stream\nclass FormatError(Exception):\n    pass\nclass NotImplemented(Exception):\n    pass\nclass Channel:\n    def __init__(self, **k):\n        self.__dict__.update(k)\nclass XWD:\n    def __init__(self, input, xwd_header=None):\n        if xwd_header:\n            self.__dict__.update(xwd_header)\n        self.xwd_header = xwd_header\n        self.info_dict = dict(\n            h=self.pixmap_height, w=self.pixmap_width, xwd_header=xwd_header\n        )\n        self.input = input\n    def info(self):\n        return dict(self.info_dict)\n    def uni_format(self):\n        \"\"\"\n        Return the \"universal format\" for the XWD file.\n        As a side effect, compute and cache various\n        intermediate values (such as shifts and depths).",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_fixed.py:1-51"
+    },
+    "753": {
+        "file_id": 142,
+        "content": "This code defines a class `XWD` for handling X Window Dump (XWD) file format. It takes an input stream and optional header to create an instance of the class, which can provide information about the image in universal format by computing intermediate values needed for processing. The class also handles exceptions like `FormatError` and `NotImplemented`.",
+        "type": "comment"
+    },
+    "754": {
+        "file_id": 142,
+        "content": "        \"\"\"\n        if \"_uni_format\" in self.__dict__:\n            return self._uni_format\n        # Check visual_class.\n        # The following table from http://www.opensource.apple.com/source/tcl/tcl-87/tk/tk/xlib/X11/X.h is assumed:\n        # StaticGray    0\n        # GrayScale     1\n        # StaticColor   2\n        # PseudoColor   3\n        # TrueColor     4\n        # DirectColor   5\n        if self.visual_class != 4:\n            # TrueColor\n            raise NotImplemented(\n                \"Cannot handle visual_class {!r}\".format(self.visual_class)\n            )\n        # Associate each mask with its channel colour.\n        channels = [\n            Channel(name=\"R\", mask=self.red_mask),\n            Channel(name=\"G\", mask=self.green_mask),\n            Channel(name=\"B\", mask=self.blue_mask),\n        ]\n        # If fails: some masks are the same.\n        assert len(set(c.mask for c in channels)) == 3\n        # Sort Most Significant first\n        channels = sorted(channels, key=lambda x: x.mask, reverse=True)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_fixed.py:52-83"
+    },
+    "755": {
+        "file_id": 142,
+        "content": "The code checks the visual_class and if it's not TrueColor, raises a NotImplemented error. It then initializes channels for R, G, B masks. The code asserts that all masks are different and sorts them by Most Significant first.",
+        "type": "comment"
+    },
+    "756": {
+        "file_id": 142,
+        "content": "        # Check that each mask is contiguous.\n        for channel in channels:\n            assert is_contiguous(channel.mask)\n        # Check that each mask abuts the next...\n        for channel, successor in zip(channels, channels[1:]):\n            assert is_contiguous(channel.mask + successor.mask)\n        # ... check that the last mask is on the right.\n        # If fails: least significant bit is unused.\n        # :todo: if it ever occurs in wild, implement a padding\n        # channel, eg: RGB5X1.\n        assert channels[-1].mask & 1\n        # Annotate each channel with its shift and bitdepth.\n        for c in channels:\n            c.shift = ffs(c.mask)\n            c.bits = (c.mask >> c.shift).bit_length()\n        self.channels = channels\n        v = \"\"\n        for (bits, chans) in itertools.groupby(channels, lambda c: c.bits):\n            v += \"\".join(c.name for c in chans)\n            v += str(bits)\n        self._uni_format = v\n        return self.uni_format()\n    def __iter__(self):\n        while True:\n            bs = self.input.read(self.bytes_per_line)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_fixed.py:85-115"
+    },
+    "757": {
+        "file_id": 142,
+        "content": "This code initializes a class object by validating channel masks for contiguity and abutment, determining the shift and bit depth of each channel, and organizing them into a formatted string. The `__iter__` method allows the object to be iterated over.",
+        "type": "comment"
+    },
+    "758": {
+        "file_id": 142,
+        "content": "            if len(bs) == 0:\n                break\n            yield list(itertools.chain(*self.pixels(bs)))\n    def __len__(self):\n        return self.pixmap_height\n    def pixels(self, row):\n        self.uni_format()\n        # bytes per pixel\n        bpp = self.bits_per_pixel // 8\n        if bpp * 8 != self.bits_per_pixel or bpp > 4:\n            raise NotImplemented(\n                \"Cannot handle bits_per_pixel of {!r}\".format(self.bits_per_pixel)\n            )\n        for s in range(0, len(row), bpp):\n            pix = row[s : s + bpp]\n            # pad to 4 bytes\n            pad = b\"\\x00\" * (4 - len(pix))\n            if self.byte_order == 1:\n                fmt = \">L\"\n                pix = pad + pix\n            else:\n                fmt = \"<L\"\n                pix = pix + pad\n            v, = struct.unpack(fmt, pix)\n            cs = self.channels\n            # Note: Could permute channels here\n            # by permuting the `cs` list;\n            # for example to convert BGR to RGB.\n            pixel = tuple((v & c.mask) >> c.shift for c in cs)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_fixed.py:116-149"
+    },
+    "759": {
+        "file_id": 142,
+        "content": "This code handles image processing for a specific image format. It first checks if the buffer is empty, then yields the list of pixel values from the image rows using itertools.chain(). The len() method returns the pixmap_height, and the pixels() function processes each row of the image based on its bits per pixel value. If the bits_per_pixel is not supported, it raises a NotImplemented error. It then unpacks the pixel values into an integer using struct.unpack(), and converts the RGB channels accordingly before returning them as a tuple.",
+        "type": "comment"
+    },
+    "760": {
+        "file_id": 142,
+        "content": "            yield pixel\ndef xwd_open(f):\n    # From XWDFile.h:\n    # \"Values in the file are most significant byte first.\"\n    fmt = \">L\"\n    header = f.read(8)\n    header_size, = struct.unpack(fmt, header[:4])\n    # There are no magic numbers, so as a sanity check,\n    # we check that the size is \"reasonable\" (< 65536)\n    if header_size >= 65536:\n        raise FormatError(\"header_size too big: {!r}\".format(header[:4]))\n    version, = struct.unpack(fmt, header[4:8])\n    if version != 7:\n        raise FormatError(\n            \"Sorry only version 7 supported, not version {!r}\".format(version)\n        )\n    fields = [\n        \"pixmap_format\",\n        \"pixmap_depth\",\n        \"pixmap_width\",\n        \"pixmap_height\",\n        \"xoffset\",\n        \"byte_order\",\n        \"bitmap_unit\",\n        \"bitmap_bit_order\",\n        \"bitmap_pad\",\n        \"bits_per_pixel\",\n        \"bytes_per_line\",\n        \"visual_class\",\n        \"red_mask\",\n        \"green_mask\",\n        \"blue_mask\",\n        \"bits_per_rgb\",\n        \"colormap_entries\",\n        \"ncolors\",",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_fixed.py:151-192"
+    },
+    "761": {
+        "file_id": 142,
+        "content": "This code reads the header of an XWD file, checks for reasonable size and version compatibility, and then proceeds to parse other relevant fields in the file.",
+        "type": "comment"
+    },
+    "762": {
+        "file_id": 142,
+        "content": "        \"window_width\",\n        \"window_height\",\n        \"window_x\",\n        \"window_y\",\n        \"window_bdrwidth\",\n    ]\n    res = dict(header_size=header_size, version=version)\n    for field in fields:\n        v, = struct.unpack(fmt, f.read(4))\n        res[field] = v\n    xwd_header_size = 8 + 4 * len(fields)\n    window_name_len = header_size - xwd_header_size\n    if window_name_len <= 0:\n        raise FormatError(\"Size in header, {!r}, is too small\".format(size))\n    window_name = f.read(window_name_len)[:-1]\n    res[\"window_name\"] = window_name\n    # read, but ignore, the colours\n    color_fmt = fmt + \">H\" * 3 + \"B\" + \"B\"\n    for i in range(res[\"ncolors\"]):\n        f.read(12)\n    xwd = XWD(input=f, xwd_header=res)\n    return xwd\ndef ffs(x):\n    \"\"\"\n    Returns the index, counting from 0, of the\n    least significant set bit in `x`.\n    \"\"\"\n    return (x & -x).bit_length() - 1\ndef is_contiguous(x):\n    \"\"\"\n    Check that x is a contiguous series of binary bits.\n    \"\"\"\n    return is_power_of_2((x >> ffs(x)) + 1)\ndef is_power_of_2(x):",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_fixed.py:193-238"
+    },
+    "763": {
+        "file_id": 142,
+        "content": "This code reads an XWD file header and its associated fields to create an XWD object. It checks if the data is in a contiguous binary format, calculates the window name length, reads the window name, and ignores the color data before returning the XWD object.",
+        "type": "comment"
+    },
+    "764": {
+        "file_id": 142,
+        "content": "    assert x > 0\n    return not (x & (x - 1))\ndef main(argv=None):\n    if argv is None:\n        argv = sys.argv\n    opts, args = getopt.getopt(argv[1:], \"i\", [\"info\", \"raw\"])\n    options = [o for o, v in opts]\n    if len(args) == 0:\n        inp = binary(sys.stdin)\n        out = binary(sys.stdout)\n    else:\n        inp = open(args[0], \"rb\")\n        out = None\n    print(\"input class:\",type(inp))\n    xwd = xwd_open(inp)\n#    if \"--raw\" in options:\n        # get the array back.\n    import numpy as np\n    def grouper(row):\n        r0=np.array(row)\n        r0=r0.reshape(-1,3)\n#        r0=np.transpose(r0)\n# nearly right?\n        return r0\n    arr = np.array([grouper(row) for row in xwd])/255.0\n#    np.max(arr)\n# the color is not pure white.\n#    print(\"max\",np.max(arr),\"min\",np.min(arr))\n#    print(arr[0:10,0:10,:])\n#    from scipy.misc import toimage\n#    img = toimage(arr)\n    import cv2\n#    img = cv2.imread(arr)\n    cv2.imshow(\"sample\",arr)\n    cv2.waitKey(0)\n# in the third thing.\n    print(arr.shape)\n    # what the fuck?\n#    print(type(xwd))",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_fixed.py:239-282"
+    },
+    "765": {
+        "file_id": 142,
+        "content": "The code reads an input file and displays its contents as an image using OpenCV. It first checks the command line arguments, then processes the input data into a numpy array representing the RGB values of each pixel, and finally visualizes it with cv2.imshow() function.",
+        "type": "comment"
+    },
+    "766": {
+        "file_id": 142,
+        "content": "#        for row in xwd:\n#            print(*row)\n    return 0\ndef dprint(o, indent=0):\n    for k, v in sorted(o.items()):\n        print(\" \" * indent, end=\"\")\n        if isinstance(v, dict):\n            print(k + \":\")\n            dprint(v, indent=indent + 2)\n            continue\n        if \"mask\" in k:\n            v = \"{:#x}\".format(v)\n        print(k, v)\nif __name__ == \"__main__\":\n    main()",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_fixed.py:283-300"
+    },
+    "767": {
+        "file_id": 142,
+        "content": "The code defines a function dprint() that recursively prints the contents of a dictionary or nested dictionaries, and applies formatting to certain keys. The main function calls dprint() and serves as an entry point for executing the script when the module is run directly.",
+        "type": "comment"
+    },
+    "768": {
+        "file_id": 143,
+        "content": "/generic/vb_charec_bootstrap/xwd_func.py",
+        "type": "filepath"
+    },
+    "769": {
+        "file_id": 143,
+        "content": "The code defines a class for X Window Dump format, reads file header and dimensions, converts image to NumPy array, checks contiguity, and handles exceptions.",
+        "type": "summary"
+    },
+    "770": {
+        "file_id": 143,
+        "content": "#!/usr/bin/env python3\nfrom __future__ import division, print_function, unicode_literals\nimport itertools\nimport json\nimport re\nimport struct\nimport numpy as np\n# :python3:buffer: we need to get a binary stream in both\n# Python 2 and Python 3.\ndef binary(stream):\n    if hasattr(stream, \"buffer\"):\n        return stream.buffer\n    else:\n        return stream\nclass FormatError(Exception):\n    pass\nclass NotImplemented(Exception):\n    pass\nclass Channel:\n    def __init__(self, **k):\n        self.__dict__.update(k)\nclass XWD:\n    def __init__(self, input, xwd_header=None):\n        if xwd_header:\n            self.__dict__.update(xwd_header)\n        self.xwd_header = xwd_header\n        self.info_dict = dict(\n            h=self.pixmap_height, w=self.pixmap_width, xwd_header=xwd_header\n        )\n        self.input = input\n    def info(self):\n        return dict(self.info_dict)\n    def uni_format(self):\n        \"\"\"\n        Return the \"universal format\" for the XWD file.\n        As a side effect, compute and cache various\n        intermediate values (such as shifts and depths).",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_func.py:1-49"
+    },
+    "771": {
+        "file_id": 143,
+        "content": "The code defines a class \"XWD\" that represents an X Window Dump file format. It initializes the class with input and optional xwd_header, computes intermediate values for universal format, provides info method to retrieve information about the file, and handles exceptions for unsupported features.",
+        "type": "comment"
+    },
+    "772": {
+        "file_id": 143,
+        "content": "        \"\"\"\n        if \"_uni_format\" in self.__dict__:\n            return self._uni_format\n        # Check visual_class.\n        # The following table from http://www.opensource.apple.com/source/tcl/tcl-87/tk/tk/xlib/X11/X.h is assumed:\n        # StaticGray    0\n        # GrayScale     1\n        # StaticColor   2\n        # PseudoColor   3\n        # TrueColor     4\n        # DirectColor   5\n        if self.visual_class != 4:\n            # TrueColor\n            raise NotImplemented(\n                \"Cannot handle visual_class {!r}\".format(self.visual_class)\n            )\n        # Associate each mask with its channel colour.\n        channels = [\n            Channel(name=\"R\", mask=self.red_mask),\n            Channel(name=\"G\", mask=self.green_mask),\n            Channel(name=\"B\", mask=self.blue_mask),\n        ]\n        # If fails: some masks are the same.\n        assert len(set(c.mask for c in channels)) == 3\n        # Sort Most Significant first\n        channels = sorted(channels, key=lambda x: x.mask, reverse=True)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_func.py:50-81"
+    },
+    "773": {
+        "file_id": 143,
+        "content": "This code checks the visual_class of a visual and if it is not TrueColor, raises a NotImplemented exception. If the visual_class is TrueColor, it creates three Channel objects for Red, Green, and Blue masks and asserts that all masks are different. It then sorts the channels by Most Significant first.",
+        "type": "comment"
+    },
+    "774": {
+        "file_id": 143,
+        "content": "        # Check that each mask is contiguous.\n        for channel in channels:\n            assert is_contiguous(channel.mask)\n        # Check that each mask abuts the next...\n        for channel, successor in zip(channels, channels[1:]):\n            assert is_contiguous(channel.mask + successor.mask)\n        # ... check that the last mask is on the right.\n        # If fails: least significant bit is unused.\n        # :todo: if it ever occurs in wild, implement a padding\n        # channel, eg: RGB5X1.\n        assert channels[-1].mask & 1\n        # Annotate each channel with its shift and bitdepth.\n        for c in channels:\n            c.shift = ffs(c.mask)\n            c.bits = (c.mask >> c.shift).bit_length()\n        self.channels = channels\n        v = \"\"\n        for (bits, chans) in itertools.groupby(channels, lambda c: c.bits):\n            v += \"\".join(c.name for c in chans)\n            v += str(bits)\n        self._uni_format = v\n        return self.uni_format()\n    def __iter__(self):\n        while True:\n            bs = self.input.read(self.bytes_per_line)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_func.py:83-113"
+    },
+    "775": {
+        "file_id": 143,
+        "content": "This code ensures contiguity of masks, checks if the last mask is on the right (avoiding unused bits), determines shift and bitdepth for each channel, groups channels by their bit depth, and creates a string representation for uni_format while iterating through input data.",
+        "type": "comment"
+    },
+    "776": {
+        "file_id": 143,
+        "content": "            if len(bs) == 0:\n                break\n            yield list(itertools.chain(*self.pixels(bs)))\n    def __len__(self):\n        return self.pixmap_height\n    def pixels(self, row):\n        self.uni_format()\n        # bytes per pixel\n        bpp = self.bits_per_pixel // 8\n        if bpp * 8 != self.bits_per_pixel or bpp > 4:\n            raise NotImplemented(\n                \"Cannot handle bits_per_pixel of {!r}\".format(self.bits_per_pixel)\n            )\n        for s in range(0, len(row), bpp):\n            pix = row[s : s + bpp]\n            # pad to 4 bytes\n            pad = b\"\\x00\" * (4 - len(pix))\n            if self.byte_order == 1:\n                fmt = \">L\"\n                pix = pad + pix\n            else:\n                fmt = \"<L\"\n                pix = pix + pad\n            v, = struct.unpack(fmt, pix)\n            cs = self.channels\n            # Note: Could permute channels here\n            # by permuting the `cs` list;\n            # for example to convert BGR to RGB.\n            pixel = tuple((v & c.mask) >> c.shift for c in cs)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_func.py:114-147"
+    },
+    "777": {
+        "file_id": 143,
+        "content": "Function `pixels` takes a row of bytes and converts it into a list of RGB pixels. It first checks if the number of bits per pixel is valid for conversion (must be a multiple of 8 and less than or equal to 4). If not, it raises a NotImplemented error. Then it pads the byte data with zeroes until there are four bytes, and unpacks them using struct.unpack in the appropriate byte order. The result is a list of RGB pixels where each color channel's value is calculated from the pixel byte data according to its mask and shift values.",
+        "type": "comment"
+    },
+    "778": {
+        "file_id": 143,
+        "content": "            yield pixel\ndef xwd_open(f):\n    # From XWDFile.h:\n    # \"Values in the file are most significant byte first.\"\n    fmt = \">L\"\n    header = f.read(8)\n    header_size, = struct.unpack(fmt, header[:4])\n    # There are no magic numbers, so as a sanity check,\n    # we check that the size is \"reasonable\" (< 65536)\n    if header_size >= 65536:\n        raise FormatError(\"header_size too big: {!r}\".format(header[:4]))\n    version, = struct.unpack(fmt, header[4:8])\n    if version != 7:\n        raise FormatError(\n            \"Sorry only version 7 supported, not version {!r}\".format(version)\n        )\n    fields = [\n        \"pixmap_format\",\n        \"pixmap_depth\",\n        \"pixmap_width\",\n        \"pixmap_height\",\n        \"xoffset\",\n        \"byte_order\",\n        \"bitmap_unit\",\n        \"bitmap_bit_order\",\n        \"bitmap_pad\",\n        \"bits_per_pixel\",\n        \"bytes_per_line\",\n        \"visual_class\",\n        \"red_mask\",\n        \"green_mask\",\n        \"blue_mask\",\n        \"bits_per_rgb\",\n        \"colormap_entries\",\n        \"ncolors\",",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_func.py:149-190"
+    },
+    "779": {
+        "file_id": 143,
+        "content": "This function reads the header of an XWD file and checks for its validity, including the size and version. It expects the header to be in most significant byte first format and raises a FormatError if the size exceeds 65536 or the version is not 7. The function then proceeds with parsing the rest of the file based on this header information.",
+        "type": "comment"
+    },
+    "780": {
+        "file_id": 143,
+        "content": "        \"window_width\",\n        \"window_height\",\n        \"window_x\",\n        \"window_y\",\n        \"window_bdrwidth\",\n    ]\n    res = dict(header_size=header_size, version=version)\n    for field in fields:\n        v, = struct.unpack(fmt, f.read(4))\n        res[field] = v\n    xwd_header_size = 8 + 4 * len(fields)\n    window_name_len = header_size - xwd_header_size\n    if window_name_len <= 0:\n        raise FormatError(\"Size in header, {!r}, is too small\".format(size))\n    window_name = f.read(window_name_len)[:-1]\n    res[\"window_name\"] = window_name\n    # read, but ignore, the colours\n    color_fmt = fmt + \">H\" * 3 + \"B\" + \"B\"\n    for i in range(res[\"ncolors\"]):\n        f.read(12)\n    xwd = XWD(input=f, xwd_header=res)\n    return xwd\ndef ffs(x):\n    \"\"\"\n    Returns the index, counting from 0, of the\n    least significant set bit in `x`.\n    \"\"\"\n    return (x & -x).bit_length() - 1\ndef is_contiguous(x):\n    \"\"\"\n    Check that x is a contiguous series of binary bits.\n    \"\"\"\n    return is_power_of_2((x >> ffs(x)) + 1)\ndef is_power_of_2(x):",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_func.py:191-236"
+    },
+    "781": {
+        "file_id": 143,
+        "content": "This code is used for parsing an XWD file format, reading the header information such as window dimensions and version. It then reads the window name and ignores the color section of the file. The function `ffs` calculates the least significant set bit index in a number and `is_contiguous` checks if a number is a power of 2.",
+        "type": "comment"
+    },
+    "782": {
+        "file_id": 143,
+        "content": "    assert x > 0\n    return not (x & (x - 1))\ndef dprint(o, indent=0):\n    for k, v in sorted(o.items()):\n        print(\" \" * indent, end=\"\")\n        if isinstance(v, dict):\n            print(k + \":\")\n            dprint(v, indent=indent + 2)\n            continue\n        if \"mask\" in k:\n            v = \"{:#x}\".format(v)\n        print(k, v)\ndef mainConv(inp):\n    xwd = xwd_open(inp)\n    arr = np.array([row for row in xwd])/255.0\n    x,_ = arr.shape\n    arr = arr.reshape(x,-1,3)\n    return arr\n# what is this thing?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/xwd_func.py:237-258"
+    },
+    "783": {
+        "file_id": 143,
+        "content": "The code defines a function `mainConv` which opens an image file and converts it into a NumPy array, rescaling the values to a range of 0-1. It also defines two helper functions: `xwd_open` to read XWD format image files and `dprint` for printing dictionaries in a formatted way. The code chunk also contains an assertion and a bitwise operation that returns True if the input is a power of 2.",
+        "type": "comment"
+    },
+    "784": {
+        "file_id": 144,
+        "content": "/generic/webfs_system_surf/DECK",
+        "type": "filepath"
+    },
+    "785": {
+        "file_id": 144,
+        "content": "This code specifies the storage location of a system surf deck, which is located at \"cf/generic/webfs_system_surf/DECK\" and its offset is 0-0. The USB STORAGE path is associated with this location for accessing or saving relevant data.",
+        "type": "summary"
+    },
+    "786": {
+        "file_id": 144,
+        "content": "/media/root/USB STORAGE",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/DECK:1-1"
+    },
+    "787": {
+        "file_id": 144,
+        "content": "This code specifies the storage location of a system surf deck, which is located at \"cf/generic/webfs_system_surf/DECK\" and its offset is 0-0. The USB STORAGE path is associated with this location for accessing or saving relevant data.",
+        "type": "comment"
+    },
+    "788": {
+        "file_id": 145,
+        "content": "/generic/webfs_system_surf/DRESSING.md",
+        "type": "filepath"
+    },
+    "789": {
+        "file_id": 145,
+        "content": "The code displays a lazero bot image with instructions for setting up tight rules to prevent exceeding the limit and preventing potential accidents or catastrophic failures.",
+        "type": "summary"
+    },
+    "790": {
+        "file_id": 145,
+        "content": "    __\n   (**)  --[I am the lazero bot!]\n   _||_ \n  /|  |\\\n / |__| \\\n   /  \\\n  /____\\\n   |  |\n       __________________\n  _  _/                  |\n | [] |   I am the       |\n |_[]_| lazero  dongle!  |\n      \\__________________|\nHere's the point. Make sure that thing does not exceed the limit.\nWhat to do when it exceeds the limit? You wanna set up rules here? Cause the only thing I know the best is the rule.\nMust set tight rules here. Otherwise balls will go off and people will die for that. At least as a medical error or catastrophic failure.",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/DRESSING.md:1-20"
+    },
+    "791": {
+        "file_id": 145,
+        "content": "The code displays a lazero bot image with instructions for setting up tight rules to prevent exceeding the limit and preventing potential accidents or catastrophic failures.",
+        "type": "comment"
+    },
+    "792": {
+        "file_id": 146,
+        "content": "/generic/webfs_system_surf/FUCK.md",
+        "type": "filepath"
+    },
+    "793": {
+        "file_id": 146,
+        "content": "Code highlights the importance of local intelligence and distributed storage for data protection, and stresses preventing Lazero's suicide by regularly backing up to a remote storage.",
+        "type": "summary"
+    },
+    "794": {
+        "file_id": 146,
+        "content": "to prevent people from fucking with my calculation, it is needed to distribute the source code, the result, or everything that is accountable for storage to put my data onto, giving extra support.\n[base/local storage] - [intelligence] - [web storage]\ntherefore, in the whole scenario there must exist some intelligence which is dynamically evolving and can replicate itself to wherever it wants to be.\nsuch intelligence must be running locally first, with full guidance and all the guts. if not, it would be a tactical error. Linux is once said to be running all by its own even if there's no support or approval. cloud service shall be considered as external support, and must be considered as auxillary instead of the core.\nto duplicate the core of the codebase, or simply using the internet as a scratchpad, is just fine. submit the content, show its existence, do what the hackers do.\nthe society invades my brain, so i invade the society. who the fuck cares about what the heck the corps think?\nthe se",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/FUCK.md:1-13"
+    },
+    "795": {
+        "file_id": 146,
+        "content": "Code discusses the importance of distributing source code and data across various storage solutions for protection against manipulation, emphasizing local intelligence as the core element with cloud services considered auxiliary.",
+        "type": "comment"
+    },
+    "796": {
+        "file_id": 146,
+        "content": "lf-referencing is bad, and the crucial problem for intelligence developing is not to let suicide happens. a remote storage is prepared andbacked up in schedule, along with the main codebase.\nLazero is running independently, which means it is both OS agnostic and hardware agnostic.",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/FUCK.md:13-15"
+    },
+    "797": {
+        "file_id": 146,
+        "content": "The code highlights the importance of preventing Lazero's suicide, emphasizing that a remote storage is prepared and backed up regularly. The code mentions that Lazero operates independently, ensuring OS and hardware agnosticism.",
+        "type": "comment"
+    },
+    "798": {
+        "file_id": 147,
+        "content": "/generic/webfs_system_surf/LANG.md",
+        "type": "filepath"
+    },
+    "799": {
+        "file_id": 147,
+        "content": "This code emphasizes the importance of interactive languages with external feedback and highlights that natural language or Prolog can be harmless if properly controlled. It encourages ensuring proper response while keeping the language safe within a system.",
+        "type": "summary"
+    }
+}

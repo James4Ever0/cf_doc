@@ -1,0 +1,10 @@
+{
+    "summary": "This code sets an batch script to list all files and folders within a directory and its subdirectories, then outputs the results to 'brief.log'.",
+    "details": [
+        {
+            "comment": "This code sets an batch script to list all files and folders within a directory and its subdirectories, then outputs the results to 'brief.log'.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/ds_iso/brief.cmd\":0-1",
+            "content": "@echo off\ndir /b /s > brief.log"
+        }
+    ]
+}

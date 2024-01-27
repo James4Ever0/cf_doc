@@ -1,0 +1,10 @@
+{
+    "summary": "This code is used to run QEMU, an open-source virtual machine emulator, for i386 architecture in a Unix environment. It uses KVM (Kernel-based Virtual Machine) for hardware virtualization and the -nographic flag enables text console output on standard out. The serial parameter specifies different methods for connecting to the virtual machine's serial port: mon:stdio, vc:800x600, /dev/ttyS0, or COM1. HDA refers to a hard disk image file and -boot d sets DOS as the boot option.",
+    "details": [
+        {
+            "comment": "This code is used to run QEMU, an open-source virtual machine emulator, for i386 architecture in a Unix environment. It uses KVM (Kernel-based Virtual Machine) for hardware virtualization and the -nographic flag enables text console output on standard out. The serial parameter specifies different methods for connecting to the virtual machine's serial port: mon:stdio, vc:800x600, /dev/ttyS0, or COM1. HDA refers to a hard disk image file and -boot d sets DOS as the boot option.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/serial_dos.sh\":0-7",
+            "content": "#!/bin/bash\nqemu-system-i386 -enable-kvm -nographic -serial mon:stdio  -hda c.hd -boot d\n# this is unix only.\n# qemu-system-i386 -enable-kvm -nographic -serial vc:800x600  -hda c.hd -boot d\n# qemu-system-i386 -enable-kvm -nographic -serial /dev/ttyS0 -hda c.hd -boot d\n# qemu-system-i386 -enable-kvm -nographic -serial /dev/ttyS0  -hda c.hd -boot d\n# qemu-system-i386 -enable-kvm -nographic -serial COM1  -hda c.hd -boot d\n# you can use telnet! or unix socket."
+        }
+    ]
+}

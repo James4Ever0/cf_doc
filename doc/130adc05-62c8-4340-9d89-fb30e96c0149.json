@@ -1,0 +1,10 @@
+{
+    "summary": "This code emphasizes the importance of interactive languages with external feedback and highlights that natural language or Prolog can be harmless if properly controlled. It encourages ensuring proper response while keeping the language safe within a system.",
+    "details": [
+        {
+            "comment": "This code emphasizes the importance of interactive languages with external feedback and highlights that natural language or Prolog can be harmless if properly controlled. It encourages ensuring proper response while keeping the language safe within a system.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/LANG.md\":0-4",
+            "content": "the language must be interactive. therefore, it must have response, which can be internal, but eventually must have external feedback.\nthe language can be harmless when running virtually or symbolically, or running inside a sandbox. natural language can he harmless since it has nothing to do with machine language, and prolog can achieve that too since the only harm it can do is freezing the cpu. (does it?)\njust make sure it has proper response and be harmless."
+        }
+    ]
+}

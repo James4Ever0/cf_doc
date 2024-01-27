@@ -1,0 +1,10 @@
+{
+    "summary": "This command initiates a TCP connection through Telnet to the localhost on port 2000 for interactive communication.",
+    "details": [
+        {
+            "comment": "This command initiates a TCP connection through Telnet to the localhost on port 2000 for interactive communication.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/vbox_serial_connect/interactive_tcp.cmd\":0-1",
+            "content": "@echo off\ntelnet -e \"\" localhost 2000"
+        }
+    ]
+}

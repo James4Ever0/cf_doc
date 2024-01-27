@@ -1,0 +1,10 @@
+{
+    "summary": "This script runs a simple Lisp expression using the clisp interpreter. It takes the input \"(+ 1 1)\" and outputs the result, which is 2. The code uses bash as its shell for execution purposes.",
+    "details": [
+        {
+            "comment": "This script runs a simple Lisp expression using the clisp interpreter. It takes the input \"(+ 1 1)\" and outputs the result, which is 2. The code uses bash as its shell for execution purposes.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/parser_train/lisprunner.sh\":0-1",
+            "content": "#!/bin/bash\necho \"(+ 1 1)\" | clisp"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code prints the string \"hello world\" to the console, greeting the user or indicating a successful execution.",
+    "details": [
+        {
+            "comment": "This code prints the string \"hello world\" to the console, greeting the user or indicating a successful execution.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/code_train/hello.rb\":0-0",
+            "content": "print(\"hello world.\")"
+        }
+    ]
+}

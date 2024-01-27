@@ -1,0 +1,10 @@
+{
+    "summary": "Code snippet discusses using QEMU to run a DOS system, storing and managing various components like ISO, CPU, RAM, mouse/keyboard, network, disk sharing, and console.",
+    "details": [
+        {
+            "comment": "Code snippet discusses using QEMU to run a DOS system, storing and managing various components like ISO, CPU, RAM, mouse/keyboard, network, disk sharing, and console.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/QEMU.md\":0-10",
+            "content": "my favourite system will be dos this time, if can be run by qemu.\nbetter store the .iso somewhere in this directory. but it will be changed.\nso store a backup instead? ignore the backup file.\n[QEMU] - [ISO] \n       - [CPU]\n       - [RAM]\n       - [MOUSE/KEYBOARD]\n       - [NETWORK]\n       - [DISK SHARING]\n       - [CONSOLE]"
+        }
+    ]
+}

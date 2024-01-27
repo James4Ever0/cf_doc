@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the \"utils\" module from the \"dogtail\" library and then uses its \"screenshot\" function to capture a screenshot of the current application window, saving it as \"this_file.png\".",
+    "details": [
+        {
+            "comment": "This code imports the \"utils\" module from the \"dogtail\" library and then uses its \"screenshot\" function to capture a screenshot of the current application window, saving it as \"this_file.png\".",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/winauto/dogshot.py\":0-2",
+            "content": "from dogtail import utils\nutils.screenshot(\"this_file.png\")"
+        }
+    ]
+}

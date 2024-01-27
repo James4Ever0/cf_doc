@@ -1,0 +1,10 @@
+{
+    "summary": "This code uses subprocess and win32gui to start Notepad, wait for it to open, then enumerate the top-level windows looking for one owned by the process. Once found, it hides that window before waiting for the process to finish.",
+    "details": [
+        {
+            "comment": "This code uses subprocess and win32gui to start Notepad, wait for it to open, then enumerate the top-level windows looking for one owned by the process. Once found, it hides that window before waiting for the process to finish.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/windows/rdp/hidden_notepad.py\":0-32",
+            "content": "import subprocess\nimport win32gui\nimport time\nimport win32process\nproc = subprocess.Popen([\"notepad.exe\"],shell=False)\n# lets wait a bit to app to start\ntime.sleep(3)\ntarget = proc.pid\ndef enumWindowFunc(hwnd, windowList):\n    \"\"\" win32gui.EnumWindows() callback \"\"\"\n#    text = win32gui.GetWindowText(hwnd)\n#    className = win32gui.GetClassName(hwnd)\n    TId, PId = win32process.GetWindowThreadProcessId(hwnd)\n    #print hwnd, text, className\n    if PId == target:\n        windowList.append(hwnd)\nmyWindows = []\n# enumerate thru all top windows and get windows which are ours\nwin32gui.EnumWindows(enumWindowFunc, myWindows)\n# now hide my windows, we can actually check process info from GetWindowThreadProcessId\n# http://msdn.microsoft.com/en-us/library/ms633522(VS.85).aspx\nfor hwnd in myWindows:\n    print hwnd,type(hwnd)\n    win32gui.ShowWindow(hwnd, False)\n# as our notepad is now hidden\n# you will have to kill notepad in taskmanager to get past next line\nproc.wait()\nprint \"finished.\""
+        }
+    ]
+}

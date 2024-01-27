@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the necessary libraries and uses Redis to store a numpy array as bytes. It demonstrates the usage of pickle for serialization and deserialization, and prints keys and associated data from Redis.",
+    "details": [
+        {
+            "comment": "This code imports the necessary libraries and uses Redis to store a numpy array as bytes. It demonstrates the usage of pickle for serialization and deserialization, and prints keys and associated data from Redis.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/demo_nparr_redis.py\":0-21",
+            "content": "import redis\nimport numpy as np\n#import struct\nimport pickle\narr = np.array([1,2])\n# all bytes!\nrail=\"sample_np_array\"\nr=redis.StrictRedis(host='localhost', port=6379, decode_responses=False)\norig = pickle.dumps(arr)\nprint(\"original: \",orig)\nr.set(rail,orig)\n#r.set(\"sample_np_array\",arr.tobytes())\nfor x in r.keys():\n    print(\"key: \",x)\n    f=r.get(x)\n    # dump will get unwanted offset.\n    print(\"data: \",f,type(f))\n    if x.decode() == rail:\n        print(\"decode_numpy: \",pickle.loads(f))\n#    else:\n#        print(\">>>keys compare:\",str(x),rail)"
+        }
+    ]
+}

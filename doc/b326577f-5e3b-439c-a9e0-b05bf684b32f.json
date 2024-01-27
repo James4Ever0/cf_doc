@@ -1,0 +1,10 @@
+{
+    "summary": "VirtualBox emulation is present, but SDL version might not be superior to the Termux one which relies on pure TTY interface.",
+    "details": [
+        {
+            "comment": "VirtualBox emulation is present, but SDL version might not be superior to the Termux one which relies on pure TTY interface.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/android/linux_emu/README\":0-0",
+            "content": "there's virtualbox emulation. but it is a sdl version. not better than the termux one, which is pure tty based."
+        }
+    ]
+}

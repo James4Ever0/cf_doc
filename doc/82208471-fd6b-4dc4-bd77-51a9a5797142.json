@@ -1,0 +1,10 @@
+{
+    "summary": "The code is listing all files in the current directory and counting them using the 'ls' command to display each file name one by one, and then the 'wc' (word count) command to count the total number of files.",
+    "details": [
+        {
+            "comment": "The code is listing all files in the current directory and counting them using the 'ls' command to display each file name one by one, and then the 'wc' (word count) command to count the total number of files.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/math_train/anytrain.sh\":0-1",
+            "content": "#!/bin/bash\nls -1 | wc"
+        }
+    ]
+}

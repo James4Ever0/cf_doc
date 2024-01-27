@@ -1,0 +1,10 @@
+{
+    "summary": "This code continuously retrieves and prints the latest \"recent_keys\" from Redis using a 1.5-second delay between each request. It seems to be monitoring recent key updates or changes.",
+    "details": [
+        {
+            "comment": "This code continuously retrieves and prints the latest \"recent_keys\" from Redis using a 1.5-second delay between each request. It seems to be monitoring recent key updates or changes.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/ver_reckey.py\":0-4",
+            "content": "from nparr_redis import rget\nimport time\nwhile True:\n    print(rget(\"recent_keys\"))\n    time.sleep(1.5)"
+        }
+    ]
+}

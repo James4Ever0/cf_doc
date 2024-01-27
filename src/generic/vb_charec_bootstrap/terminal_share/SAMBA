@@ -1,0 +1,23 @@
+/etc/samba/smb.conf # which is absent from termux.
+
+# termux lacks of minix head files.
+
+https://ubuntu.com/tutorials/install-and-configure-samba#3-setting-up-samba
+
+https://help.ubuntu.com/community/Samba/SambaServerGuide?_ga=2.32623417.682961562.1603725963-1670033026.1592242164
+
+sudo smbd reload
+
+launch smbd -> killall smbd -> relaunch
+
+smbpassword -a <existing username>
+
+mount -t cifs -o user=root,pass=password,ro //0.0.0.0/sambashare sambashare/
+
+mount.cifs -o user=root,pass=password,ro //0.0.0.0/sambashare sambashare/
+
+and thus we can share content from android to computer, though we cannot do nothing on it?
+
+usually we can call from linux distro inside termux, which can have cifs utils.
+
+libnfs.

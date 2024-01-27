@@ -1,0 +1,528 @@
+{
+    "1100": {
+        "file_id": 215,
+        "content": "/linux/hook_bash/tcx.py",
+        "type": "filepath"
+    },
+    "1101": {
+        "file_id": 215,
+        "content": "These functions, \"reset()\" and \"scommand(s)\", are used to interact with anyControl. \"reset()\" executes the command without providing a specific string value for it, while \"scommand(s)\" allows you to pass a specific string (s) as the value for the command. The result is stored in variable 'r', and then printed out using print(\"reply:\",r).",
+        "type": "summary"
+    },
+    "1102": {
+        "file_id": 215,
+        "content": "from wdf import anyControl\ndef reset():\n    r = anyControl(\"9999\",None,False)\n    print(\"reply:\",r)\ndef scommand(s):\n    r = anyControl(\"9999\",s,True)\n    print(\"reply:\",r)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/tcx.py:1-7"
+    },
+    "1103": {
+        "file_id": 215,
+        "content": "These functions, \"reset()\" and \"scommand(s)\", are used to interact with anyControl. \"reset()\" executes the command without providing a specific string value for it, while \"scommand(s)\" allows you to pass a specific string (s) as the value for the command. The result is stored in variable 'r', and then printed out using print(\"reply:\",r).",
+        "type": "comment"
+    },
+    "1104": {
+        "file_id": 216,
+        "content": "/linux/hook_bash/treserv.py",
+        "type": "filepath"
+    },
+    "1105": {
+        "file_id": 216,
+        "content": "The code uses the Tornado framework for web applications, sets up a server, checks process ID, terminates processes if necessary, and handles user input in POST requests. The code effectively terminates processes using `os.kill()` with `signal.SIGKILL`, considering alternative methods for non-thread processes.",
+        "type": "summary"
+    },
+    "1106": {
+        "file_id": 216,
+        "content": "import tornado.ioloop\nimport tornado.web\nfrom wdf import termControl\nimport subprocess, sys, os\nimport signal\n# password is a must here. not kidding.\n# called the connection to a process.\npid = None\ndef getPid():\n    return subprocess.Popen([sys.executable,\"tserv.py\"],close_fds=True).pid\nclass MainHandler(tornado.web.RequestHandler):\n    def get(self):\n        global pid\n        if pid is None:\n            pass\n        else:\n            os.kill(pid,signal.SIGKILL)\n        pid = getPid()\n        self.write(\"resetting server on 8888\\n\")\n    def post(self):\n        # you can post things here. relay to 8888.\n        sp = self.request.body\n        rg = termControl(sp)\n        if rg is None:\n            self.write(\"\")\n        else:\n            self.write(rg)\n        # pass a function to the place?\n    def make_app():\n        return tornado.web.Application([(r\".+\",MainHandler),])\nif __name__ == \"__main__\":\n    pid = getPid()\n    app = MainHandler.make_app()\n    app.listen(9999)\n    tornado.ioloop.IOLoop.current().start()\n    if pid is not None:",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/treserv.py:1-36"
+    },
+    "1107": {
+        "file_id": 216,
+        "content": "This code uses Tornado framework for web applications. It sets up a server to listen on port 9999, and when the main handler is accessed, it checks if the process ID (PID) is None. If it's not None, it terminates the process with the PID using signal.SIGKILL. In the POST request, the code receives input data from the user, passes it to a function called termControl, and writes the returned value back to the user. The make_app function creates a Tornado web application with the MainHandler class for handling requests, and the server starts listening using tornado.ioloop.IOLoop.current().start().",
+        "type": "comment"
+    },
+    "1108": {
+        "file_id": 216,
+        "content": "        os.kill(pid,signal.SIGKILL)\n    exit()\n    # sys.exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/treserv.py:37-43"
+    },
+    "1109": {
+        "file_id": 216,
+        "content": "The code snippet attempts to terminate a process identified by its PID (Process ID) using the `os.kill()` function with the `signal.SIGKILL` signal. If the process is not a thread, it suggests alternative methods like `sys.exit()`, but ultimately finds that `os.kill(pid, signal.SIGKILL)` works effectively for termination. The code comments also express confusion about whether `p.terminate()` is necessary or applicable, implying that the process may need to be a thread specifically.",
+        "type": "comment"
+    },
+    "1110": {
+        "file_id": 217,
+        "content": "/linux/hook_bash/tserv.py",
+        "type": "filepath"
+    },
+    "1111": {
+        "file_id": 217,
+        "content": "The script uses Twisted, Tornado.web, and pickle to create a ProcessProtocol class for managing connections, data writing, and error handling in a subprocess via POST requests on port 8888, terminating the program using the process ID.",
+        "type": "summary"
+    },
+    "1112": {
+        "file_id": 217,
+        "content": "from twisted.internet import protocol, reactor\nimport time\nimport tornado.ioloop\nimport tornado.web\nimport pickle\n#from process_tool import getSingleSession as gss\n# import sys\n# import multiprocessing\nimport threading\n# password is a must here. not kidding.\n# called the connection to a process.\nclass MyPP(protocol.ProcessProtocol):\n    def __init__(self):\n        self.db=[]\n    def gen(self,a,b):\n        return {'time':time.time(),'fd':a,'data':b}\n    def connectionMade(self):\n        print('connection made!')\n    def write(self, a):\n        self.db.append(self.gen(0,a))\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        self.db.append(self.gen(1,data))\n    def errReceived(self, data):\n        self.db.append(self.gen(2,data))\n# you are going to serve at a different port?\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()",
+        "type": "code",
+        "location": "/linux/hook_bash/tserv.py:1-38"
+    },
+    "1113": {
+        "file_id": 217,
+        "content": "This Python script uses the Twisted library to create a ProcessProtocol class called MyPP. It also utilizes tornado.web and pickle, and defines functions for connection management, data writing, and error handling. The process exits when the main thread is terminated.",
+        "type": "comment"
+    },
+    "1114": {
+        "file_id": 217,
+        "content": "    # command = ['screen', '-x']\n    command = ['bash']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    pp.write(b\"parrot\\n\")\n    time.sleep(0.1)\n    # not working here.\n    class MainHandler(tornado.web.RequestHandler):\n        def get(self):\n            self.write(\"hello world\\n\")\n        def post(self):\n            sp = self.request.body\n            pp.write(sp+b\"\\n\")\n            time.sleep(0.1)\n            self.write(pickle.dumps(pp.db))\n            pp.db=[]\n            # pass a function to the place?\n        def make_app():\n            return tornado.web.Application([(r\".+\",MainHandler),])\n    app = MainHandler.make_app()",
+        "type": "code",
+        "location": "/linux/hook_bash/tserv.py:39-71"
+    },
+    "1115": {
+        "file_id": 217,
+        "content": "Code snippet sets up a Tornado web application with a single handler named \"MainHandler\". It creates a subprocess (pp) using Twisted library, writes data to it, and allows sending POST requests to write more data. The code also includes a function \"theFunc\" that is used to spawn a process and start a thread for handling requests asynchronously.",
+        "type": "comment"
+    },
+    "1116": {
+        "file_id": 217,
+        "content": "    app.listen(8888)\n    tornado.ioloop.IOLoop.current().start()\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?",
+        "type": "code",
+        "location": "/linux/hook_bash/tserv.py:72-79"
+    },
+    "1117": {
+        "file_id": 217,
+        "content": "The code sets up the Tornado application to listen on port 8888, starts the IOLoop, and terminates the program. There is a comment discussing how to properly terminate the program using the process ID (pid) and questioning if it needs to be done in a thread.",
+        "type": "comment"
+    },
+    "1118": {
+        "file_id": 218,
+        "content": "/linux/hook_bash/wdf.py",
+        "type": "filepath"
+    },
+    "1119": {
+        "file_id": 218,
+        "content": "The code defines three functions: `poster()`, `termControl()`, and `anyControl()`. These functions send HTTP requests to a server running at \"http://localhost:8888\" with varying data types and methods (POST or GET). If an error occurs, it prints the exception traceback.",
+        "type": "summary"
+    },
+    "1120": {
+        "file_id": 218,
+        "content": "import requests\nimport json\nimport traceback\nimport pickle\ndef poster(s):\n    data=None\n    try:\n        data=json.dumps(s)\n    except:\n        data=pickle.dumps(s)\n#data= json.dumps({\"terminal\":\"terminal\"})\n    try:\n        r=requests.post(\"http://localhost:8888\",data=data)\n        return r.content\n#        print(type(r),dir(r))\n    except:\n        traceback.print_exc()\ndef termControl(s):\n    try:\n        r=requests.post(\"http://localhost:8888\",data=s)\n        return r.content\n    except:\n        traceback.print_exc()\ndef anyControl(p,s,a=True):\n    try:\n        if a:\n            r=requests.post(\"http://localhost:{}\".format(p),data=s)\n            return r.content\n        else:\n            r=requests.get(\"http://localhost:{}\".format(p))\n            return r.content\n    except:\n        traceback.print_exc()",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/wdf.py:1-36"
+    },
+    "1121": {
+        "file_id": 218,
+        "content": "The code defines three functions: `poster()`, `termControl()`, and `anyControl()`. These functions send HTTP requests to a server running at \"http://localhost:8888\" with varying data types and methods (POST or GET). If an error occurs, it prints the exception traceback.",
+        "type": "comment"
+    },
+    "1122": {
+        "file_id": 219,
+        "content": "/linux/hook_bash/wdiff.py",
+        "type": "filepath"
+    },
+    "1123": {
+        "file_id": 219,
+        "content": "Function \"poster\" sends data to a server using POST method. If the data cannot be serialized as JSON, it attempts pickling. After receiving a response, it prints the content of each attribute of the response object.",
+        "type": "summary"
+    },
+    "1124": {
+        "file_id": 219,
+        "content": "import requests\nimport json\nimport traceback\nimport pickle\ndef poster(s):\n    data=None\n    try:\n        data=json.dumps(s)\n    except:\n        data=pickle.dumps(s)\n#data= json.dumps({\"terminal\":\"terminal\"})\n    try:\n        r=requests.post(\"http://localhost:8888\",data=data)\n#        print(type(r),dir(r))\n        pr = dir(r)\n        for py in pr:\n            print(\"content of {}\".format(py))\n            print(eval(\"r.\"+py))\n    except:\n        traceback.print_exc()",
+        "type": "code",
+        "location": "/linux/hook_bash/wdiff.py:1-21"
+    },
+    "1125": {
+        "file_id": 219,
+        "content": "Function \"poster\" sends data to a server using POST method. If the data cannot be serialized as JSON, it attempts pickling. After receiving a response, it prints the content of each attribute of the response object.",
+        "type": "comment"
+    },
+    "1126": {
+        "file_id": 220,
+        "content": "/linux/websh/bootstrap.sh",
+        "type": "filepath"
+    },
+    "1127": {
+        "file_id": 220,
+        "content": "The code initializes the Bash script and installs the global version of wetty using npm. This is likely a setup or installation script for the websh application.",
+        "type": "summary"
+    },
+    "1128": {
+        "file_id": 220,
+        "content": "#!/bin/bash\nnpm install -g wetty",
+        "type": "code",
+        "location": "/linux/websh/bootstrap.sh:1-2"
+    },
+    "1129": {
+        "file_id": 220,
+        "content": "The code initializes the Bash script and installs the global version of wetty using npm. This is likely a setup or installation script for the websh application.",
+        "type": "comment"
+    },
+    "1130": {
+        "file_id": 221,
+        "content": "/linux/websh/linux_spec/demo_usage.sh",
+        "type": "filepath"
+    },
+    "1131": {
+        "file_id": 221,
+        "content": "Starts a Bash shell in the Gotty terminal server with web interface, allowing remote access and interaction.",
+        "type": "summary"
+    },
+    "1132": {
+        "file_id": 221,
+        "content": "#!/bin/bash\n./gotty -w bash",
+        "type": "code",
+        "location": "/linux/websh/linux_spec/demo_usage.sh:1-2"
+    },
+    "1133": {
+        "file_id": 221,
+        "content": "Starts a Bash shell in the Gotty terminal server with web interface, allowing remote access and interaction.",
+        "type": "comment"
+    },
+    "1134": {
+        "file_id": 222,
+        "content": "/linux/websh/start.sh",
+        "type": "filepath"
+    },
+    "1135": {
+        "file_id": 222,
+        "content": "This script starts the Wetty SSH terminal emulator on Linux.",
+        "type": "summary"
+    },
+    "1136": {
+        "file_id": 222,
+        "content": "#!/bin/bash\nwetty ",
+        "type": "code",
+        "location": "/linux/websh/start.sh:1-2"
+    },
+    "1137": {
+        "file_id": 222,
+        "content": "This script starts the Wetty SSH terminal emulator on Linux.",
+        "type": "comment"
+    },
+    "1138": {
+        "file_id": 223,
+        "content": "/linux/websh/test.sh",
+        "type": "filepath"
+    },
+    "1139": {
+        "file_id": 223,
+        "content": "This script launches Electron using a localhost URL for the web-based terminal app, Wetty.",
+        "type": "summary"
+    },
+    "1140": {
+        "file_id": 223,
+        "content": "#!/bin/bash\nelectron http://localhost:3000/wetty",
+        "type": "code",
+        "location": "/linux/websh/test.sh:1-2"
+    },
+    "1141": {
+        "file_id": 223,
+        "content": "This script launches Electron using a localhost URL for the web-based terminal app, Wetty.",
+        "type": "comment"
+    },
+    "1142": {
+        "file_id": 224,
+        "content": "/linux/winauto/1type_key.sh",
+        "type": "filepath"
+    },
+    "1143": {
+        "file_id": 224,
+        "content": "This script utilizes xdotool, a tool for automating the X Window System, to move the mouse cursor to position (1,1), simulate a left click, and type the character sequence \"123\". It is likely used for UI automation or assistive purposes.",
+        "type": "summary"
+    },
+    "1144": {
+        "file_id": 224,
+        "content": "#!/bin/bash\nexport DISPLAY=:1\nxdotool mousemove 1 1 click 1\nxdotool type 123",
+        "type": "code",
+        "location": "/linux/winauto/1type_key.sh:1-4"
+    },
+    "1145": {
+        "file_id": 224,
+        "content": "This script utilizes xdotool, a tool for automating the X Window System, to move the mouse cursor to position (1,1), simulate a left click, and type the character sequence \"123\". It is likely used for UI automation or assistive purposes.",
+        "type": "comment"
+    },
+    "1146": {
+        "file_id": 225,
+        "content": "/linux/winauto/ddmo.py",
+        "type": "filepath"
+    },
+    "1147": {
+        "file_id": 225,
+        "content": "Code starts a Gnome Terminal and prints the process ID (PID), then dumps the contents of the application window.",
+        "type": "summary"
+    },
+    "1148": {
+        "file_id": 225,
+        "content": "from dogtail import tree\nfrom time import sleep\nimport subprocess\np=subprocess.Popen([\"gnome-terminal\",\"--wait\"])\nprint(p.pid,\"pid\")\napp = tree.root.application(\"gnome-terminal-server\")\napp.dump()",
+        "type": "code",
+        "location": "/linux/winauto/ddmo.py:1-7"
+    },
+    "1149": {
+        "file_id": 225,
+        "content": "Code starts a Gnome Terminal and prints the process ID (PID), then dumps the contents of the application window.",
+        "type": "comment"
+    },
+    "1150": {
+        "file_id": 226,
+        "content": "/linux/winauto/dog_demo.py",
+        "type": "filepath"
+    },
+    "1151": {
+        "file_id": 226,
+        "content": "The code is a recursive function 'walker' that traverses the GUI tree using Dogtail library. It prints object type, process ID, and text of each element in the GUI while trying to type \"random string\" into them. The original commented lines show an alternative way to traverse the same GUI tree without using the 'walker' function.",
+        "type": "summary"
+    },
+    "1152": {
+        "file_id": 226,
+        "content": "from dogtail import tree\nroot=tree.root\ndef walker(a):\n    a.childrenLimit = 1000\n    for x in a.children:\n        print(x,type(x))\n#        x.dump()\n        try:\n            x.typeText(\"random string\")\n        except:\n            print(\"unable to type\")\n        try:\n            print(x.get_process_id())\n        except:\n            print(\"error id here\")\n        try:\n            print(x.get_text())\n        except:\n            print(\"error text here\")\n#        if len(a.children)!=0:\n        for y in x.children:\n            walker(y)\n#        print(dir(x))\n#lisx=[]\nwalker(root)\n\"\"\"\nfor x in root.children:\n    for y in x.children:\n        walker(y)\n\"\"\"",
+        "type": "code",
+        "location": "/linux/winauto/dog_demo.py:1-33"
+    },
+    "1153": {
+        "file_id": 226,
+        "content": "The code is a recursive function 'walker' that traverses the GUI tree using Dogtail library. It prints object type, process ID, and text of each element in the GUI while trying to type \"random string\" into them. The original commented lines show an alternative way to traverse the same GUI tree without using the 'walker' function.",
+        "type": "comment"
+    },
+    "1154": {
+        "file_id": 227,
+        "content": "/linux/winauto/dogshot.py",
+        "type": "filepath"
+    },
+    "1155": {
+        "file_id": 227,
+        "content": "This code imports the \"utils\" module from the \"dogtail\" library and then uses its \"screenshot\" function to capture a screenshot of the current application window, saving it as \"this_file.png\".",
+        "type": "summary"
+    },
+    "1156": {
+        "file_id": 227,
+        "content": "from dogtail import utils\nutils.screenshot(\"this_file.png\")",
+        "type": "code",
+        "location": "/linux/winauto/dogshot.py:1-3"
+    },
+    "1157": {
+        "file_id": 227,
+        "content": "This code imports the \"utils\" module from the \"dogtail\" library and then uses its \"screenshot\" function to capture a screenshot of the current application window, saving it as \"this_file.png\".",
+        "type": "comment"
+    },
+    "1158": {
+        "file_id": 228,
+        "content": "/linux/winauto/gnome_virtual.sh",
+        "type": "filepath"
+    },
+    "1159": {
+        "file_id": 228,
+        "content": "This script removes, creates a directory for, and starts an X virtual framebuffer (Xvfb) server. It then runs Gnome Shell with 7 display connections and sets the pixel depths. Finally, it could echo the Xvfb session PID and potentially start an xterm client.",
+        "type": "summary"
+    },
+    "1160": {
+        "file_id": 228,
+        "content": "#!/bin/bash\nrm -rf /dev/shm/xvfb\nmkdir /dev/shm/xvfb\nxvfb-run -f ~/.Xauthority -n 7 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -reset -terminate\" gnome-shell --replace \n#echo xvfb_session_pid $!\n#mwm -display :7\n#xvfb-run -f ~/.Xauthority -n 1 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -listen tcp \" xterm",
+        "type": "code",
+        "location": "/linux/winauto/gnome_virtual.sh:1-7"
+    },
+    "1161": {
+        "file_id": 228,
+        "content": "This script removes, creates a directory for, and starts an X virtual framebuffer (Xvfb) server. It then runs Gnome Shell with 7 display connections and sets the pixel depths. Finally, it could echo the Xvfb session PID and potentially start an xterm client.",
+        "type": "comment"
+    },
+    "1162": {
+        "file_id": 229,
+        "content": "/linux/winauto/move_mouse.sh",
+        "type": "filepath"
+    },
+    "1163": {
+        "file_id": 229,
+        "content": "This script utilizes bash and xdotool to move the mouse cursor to coordinates 500, 500 and perform a left click. The DISPLAY environment variable is set to \":3\" to specify the X server for the graphical user interface (GUI) operation.",
+        "type": "summary"
+    },
+    "1164": {
+        "file_id": 229,
+        "content": "#!/bin/bash\nexport DISPLAY=:3\nxdotool mousemove 500 500 click 1",
+        "type": "code",
+        "location": "/linux/winauto/move_mouse.sh:1-3"
+    },
+    "1165": {
+        "file_id": 229,
+        "content": "This script utilizes bash and xdotool to move the mouse cursor to coordinates 500, 500 and perform a left click. The DISPLAY environment variable is set to \":3\" to specify the X server for the graphical user interface (GUI) operation.",
+        "type": "comment"
+    },
+    "1166": {
+        "file_id": 230,
+        "content": "/linux/winauto/mwm_virtual.sh",
+        "type": "filepath"
+    },
+    "1167": {
+        "file_id": 230,
+        "content": "This script sets up a virtual display environment for running graphical applications like Gnome Shell or MWM on Linux, using Xvfb. It removes any existing xvfb directory, creates a new one, starts the Xvfb server with specific configuration options and runs an application (MWM in this case) on a virtual display. The script also sleeps for 1 second before starting Gnome Shell or MWM, but it seems commented out. It then ends by leaving the comment section open for further commands execution.",
+        "type": "summary"
+    },
+    "1168": {
+        "file_id": 230,
+        "content": "#!/bin/bash\nrm -rf /dev/shm/xvfb\nmkdir /dev/shm/xvfb\nxvfb-run -f ~/.Xauthority -n 7 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb\" burpsuite & echo xvfb_session_pid $!\nsleep 1\n#gnome-shell --display :7\nmwm -display :7\n#xvfb-run -f ~/.Xauthority -n 1 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -listen tcp \" xterm",
+        "type": "code",
+        "location": "/linux/winauto/mwm_virtual.sh:1-8"
+    },
+    "1169": {
+        "file_id": 230,
+        "content": "This script sets up a virtual display environment for running graphical applications like Gnome Shell or MWM on Linux, using Xvfb. It removes any existing xvfb directory, creates a new one, starts the Xvfb server with specific configuration options and runs an application (MWM in this case) on a virtual display. The script also sleeps for 1 second before starting Gnome Shell or MWM, but it seems commented out. It then ends by leaving the comment section open for further commands execution.",
+        "type": "comment"
+    },
+    "1170": {
+        "file_id": 231,
+        "content": "/linux/winauto/serv_start.sh",
+        "type": "filepath"
+    },
+    "1171": {
+        "file_id": 231,
+        "content": "Creates a directory, launches Xvfb with specific options, and specifies the display number.",
+        "type": "summary"
+    },
+    "1172": {
+        "file_id": 231,
+        "content": "#!/bin/bash\nmkdir /dev/shm/xvfb\nXvfb -pixdepths 3 27 -fbdir /dev/shm/xvfb :3",
+        "type": "code",
+        "location": "/linux/winauto/serv_start.sh:1-3"
+    },
+    "1173": {
+        "file_id": 231,
+        "content": "Creates a directory, launches Xvfb with specific options, and specifies the display number.",
+        "type": "comment"
+    },
+    "1174": {
+        "file_id": 232,
+        "content": "/linux/winauto/start_virtual_xterm.sh",
+        "type": "filepath"
+    },
+    "1175": {
+        "file_id": 232,
+        "content": "This script creates a virtual X server (xvfb), prepares it for use, and runs an xterm within it. The comment explains the purpose of the code in brief: \"Creates X virtual framebuffer and starts an xterm session within it.\"",
+        "type": "summary"
+    },
+    "1176": {
+        "file_id": 232,
+        "content": "#!/bin/bash\nrm -rf /dev/shm/xvfb\nmkdir /dev/shm/xvfb\nxvfb-run -f ~/.Xauthority -n 1 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb\" xterm\n#xvfb-run -f ~/.Xauthority -n 1 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -listen tcp \" xterm",
+        "type": "code",
+        "location": "/linux/winauto/start_virtual_xterm.sh:1-5"
+    },
+    "1177": {
+        "file_id": 232,
+        "content": "This script creates a virtual X server (xvfb), prepares it for use, and runs an xterm within it. The comment explains the purpose of the code in brief: \"Creates X virtual framebuffer and starts an xterm session within it.\"",
+        "type": "comment"
+    },
+    "1178": {
+        "file_id": 233,
+        "content": "/linux/winauto/type_key.sh",
+        "type": "filepath"
+    },
+    "1179": {
+        "file_id": 233,
+        "content": "This script moves the mouse cursor to coordinates (1, 1) and simulates a left click. Then it types the string \"123\" using xdotool on a Linux system with a display set to \":3\".",
+        "type": "summary"
+    },
+    "1180": {
+        "file_id": 233,
+        "content": "#!/bin/bash\nexport DISPLAY=:3\nxdotool mousemove 1 1 click 1\nxdotool type 123",
+        "type": "code",
+        "location": "/linux/winauto/type_key.sh:1-4"
+    },
+    "1181": {
+        "file_id": 233,
+        "content": "This script moves the mouse cursor to coordinates (1, 1) and simulates a left click. Then it types the string \"123\" using xdotool on a Linux system with a display set to \":3\".",
+        "type": "comment"
+    },
+    "1182": {
+        "file_id": 234,
+        "content": "/linux/winauto/ver_xterm.sh",
+        "type": "filepath"
+    },
+    "1183": {
+        "file_id": 234,
+        "content": "This script executes xwud command on Linux, using X Window System (Xvfb) and loading screen0.",
+        "type": "summary"
+    },
+    "1184": {
+        "file_id": 234,
+        "content": "#!/bin/bash\nxwud -in /dev/shm/xvfb/Xvfb_screen0",
+        "type": "code",
+        "location": "/linux/winauto/ver_xterm.sh:1-2"
+    },
+    "1185": {
+        "file_id": 234,
+        "content": "This script executes xwud command on Linux, using X Window System (Xvfb) and loading screen0.",
+        "type": "comment"
+    },
+    "1186": {
+        "file_id": 235,
+        "content": "/linux/winauto/xfce_shell.sh",
+        "type": "filepath"
+    },
+    "1187": {
+        "file_id": 235,
+        "content": "This script launches the xfwm4 window manager and xfdesktop, which together create a functional desktop environment.",
+        "type": "summary"
+    },
+    "1188": {
+        "file_id": 235,
+        "content": "#!/bin/bash\nxfwm4 --replace &\nxfdesktop",
+        "type": "code",
+        "location": "/linux/winauto/xfce_shell.sh:1-3"
+    },
+    "1189": {
+        "file_id": 235,
+        "content": "This script launches the xfwm4 window manager and xfdesktop, which together create a functional desktop environment.",
+        "type": "comment"
+    },
+    "1190": {
+        "file_id": 236,
+        "content": "/linux/winauto/xfce_virtual.sh",
+        "type": "filepath"
+    },
+    "1191": {
+        "file_id": 236,
+        "content": "This script removes and creates a virtual framebuffer directory, starts an Xvfb server within it for the Xfce desktop environment, and sets up necessary display parameters. It also defines options for additional programs like xfwm4, mwm, and xterm which can be run in the same environment if needed.",
+        "type": "summary"
+    },
+    "1192": {
+        "file_id": 236,
+        "content": "#!/bin/bash\nrm -rf /dev/shm/xvfb\nmkdir /dev/shm/xvfb\nxvfb-run -f ~/.Xauthority -n 9 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -reset -terminate\" ./xfce_shell.sh\n#xvfb-run -f ~/.Xauthority -n 7 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -reset -terminate\" xfwm4 --replace \n#echo xvfb_session_pid $!\n#mwm -display :7\n#xvfb-run -f ~/.Xauthority -n 1 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -listen tcp \" xterm",
+        "type": "code",
+        "location": "/linux/winauto/xfce_virtual.sh:1-8"
+    },
+    "1193": {
+        "file_id": 236,
+        "content": "This script removes and creates a virtual framebuffer directory, starts an Xvfb server within it for the Xfce desktop environment, and sets up necessary display parameters. It also defines options for additional programs like xfwm4, mwm, and xterm which can be run in the same environment if needed.",
+        "type": "comment"
+    },
+    "1194": {
+        "file_id": 237,
+        "content": "/windows/misc/del_telemetry.cmd",
+        "type": "filepath"
+    },
+    "1195": {
+        "file_id": 237,
+        "content": "This batch file deletes the Windows DiagTrack service, likely used for system diagnostics or telemetry.",
+        "type": "summary"
+    },
+    "1196": {
+        "file_id": 237,
+        "content": "@echo off\nsc delete DiagTrack",
+        "type": "code",
+        "location": "/windows/misc/del_telemetry.cmd:1-2"
+    },
+    "1197": {
+        "file_id": 237,
+        "content": "This batch file deletes the Windows DiagTrack service, likely used for system diagnostics or telemetry.",
+        "type": "comment"
+    },
+    "1198": {
+        "file_id": 238,
+        "content": "/windows/rdp/demo_qt_py27.py",
+        "type": "filepath"
+    },
+    "1199": {
+        "file_id": 238,
+        "content": "The code uses various libraries to capture window screenshots, creates a frameless window, and handles events for continuous screenshotting. It struggles with hidden windows and runs on Python and Qt.",
+        "type": "summary"
+    }
+}

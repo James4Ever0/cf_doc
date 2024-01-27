@@ -1,0 +1,15 @@
+{
+    "summary": "The code reads two files, compares sequences of values, and utilizes a function to find the shift between them. It also iterates through a list, printing each element and applying a processing function with parameters f0, f, and x.",
+    "details": [
+        {
+            "comment": "The code reads \"fdecode.log\" and \"out.txt\" files, and it aims to find the shift between two sequences of values. It defines a function `process_tool` that takes in two input lists (c, d), mv, and mn as parameters. The function compares elements from list d with the differenced sequence of list c and checks if they match. If there is a match, it prints some information related to the scene, real values, and the shift between them. The code also creates a new list `f` by differencing the values from the 'f' list in 's'. It then calculates the difference between this new 'f' list (f0) and returns True if there is a match, otherwise False.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/self_train/evalpool.py\":0-36",
+            "content": "import numpy as np\ns = open(\"fdecode.log\",\"r\").read().split()\nv = open(\"out.txt\",\"r\").read().split()\n# get the shift.\n# major shift: 29\ndef process_tool(c,d,mv,mn):\n#    e = [x for x in d]\n    e = d\n    f = np.diff([x for x in c.encode()])\n    if len(f)==0:\n        return False\n    counter = 0\n    max_counter = 0\n    for x in range(len(e)):\n        if e[x] == f[counter]:\n            if counter < len(f)-1:\n                counter +=1\n            else:\n#                print(\"shift\",mv[x-len(mn)]-ord(mn[0]))\n                print(\"scene\",e[2+x-len(mn):x+1],f)\n                print(\"real\",mv[2+x-len(mn):x+2],[ord(y) for y in mn],mv[2+x-len(mn)])\n                print(\"shift\",mv[2+x-len(mn)]-ord(mn[0]))\n                # how to get the shift?\n                return True\n        else:\n            max_counter = max([max_counter,counter])\n            counter = 0\n    print(\"max_counter\",max_counter)\n    return False\nf=[]\nfor x in s:\n    if len(x)==6:\n        print(x[1:-1])\n        f+=[eval(\"0x\"+x[1:-1])]\n#print(f)\nf0 = np.diff(f)"
+        },
+        {
+            "comment": "This code is iterating through each element in the list 'v' and printing it along with the output of a function called 'process_tool' which takes parameters f0, f, and x. The function might be performing some processing on the elements of the list and returning the result for further evaluation or analysis.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/self_train/evalpool.py\":37-38",
+            "content": "for x in v:\n    print(x,process_tool(x,f0,f,x))"
+        }
+    ]
+}

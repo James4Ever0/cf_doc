@@ -1,0 +1,10 @@
+{
+    "summary": "The identifier function saves time by quickly detecting specific strings in a dataset, while long-running functions ensure accurate results. Some functions execute system commands to achieve this.",
+    "details": [
+        {
+            "comment": "The identifier function saves time by quickly detecting specific strings in a dataset, while long-running functions ensure accurate results. Some functions execute system commands to achieve this.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/parser_train/README\":0-4",
+            "content": "the identifier function is saving the time. it is a long running daemon. only taking few miliseconds to run.\nsuch as detecting \"http\" string inside a bunch of pdf octave stream or so on. but actually visiting a website can be painstaking.\nmany long-term function that does not grarantee the result to be correct therefore some identifier functions pops up. like executing system command"
+        }
+    ]
+}

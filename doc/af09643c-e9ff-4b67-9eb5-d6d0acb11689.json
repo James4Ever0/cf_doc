@@ -1,0 +1,10 @@
+{
+    "summary": "This code describes the hardware architecture of lazero and outlines input sources for a standard PC and phone, recommending developing a hardware hypervisor or custom OS to fully control devices. It also mentions the possibility of diving deeper into existing operating systems.",
+    "details": [
+        {
+            "comment": "This code describes the hardware architecture of lazero and outlines input sources for a standard PC and phone, recommending developing a hardware hypervisor or custom OS to fully control devices. It also mentions the possibility of diving deeper into existing operating systems.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/BOX.md\":0-19",
+            "content": "here's the hardware version of lazero.\nthe input source for a standard PC is easy to establish.\nIt does not grarentee to have the same image or sound.\n[PC] - [USB] - [file sharing/ HID/ camera/ more]\n     - [HDMI] - [screen imaging/ sound]\n     - [sound jack] - [sound io]\n     - [network] - [ipc/ relay]\ndue to limitation of current phone, it is recommend to develop hardware hypervisor to take control of these devices, also applicable for arbitrary OS. anyway, developing a custom OS ordigging deeper into current OS is also great.\n[Phone] - [Main Plug] - [usb/ video]\n        - [audio jack] - [audio io]\n\t- [internal connection] - [video/ audio/ touch]\n\t- [card slot] - [wifi/ storage]\n[custom device] - [standard port emulation]\n                - [supervisor port]"
+        }
+    ]
+}

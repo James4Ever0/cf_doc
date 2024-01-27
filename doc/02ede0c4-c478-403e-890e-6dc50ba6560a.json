@@ -1,0 +1,10 @@
+{
+    "summary": "Creates a directory, launches Xvfb with specific options, and specifies the display number.",
+    "details": [
+        {
+            "comment": "Creates a directory, launches Xvfb with specific options, and specifies the display number.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/winauto/serv_start.sh\":0-2",
+            "content": "#!/bin/bash\nmkdir /dev/shm/xvfb\nXvfb -pixdepths 3 27 -fbdir /dev/shm/xvfb :3"
+        }
+    ]
+}

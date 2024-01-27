@@ -1,0 +1,10 @@
+{
+    "summary": "The code initializes the Bash script and installs the global version of wetty using npm. This is likely a setup or installation script for the websh application.",
+    "details": [
+        {
+            "comment": "The code initializes the Bash script and installs the global version of wetty using npm. This is likely a setup or installation script for the websh application.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/websh/bootstrap.sh\":0-1",
+            "content": "#!/bin/bash\nnpm install -g wetty"
+        }
+    ]
+}

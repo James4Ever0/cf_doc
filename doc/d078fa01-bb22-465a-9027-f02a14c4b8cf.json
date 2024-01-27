@@ -1,0 +1,10 @@
+{
+    "summary": "This script is an evasion tool, preventing its execution by terminating the tmux server and potentially killing screen processes.",
+    "details": [
+        {
+            "comment": "This script is an evasion tool, preventing its execution by terminating the tmux server and potentially killing screen processes.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_share/notmux.sh\":0-3",
+            "content": "#!/bin/bash\n# it is an evasion tool! do not let it run.\ntmux kill-server\n#killall screen"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "Code initializes a list s0 with \"string\", \"model\", and \"here\". Then, it prints the joined elements of the list. The second line changes the value of 's0[1]' to \"nothing\" and prints the updated list.",
+    "details": [
+        {
+            "comment": "Code initializes a list s0 with \"string\", \"model\", and \"here\". Then, it prints the joined elements of the list. The second line changes the value of 's0[1]' to \"nothing\" and prints the updated list.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/math_train/model.py\":0-3",
+            "content": "s0=[\"string\",\"model\",\"here\"]\nprint(\" \".join(s0))\ns0[1]=\"nothing\"\nprint(\" \".join(s0))"
+        }
+    ]
+}

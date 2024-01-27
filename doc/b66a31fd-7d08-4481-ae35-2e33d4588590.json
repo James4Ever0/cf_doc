@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports numpy, pickle, and sys libraries. It creates a 1D array with values [1, 2, 3] and converts it to a list. Then, it dumps the list using pickle into the standard output buffer. The comment asks if we can slice normal arrays like this.",
+    "details": [
+        {
+            "comment": "The code imports numpy, pickle, and sys libraries. It creates a 1D array with values [1, 2, 3] and converts it to a list. Then, it dumps the list using pickle into the standard output buffer. The comment asks if we can slice normal arrays like this.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/genparr.py\":0-3",
+            "content": "import numpy, pickle, sys\narr = numpy.array([1,2,3]).tolist()\npickle.dump(arr,sys.stdout.buffer)\n# i mean can we slice normal array like this?"
+        }
+    ]
+}

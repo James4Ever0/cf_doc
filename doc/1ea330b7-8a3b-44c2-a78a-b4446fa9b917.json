@@ -1,0 +1,10 @@
+{
+    "summary": "This script creates a FIFO (named pipe) for both stdout and stderr, then runs the sdiff.sh script, redirecting its output to the respective FIFOs.",
+    "details": [
+        {
+            "comment": "This script creates a FIFO (named pipe) for both stdout and stderr, then runs the sdiff.sh script, redirecting its output to the respective FIFOs.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/walker.sh\":0-2",
+            "content": "#!/bin/bash\nmkfifo {stdout,stderr}\n./sdiff.sh 1> stdout 2> stderr"
+        }
+    ]
+}

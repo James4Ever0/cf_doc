@@ -1,0 +1,10 @@
+{
+    "summary": "The code is running a DOS program using QEMU emulator with HAX acceleration, configuring memory size and max mem, running in non-graphic mode, using virtual hard drive 'c.hd', and booting from drive D. It mentions alternative paths for executables and files, indicating potential use of different installations or versions.",
+    "details": [
+        {
+            "comment": "The code is running a DOS program using QEMU emulator with HAX acceleration, configuring memory size and max mem, running in non-graphic mode, using virtual hard drive 'c.hd', and booting from drive D. It mentions alternative paths for executables and files, indicating potential use of different installations or versions.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/run_dos_nographic.cmd\":0-10",
+            "content": "@echo off\nREM do we need latest?\nREM \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\"  -enable-hax -m 2M,maxmem=5M -mem-path R:\\ -hda c.hd -boot d\nREM \"E:\\Program Files\\qemu\\qemu-system-x86_64.exe\"  -accel hax -m 2M,slots=2,maxmem=5M  -nographic -serial mon:stdio -hda c.hd -boot d\n\"E:\\Program Files\\qemu\\qemu-system-x86_64.exe\"  -accel hax -m 2M,slots=2,maxmem=5M  -nographic -hda c.hd -boot d\nREM \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"\nREM it is\nREM D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\\kvmvapic.bin\nREM this is not native one.\nREM D:\\Program Files\\MATLAB\\R2018a\\toolbox\\idelink\\foundation\\hostapps\\PUTTY.EXE\nREM \"D:\\Program Files (x86)\\com0com\\setupc.exe\""
+        }
+    ]
+}

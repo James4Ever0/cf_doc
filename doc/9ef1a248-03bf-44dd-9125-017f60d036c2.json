@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the termControl function from the wdf module and uses it to execute the 'pwd' command in a terminal. This is likely part of a larger script or program for managing a Linux system through the command line.",
+    "details": [
+        {
+            "comment": "This code imports the termControl function from the wdf module and uses it to execute the 'pwd' command in a terminal. This is likely part of a larger script or program for managing a Linux system through the command line.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/hook_bash/tclient.py\":0-2",
+            "content": "from wdf import termControl\ntermControl(\"pwd\\n\")"
+        }
+    ]
+}

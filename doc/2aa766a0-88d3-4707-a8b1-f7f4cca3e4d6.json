@@ -1,0 +1,10 @@
+{
+    "summary": "Code starts a Gnome Terminal and prints the process ID (PID), then dumps the contents of the application window.",
+    "details": [
+        {
+            "comment": "Code starts a Gnome Terminal and prints the process ID (PID), then dumps the contents of the application window.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/winauto/ddmo.py\":0-6",
+            "content": "from dogtail import tree\nfrom time import sleep\nimport subprocess\np=subprocess.Popen([\"gnome-terminal\",\"--wait\"])\nprint(p.pid,\"pid\")\napp = tree.root.application(\"gnome-terminal-server\")\napp.dump()"
+        }
+    ]
+}

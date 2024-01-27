@@ -1,0 +1,10 @@
+{
+    "summary": "This script copies the 'demo.cast' file to 'ramdisk/demo.cast'. It seems to be a simple file copy operation for the given file path and name.",
+    "details": [
+        {
+            "comment": "This script copies the 'demo.cast' file to 'ramdisk/demo.cast'. It seems to be a simple file copy operation for the given file path and name.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_render/original_content.sh\":0-1",
+            "content": "#!/bin/bash\ncp demo.cast ramdisk/demo.cast"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "The code is a recursive function 'walker' that traverses the GUI tree using Dogtail library. It prints object type, process ID, and text of each element in the GUI while trying to type \"random string\" into them. The original commented lines show an alternative way to traverse the same GUI tree without using the 'walker' function.",
+    "details": [
+        {
+            "comment": "The code is a recursive function 'walker' that traverses the GUI tree using Dogtail library. It prints object type, process ID, and text of each element in the GUI while trying to type \"random string\" into them. The original commented lines show an alternative way to traverse the same GUI tree without using the 'walker' function.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/winauto/dog_demo.py\":0-32",
+            "content": "from dogtail import tree\nroot=tree.root\ndef walker(a):\n    a.childrenLimit = 1000\n    for x in a.children:\n        print(x,type(x))\n#        x.dump()\n        try:\n            x.typeText(\"random string\")\n        except:\n            print(\"unable to type\")\n        try:\n            print(x.get_process_id())\n        except:\n            print(\"error id here\")\n        try:\n            print(x.get_text())\n        except:\n            print(\"error text here\")\n#        if len(a.children)!=0:\n        for y in x.children:\n            walker(y)\n#        print(dir(x))\n#lisx=[]\nwalker(root)\n\"\"\"\nfor x in root.children:\n    for y in x.children:\n        walker(y)\n\"\"\""
+        }
+    ]
+}

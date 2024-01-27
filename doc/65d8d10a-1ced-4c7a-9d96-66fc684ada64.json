@@ -1,0 +1,10 @@
+{
+    "summary": "This batch file disables echo and establishes a Telnet connection to localhost on port 4312 without specifying a character mode.",
+    "details": [
+        {
+            "comment": "This batch file disables echo and establishes a Telnet connection to localhost on port 4312 without specifying a character mode.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/connect_telnet_dos.cmd\":0-2",
+            "content": "@echo off\ntelnet -e \"\" localhost 4312 \nREM #echo \"mode character\" | telnet -e \"\" localhost 4312 "
+        }
+    ]
+}

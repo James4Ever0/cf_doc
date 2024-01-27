@@ -1,0 +1,10 @@
+{
+    "summary": "This batch file deletes the Windows DiagTrack service, likely used for system diagnostics or telemetry.",
+    "details": [
+        {
+            "comment": "This batch file deletes the Windows DiagTrack service, likely used for system diagnostics or telemetry.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/windows/misc/del_telemetry.cmd\":0-1",
+            "content": "@echo off\nsc delete DiagTrack"
+        }
+    ]
+}

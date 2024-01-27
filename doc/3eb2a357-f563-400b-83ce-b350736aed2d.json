@@ -1,0 +1,10 @@
+{
+    "summary": "This script is an initialization (bootstrap) shell script for VB Charec, which empties the \"lazero\" file.",
+    "details": [
+        {
+            "comment": "This script is an initialization (bootstrap) shell script for VB Charec, which empties the \"lazero\" file.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/init.sh\":0-1",
+            "content": "#!/bin/bash\necho \"\" > lazero"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the \"requests\" and \"json\" libraries, constructs a JSON object with a terminal key, converts it to a string using \"json.dumps\", then sends a POST request to localhost:8888 with the JSON data.",
+    "details": [
+        {
+            "comment": "This code imports the \"requests\" and \"json\" libraries, constructs a JSON object with a terminal key, converts it to a string using \"json.dumps\", then sends a POST request to localhost:8888 with the JSON data.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/code_train/wechat.py\":0-3",
+            "content": "import requests\nimport json\ndata= json.dumps({\"terminal\":\"terminal\"})\nrequests.post(\"http://localhost:8888\",data=data)"
+        }
+    ]
+}

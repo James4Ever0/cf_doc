@@ -1,0 +1,10 @@
+{
+    "summary": "This batch file launches an Android emulator using QEMU, setting the maximum memory and specifying the BIOS files. It first checks if the latest version is needed before running the command with specified options for the emulator execution.",
+    "details": [
+        {
+            "comment": "This batch file launches an Android emulator using QEMU, setting the maximum memory and specifying the BIOS files. It first checks if the latest version is needed before running the command with specified options for the emulator execution.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu.cmd\":0-6",
+            "content": "@echo off\nREM do we need latest?\nREM \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\"  -enable-hax -m 2M,maxmem=5M -mem-path R:\\ -hda c.hd -boot d\n\"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\" -L \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\" -L \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\" -m 2M,slots=2,maxmem=5M  -hda c.hd -boot d\nREM \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"\nREM D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\\kvmvapic.bin\nREM this is not native one."
+        }
+    ]
+}

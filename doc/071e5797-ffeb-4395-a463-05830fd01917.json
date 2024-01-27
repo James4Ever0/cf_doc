@@ -1,0 +1,10 @@
+{
+    "summary": "This script utilizes bash and xdotool to move the mouse cursor to coordinates 500, 500 and perform a left click. The DISPLAY environment variable is set to \":3\" to specify the X server for the graphical user interface (GUI) operation.",
+    "details": [
+        {
+            "comment": "This script utilizes bash and xdotool to move the mouse cursor to coordinates 500, 500 and perform a left click. The DISPLAY environment variable is set to \":3\" to specify the X server for the graphical user interface (GUI) operation.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/winauto/move_mouse.sh\":0-2",
+            "content": "#!/bin/bash\nexport DISPLAY=:3\nxdotool mousemove 500 500 click 1"
+        }
+    ]
+}

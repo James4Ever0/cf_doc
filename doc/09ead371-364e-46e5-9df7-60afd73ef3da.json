@@ -1,0 +1,10 @@
+{
+    "summary": "This code asks for the directory of the dongle and prints it. It then lists the contents of the given directory using os.listdir() and prints the list, followed by \"dongle listed!\" indicating successful listing.",
+    "details": [
+        {
+            "comment": "This code asks for the directory of the dongle and prints it. It then lists the contents of the given directory using os.listdir() and prints the list, followed by \"dongle listed!\" indicating successful listing.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/dir_train/first_training.py\":0-6",
+            "content": "#you are gonna ask for the directory.\ni=input(\"where the heck is the dongle?\\n\")\nprint(i)\nimport os\no = os.listdir(i)\nprint(o)\nprint(\"dongle listed!\")"
+        }
+    ]
+}

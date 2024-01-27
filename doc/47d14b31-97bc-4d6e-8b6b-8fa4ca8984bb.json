@@ -1,0 +1,10 @@
+{
+    "summary": "Code snippet is trying to decode each chunk of a file by reading it in binary mode, splitting the content, and then attempting to decode each chunk. If unable to decode, it prints \"unable to decode\".",
+    "details": [
+        {
+            "comment": "Code snippet is trying to decode each chunk of a file by reading it in binary mode, splitting the content, and then attempting to decode each chunk. If unable to decode, it prints \"unable to decode\".",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/self_train/second_training.py\":0-12",
+            "content": "# to prove something has a thing or to.\n    # wow but this is useless. only a proof of legit grammar.\n# so we want to find something in common.\ndef try_decode(a):\n    try:\n        print(a.decode())\n    except:\n        print(\"unable to decode.\")\na = open(\"cli_text_processing.pdf\",\"rb\").read()\n#print(a)\nfor x in a.split():\n    try_decode(x)\n#    print(x)"
+        }
+    ]
+}

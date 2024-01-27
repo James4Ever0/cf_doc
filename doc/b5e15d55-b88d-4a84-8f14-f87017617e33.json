@@ -1,0 +1,15 @@
+{
+    "summary": "The code defines functions, checks labels, and applies filters to a string. It iterates through possible functions, evaluates them, increments counts if correct results are achieved, and stops after two rounds or when all items are consumed.",
+    "details": [
+        {
+            "comment": "The code defines functions, checks labels, and applies filters to a string. It then iterates through possible functions, evaluating them with given data and incrementing their counts if they return the correct result. This process continues for a maximum of two rounds before stopping.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/parser_train/second_training.py\":0-41",
+            "content": "import re\ndef func0(a,b):\n    return False\ndef func1(a,b):\n    return True\ndef func2(a,b):\n    return a+b\ndef labelcheck(a):\n    return not sum([int(a[x]>=0) for x in a.keys()])>0\ndef filter_function(a):\n    sd = [int(x) for x in re.findall(r'\\d+',sk)]\n    return len(sd)==2\n    # it will return the map!\n    # not being here?\n    # what is that? predetermined things? does it have the weights?\n# what if there's solution? you cannot finite the entire search space!\n# see what you'll get with these two tokens.\n# identifier: None? / transformer?\nsk = \"1 1\"\nprint(\"filter function result\", filter_function(sk))\nsd = [int(x) for x in re.findall(r'\\d+',sk)]\n# so apply these two things.\n# you are gonna map these things. prefilter things out.\n# if true then remember to reverse the filter?\nsf = {\"func0\":0,\"func1\":0,\"func2\":0}\nhopeless = False\nroundx=0\nmaxround = 2\nwhile not hopeless and roundx<maxround:\n    for x in sf.keys():\n        p = eval(x+\"(*sd)\")\n        if p == 2:\n            print(\"correct!\")\n            sf[x]+=1\n#            hopeless = True"
+        },
+        {
+            "comment": "The code is iterating through a dictionary (sf) and checking if any items remain. If there are, it prints the remaining items as the answer. It then increments the round counter and calls labelcheck function.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/parser_train/second_training.py\":42-51",
+            "content": "#            break\n        else:\n            print(\"false!\")\n            sf[x]-=1\n    print(\"current score\",sf)\n    hopeless = labelcheck(sf)\n    roundx+=1\n# you can simply say that they've found the result.\n# print the thing. match all correct things?\nprint(\"filter_function -> {} -> answer 2\".format(\" \".join([y for y in sf.keys() if sf[y]>0])))"
+        }
+    ]
+}

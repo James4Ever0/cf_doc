@@ -1,0 +1,10 @@
+{
+    "summary": "This code is used to run a DOS-based program within the QEMU emulator. It checks if it needs the latest version of QEMU and specifies memory settings, boot drive, and network serial connection for the emulation. Some paths in the script may be outdated or referencing non-native files.",
+    "details": [
+        {
+            "comment": "This code is used to run a DOS-based program within the QEMU emulator. It checks if it needs the latest version of QEMU and specifies memory settings, boot drive, and network serial connection for the emulation. Some paths in the script may be outdated or referencing non-native files.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/run_dos_telnet.cmd\":0-9",
+            "content": "@echo off\nREM do we need latest?\nREM \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\"  -enable-hax -m 2M,maxmem=5M -mem-path R:\\ -hda c.hd -boot d\n\"E:\\Program Files\\qemu\\qemu-system-x86_64.exe\"  -accel hax -m 2M,slots=2,maxmem=5M  -nographic -serial  telnet:localhost:4312,server,nowait -hda c.hd -boot d\nREM \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"\nREM it is fucked.\nREM D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\\kvmvapic.bin\nREM this is not native one.\nREM D:\\Program Files\\MATLAB\\R2018a\\toolbox\\idelink\\foundation\\hostapps\\PUTTY.EXE\nREM \"D:\\Program Files (x86)\\com0com\\setupc.exe\""
+        }
+    ]
+}

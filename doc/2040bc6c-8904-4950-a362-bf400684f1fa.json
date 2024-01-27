@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports necessary libraries, defines a function to evaluate Lisp expressions, runs a Lisp expression using subprocess, filters out empty strings from the output, and finally calls another function to calculate the result of the filtered expression.",
+    "details": [
+        {
+            "comment": "This code imports necessary libraries, defines a function to evaluate Lisp expressions, runs a Lisp expression using subprocess, filters out empty strings from the output, and finally calls another function to calculate the result of the filtered expression.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/parser_train/lispy.py\":0-21",
+            "content": "# so how do you get the number 2?\nimport re\nimport subprocess\nfrom subprocess import PIPE\nexp = \"(+ 1 1)\"\ndef func(a,b):\n    print(eval(\"{}+{}\".format(a,b)))\ndef lispRunner(a):\n    f = subprocess.Popen([\"./lisprunner.sh\"],stdout=PIPE,stderr=PIPE)\n    f = f.communicate()\n    print(f)\ndef filter_out(a):\n    return [x for x in a if len(x)>0]\nlispRunner(exp)\nsv = [x for x in re.findall(r'\\d?',exp)]\n#print(sv)\nsv = filter_out(sv)\n#print(sv)\nfunc(*sv)"
+        }
+    ]
+}

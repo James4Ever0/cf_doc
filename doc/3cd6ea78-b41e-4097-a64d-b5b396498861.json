@@ -1,0 +1,10 @@
+{
+    "summary": "This bash script executes a Python script (fake_input.py), passes its output to the shell, and then pipes that output to another Python script (hooked.py) for further processing.",
+    "details": [
+        {
+            "comment": "This bash script executes a Python script (fake_input.py), passes its output to the shell, and then pipes that output to another Python script (hooked.py) for further processing.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/hook_bash/hooked.sh\":0-1",
+            "content": "#!/bin/bash\npython3 fake_input.py | sh | python3 hooked.py"
+        }
+    ]
+}

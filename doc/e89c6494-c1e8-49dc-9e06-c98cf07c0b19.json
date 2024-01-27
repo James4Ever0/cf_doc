@@ -1,0 +1,10 @@
+{
+    "summary": "This script uses Podman to terminate all running containers.",
+    "details": [
+        {
+            "comment": "This script uses Podman to terminate all running containers.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/docker_ro_image/killall.sh\":0-1",
+            "content": "#!/bin/bash\npodman kill -a"
+        }
+    ]
+}

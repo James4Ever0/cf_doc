@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports necessary libraries, defines functions for concatenating and generating arrays, reads data from standard input, reshapes the image data, applies a splitting function, creates a dictionary with the split data, and stores it using Redis.",
+    "details": [
+        {
+            "comment": "This code imports necessary libraries, defines functions for concatenating and generating arrays, reads data from standard input, reshapes the image data, applies a splitting function, creates a dictionary with the split data, and stores it using Redis.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/trup.py\":0-36",
+            "content": "#from xwd_func import mainConv\nfrom ms3 import spilter\n# does this work in pypy? no?\nimport numpy as np\nimport sys, pickle, time\nfrom nparr_redis import npbset\n# i guess python is full of translation here. translating calls into simple reusable stubs.\n# to redis.\ndef concat(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=0)\n    n=np.concatenate((n,b),axis=0)\n    return n\ndef concat_h(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=1)\n    n=np.concatenate((n,b),axis=1)\n    return n\ndef genline_h(a,b):\n    return np.ones((a,1,b))\ndef genline(a,b):\n    return np.ones((1,a,b))\nwith sys.stdin.buffer as f:\n    # reading from stdin.\n    img = np.array(pickle.load(f))\n    x,_ = img.shape\n    img = img.reshape(x,-1,3)    \n#    img=mainConv(f)\n    t0=time.time()\n    s=spilter(img,(25,80))\n    print(\"spilt timing: \",time.time()-t0)\n    s0={str(k):s[k].copy() for k in s.keys()}\n    npbset(s0,0)"
+        }
+    ]
+}

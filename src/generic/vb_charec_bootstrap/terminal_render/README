@@ -1,0 +1,11 @@
+the qterminal is great. does it work on windows? (maybe not)
+
+windows: either winpty or conpty.
+
+start rendering in electron. node might work but tough.
+
+it seems impossible to change content without rebuilding the whole shit. either host it in server or fucked up.
+
+do it in ramdisk or something. think about it.
+
+consider gnu screen? not on windows. but does it work? serve as a good purpose.

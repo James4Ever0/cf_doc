@@ -1,0 +1,9 @@
+docker is just a unified syntax provider.
+
+there are many differences inbetween.
+
+podman is not avaliable on windows unless using superglue.
+
+hint: run the terminal server.
+
+no tmux. screen donno how to take shot.

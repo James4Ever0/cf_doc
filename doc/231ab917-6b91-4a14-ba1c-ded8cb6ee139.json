@@ -1,0 +1,10 @@
+{
+    "summary": "This script sets up a virtual framebuffer (Xvfb) and runs Dosbox within it, using different screen resolutions as options. The purpose is likely to emulate a DOS environment with graphics within an X Window System server, such as for gaming or software testing.",
+    "details": [
+        {
+            "comment": "This script sets up a virtual framebuffer (Xvfb) and runs Dosbox within it, using different screen resolutions as options. The purpose is likely to emulate a DOS environment with graphics within an X Window System server, such as for gaming or software testing.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/sep_dosbox.sh\":0-6",
+            "content": "#!/bin/bash\n# do it in xvfb.\nmkdir /dev/shm/xvfb\n# value found on internet.\nxvfb-run -f ~/.Xauthority -n 9 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -screen 0 640x400x24 -nocursor\" dosbox\n#xvfb-run -f ~/.Xauthority -n 9 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -screen 0 500x500x24\" dosbox\n#xvfb-run -f ~/.Xauthority -n 9 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -screen 300x300x27\" dosbox"
+        }
+    ]
+}

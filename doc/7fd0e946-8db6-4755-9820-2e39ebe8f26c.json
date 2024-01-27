@@ -1,0 +1,10 @@
+{
+    "summary": "This script moves the mouse cursor to coordinates (1, 1) and simulates a left click. Then it types the string \"123\" using xdotool on a Linux system with a display set to \":3\".",
+    "details": [
+        {
+            "comment": "This script moves the mouse cursor to coordinates (1, 1) and simulates a left click. Then it types the string \"123\" using xdotool on a Linux system with a display set to \":3\".",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/winauto/type_key.sh\":0-3",
+            "content": "#!/bin/bash\nexport DISPLAY=:3\nxdotool mousemove 1 1 click 1\nxdotool type 123"
+        }
+    ]
+}

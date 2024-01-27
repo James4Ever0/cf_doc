@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the sys module and iterates over each input from stdin, printing \"HOOKED!\" before the original line. This could be used for logging or monitoring purposes within a bash environment.",
+    "details": [
+        {
+            "comment": "This code imports the sys module and iterates over each input from stdin, printing \"HOOKED!\" before the original line. This could be used for logging or monitoring purposes within a bash environment.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/hook_bash/hooked.py\":0-3",
+            "content": "import sys\nfor x in sys.stdin:\n    print(\"{HOOKED!} \",x)"
+        }
+    ]
+}

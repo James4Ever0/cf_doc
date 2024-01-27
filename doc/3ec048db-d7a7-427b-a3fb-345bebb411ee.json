@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports subprocess and PIPE, executes a shell script using Popen, communicates with the process, lists files in current directory using os.listdir(), and prints both the list of files and its length.",
+    "details": [
+        {
+            "comment": "This code imports subprocess and PIPE, executes a shell script using Popen, communicates with the process, lists files in current directory using os.listdir(), and prints both the list of files and its length.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/math_train/the_thing.py\":0-8",
+            "content": "import subprocess\n# how do you teach the files?\n# list things. so we can do this.\nfrom subprocess import PIPE\nik = subprocess.Popen([\"./anytrain.sh\"],stdout =PIPE, stderr=PIPE)\nik = ik.communicate()\nprint(ik)\nimport os\nprint(os.listdir(),len(os.listdir()))"
+        }
+    ]
+}

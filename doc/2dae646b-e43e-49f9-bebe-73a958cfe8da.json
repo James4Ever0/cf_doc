@@ -1,0 +1,10 @@
+{
+    "summary": "This script removes and creates a virtual framebuffer directory, starts an Xvfb server within it for the Xfce desktop environment, and sets up necessary display parameters. It also defines options for additional programs like xfwm4, mwm, and xterm which can be run in the same environment if needed.",
+    "details": [
+        {
+            "comment": "This script removes and creates a virtual framebuffer directory, starts an Xvfb server within it for the Xfce desktop environment, and sets up necessary display parameters. It also defines options for additional programs like xfwm4, mwm, and xterm which can be run in the same environment if needed.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/winauto/xfce_virtual.sh\":0-7",
+            "content": "#!/bin/bash\nrm -rf /dev/shm/xvfb\nmkdir /dev/shm/xvfb\nxvfb-run -f ~/.Xauthority -n 9 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -reset -terminate\" ./xfce_shell.sh\n#xvfb-run -f ~/.Xauthority -n 7 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -reset -terminate\" xfwm4 --replace \n#echo xvfb_session_pid $!\n#mwm -display :7\n#xvfb-run -f ~/.Xauthority -n 1 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -listen tcp \" xterm"
+        }
+    ]
+}

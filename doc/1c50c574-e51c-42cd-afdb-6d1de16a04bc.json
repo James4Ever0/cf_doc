@@ -1,0 +1,10 @@
+{
+    "summary": "This code reads input from stdin, concatenates it with newlines, and writes the result to a file called \"pidfile\" using writeOn function.",
+    "details": [
+        {
+            "comment": "This code reads input from stdin, concatenates it with newlines, and writes the result to a file called \"pidfile\" using writeOn function.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/windows/winauto/save_pid.py\":0-8",
+            "content": "import sys\ns=\"\"\ndef writeOn(a):\n    with open(\"pidfile\",\"w+\") as f:\n        f.write(a)\nfor x in sys.stdin:\n    s+=x+\"\\n\"\nwriteOn(s)"
+        }
+    ]
+}

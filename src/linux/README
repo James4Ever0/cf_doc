@@ -1,0 +1,36 @@
+use virtual display, virtual framebuffer.
+
+-> xvfb. or check the headless firefox implementation.
+
+Xvfb -pixdepths 3 27 -fbdir /dev/shm/xvfb :1
+
+gnome-terminal -display :1 & echo $!
+
+xwud -in /dev/shm/xvfb/Xvfb_screen0
+
+-> xvfb-run
+
+www.jedi.be
+wiki.c2.com
+
+-> DISPLAY=:1
+
+env -i /bin/sh -c "export PATH=$PATH;
+                   export XAUTHORITY=$XAUTHORITY;
+                   export DISPLAY=$DISPLAY;
+                   export HOME=$HOME;
+                   export LOGNAME=$LOGNAME;
+                   export USER=$USER;
+                   /usr/bin/xfce4-session"
+
+xdm gdm kdm
+
+https://unix.stackexchange.com/questions/164216/remote-xfce-session-in-a-separate-console
+
+xfrun4 xfdesktop xfwm4
+
+wmaker
+
+https://wiki.archlinux.org/index.php/Window_manager
+
+https://forum.xfce.org/viewtopic.php?id=11046

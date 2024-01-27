@@ -1,0 +1,10 @@
+{
+    "summary": "Installs the Telnet client as part of Windows Features, enabling serial connection via telnet.",
+    "details": [
+        {
+            "comment": "Installs the Telnet client as part of Windows Features, enabling serial connection via telnet.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/vbox_serial_connect/WINDOWS\":0-0",
+            "content": "install telnet client from windows features"
+        }
+    ]
+}

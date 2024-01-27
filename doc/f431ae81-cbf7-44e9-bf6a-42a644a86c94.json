@@ -1,0 +1,10 @@
+{
+    "summary": "This script executes xwud command on Linux, using X Window System (Xvfb) and loading screen0.",
+    "details": [
+        {
+            "comment": "This script executes xwud command on Linux, using X Window System (Xvfb) and loading screen0.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/winauto/ver_xterm.sh\":0-1",
+            "content": "#!/bin/bash\nxwud -in /dev/shm/xvfb/Xvfb_screen0"
+        }
+    ]
+}

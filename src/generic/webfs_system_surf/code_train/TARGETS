@@ -1,0 +1,9 @@
+to reuse the code, even if not directly usable.
+
+provide interface to create different names.
+
+need a function that needs input.
+
+make sure the things are going to the right direction. such as nparr go to numpy, URL go to browser, and PDF go to mupdf.
+
+first of all, check how you use ruby without online hint.

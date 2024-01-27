@@ -1,0 +1,10 @@
+{
+    "summary": "This script is an executable shell script that outputs the text \"hello world whatever but fuck you\" to the console.",
+    "details": [
+        {
+            "comment": "This script is an executable shell script that outputs the text \"hello world whatever but fuck you\" to the console.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/math_train/anytext.sh\":0-1",
+            "content": "#!/bin/bash\necho \"hello world whatever but fuck you\""
+        }
+    ]
+}

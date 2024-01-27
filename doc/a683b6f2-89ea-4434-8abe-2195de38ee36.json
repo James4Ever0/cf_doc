@@ -1,0 +1,10 @@
+{
+    "summary": "This code generates a list of 9 random URLs by appending a randomly generated string of length 9 to the base URL. It uses Python's random module and a SystemRandom instance for generating random values. The code is self-scraping, meaning it scrapes its own URLs.",
+    "details": [
+        {
+            "comment": "This code generates a list of 9 random URLs by appending a randomly generated string of length 9 to the base URL. It uses Python's random module and a SystemRandom instance for generating random values. The code is self-scraping, meaning it scrapes its own URLs.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/scrap.py\":0-10",
+            "content": "# if this works?\n#import scrapy\nimport random\nrng = random.SystemRandom()\ndef genchar(a,b):\n    return \"\".join([rng.choice(a) for x in range(b)])\n# SELF-SCRAPING.\ndoers=\"http://localhost:8888/\"\nrchar=\"abcdefg1234567890\"\nrlink=[doers+genchar(rchar,9) for x in range(9)]\nprint(rlink)"
+        }
+    ]
+}

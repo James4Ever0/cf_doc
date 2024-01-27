@@ -1,0 +1,10 @@
+{
+    "summary": "This code is using specific identifiers and filter/keyword extractors to apply ranking methods on parsing methods. The goal seems to be extracting relevant information from input data by prioritizing certain elements or patterns within the parsed results.",
+    "details": [
+        {
+            "comment": "This code is using specific identifiers and filter/keyword extractors to apply ranking methods on parsing methods. The goal seems to be extracting relevant information from input data by prioritizing certain elements or patterns within the parsed results.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/parser_train/TARGETS\":0-6",
+            "content": "use some identifiers first, or partially some filter/kw extractors.\nI want this machine to do it in this way:\n[identifier] -> using methods -> ranking methods\n[identifier] -> parsing methods -> ranking methods"
+        }
+    ]
+}

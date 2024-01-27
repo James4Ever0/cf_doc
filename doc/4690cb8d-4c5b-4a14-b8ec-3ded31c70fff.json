@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports the pickle and sys modules, loads an array from standard input using pickle's load function, and then prints the entire array along with slices of it (first element and first two elements) and the type of the array.",
+    "details": [
+        {
+            "comment": "The code imports the pickle and sys modules, loads an array from standard input using pickle's load function, and then prints the entire array along with slices of it (first element and first two elements) and the type of the array.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/getslice.py\":0-2",
+            "content": "import pickle, sys\narr = pickle.load(sys.stdin.buffer)\nprint(arr,arr[0:1],arr[0:2],type(arr))"
+        }
+    ]
+}

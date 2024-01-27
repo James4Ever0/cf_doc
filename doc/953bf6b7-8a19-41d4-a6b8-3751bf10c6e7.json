@@ -1,0 +1,10 @@
+{
+    "summary": "This script creates a virtual X server (xvfb), prepares it for use, and runs an xterm within it. The comment explains the purpose of the code in brief: \"Creates X virtual framebuffer and starts an xterm session within it.\"",
+    "details": [
+        {
+            "comment": "This script creates a virtual X server (xvfb), prepares it for use, and runs an xterm within it. The comment explains the purpose of the code in brief: \"Creates X virtual framebuffer and starts an xterm session within it.\"",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/winauto/start_virtual_xterm.sh\":0-4",
+            "content": "#!/bin/bash\nrm -rf /dev/shm/xvfb\nmkdir /dev/shm/xvfb\nxvfb-run -f ~/.Xauthority -n 1 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb\" xterm\n#xvfb-run -f ~/.Xauthority -n 1 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -listen tcp \" xterm"
+        }
+    ]
+}

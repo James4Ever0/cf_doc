@@ -1,0 +1,15 @@
+{
+    "summary": "This code defines functions for image processing, communication with databases, and performs operations like array concatenation, alignment, and threading. It utilizes OpenCV's imshow function to display images and prints timing information.",
+    "details": [
+        {
+            "comment": "This code defines functions for image processing and communication between code and database. It concatenates arrays horizontally or vertically, generates line arrays, and performs vertical alignment. The 'grill' function splits an image and stores the parts in a separate thread to Redis using persistent knowledge.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/gas_tc.py\":0-40",
+            "content": "from ms3 import spilter\nimport cv2\nimport numpy as np\nimport time, threading\nfrom nparr_redis import npbset\n# there has to be persistent knowledge between code and database.\n# i guess python is full of translation here. translating calls into simple reusable stubs.\ndef concat(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=0)\n    n=np.concatenate((n,b),axis=0)\n    return n\ndef concat_h(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=1)\n    n=np.concatenate((n,b),axis=1)\n    return n\ndef genline_h(a,b):\n    return np.ones((a,1,b))\ndef genline(a,b):\n    return np.ones((1,a,b))\ndef grill(img,t0):\n    s=spilter(img,(25,80))\n    # here it is.\n    s0={str(k):s[k].copy() for k in s.keys()}\n    tx = threading.Thread(target=npbset,args=(s0,0))\n    tx.setDaemon(True)\n    tx.start()\n    # separate thread.\n    # same config for that tinycore.\n    rk=list(s.keys())[0]\n    rk=s[rk]\n    _,y,x = rk.shape\n    base_t=None\n    # this is vertical alignment. but what is vertical?\n    for x0 in range(80):\n        base = genline(y,x)"
+        },
+        {
+            "comment": "This code is looping through a range of values, concatenating the results with previous concatentations and checking the shape of base_t and base. It displays multiple images on the same window using OpenCV's imshow function and prints timing information.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/gas_tc.py\":41-55",
+            "content": "        for y0 in range(25):\n            base=concat(base,genline(y,x),s[(y0,x0)])\n        if base_t is None:\n#            print(\"init\",base.shape)\n            base_t = base.copy()\n        else:\n            z,_,_=base.shape\n#            print(\"looping\",base_t.shape,base.shape)\n            base_t = concat_h(base_t,base,genline_h(z,x))\n    #input class: <class '_io.BufferedReader'>    \n    # paint multiple images onto the same window.\n    cv2.imshow(\"sample\",base_t)\n    print(\"timing: \",time.time()-t0)\n    cv2.waitKey(0)\n    cv2.destroyAllWindows()"
+        }
+    ]
+}

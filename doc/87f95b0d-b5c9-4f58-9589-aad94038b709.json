@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports necessary libraries, defines a function called \"poster\" that converts data to JSON format, sends POST requests to \"http://localhost:8888\", and handles exceptions using traceback.",
+    "details": [
+        {
+            "comment": "This code imports necessary libraries, defines a function called \"poster\" that converts data to JSON format, sends POST requests to \"http://localhost:8888\", and handles exceptions using traceback.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/code_train/wdiff.py\":0-9",
+            "content": "import requests\nimport json\nimport traceback\ndef poster(s):\n    data=json.dumps(s)\n#data= json.dumps({\"terminal\":\"terminal\"})\n    try:\n        requests.post(\"http://localhost:8888\",data=data)\n    except:\n        traceback.print_exc()"
+        }
+    ]
+}

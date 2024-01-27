@@ -1,0 +1,10 @@
+{
+    "summary": "The code defines three functions: `poster()`, `termControl()`, and `anyControl()`. These functions send HTTP requests to a server running at \"http://localhost:8888\" with varying data types and methods (POST or GET). If an error occurs, it prints the exception traceback.",
+    "details": [
+        {
+            "comment": "The code defines three functions: `poster()`, `termControl()`, and `anyControl()`. These functions send HTTP requests to a server running at \"http://localhost:8888\" with varying data types and methods (POST or GET). If an error occurs, it prints the exception traceback.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/code_train/wdf.py\":0-35",
+            "content": "import requests\nimport json\nimport traceback\nimport pickle\ndef poster(s):\n    data=None\n    try:\n        data=json.dumps(s)\n    except:\n        data=pickle.dumps(s)\n#data= json.dumps({\"terminal\":\"terminal\"})\n    try:\n        r=requests.post(\"http://localhost:8888\",data=data)\n        return r.content\n#        print(type(r),dir(r))\n    except:\n        traceback.print_exc()\ndef termControl(s):\n    try:\n        r=requests.post(\"http://localhost:8888\",data=s)\n        return r.content\n    except:\n        traceback.print_exc()\ndef anyControl(p,s,a=True):\n    try:\n        if a:\n            r=requests.post(\"http://localhost:{}\".format(p),data=s)\n            return r.content\n        else:\n            r=requests.get(\"http://localhost:{}\".format(p))\n            return r.content\n    except:\n        traceback.print_exc()"
+        }
+    ]
+}

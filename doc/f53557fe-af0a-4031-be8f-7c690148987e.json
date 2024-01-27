@@ -1,0 +1,10 @@
+{
+    "summary": "This script continuously runs the 'ls' command every second and outputs the result to the terminal.",
+    "details": [
+        {
+            "comment": "This script continuously runs the 'ls' command every second and outputs the result to the terminal.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/hook_bash/fake_input.py\":0-5",
+            "content": "import time\nimport os\nwhile True:\n    os.system(\"echo ls\")\n    time.sleep(1)"
+        }
+    ]
+}

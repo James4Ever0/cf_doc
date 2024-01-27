@@ -1,0 +1,15 @@
+{
+    "summary": "This code defines three functions (uniq, du, ethic) that process data based on a condition by filtering, sorting, and selecting specified values.",
+    "details": [
+        {
+            "comment": "The code defines three functions: `uniq`, `du`, and `ethic`. The `uniq` function uniquely identifies elements in a list and assigns an index to each unique element. The `du` function calculates the difference between consecutive elements in a list. The `ethic` function uses these two functions to slide another list against the first one and returns the matched segment or None if no match is found. It also includes optional parameters for controlling filtering and mixing.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/id_func.py\":0-46",
+            "content": "import numpy as np\ndef uniq(a):\n    # start with 0.\n    i = 0\n    d={}\n    k=[]\n    for x in a:\n        if x in d.keys():\n            pass\n        else:\n            d.update({x:i})\n            i+=1\n        k.append(d[x])\n    return np.array(k),d\ndef du(a):\n    return np.diff(a)\ndef ethic(a,b,c=True,mix=0.7,filter_num = 3):\n    # slide the b.\n    ad, _ = uniq(a)\n    N = len(a)\n    N0 = N-1\n    ln = len(b)-N0\n    if not c:\n        for x in range(ln):\n#            print(\"iteration\",x)\n            bn = b[x:x+N]\n            bd, _ = uniq(bn)\n#            print(\"x\",x,\"bd\",bd)\n            if np.all(ad == bd):\n            # check all possible match? maybe later.\n                return bn\n        return None\n    else:\n        can = []\n        preb = 0\n        for x in range(ln):\n#            print(\"iteration\",x)\n            xpreb = x+preb\n            if xpreb<ln:\n                bn = b[xpreb:xpreb+N]\n                bd, _ = uniq(bn)\n                nr = (ad == bd)\n                snr = sum(nr)\n#                if snr > N*0.7:\n#                    print(\"expected\",N,\"actual\",snr,\"max\",len(nr))"
+        },
+        {
+            "comment": "This code appears to be filtering and processing data based on a certain condition. It skips values when the SNR (Signal-to-Noise Ratio) exceeds a threshold, appends others as floating point values, sorts them by their second element, selects a specified number of values from the sorted list, and then returns them. The code uses functions like append, sorting, filtering, and lambda functions.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/id_func.py\":47-62",
+            "content": "                if snr > N*mix:\n                # must skip.\n                    preb+=N0\n                    # append the value instead? floating point.\n                    can.append((bn,-snr/N))\n            else:\n                break\n        fn = sorted(can,key = lambda x: x[1])\n        kan = []\n        for x in fn:\n            if filter_num>0:\n                kan.append(x[0])\n                filter_num-=1\n            else:\n                break\n        return kan"
+        }
+    ]
+}

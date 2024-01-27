@@ -1,0 +1,10 @@
+{
+    "summary": "This script loads a RAM disk using loadram.sh, then launches QEMU emulator with KVM enabled and memory limits set for an i386 system, booting from the specified disk image \"c.hd\".",
+    "details": [
+        {
+            "comment": "This script loads a RAM disk using loadram.sh, then launches QEMU emulator with KVM enabled and memory limits set for an i386 system, booting from the specified disk image \"c.hd\".",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/run_dos.sh\":0-2",
+            "content": "#!/bin/bash\n./loadram.sh\nqemu-system-i386 -enable-kvm -m 5M,maxmem=10M -mem-path $PWD/ramdisk -hda c.hd -boot d"
+        }
+    ]
+}

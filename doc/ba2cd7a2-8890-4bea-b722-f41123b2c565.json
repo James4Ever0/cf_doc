@@ -1,0 +1,10 @@
+{
+    "summary": "This script runs a Python program that generates an array, then passes the output to another Python program to extract slices from it. The first program fails if numpy module is not available.",
+    "details": [
+        {
+            "comment": "This script runs a Python program that generates an array, then passes the output to another Python program to extract slices from it. The first program fails if numpy module is not available.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/pickle_nparray.sh\":0-2",
+            "content": "#!/bin/bash\npython3 genparr.py | pypy3 getslice.py\n# no np module. pickle will fail."
+        }
+    ]
+}

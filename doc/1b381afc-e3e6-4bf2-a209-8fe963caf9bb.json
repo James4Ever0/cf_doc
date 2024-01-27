@@ -1,0 +1,10 @@
+{
+    "summary": "This script executes a series of commands: runs unloadram.sh, creates a ramdisk directory with permissions, and mounts a 10MiB tmpfs filesystem named myramdisk into the ramdisk directory.",
+    "details": [
+        {
+            "comment": "This script executes a series of commands: runs unloadram.sh, creates a ramdisk directory with permissions, and mounts a 10MiB tmpfs filesystem named myramdisk into the ramdisk directory.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/loadram.sh\":0-4",
+            "content": "#!/bin/bash\n./unloadram.sh\nsudo mkdir ramdisk\nsudo chmod 777 ramdisk\nsudo mount -t tmpfs -o size=10m myramdisk ramdisk"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "Ensures that the program is launched and uses Redis for data storage. It updates a function with a new code snippet, then executes it and prints the result.",
+    "details": [
+        {
+            "comment": "Ensures that the program is launched and uses Redis for data storage. It updates a function with a new code snippet, then executes it and prints the result.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/code_train/5th_training.py\":0-11",
+            "content": "# make sure the thing is launched.\n# so how does other languages goes like? especially for some bash syntax.\n# bash syntax could trigger shutdown.:\nfrom nparr_redis import rget, rset\n# it is about editing! how do you change code? how do you modify the code?\n# find the possible change.\nrf=\"\"\"def simpleChange(a):\n    return \"[{}]\".format(a)\"\"\"\nrset(\"remote_function\",rf)\nrg = rget(\"remote_function\")\nexec(rg)\nprint(simpleChange(\"simple change\"))"
+        }
+    ]
+}

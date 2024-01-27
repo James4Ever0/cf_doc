@@ -1,0 +1,15 @@
+{
+    "summary": "The code sets up a virtual machine process in headless mode, handling interrupts and exceptions, potentially for game or simulation character. It deals with keys, sleeps, prints global variables but doesn't receive data. The focus is on reading characters from the canvas or console.",
+    "details": [
+        {
+            "comment": "Code imports necessary libraries, sets up signal handlers for interrupts and exceptions, and launches a virtual machine process in headless mode.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/vint.py\":0-32",
+            "content": "import virtualbox\nimport time\nimport signal, sys\n#from gevent import monkey\n#monkey.patch_all()\n# consider taking that too.\n# the pipe must be initialized. use another thread to initialize the pipe.\nimport threading\nimport subprocess\n# or you can be careless anyway.\nvbox = virtualbox.VirtualBox()\nsession = virtualbox.Session()\nmachine=vbox.find_machine(\"TinyPlus\")\ndef sigint_handler(signal,frame):\n    print(\"interrupted!\")\n    session.console.power_down()\n    time.sleep(0.1)\n    sys.exit(0)\ndef my_except_hook(exctype,value,traceback):\n    session.console.power_down()\n    time.sleep(0.1)\n    sys.__excepthook__(exctype,value,traceback)\n    sys.exit(0)\n    # is it lethal?\nsys.excepthook = my_except_hook\nsignal.signal(signal.SIGINT,sigint_handler)\n#signal.signal(signal.SIGKILL,sigint_handler)\n#virtualbox.library_ext.machine.IMachine\n#print(dir(machine),type(machine))\n# you can close this window anyway, or minimize it using another thread?\nprogress=machine.launch_vm_process(session,\"headless\",\"\")\nprogress.wait_for_completion()"
+        },
+        {
+            "comment": "The code seems to be related to a bootstrapping process, potentially for a character in a game or simulation. It is attempting to determine how to receive and pass around information using keys but isn't sure what \"keys\" refers to. The code sleeps for 5 seconds and then prints the global variables, but it's not receiving any data. It considers connecting to an existing session or closing something else. The code also mentions the possibility of a dedicated image for DOS (Distributed Operating System) and more functionality. The main focus appears to be on figuring out how to read characters from the canvas or console, as it currently finds this method too slow.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/vint.py\":33-42",
+            "content": "# how to pass it around?\n# must be keys. but what is keys?\ntime.sleep(5)\nprint(\"ready!\")\nprint(globals())\n# not receiving shit.\n# connect to existing session if possible? or close that thing.\n# maybe a dedicated image for dos and more.\n# first we have to check how to read chars from the canvas or something.\n# remember that is way too slow to parse info from console. i mean THAT."
+        }
+    ]
+}

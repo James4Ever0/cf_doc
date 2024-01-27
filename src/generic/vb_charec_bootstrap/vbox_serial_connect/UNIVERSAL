@@ -1,0 +1,7 @@
+use telnet. port is specifically chosen.
+
+the address is a numerical value.
+
+TCP Server: Deselect the Connect to Existing Pipe/Socket check box and specify the port number in the Path/Address field. This is typically 23 or 2023. Note that on UNIX-like systems you will have to use a port a number greater than 1024 for regular users. 
+
+https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/serialports.html

@@ -1,0 +1,528 @@
+{
+    "900": {
+        "file_id": 169,
+        "content": "/generic/webfs_system_surf/code_train/tserv.py",
+        "type": "filepath"
+    },
+    "901": {
+        "file_id": 169,
+        "content": "The code sets up a Tornado web application with a single handler route and creates a ProcessProtocol class for handling process connections, allowing GET/POST requests and incorporating time delay.",
+        "type": "summary"
+    },
+    "902": {
+        "file_id": 169,
+        "content": "from twisted.internet import protocol, reactor\nimport time\nimport tornado.ioloop\nimport tornado.web\nimport pickle\nimport os\nPWD=\"PWD=\"+os.environ[\"PWD\"]\n#from process_tool import getSingleSession as gss\n# import sys\n# import multiprocessing\nimport threading\n# password is a must here. not kidding.\n# called the connection to a process.\nclass MyPP(protocol.ProcessProtocol):\n    def __init__(self):\n        self.db=[]\n    def gen(self,a,b):\n        return {'time':time.time(),'fd':a,'data':b}\n    def connectionMade(self):\n        print('connection made!')\n    def write(self, a):\n        self.db.append(self.gen(0,a))\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        self.db.append(self.gen(1,data))\n    def errReceived(self, data):\n        self.db.append(self.gen(2,data))\n# you are going to serve at a different port?\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/tserv.py:1-39"
+    },
+    "903": {
+        "file_id": 169,
+        "content": "This code sets up a ProcessProtocol class, MyPP, for handling connections to a process. The class has a database-like structure (db) for storing connection and communication data. When a connection is made, it prints a message and writes to the transport. It also handles process exiting, output received, and error received events by appending relevant data to its db. Finally, the code indicates that it will be served at a different port if run as the main script.",
+        "type": "comment"
+    },
+    "904": {
+        "file_id": 169,
+        "content": "    pp = MyPP()\n    # command = ['screen', '-x']\n    command = ['judger/x86_64/libjudger.so', '--exe_path=/bin/bash','--env=\"TX=xterm-256color','--env=\"{}\"'.format(PWD)]\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n   # pp.write(b\"cd ../../\\n\")\n    time.sleep(0.1)\n    # not working here.\n    class MainHandler(tornado.web.RequestHandler):\n        def get(self):\n            self.write(\"hello world\\n\")\n        def post(self):\n            sp = self.request.body\n            pp.write(sp+b\"\\n\")\n            time.sleep(0.1)\n            self.write(pickle.dumps(pp.db))\n            pp.db=[]\n            # pass a function to the place?",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/tserv.py:40-70"
+    },
+    "905": {
+        "file_id": 169,
+        "content": "Creates a process to run commands using tornado web server, with a handler for GET and POST requests, and time delay for writing to the process.",
+        "type": "comment"
+    },
+    "906": {
+        "file_id": 169,
+        "content": "        def make_app():\n            return tornado.web.Application([(r\".+\",MainHandler),])\n    app = MainHandler.make_app()\n    app.listen(8888)\n    tornado.ioloop.IOLoop.current().start()\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/tserv.py:71-81"
+    },
+    "907": {
+        "file_id": 169,
+        "content": "This code defines a function `make_app()` that creates a Tornado web application with a single handler route. It then creates an instance of the app, listens on port 8888, starts the IOLoop, and attempts to terminate the program (using either `sys.exit()` or `exit()`). The code also mentions using a process ID (PID) to terminate and speculates that it might be a thread-related issue.",
+        "type": "comment"
+    },
+    "908": {
+        "file_id": 170,
+        "content": "/generic/webfs_system_surf/code_train/wdf.py",
+        "type": "filepath"
+    },
+    "909": {
+        "file_id": 170,
+        "content": "The code defines three functions: `poster()`, `termControl()`, and `anyControl()`. These functions send HTTP requests to a server running at \"http://localhost:8888\" with varying data types and methods (POST or GET). If an error occurs, it prints the exception traceback.",
+        "type": "summary"
+    },
+    "910": {
+        "file_id": 170,
+        "content": "import requests\nimport json\nimport traceback\nimport pickle\ndef poster(s):\n    data=None\n    try:\n        data=json.dumps(s)\n    except:\n        data=pickle.dumps(s)\n#data= json.dumps({\"terminal\":\"terminal\"})\n    try:\n        r=requests.post(\"http://localhost:8888\",data=data)\n        return r.content\n#        print(type(r),dir(r))\n    except:\n        traceback.print_exc()\ndef termControl(s):\n    try:\n        r=requests.post(\"http://localhost:8888\",data=s)\n        return r.content\n    except:\n        traceback.print_exc()\ndef anyControl(p,s,a=True):\n    try:\n        if a:\n            r=requests.post(\"http://localhost:{}\".format(p),data=s)\n            return r.content\n        else:\n            r=requests.get(\"http://localhost:{}\".format(p))\n            return r.content\n    except:\n        traceback.print_exc()",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/wdf.py:1-36"
+    },
+    "911": {
+        "file_id": 170,
+        "content": "The code defines three functions: `poster()`, `termControl()`, and `anyControl()`. These functions send HTTP requests to a server running at \"http://localhost:8888\" with varying data types and methods (POST or GET). If an error occurs, it prints the exception traceback.",
+        "type": "comment"
+    },
+    "912": {
+        "file_id": 171,
+        "content": "/generic/webfs_system_surf/code_train/wdiff.py",
+        "type": "filepath"
+    },
+    "913": {
+        "file_id": 171,
+        "content": "This code imports necessary libraries, defines a function called \"poster\" that converts data to JSON format, sends POST requests to \"http://localhost:8888\", and handles exceptions using traceback.",
+        "type": "summary"
+    },
+    "914": {
+        "file_id": 171,
+        "content": "import requests\nimport json\nimport traceback\ndef poster(s):\n    data=json.dumps(s)\n#data= json.dumps({\"terminal\":\"terminal\"})\n    try:\n        requests.post(\"http://localhost:8888\",data=data)\n    except:\n        traceback.print_exc()",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/wdiff.py:1-10"
+    },
+    "915": {
+        "file_id": 171,
+        "content": "This code imports necessary libraries, defines a function called \"poster\" that converts data to JSON format, sends POST requests to \"http://localhost:8888\", and handles exceptions using traceback.",
+        "type": "comment"
+    },
+    "916": {
+        "file_id": 172,
+        "content": "/generic/webfs_system_surf/code_train/wechat.py",
+        "type": "filepath"
+    },
+    "917": {
+        "file_id": 172,
+        "content": "This code imports the \"requests\" and \"json\" libraries, constructs a JSON object with a terminal key, converts it to a string using \"json.dumps\", then sends a POST request to localhost:8888 with the JSON data.",
+        "type": "summary"
+    },
+    "918": {
+        "file_id": 172,
+        "content": "import requests\nimport json\ndata= json.dumps({\"terminal\":\"terminal\"})\nrequests.post(\"http://localhost:8888\",data=data)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/wechat.py:1-4"
+    },
+    "919": {
+        "file_id": 172,
+        "content": "This code imports the \"requests\" and \"json\" libraries, constructs a JSON object with a terminal key, converts it to a string using \"json.dumps\", then sends a POST request to localhost:8888 with the JSON data.",
+        "type": "comment"
+    },
+    "920": {
+        "file_id": 173,
+        "content": "/generic/webfs_system_surf/dir_train/EXAMPLE",
+        "type": "filepath"
+    },
+    "921": {
+        "file_id": 173,
+        "content": "The code seems to be indicating that the medium (med) is a USB device, and it is mounted in the \"cf/generic/webfs_system_surf/dir_train\" directory as \"EXAMPLE\". The content \"med rot\" might suggest that there is an issue with the medium or it has become damaged.",
+        "type": "summary"
+    },
+    "922": {
+        "file_id": 173,
+        "content": "med rot USB",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/dir_train/EXAMPLE:1-1"
+    },
+    "923": {
+        "file_id": 173,
+        "content": "The code seems to be indicating that the medium (med) is a USB device, and it is mounted in the \"cf/generic/webfs_system_surf/dir_train\" directory as \"EXAMPLE\". The content \"med rot\" might suggest that there is an issue with the medium or it has become damaged.",
+        "type": "comment"
+    },
+    "924": {
+        "file_id": 174,
+        "content": "/generic/webfs_system_surf/dir_train/first_training.py",
+        "type": "filepath"
+    },
+    "925": {
+        "file_id": 174,
+        "content": "This code asks for the directory of the dongle and prints it. It then lists the contents of the given directory using os.listdir() and prints the list, followed by \"dongle listed!\" indicating successful listing.",
+        "type": "summary"
+    },
+    "926": {
+        "file_id": 174,
+        "content": "#you are gonna ask for the directory.\ni=input(\"where the heck is the dongle?\\n\")\nprint(i)\nimport os\no = os.listdir(i)\nprint(o)\nprint(\"dongle listed!\")",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/dir_train/first_training.py:1-7"
+    },
+    "927": {
+        "file_id": 174,
+        "content": "This code asks for the directory of the dongle and prints it. It then lists the contents of the given directory using os.listdir() and prints the list, followed by \"dongle listed!\" indicating successful listing.",
+        "type": "comment"
+    },
+    "928": {
+        "file_id": 175,
+        "content": "/generic/webfs_system_surf/dir_train/second_training.py",
+        "type": "filepath"
+    },
+    "929": {
+        "file_id": 175,
+        "content": "The code prompts for a directory input, then lists the contents of the directory and computes the Levenshtein distance between each file name and a target string. It also calculates trimmed and lower-case trimmed distances. This could potentially be used to find matches within the directory based on closest string similarity.",
+        "type": "summary"
+    },
+    "930": {
+        "file_id": 175,
+        "content": "#you are gonna ask for the directory.\ni=input(\"where the heck is the dongle?\\n\")\n# so this time a single input with typo!\n# can you fix it?\n# the way you use a function, the way you handle the source code.\ndef singleShot(i):\n    import os\n    o = os.listdir(i)\n    return o\n# multiple workable ways?\ndef dis(a,b):\n    import Levenshtein\n    return Levenshtein.distance(a,b)\ndef trim(a,b):\n    return dis(a[:len(b)],b)\n#    print(o)\ndef lowtrim(a,b):\n    return dis(a[:len(b)].lower(),b.lower())\n#    print(\"dongle listed!\")\nfx = \"/\"\nfor x in i.split():\n    print(x)\n    s = singleShot(fx)\n    for sx in s:\n        # so make summary: the lowest thing adding up altogether is true. the rule forms?\n        print(sx,\"distance\",dis(sx,x),\"trim_distance\",trim(sx,x),\"lower_trim\",lowtrim(sx,x))\n    print(\"directory listed!\")\n    # how's it going?\n    # assume it is started from the ground level.",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/dir_train/second_training.py:1-33"
+    },
+    "931": {
+        "file_id": 175,
+        "content": "The code prompts for a directory input, then lists the contents of the directory and computes the Levenshtein distance between each file name and a target string. It also calculates trimmed and lower-case trimmed distances. This could potentially be used to find matches within the directory based on closest string similarity.",
+        "type": "comment"
+    },
+    "932": {
+        "file_id": 176,
+        "content": "/generic/webfs_system_surf/dir_train/third_training.py",
+        "type": "filepath"
+    },
+    "933": {
+        "file_id": 176,
+        "content": "The code takes user input directory, filters files using Levenshtein distance algorithm, finds closest match, and generates a new path based on the lowest score. The code prints \"directory listed!\" and asks a casual question with comment \"# how's it going?\" assuming ground level start.",
+        "type": "summary"
+    },
+    "934": {
+        "file_id": 176,
+        "content": "#you are gonna ask for the directory.\ni=input(\"where the heck is the dongle?\\n\")\n# so this time a single input with typo!\n# can you fix it?\n# the way you use a function, the way you handle the source code.\ndef singleShot(i):\n    import os\n    o = os.listdir(i)\n    return o\n# multiple workable ways?\ndef dis(a,b):\n    import Levenshtein\n    return Levenshtein.distance(a,b)\ndef trim(a,b):\n    return dis(a[:len(b)],b)\n#    print(o)\ndef lowtrim(a,b):\n    return dis(a[:len(b)].lower(),b.lower())\ndef multifilter(s,x):\n    sl = []\n    for sx in s:\n        sl.append((dis(sx,x)+trim(sx,x)+lowtrim(sx,x),sx))\n    sl = sorted(sl,key=lambda x:x[0])\n    for lx in sl:\n        return lx[1]\n#    print(\"dongle listed!\")\nfx = \"/\"\nfor x in i.split():\n    print(x)\n    s = singleShot(fx)\n    print(s)\n    prx = multifilter(s,x)\n    print(prx)\n    fx +=prx+\"/\"\n    #for sx in s:\n        # so make summary: the lowest thing adding up altogether is true. the rule forms?\n        #print(sx,\"distance\",dis(sx,x),\"trim_distance\",trim(sx,x),\"lower_trim\",lowtrim(sx,x))",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/dir_train/third_training.py:1-42"
+    },
+    "935": {
+        "file_id": 176,
+        "content": "The code prompts the user for a directory location and then performs multiple filtering operations on the files within that directory. It uses the Levenshtein distance algorithm to find the closest match between file names, considering both trimmed and lowercase versions of the input name. The code then builds a new path by appending the found directory to the original user input, based on the lowest matching score.",
+        "type": "comment"
+    },
+    "936": {
+        "file_id": 176,
+        "content": "    print(\"directory listed!\")\n    # how's it going?\n    # assume it is started from the ground level.",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/dir_train/third_training.py:43-45"
+    },
+    "937": {
+        "file_id": 176,
+        "content": "This code is printing \"directory listed!\" and asking a casual question with the comment \"# how's it going?\". It assumes that the program or training is starting from scratch or at ground level with \"# assume it is started from the ground level.\"",
+        "type": "comment"
+    },
+    "938": {
+        "file_id": 177,
+        "content": "/generic/webfs_system_surf/math_train/EXAMPLE",
+        "type": "filepath"
+    },
+    "939": {
+        "file_id": 177,
+        "content": "This code appears to be manipulating and updating files within a folder, possibly for organizational or testing purposes. It involves changing words, running processes, and counting the number of existing files in the folder. However, the current state of the code seems to have some issues (referred to as \"shitty\" in the code).",
+        "type": "summary"
+    },
+    "940": {
+        "file_id": 177,
+        "content": "1+1 = 2\n1 1 -> 2\ncount how many files are there in this shitty folder.\nchange a word, replace it and run.\nchange a serial of words.\ngive out multiple changes, all with different routes.",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/EXAMPLE:1-11"
+    },
+    "941": {
+        "file_id": 177,
+        "content": "This code appears to be manipulating and updating files within a folder, possibly for organizational or testing purposes. It involves changing words, running processes, and counting the number of existing files in the folder. However, the current state of the code seems to have some issues (referred to as \"shitty\" in the code).",
+        "type": "comment"
+    },
+    "942": {
+        "file_id": 178,
+        "content": "/generic/webfs_system_surf/math_train/TARGETS",
+        "type": "filepath"
+    },
+    "943": {
+        "file_id": 178,
+        "content": "This code appears to be a part of a problem-solving server that provides knowledge, procedures, or results. It seems to involve a simple server with basic keywords and continues to search for an effective tool for function harvesting. The code also mentions line editing and performing a task related to string composition.",
+        "type": "summary"
+    },
+    "944": {
+        "file_id": 178,
+        "content": "a problem solving server, providing knowledge, procedures or result.\nsimple server, simple keywords. still not finding the demanded tool for function harvesting. line editing is imminent.\nso do some task for string composition.",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/TARGETS:1-5"
+    },
+    "945": {
+        "file_id": 178,
+        "content": "This code appears to be a part of a problem-solving server that provides knowledge, procedures, or results. It seems to involve a simple server with basic keywords and continues to search for an effective tool for function harvesting. The code also mentions line editing and performing a task related to string composition.",
+        "type": "comment"
+    },
+    "946": {
+        "file_id": 179,
+        "content": "/generic/webfs_system_surf/math_train/ULTIMATE",
+        "type": "filepath"
+    },
+    "947": {
+        "file_id": 179,
+        "content": "This script uses Ruby to find and count duplicate lines in a file. It reads the given input file, and for each line, it checks if it's the last column value (accessed with `$F[-1]`), increments its count in the hash `h`, and prints the line if it's a duplicate (count > 1). The results are saved in 'duplicates.txt'.",
+        "type": "summary"
+    },
+    "948": {
+        "file_id": 179,
+        "content": "#!/bin/bash\nruby -F, -ane 'BEGIN{h=Hash.new(0)}; ARGV.size==1 ? h[$F[-1]]+=1 :\n                 h[$F[-1]]>1 && print' duplicates.txt duplicates.txt",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/ULTIMATE:1-3"
+    },
+    "949": {
+        "file_id": 179,
+        "content": "This script uses Ruby to find and count duplicate lines in a file. It reads the given input file, and for each line, it checks if it's the last column value (accessed with `$F[-1]`), increments its count in the hash `h`, and prints the line if it's a duplicate (count > 1). The results are saved in 'duplicates.txt'.",
+        "type": "comment"
+    },
+    "950": {
+        "file_id": 180,
+        "content": "/generic/webfs_system_surf/math_train/anytext.sh",
+        "type": "filepath"
+    },
+    "951": {
+        "file_id": 180,
+        "content": "This script is an executable shell script that outputs the text \"hello world whatever but fuck you\" to the console.",
+        "type": "summary"
+    },
+    "952": {
+        "file_id": 180,
+        "content": "#!/bin/bash\necho \"hello world whatever but fuck you\"",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/anytext.sh:1-2"
+    },
+    "953": {
+        "file_id": 180,
+        "content": "This script is an executable shell script that outputs the text \"hello world whatever but fuck you\" to the console.",
+        "type": "comment"
+    },
+    "954": {
+        "file_id": 181,
+        "content": "/generic/webfs_system_surf/math_train/anytrain.sh",
+        "type": "filepath"
+    },
+    "955": {
+        "file_id": 181,
+        "content": "The code is listing all files in the current directory and counting them using the 'ls' command to display each file name one by one, and then the 'wc' (word count) command to count the total number of files.",
+        "type": "summary"
+    },
+    "956": {
+        "file_id": 181,
+        "content": "#!/bin/bash\nls -1 | wc",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/anytrain.sh:1-2"
+    },
+    "957": {
+        "file_id": 181,
+        "content": "The code is listing all files in the current directory and counting them using the 'ls' command to display each file name one by one, and then the 'wc' (word count) command to count the total number of files.",
+        "type": "comment"
+    },
+    "958": {
+        "file_id": 182,
+        "content": "/generic/webfs_system_surf/math_train/creplace.py",
+        "type": "filepath"
+    },
+    "959": {
+        "file_id": 182,
+        "content": "This Python script reads two files (anytext.sh and shit.sh), compares their contents using difflib's ndiff function, and modifies the first file (anytext.sh) by replacing lines that are only present in the second file (shit.sh). The result is then printed as a joined string.",
+        "type": "summary"
+    },
+    "960": {
+        "file_id": 182,
+        "content": "import difflib\nimport copy\na = open(\"anytext.sh\",\"r\").read()\nb = open(\"shit.sh\",\"r\").read()\n#dir(difflib)\n#rnd = \"round one.                   \"*20\nrnd = copy.copy(a)\nrnd = [x for x in rnd]\n# generate some function. this is it. whatever it means.\nx0 = [x for x in difflib.ndiff(a,b)]\nfor xp in range(len(x0)):\n    xf = x0[xp]\n    if xf[0]==\" \":\n        pass\n    elif xf[0]==\"-\":\n        rnd[xp]=\"\"\n    else:\n        # this is insertion.\n#        rnd[xp]=xf[2]\n        rnd[xp:xp]=xf[2]\nprint(\"\".join(rnd))",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/creplace.py:1-22"
+    },
+    "961": {
+        "file_id": 182,
+        "content": "This Python script reads two files (anytext.sh and shit.sh), compares their contents using difflib's ndiff function, and modifies the first file (anytext.sh) by replacing lines that are only present in the second file (shit.sh). The result is then printed as a joined string.",
+        "type": "comment"
+    },
+    "962": {
+        "file_id": 183,
+        "content": "/generic/webfs_system_surf/math_train/first_training.py",
+        "type": "filepath"
+    },
+    "963": {
+        "file_id": 183,
+        "content": "This code defines a function called `mix_and_eval` which takes any number of arguments, iterates through all possible permutations of the arguments, evaluates each permutation using `eval()`, and prints either \"success\" followed by the evaluated expression or \"error\" if an exception occurs. The code then calls this function with a list containing the elements [\"1\",\"+\",\"1\"].",
+        "type": "summary"
+    },
+    "964": {
+        "file_id": 183,
+        "content": "# remember or get some code.\nimport itertools\ndef mix_and_eval(*args):\n    for x in itertools.permutations(args):\n        try:\n            print(eval(\"\".join(x)))\n            print(\"success\",x)\n        except:\n            print(\"error\",x)\nf = [\"1\",\"+\",\"1\"]\nmix_and_eval(*f)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/first_training.py:1-13"
+    },
+    "965": {
+        "file_id": 183,
+        "content": "This code defines a function called `mix_and_eval` which takes any number of arguments, iterates through all possible permutations of the arguments, evaluates each permutation using `eval()`, and prints either \"success\" followed by the evaluated expression or \"error\" if an exception occurs. The code then calls this function with a list containing the elements [\"1\",\"+\",\"1\"].",
+        "type": "comment"
+    },
+    "966": {
+        "file_id": 184,
+        "content": "/generic/webfs_system_surf/math_train/model.py",
+        "type": "filepath"
+    },
+    "967": {
+        "file_id": 184,
+        "content": "Code initializes a list s0 with \"string\", \"model\", and \"here\". Then, it prints the joined elements of the list. The second line changes the value of 's0[1]' to \"nothing\" and prints the updated list.",
+        "type": "summary"
+    },
+    "968": {
+        "file_id": 184,
+        "content": "s0=[\"string\",\"model\",\"here\"]\nprint(\" \".join(s0))\ns0[1]=\"nothing\"\nprint(\" \".join(s0))",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/model.py:1-4"
+    },
+    "969": {
+        "file_id": 184,
+        "content": "Code initializes a list s0 with \"string\", \"model\", and \"here\". Then, it prints the joined elements of the list. The second line changes the value of 's0[1]' to \"nothing\" and prints the updated list.",
+        "type": "comment"
+    },
+    "970": {
+        "file_id": 185,
+        "content": "/generic/webfs_system_surf/math_train/replace.py",
+        "type": "filepath"
+    },
+    "971": {
+        "file_id": 185,
+        "content": "Code opens a file, reads its content, and then replaces the 4th character with the word \"fuck\" in random positions of the string.",
+        "type": "summary"
+    },
+    "972": {
+        "file_id": 185,
+        "content": "a = open(\"anytext.sh\",\"r\").read()\nprint(a)\n# find and replace? or what?\n#print(a.replace(\"world\",\"fuck\"))\n# insert a fuck somehow.\nimport random\na = [x for x in a]\ns = random.choice(range(len(a)))\nfor k in range(4):\n    a[s+k]=\"fuck\"[k]\nprint(\"\".join(a))",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/replace.py:1-11"
+    },
+    "973": {
+        "file_id": 185,
+        "content": "Code opens a file, reads its content, and then replaces the 4th character with the word \"fuck\" in random positions of the string.",
+        "type": "comment"
+    },
+    "974": {
+        "file_id": 186,
+        "content": "/generic/webfs_system_surf/math_train/second_training.py",
+        "type": "filepath"
+    },
+    "975": {
+        "file_id": 186,
+        "content": "The code defines a function \"mix_and_eval\" that takes any number of arguments and evaluates all possible combinations of them using permutations. It then prints the result for successful evaluations and an error message for unsuccessful ones. The code uses itertools module to generate permutations and eval function to evaluate expressions. Four example lists are provided for demonstration.",
+        "type": "summary"
+    },
+    "976": {
+        "file_id": 186,
+        "content": "# remember or get some code.\nimport itertools\ndef mix_and_eval(*args):\n    for x in itertools.permutations(args):\n        try:\n            print(eval(\"\".join(x)))\n            print(\"success\",x)\n        except:\n            print(\"error\",x)\nf = [\"1\",\"+\",\"1\"]\nmix_and_eval(*f)\nf0 = [\"1\",\"-\",\"1\"]\nmix_and_eval(*f0)\nf1 = [\"1\",\"1\"]\nmix_and_eval(*f1)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/second_training.py:1-17"
+    },
+    "977": {
+        "file_id": 186,
+        "content": "The code defines a function \"mix_and_eval\" that takes any number of arguments and evaluates all possible combinations of them using permutations. It then prints the result for successful evaluations and an error message for unsuccessful ones. The code uses itertools module to generate permutations and eval function to evaluate expressions. Four example lists are provided for demonstration.",
+        "type": "comment"
+    },
+    "978": {
+        "file_id": 187,
+        "content": "/generic/webfs_system_surf/math_train/shit.sh",
+        "type": "filepath"
+    },
+    "979": {
+        "file_id": 187,
+        "content": "This script contains a single line echo command that outputs \"no hello shit but screw you\". It seems to be used for displaying a message with a negative connotation.",
+        "type": "summary"
+    },
+    "980": {
+        "file_id": 187,
+        "content": "#!/bin/bash\necho \"no hello shit but screw you\"",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/shit.sh:1-2"
+    },
+    "981": {
+        "file_id": 187,
+        "content": "This script contains a single line echo command that outputs \"no hello shit but screw you\". It seems to be used for displaying a message with a negative connotation.",
+        "type": "comment"
+    },
+    "982": {
+        "file_id": 188,
+        "content": "/generic/webfs_system_surf/math_train/some thing",
+        "type": "filepath"
+    },
+    "983": {
+        "file_id": 188,
+        "content": "This code represents a placeholder with a Unicode file name for the storage location \"cf/generic/webfs_system_surf/math_train/something\". The code is a reference to a specific file, likely used in a larger system, and indicates that it currently holds no actual content or information.",
+        "type": "summary"
+    },
+    "984": {
+        "file_id": 188,
+        "content": "just a placeholder. unicode file name.",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/some thing:1-1"
+    },
+    "985": {
+        "file_id": 188,
+        "content": "This code represents a placeholder with a Unicode file name for the storage location \"cf/generic/webfs_system_surf/math_train/something\". The code is a reference to a specific file, likely used in a larger system, and indicates that it currently holds no actual content or information.",
+        "type": "comment"
+    },
+    "986": {
+        "file_id": 189,
+        "content": "/generic/webfs_system_surf/math_train/stest.py",
+        "type": "filepath"
+    },
+    "987": {
+        "file_id": 189,
+        "content": "This code uses the requests library to send and receive data over a network. It takes in arguments (math operations) and sends them to a local server, printing the received response after a small delay. The code then gets the final result from the server by making a GET request.",
+        "type": "summary"
+    },
+    "988": {
+        "file_id": 189,
+        "content": "# remember or get some code.\nimport requests\nimport time\ndef mix_and_eval(*args):\n    for x in args:\n        r = requests.post(\"http://localhost:8888\",x)\n        print(\"data received:\",r.content)\n        time.sleep(0.1)\n    r=requests.get(\"http://localhost:8888\")\n    print(r.content)\nf = [\"1\",\"+\",\"1\"]\nmix_and_eval(*f)\nf0 = [\"1\",\"-\",\"1\"]\nmix_and_eval(*f0)\nf1 = [\"1\",\"1\"]\nmix_and_eval(*f1)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/stest.py:1-17"
+    },
+    "989": {
+        "file_id": 189,
+        "content": "This code uses the requests library to send and receive data over a network. It takes in arguments (math operations) and sends them to a local server, printing the received response after a small delay. The code then gets the final result from the server by making a GET request.",
+        "type": "comment"
+    },
+    "990": {
+        "file_id": 190,
+        "content": "/generic/webfs_system_surf/math_train/the_processor.sh",
+        "type": "filepath"
+    },
+    "991": {
+        "file_id": 190,
+        "content": "This code reads \"anytext.sh\", applies different sed substitutions based on the input and produces two output scripts: one with replacements 'world' to 'shit' and 'fuck' to 'screw', another with 'world' to 'hell' and 'fuck' to 'jerk'. The final step is to make the second script executable.",
+        "type": "summary"
+    },
+    "992": {
+        "file_id": 190,
+        "content": "#!/bin/bash\ncat anytext.sh | sed \"s\\world\\shit\\g\" | sed \"s\\fuck\\screw\\g\"\ncat anytext.sh | sed \"s\\world\\hell\\g\" | sed \"s\\fuck\\jerk\\g\"\n#chmod +x shit.sh",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/the_processor.sh:1-4"
+    },
+    "993": {
+        "file_id": 190,
+        "content": "This code reads \"anytext.sh\", applies different sed substitutions based on the input and produces two output scripts: one with replacements 'world' to 'shit' and 'fuck' to 'screw', another with 'world' to 'hell' and 'fuck' to 'jerk'. The final step is to make the second script executable.",
+        "type": "comment"
+    },
+    "994": {
+        "file_id": 191,
+        "content": "/generic/webfs_system_surf/math_train/the_thing.py",
+        "type": "filepath"
+    },
+    "995": {
+        "file_id": 191,
+        "content": "This code imports subprocess and PIPE, executes a shell script using Popen, communicates with the process, lists files in current directory using os.listdir(), and prints both the list of files and its length.",
+        "type": "summary"
+    },
+    "996": {
+        "file_id": 191,
+        "content": "import subprocess\n# how do you teach the files?\n# list things. so we can do this.\nfrom subprocess import PIPE\nik = subprocess.Popen([\"./anytrain.sh\"],stdout =PIPE, stderr=PIPE)\nik = ik.communicate()\nprint(ik)\nimport os\nprint(os.listdir(),len(os.listdir()))",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/the_thing.py:1-9"
+    },
+    "997": {
+        "file_id": 191,
+        "content": "This code imports subprocess and PIPE, executes a shell script using Popen, communicates with the process, lists files in current directory using os.listdir(), and prints both the list of files and its length.",
+        "type": "comment"
+    },
+    "998": {
+        "file_id": 192,
+        "content": "/generic/webfs_system_surf/math_train/third_training.py",
+        "type": "filepath"
+    },
+    "999": {
+        "file_id": 192,
+        "content": "This code defines a web application that receives data through POST requests, mixes and evaluates the received data, and prints success or error messages. The app listens on port 8888 using Tornado framework.",
+        "type": "summary"
+    }
+}

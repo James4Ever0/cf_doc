@@ -1,0 +1,10 @@
+{
+    "summary": "Code tries to decode characters from a PDF file, but it fails when encountering non-decodable characters. It prints the decoded text if successful and also prints intermediate results if a string has been built up before failure occurs.",
+    "details": [
+        {
+            "comment": "Code tries to decode characters from a PDF file, but it fails when encountering non-decodable characters. It prints the decoded text if successful and also prints intermediate results if a string has been built up before failure occurs.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/self_train/third_training.py\":0-23",
+            "content": "# to prove something has a thing or to.\n    # wow but this is useless. only a proof of legit grammar.\n# so we want to find something in common.\ndef try_decode(a):\n    try:\n        return chr(a)\n    except:\n        print(\"unable to decode.\")\na = open(\"cli_text_processing.pdf\",\"rb\").read()\nbuf=\"\"\nfor x in a:\n    td = try_decode(x)\n    if td is None:\n        if buf !=\"\":\n            print(buf)\n            buf = \"\"\n    else:\n        buf+=td\nif buf !=\"\":\n    print(buf)\n#print(a)\n#for x in a.split():\n#    try_decode(x)\n#    print(x)"
+        }
+    ]
+}

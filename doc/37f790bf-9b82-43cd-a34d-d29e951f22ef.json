@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports the random module and defines a function genames that generates mysterious names using random values. It updates a dictionary with \"a_\" + index as key and random value as the corresponding value. The main section calls the genames function with argument 100 to generate 100 such names.",
+    "details": [
+        {
+            "comment": "The code imports the random module and defines a function genames that generates mysterious names using random values. It updates a dictionary with \"a_\" + index as key and random value as the corresponding value. The main section calls the genames function with argument 100 to generate 100 such names.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/code_train/names.py\":0-6",
+            "content": "import random\n# cannot get mysterious names.\ndef genames(a,b = globals()):\n    for x in range(a):\n        b.update({\"a_\"+str(x):random.random()})\nif __name__ == \"__main__\":\n    genames(100)"
+        }
+    ]
+}

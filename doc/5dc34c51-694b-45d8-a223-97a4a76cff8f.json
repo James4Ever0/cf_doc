@@ -1,0 +1,10 @@
+{
+    "summary": "Code snippet explains how to install and configure Samba, reload the smbd daemon, set a user password, and mount CIFS for file sharing between Android and computer. It also suggests using a Linux distribution within Termux to access cifs utils.",
+    "details": [
+        {
+            "comment": "Code snippet explains how to install and configure Samba, reload the smbd daemon, set a user password, and mount CIFS for file sharing between Android and computer. It also suggests using a Linux distribution within Termux to access cifs utils.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_share/SAMBA\":0-22",
+            "content": "/etc/samba/smb.conf # which is absent from termux.\n# termux lacks of minix head files.\nhttps://ubuntu.com/tutorials/install-and-configure-samba#3-setting-up-samba\nhttps://help.ubuntu.com/community/Samba/SambaServerGuide?_ga=2.32623417.682961562.1603725963-1670033026.1592242164\nsudo smbd reload\nlaunch smbd -> killall smbd -> relaunch\nsmbpassword -a <existing username>\nmount -t cifs -o user=root,pass=password,ro //0.0.0.0/sambashare sambashare/\nmount.cifs -o user=root,pass=password,ro //0.0.0.0/sambashare sambashare/\nand thus we can share content from android to computer, though we cannot do nothing on it?\nusually we can call from linux distro inside termux, which can have cifs utils.\nlibnfs."
+        }
+    ]
+}

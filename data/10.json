@@ -1,0 +1,530 @@
+{
+    "1000": {
+        "file_id": 192,
+        "content": "# remember or get some code.\nimport itertools\nimport tornado.web\nimport tornado.ioloop\narr=[]\ndef mix_and_eval(*args):\n    for x in itertools.permutations(args):\n        try:\n            print(eval(\"\".join(x)))\n            print(\"success\",x)\n        except:\n            print(\"error\",x)\nclass MainHandler(tornado.web.RequestHandler):\n    def get(self):\n        global arr\n        arr =[]\n        self.write(\"purging the database.\")\n    def post(self):\n        global arr\n        sp = self.request.body\n        arr.append(sp.decode())\n        mix_and_eval(*arr)\n        self.write(\"data received.\")\n    def make_app():\n        return tornado.web.Application([(r\".+\",MainHandler),])\nif __name__ == \"__main__\":\n    app=MainHandler.make_app()\n    app.listen(8888)\n    tornado.ioloop.IOLoop.current().start()",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/math_train/third_training.py:1-32"
+    },
+    "1001": {
+        "file_id": 192,
+        "content": "This code defines a web application that receives data through POST requests, mixes and evaluates the received data, and prints success or error messages. The app listens on port 8888 using Tornado framework.",
+        "type": "comment"
+    },
+    "1002": {
+        "file_id": 193,
+        "content": "/generic/webfs_system_surf/parser_train/EXAMPLE",
+        "type": "filepath"
+    },
+    "1003": {
+        "file_id": 193,
+        "content": "The code snippet adds two numbers, 1 and 1, resulting in the output of 2. It is a basic example of performing addition using the '+' operator.",
+        "type": "summary"
+    },
+    "1004": {
+        "file_id": 193,
+        "content": "(+ 1 1) -> 2",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/parser_train/EXAMPLE:1-1"
+    },
+    "1005": {
+        "file_id": 193,
+        "content": "The code snippet adds two numbers, 1 and 1, resulting in the output of 2. It is a basic example of performing addition using the '+' operator.",
+        "type": "comment"
+    },
+    "1006": {
+        "file_id": 194,
+        "content": "/generic/webfs_system_surf/parser_train/README",
+        "type": "filepath"
+    },
+    "1007": {
+        "file_id": 194,
+        "content": "The identifier function saves time by quickly detecting specific strings in a dataset, while long-running functions ensure accurate results. Some functions execute system commands to achieve this.",
+        "type": "summary"
+    },
+    "1008": {
+        "file_id": 194,
+        "content": "the identifier function is saving the time. it is a long running daemon. only taking few miliseconds to run.\nsuch as detecting \"http\" string inside a bunch of pdf octave stream or so on. but actually visiting a website can be painstaking.\nmany long-term function that does not grarantee the result to be correct therefore some identifier functions pops up. like executing system command",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/parser_train/README:1-5"
+    },
+    "1009": {
+        "file_id": 194,
+        "content": "The identifier function saves time by quickly detecting specific strings in a dataset, while long-running functions ensure accurate results. Some functions execute system commands to achieve this.",
+        "type": "comment"
+    },
+    "1010": {
+        "file_id": 195,
+        "content": "/generic/webfs_system_surf/parser_train/TARGETS",
+        "type": "filepath"
+    },
+    "1011": {
+        "file_id": 195,
+        "content": "This code is using specific identifiers and filter/keyword extractors to apply ranking methods on parsing methods. The goal seems to be extracting relevant information from input data by prioritizing certain elements or patterns within the parsed results.",
+        "type": "summary"
+    },
+    "1012": {
+        "file_id": 195,
+        "content": "use some identifiers first, or partially some filter/kw extractors.\nI want this machine to do it in this way:\n[identifier] -> using methods -> ranking methods\n[identifier] -> parsing methods -> ranking methods",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/parser_train/TARGETS:1-7"
+    },
+    "1013": {
+        "file_id": 195,
+        "content": "This code is using specific identifiers and filter/keyword extractors to apply ranking methods on parsing methods. The goal seems to be extracting relevant information from input data by prioritizing certain elements or patterns within the parsed results.",
+        "type": "comment"
+    },
+    "1014": {
+        "file_id": 196,
+        "content": "/generic/webfs_system_surf/parser_train/first_training.py",
+        "type": "filepath"
+    },
+    "1015": {
+        "file_id": 196,
+        "content": "Code imports parse module and uses it to parse strings, demonstrating basic parsing functionality using findall and formatting. Last line shows how to use template parsing with a specific example.",
+        "type": "summary"
+    },
+    "1016": {
+        "file_id": 196,
+        "content": "# no time to use ANTLR, right?\n# that's because the architecture is simply not right.\n# it can only become a submodule, and that's it.\na = open(\"rbh.log\",\"r\").read()\n#import parse\nfrom parse import *\n#print(a)\nprint(parse(\"It's {}, I love it!\", \"It's spam, I love it!\"))\nprint([x for x in findall(\"-{} \",a)])\nr = parse(\"My quest is {quest[name]}\", \"My quest is to seek the holy grail!\")\nprint(r)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/parser_train/first_training.py:1-11"
+    },
+    "1017": {
+        "file_id": 196,
+        "content": "Code imports parse module and uses it to parse strings, demonstrating basic parsing functionality using findall and formatting. Last line shows how to use template parsing with a specific example.",
+        "type": "comment"
+    },
+    "1018": {
+        "file_id": 197,
+        "content": "/generic/webfs_system_surf/parser_train/lisprunner.sh",
+        "type": "filepath"
+    },
+    "1019": {
+        "file_id": 197,
+        "content": "This script runs a simple Lisp expression using the clisp interpreter. It takes the input \"(+ 1 1)\" and outputs the result, which is 2. The code uses bash as its shell for execution purposes.",
+        "type": "summary"
+    },
+    "1020": {
+        "file_id": 197,
+        "content": "#!/bin/bash\necho \"(+ 1 1)\" | clisp",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/parser_train/lisprunner.sh:1-2"
+    },
+    "1021": {
+        "file_id": 197,
+        "content": "This script runs a simple Lisp expression using the clisp interpreter. It takes the input \"(+ 1 1)\" and outputs the result, which is 2. The code uses bash as its shell for execution purposes.",
+        "type": "comment"
+    },
+    "1022": {
+        "file_id": 198,
+        "content": "/generic/webfs_system_surf/parser_train/lispy.py",
+        "type": "filepath"
+    },
+    "1023": {
+        "file_id": 198,
+        "content": "This code imports necessary libraries, defines a function to evaluate Lisp expressions, runs a Lisp expression using subprocess, filters out empty strings from the output, and finally calls another function to calculate the result of the filtered expression.",
+        "type": "summary"
+    },
+    "1024": {
+        "file_id": 198,
+        "content": "# so how do you get the number 2?\nimport re\nimport subprocess\nfrom subprocess import PIPE\nexp = \"(+ 1 1)\"\ndef func(a,b):\n    print(eval(\"{}+{}\".format(a,b)))\ndef lispRunner(a):\n    f = subprocess.Popen([\"./lisprunner.sh\"],stdout=PIPE,stderr=PIPE)\n    f = f.communicate()\n    print(f)\ndef filter_out(a):\n    return [x for x in a if len(x)>0]\nlispRunner(exp)\nsv = [x for x in re.findall(r'\\d?',exp)]\n#print(sv)\nsv = filter_out(sv)\n#print(sv)\nfunc(*sv)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/parser_train/lispy.py:1-22"
+    },
+    "1025": {
+        "file_id": 198,
+        "content": "This code imports necessary libraries, defines a function to evaluate Lisp expressions, runs a Lisp expression using subprocess, filters out empty strings from the output, and finally calls another function to calculate the result of the filtered expression.",
+        "type": "comment"
+    },
+    "1026": {
+        "file_id": 199,
+        "content": "/generic/webfs_system_surf/parser_train/second_training.py",
+        "type": "filepath"
+    },
+    "1027": {
+        "file_id": 199,
+        "content": "The code defines functions, checks labels, and applies filters to a string. It iterates through possible functions, evaluates them, increments counts if correct results are achieved, and stops after two rounds or when all items are consumed.",
+        "type": "summary"
+    },
+    "1028": {
+        "file_id": 199,
+        "content": "import re\ndef func0(a,b):\n    return False\ndef func1(a,b):\n    return True\ndef func2(a,b):\n    return a+b\ndef labelcheck(a):\n    return not sum([int(a[x]>=0) for x in a.keys()])>0\ndef filter_function(a):\n    sd = [int(x) for x in re.findall(r'\\d+',sk)]\n    return len(sd)==2\n    # it will return the map!\n    # not being here?\n    # what is that? predetermined things? does it have the weights?\n# what if there's solution? you cannot finite the entire search space!\n# see what you'll get with these two tokens.\n# identifier: None? / transformer?\nsk = \"1 1\"\nprint(\"filter function result\", filter_function(sk))\nsd = [int(x) for x in re.findall(r'\\d+',sk)]\n# so apply these two things.\n# you are gonna map these things. prefilter things out.\n# if true then remember to reverse the filter?\nsf = {\"func0\":0,\"func1\":0,\"func2\":0}\nhopeless = False\nroundx=0\nmaxround = 2\nwhile not hopeless and roundx<maxround:\n    for x in sf.keys():\n        p = eval(x+\"(*sd)\")\n        if p == 2:\n            print(\"correct!\")\n            sf[x]+=1\n#            hopeless = True",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/parser_train/second_training.py:1-42"
+    },
+    "1029": {
+        "file_id": 199,
+        "content": "The code defines functions, checks labels, and applies filters to a string. It then iterates through possible functions, evaluating them with given data and incrementing their counts if they return the correct result. This process continues for a maximum of two rounds before stopping.",
+        "type": "comment"
+    },
+    "1030": {
+        "file_id": 199,
+        "content": "#            break\n        else:\n            print(\"false!\")\n            sf[x]-=1\n    print(\"current score\",sf)\n    hopeless = labelcheck(sf)\n    roundx+=1\n# you can simply say that they've found the result.\n# print the thing. match all correct things?\nprint(\"filter_function -> {} -> answer 2\".format(\" \".join([y for y in sf.keys() if sf[y]>0])))",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/parser_train/second_training.py:43-52"
+    },
+    "1031": {
+        "file_id": 199,
+        "content": "The code is iterating through a dictionary (sf) and checking if any items remain. If there are, it prints the remaining items as the answer. It then increments the round counter and calls labelcheck function.",
+        "type": "comment"
+    },
+    "1032": {
+        "file_id": 200,
+        "content": "/generic/webfs_system_surf/parser_train/third_training.py",
+        "type": "filepath"
+    },
+    "1033": {
+        "file_id": 200,
+        "content": "This code filters and analyzes strings using regular expressions, eval function, and custom label checks to determine the correct answer from a list of functions for pre-processing. It uses a dictionary to store function counts and loops through input data to increment/decrement counts, deciding if rounds are hopeless or not before printing the answer.",
+        "type": "summary"
+    },
+    "1034": {
+        "file_id": 200,
+        "content": "import re\nimport traceback\n# a filter is not always true.\n# a function is not always false.\n# syntax error can cause that.\ndef func0(a,b):\n    return False\ndef func1(a,b):\n    return True\ndef func2(a,b):\n    return a+b\ndef func3(a):\n    return a+\"s\"\ndef labelcheck(a):\n    return not sum([int(a[x]>=0) for x in a.keys()])>0\ndef filter_function(a):\n    sp = [int(x) for x in re.findall(r'\\d+',a)]\n#    print(sp)\n    return len(sp)==2\n# make sure it is independent! even if it has to be verbose.\n    # it will return the map!\n    # not being here?\n    # what is that? predetermined things? does it have the weights?\n# i want to double the filters. result is 2 this time.\n# have you noticed? that connection is independent on many things. no matter what number is coming in, it always has the result.\ndef filter2(a):\n    return \"http\" in a\n# so http is not in a.\n# what if there's solution? you cannot finite the entire search space!\n# see what you'll get with these two tokens.\n# identifier: None? / transformer?\nsk = \"1 1\"\nprint(\"filter function result\", filter_function(sk))",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/parser_train/third_training.py:1-41"
+    },
+    "1035": {
+        "file_id": 200,
+        "content": "The code defines several functions, including filter_function which checks if a string has exactly two numbers, and filter2 which checks if the string contains \"http\". It also includes labelcheck for checking if all labels are present in a dictionary. The purpose of these functions seems to be related to parsing and analyzing strings.",
+        "type": "comment"
+    },
+    "1036": {
+        "file_id": 200,
+        "content": "sd = [int(x) for x in re.findall(r'\\d+',sk)]\n# so apply these two things.\n# you are gonna map these things. prefilter things out.\n# if true then remember to reverse the filter?\nsf = {\"func0\":0,\"func1\":0,\"func2\":0}\nhopeless = False\nroundx=0\nmaxround = 2\nwhile not hopeless and roundx<maxround:\n    for x in sf.keys():\n        p = None\n        try:\n            p = eval(x+\"(*sd)\")\n        except:\n            traceback.print_exc()\n        if p == 2:\n            print(\"correct!\")\n            sf[x]+=1\n#            hopeless = True\n#            break\n        else:\n            print(\"false!\")\n            sf[x]-=1\n    print(\"current score\",sf)\n    hopeless = labelcheck(sf)\n    roundx+=1\n# you can simply say that they've found the result.\n# print the thing. match all correct things?\nprint(\"filter_function -> {} -> answer 2\".format(\" \".join([y for y in sf.keys() if sf[y]>0])))\nsv = \"http\"\nprint(\"f#1 result\", filter_function(sv))\nprint(\"f#2 result\", filter2(sv))\n# if true then remember to reverse the filter?\n# so do we have any element shifter?",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/parser_train/third_training.py:42-78"
+    },
+    "1037": {
+        "file_id": 200,
+        "content": "This code is pre-processing training data by mapping and filtering it to determine the correct answer from a list of functions. The code uses regular expressions, eval function, and custom labelcheck to achieve this. The final result is printed as the filter_function that resulted in an answer of 2. Additional results from two more filters are also printed.",
+        "type": "comment"
+    },
+    "1038": {
+        "file_id": 200,
+        "content": "sf = {\"func0\":0,\"func1\":0,\"func2\":0,\"func3\":0}\nsd = [sv]\nhopeless = False\nroundx = 0\nmaxround = 2\nwhile not hopeless and roundx<maxround:\n    for x in sf.keys():\n        p = None\n        try:\n            p = eval(x+\"(*sd)\")\n        except:\n            # this is syntatic error. how to handle it?\n            # by feeding it back to the system. clearly there's a way to get the number of arguments.\n            traceback.print_exc()\n        if p == \"https\":\n            print(\"correct!\")\n            sf[x]+=1\n#            hopeless = True\n#            break\n        else:\n            print(\"false!\")\n            sf[x]-=1\n    print(\"current score\",sf)\n    hopeless = labelcheck(sf)\n    roundx+=1\nprint(\"filter2 -> {} -> answer https \".format(\" \".join([y for y in sf.keys() if sf[y]>0])))",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/parser_train/third_training.py:79-104"
+    },
+    "1039": {
+        "file_id": 200,
+        "content": "This code uses a dictionary sf to store function names as keys and initializes their respective counts to 0. It also creates an empty list sd for storing input data. The code then enters a loop where it evaluates each key in the sf dictionary using eval() with the input data as arguments. If the result is \"https\", it increments the count of that function, otherwise, it decrements. It checks if the current round is hopeless based on the scores and continues until maxround or becoming hopeless. Finally, it prints the answer based on functions with positive counts.",
+        "type": "comment"
+    },
+    "1040": {
+        "file_id": 201,
+        "content": "/generic/webfs_system_surf/self_train/SELF_TRAINING",
+        "type": "filepath"
+    },
+    "1041": {
+        "file_id": 201,
+        "content": "This code seems to be checking if there is a way to create new tools on equivalent items and then suggesting to get a PDF for further reading. If a similar pattern is found in the PDF, it suggests that something will happen (\"boom\").",
+        "type": "summary"
+    },
+    "1042": {
+        "file_id": 201,
+        "content": "check if there's a way to create new tools on equivalent things.\nget me a pdf and let's read. if there's similar pattern then boom.",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/self_train/SELF_TRAINING:1-3"
+    },
+    "1043": {
+        "file_id": 201,
+        "content": "This code seems to be checking if there is a way to create new tools on equivalent items and then suggesting to get a PDF for further reading. If a similar pattern is found in the PDF, it suggests that something will happen (\"boom\").",
+        "type": "comment"
+    },
+    "1044": {
+        "file_id": 202,
+        "content": "/generic/webfs_system_surf/self_train/e29.py",
+        "type": "filepath"
+    },
+    "1045": {
+        "file_id": 202,
+        "content": "The code reads a file named \"fdecode.log\", splits its contents, and then applies a shifting operation to each 6-character string in the list using function shifter(). The major shift value is 29 and there are additional shifts of 30 and 49 applied. The shifted values are printed as a joined string.",
+        "type": "summary"
+    },
+    "1046": {
+        "file_id": 202,
+        "content": "s0 = open(\"fdecode.log\",\"r\").read().split()\n# get the shift.\n# major shift: 29\ndef shifter(s,k):\n    f=[]\n    for x in s:\n        if len(x)==6:\n            f+=[chr(eval(\"0x\"+x[1:-1])+k)]\n    print(\"\".join(f))\np = [29,30,49]\nfor x in p:\n    shifter(s0,x)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/self_train/e29.py:1-13"
+    },
+    "1047": {
+        "file_id": 202,
+        "content": "The code reads a file named \"fdecode.log\", splits its contents, and then applies a shifting operation to each 6-character string in the list using function shifter(). The major shift value is 29 and there are additional shifts of 30 and 49 applied. The shifted values are printed as a joined string.",
+        "type": "comment"
+    },
+    "1048": {
+        "file_id": 203,
+        "content": "/generic/webfs_system_surf/self_train/evalpool.py",
+        "type": "filepath"
+    },
+    "1049": {
+        "file_id": 203,
+        "content": "The code reads two files, compares sequences of values, and utilizes a function to find the shift between them. It also iterates through a list, printing each element and applying a processing function with parameters f0, f, and x.",
+        "type": "summary"
+    },
+    "1050": {
+        "file_id": 203,
+        "content": "import numpy as np\ns = open(\"fdecode.log\",\"r\").read().split()\nv = open(\"out.txt\",\"r\").read().split()\n# get the shift.\n# major shift: 29\ndef process_tool(c,d,mv,mn):\n#    e = [x for x in d]\n    e = d\n    f = np.diff([x for x in c.encode()])\n    if len(f)==0:\n        return False\n    counter = 0\n    max_counter = 0\n    for x in range(len(e)):\n        if e[x] == f[counter]:\n            if counter < len(f)-1:\n                counter +=1\n            else:\n#                print(\"shift\",mv[x-len(mn)]-ord(mn[0]))\n                print(\"scene\",e[2+x-len(mn):x+1],f)\n                print(\"real\",mv[2+x-len(mn):x+2],[ord(y) for y in mn],mv[2+x-len(mn)])\n                print(\"shift\",mv[2+x-len(mn)]-ord(mn[0]))\n                # how to get the shift?\n                return True\n        else:\n            max_counter = max([max_counter,counter])\n            counter = 0\n    print(\"max_counter\",max_counter)\n    return False\nf=[]\nfor x in s:\n    if len(x)==6:\n        print(x[1:-1])\n        f+=[eval(\"0x\"+x[1:-1])]\n#print(f)\nf0 = np.diff(f)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/self_train/evalpool.py:1-37"
+    },
+    "1051": {
+        "file_id": 203,
+        "content": "The code reads \"fdecode.log\" and \"out.txt\" files, and it aims to find the shift between two sequences of values. It defines a function `process_tool` that takes in two input lists (c, d), mv, and mn as parameters. The function compares elements from list d with the differenced sequence of list c and checks if they match. If there is a match, it prints some information related to the scene, real values, and the shift between them. The code also creates a new list `f` by differencing the values from the 'f' list in 's'. It then calculates the difference between this new 'f' list (f0) and returns True if there is a match, otherwise False.",
+        "type": "comment"
+    },
+    "1052": {
+        "file_id": 203,
+        "content": "for x in v:\n    print(x,process_tool(x,f0,f,x))",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/self_train/evalpool.py:38-39"
+    },
+    "1053": {
+        "file_id": 203,
+        "content": "This code is iterating through each element in the list 'v' and printing it along with the output of a function called 'process_tool' which takes parameters f0, f, and x. The function might be performing some processing on the elements of the list and returning the result for further evaluation or analysis.",
+        "type": "comment"
+    },
+    "1054": {
+        "file_id": 204,
+        "content": "/generic/webfs_system_surf/self_train/first_training.py",
+        "type": "filepath"
+    },
+    "1055": {
+        "file_id": 204,
+        "content": "This code imports numpy and defines two functions: `prove_add` and `process_tool`. The `prove_add` function serves as a proof of concept for evaluating expressions, while `process_tool` aims to find commonalities between two strings. It first creates an array of differences in the character encodings of the first string (`c`) and then checks if there are any matches with the second string (`d`). If a match is found, it returns True; otherwise, False. Finally, the code reads two files, compares their contents using `process_tool`, and prints the results for each word in the second file.",
+        "type": "summary"
+    },
+    "1056": {
+        "file_id": 204,
+        "content": "# to prove something has a thing or to.\nimport numpy\ndef prove_add(s):\n    assert eval(\"1\"+s+\"1\") == 2\n    # wow but this is useless. only a proof of legit grammar.\n# so we want to find something in common.\ndef process_tool(c,d):\n#    e = [x for x in d]\n    e = d\n    f = numpy.diff([x for x in c.encode()])\n    if len(f)==0:\n        return False\n    counter = 0\n    max_counter = 0\n    for x in e:\n        if x == f[counter]:\n            if counter < len(f)-1:\n                counter +=1\n            else:\n                return True\n        else:\n            max_counter = max([max_counter,counter])\n            counter = 0\n    print(\"max_counter\",max_counter)\n    return False\na = open(\"cli_text_processing.pdf\",\"rb\").read()\n#print(a)\nb = open(\"out.txt\",\"r\").read()\n#print(b)\nnd=numpy.diff([x for x in a])\n# type matched. then what?\n# so we're gonna find the commondities.\nfor x in b.split():\n    print(x,type(x),type(a),process_tool(x,nd))",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/self_train/first_training.py:1-35"
+    },
+    "1057": {
+        "file_id": 204,
+        "content": "This code imports numpy and defines two functions: `prove_add` and `process_tool`. The `prove_add` function serves as a proof of concept for evaluating expressions, while `process_tool` aims to find commonalities between two strings. It first creates an array of differences in the character encodings of the first string (`c`) and then checks if there are any matches with the second string (`d`). If a match is found, it returns True; otherwise, False. Finally, the code reads two files, compares their contents using `process_tool`, and prints the results for each word in the second file.",
+        "type": "comment"
+    },
+    "1058": {
+        "file_id": 205,
+        "content": "/generic/webfs_system_surf/self_train/flatdecoder.py",
+        "type": "filepath"
+    },
+    "1059": {
+        "file_id": 205,
+        "content": "This code appears to be extracting data from a PDF file by using regular expressions and decompressing the content with zlib. It reads the PDF, searches for specific patterns related to FlateDecode streams, decompresses the data, and then attempts to print or process the resulting text. However, it seems to have error handling issues, as it fails to handle exceptions properly when trying to decode the data.",
+        "type": "summary"
+    },
+    "1060": {
+        "file_id": 205,
+        "content": "import re\nimport zlib\nimport traceback\n# so what is the process anyway?\n# hit the web, and again?\ndef getcode(a):\n    coder = re.compile(r\"<....>\",re.S)\n    pv = \"\"\n    for s in re.findall(coder,a):\n#        pk = int(s[1:-1],base=16)\n        print(s)\n#        try:\n#            pv +=chr(pk)\n#        except:\n#            traceback.print_exc()\n#    print(pv)\npdf = open(\"cli_text_processing.pdf\", \"rb\").read()\nstream = re.compile(b'.*?FlateDecode.*?stream(.*?)endstream', re.S)\nfor s in re.findall(stream,pdf):\n    s = s.strip(b'\\r\\n')\n    try:\n        print(zlib.decompress(s).decode('UTF-8'))\n        #getcode(zlib.decompress(s).decode('UTF-8'))\n    except:\n        pass",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/self_train/flatdecoder.py:1-26"
+    },
+    "1061": {
+        "file_id": 205,
+        "content": "This code appears to be extracting data from a PDF file by using regular expressions and decompressing the content with zlib. It reads the PDF, searches for specific patterns related to FlateDecode streams, decompresses the data, and then attempts to print or process the resulting text. However, it seems to have error handling issues, as it fails to handle exceptions properly when trying to decode the data.",
+        "type": "comment"
+    },
+    "1062": {
+        "file_id": 206,
+        "content": "/generic/webfs_system_surf/self_train/second_training.py",
+        "type": "filepath"
+    },
+    "1063": {
+        "file_id": 206,
+        "content": "Code snippet is trying to decode each chunk of a file by reading it in binary mode, splitting the content, and then attempting to decode each chunk. If unable to decode, it prints \"unable to decode\".",
+        "type": "summary"
+    },
+    "1064": {
+        "file_id": 206,
+        "content": "# to prove something has a thing or to.\n    # wow but this is useless. only a proof of legit grammar.\n# so we want to find something in common.\ndef try_decode(a):\n    try:\n        print(a.decode())\n    except:\n        print(\"unable to decode.\")\na = open(\"cli_text_processing.pdf\",\"rb\").read()\n#print(a)\nfor x in a.split():\n    try_decode(x)\n#    print(x)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/self_train/second_training.py:1-13"
+    },
+    "1065": {
+        "file_id": 206,
+        "content": "Code snippet is trying to decode each chunk of a file by reading it in binary mode, splitting the content, and then attempting to decode each chunk. If unable to decode, it prints \"unable to decode\".",
+        "type": "comment"
+    },
+    "1066": {
+        "file_id": 207,
+        "content": "/generic/webfs_system_surf/self_train/third_training.py",
+        "type": "filepath"
+    },
+    "1067": {
+        "file_id": 207,
+        "content": "Code tries to decode characters from a PDF file, but it fails when encountering non-decodable characters. It prints the decoded text if successful and also prints intermediate results if a string has been built up before failure occurs.",
+        "type": "summary"
+    },
+    "1068": {
+        "file_id": 207,
+        "content": "# to prove something has a thing or to.\n    # wow but this is useless. only a proof of legit grammar.\n# so we want to find something in common.\ndef try_decode(a):\n    try:\n        return chr(a)\n    except:\n        print(\"unable to decode.\")\na = open(\"cli_text_processing.pdf\",\"rb\").read()\nbuf=\"\"\nfor x in a:\n    td = try_decode(x)\n    if td is None:\n        if buf !=\"\":\n            print(buf)\n            buf = \"\"\n    else:\n        buf+=td\nif buf !=\"\":\n    print(buf)\n#print(a)\n#for x in a.split():\n#    try_decode(x)\n#    print(x)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/self_train/third_training.py:1-24"
+    },
+    "1069": {
+        "file_id": 207,
+        "content": "Code tries to decode characters from a PDF file, but it fails when encountering non-decodable characters. It prints the decoded text if successful and also prints intermediate results if a string has been built up before failure occurs.",
+        "type": "comment"
+    },
+    "1070": {
+        "file_id": 208,
+        "content": "/linux/README",
+        "type": "filepath"
+    },
+    "1071": {
+        "file_id": 208,
+        "content": "This code sets up a virtual display and framebuffer using Xvfb, creates a terminal session with gnome-terminal, runs xfce4-session to start an Xfce desktop environment, and provides links for troubleshooting remote sessions and managing window managers.",
+        "type": "summary"
+    },
+    "1072": {
+        "file_id": 208,
+        "content": "use virtual display, virtual framebuffer.\n-> xvfb. or check the headless firefox implementation.\nXvfb -pixdepths 3 27 -fbdir /dev/shm/xvfb :1\ngnome-terminal -display :1 & echo $!\nxwud -in /dev/shm/xvfb/Xvfb_screen0\n-> xvfb-run\nwww.jedi.be\nwiki.c2.com\n-> DISPLAY=:1\nenv -i /bin/sh -c \"export PATH=$PATH;\n                   export XAUTHORITY=$XAUTHORITY;\n                   export DISPLAY=$DISPLAY;\n                   export HOME=$HOME;\n                   export LOGNAME=$LOGNAME;\n                   export USER=$USER;\n                   /usr/bin/xfce4-session\"\nxdm gdm kdm\nhttps://unix.stackexchange.com/questions/164216/remote-xfce-session-in-a-separate-console\nxfrun4 xfdesktop xfwm4\nwmaker\nhttps://wiki.archlinux.org/index.php/Window_manager\nhttps://forum.xfce.org/viewtopic.php?id=11046",
+        "type": "code",
+        "location": "/linux/README:1-36"
+    },
+    "1073": {
+        "file_id": 208,
+        "content": "This code sets up a virtual display and framebuffer using Xvfb, creates a terminal session with gnome-terminal, runs xfce4-session to start an Xfce desktop environment, and provides links for troubleshooting remote sessions and managing window managers.",
+        "type": "comment"
+    },
+    "1074": {
+        "file_id": 209,
+        "content": "/linux/hook_bash/TARGET",
+        "type": "filepath"
+    },
+    "1075": {
+        "file_id": 209,
+        "content": "Code appears to initialize a Ruby hoster, allowing for data transmission and function execution as plug-ins. It includes recovery functions and internal network operations, with setup instructions provided for the function pool.",
+        "type": "summary"
+    },
+    "1076": {
+        "file_id": 209,
+        "content": "do the ruby hoster. post data to the server and get the response. must make every function as a plug.\ndo some recovery shit. like reset all, recover all or so on.\nwell, say about the internal network. those functions. how do you get them?\na central place for comprehension?\nin order to get your ruby thing running, you must set up a function pool.\nwhat you are going to compose? a bunch of keystrokes? time waiting?",
+        "type": "code",
+        "location": "/linux/hook_bash/TARGET:1-11"
+    },
+    "1077": {
+        "file_id": 209,
+        "content": "Code appears to initialize a Ruby hoster, allowing for data transmission and function execution as plug-ins. It includes recovery functions and internal network operations, with setup instructions provided for the function pool.",
+        "type": "comment"
+    },
+    "1078": {
+        "file_id": 210,
+        "content": "/linux/hook_bash/fake_input.py",
+        "type": "filepath"
+    },
+    "1079": {
+        "file_id": 210,
+        "content": "This script continuously runs the 'ls' command every second and outputs the result to the terminal.",
+        "type": "summary"
+    },
+    "1080": {
+        "file_id": 210,
+        "content": "import time\nimport os\nwhile True:\n    os.system(\"echo ls\")\n    time.sleep(1)",
+        "type": "code",
+        "location": "/linux/hook_bash/fake_input.py:1-6"
+    },
+    "1081": {
+        "file_id": 210,
+        "content": "This script continuously runs the 'ls' command every second and outputs the result to the terminal.",
+        "type": "comment"
+    },
+    "1082": {
+        "file_id": 211,
+        "content": "/linux/hook_bash/hooked.py",
+        "type": "filepath"
+    },
+    "1083": {
+        "file_id": 211,
+        "content": "This code imports the sys module and iterates over each input from stdin, printing \"HOOKED!\" before the original line. This could be used for logging or monitoring purposes within a bash environment.",
+        "type": "summary"
+    },
+    "1084": {
+        "file_id": 211,
+        "content": "import sys\nfor x in sys.stdin:\n    print(\"{HOOKED!} \",x)",
+        "type": "code",
+        "location": "/linux/hook_bash/hooked.py:1-4"
+    },
+    "1085": {
+        "file_id": 211,
+        "content": "This code imports the sys module and iterates over each input from stdin, printing \"HOOKED!\" before the original line. This could be used for logging or monitoring purposes within a bash environment.",
+        "type": "comment"
+    },
+    "1086": {
+        "file_id": 212,
+        "content": "/linux/hook_bash/hooked.sh",
+        "type": "filepath"
+    },
+    "1087": {
+        "file_id": 212,
+        "content": "This bash script executes a Python script (fake_input.py), passes its output to the shell, and then pipes that output to another Python script (hooked.py) for further processing.",
+        "type": "summary"
+    },
+    "1088": {
+        "file_id": 212,
+        "content": "#!/bin/bash\npython3 fake_input.py | sh | python3 hooked.py",
+        "type": "code",
+        "location": "/linux/hook_bash/hooked.sh:1-2"
+    },
+    "1089": {
+        "file_id": 212,
+        "content": "This bash script executes a Python script (fake_input.py), passes its output to the shell, and then pipes that output to another Python script (hooked.py) for further processing.",
+        "type": "comment"
+    },
+    "1090": {
+        "file_id": 213,
+        "content": "/linux/hook_bash/sdiff.py",
+        "type": "filepath"
+    },
+    "1091": {
+        "file_id": 213,
+        "content": "The code sets up a protocol for controlling child processes using MyPP class, handles process communication and logging, supports multiprocessing, and uses Twisted's reactor to spawn processes. It writes commands, sleeps between each command, prints debug information, and terminates the process after tasks are completed.",
+        "type": "summary"
+    },
+    "1092": {
+        "file_id": 213,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import sys\n# import multiprocessing\nimport threading\nimport sys\nfrom wdiff import poster\n# password is a must here. not kidding.\n# called the connection to a process.\nclass MyPP(protocol.ProcessProtocol):\n    def __init__(self):\n        self.db=[]\n    def gen(self,a,b):\n        return {'time':time.time(),'fd':a,'data':b}\n    def connectionMade(self):\n        print('connection made!')\n    def write(self, a):\n        poster(self.gen(0,a))\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        poster(self.gen(1,data))\n        sys.stdout.buffer.write(data)\n    def errReceived(self, data):\n        poster(self.gen(2,data))\n        sys.stderr.buffer.write(data)\nprograms=[\"dl\",\"dp\",\"de\"]\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']",
+        "type": "code",
+        "location": "/linux/hook_bash/sdiff.py:1-41"
+    },
+    "1093": {
+        "file_id": 213,
+        "content": "This code sets up a protocol for connecting to and controlling child processes. It creates an instance of the MyPP class, which handles process communication and logging. The programs list contains the names of the processes that will be controlled. The connectionMade method is called when the connection to the process is made. The write method sends data to the process and logs it. The outReceived and errReceived methods handle output and error messages from the child process, respectively. The code can potentially use multiprocessing support and work with a list of programs.",
+        "type": "comment"
+    },
+    "1094": {
+        "file_id": 213,
+        "content": "#    command = ['bash']\n    command=['bash']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    pp.write(b\"parrot\\n\")\n    time.sleep(0.1)\n    # not working here.\n    for ik in programs:\n        pp.write(\"{}\\n\".format(ik).encode())\n        time.sleep(0.1)\n    pp.write(b\"exit\\n\")\n    time.sleep(0.1)\n    # this will provide the debug info.\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    print(pp.db)\n#    g=gss(pp.db)\n#    print(len(g))\n#    print([len(k) for k in g])\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?",
+        "type": "code",
+        "location": "/linux/hook_bash/sdiff.py:42-82"
+    },
+    "1095": {
+        "file_id": 213,
+        "content": "This code spawns a process using Twisted's reactor and creates a new thread to handle the process. It writes commands to the process and sleeps for 0.1 seconds between each command. The code prints debug information and terminates the process after completing its tasks.",
+        "type": "comment"
+    },
+    "1096": {
+        "file_id": 214,
+        "content": "/linux/hook_bash/tclient.py",
+        "type": "filepath"
+    },
+    "1097": {
+        "file_id": 214,
+        "content": "This code imports the termControl function from the wdf module and uses it to execute the 'pwd' command in a terminal. This is likely part of a larger script or program for managing a Linux system through the command line.",
+        "type": "summary"
+    },
+    "1098": {
+        "file_id": 214,
+        "content": "from wdf import termControl\ntermControl(\"pwd\\n\")",
+        "type": "code",
+        "location": "/linux/hook_bash/tclient.py:1-3"
+    },
+    "1099": {
+        "file_id": 214,
+        "content": "This code imports the termControl function from the wdf module and uses it to execute the 'pwd' command in a terminal. This is likely part of a larger script or program for managing a Linux system through the command line.",
+        "type": "comment"
+    }
+}

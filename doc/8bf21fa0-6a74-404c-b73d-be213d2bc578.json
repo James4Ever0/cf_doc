@@ -1,0 +1,10 @@
+{
+    "summary": "The code defines a function \"mix_and_eval\" that takes any number of arguments and evaluates all possible combinations of them using permutations. It then prints the result for successful evaluations and an error message for unsuccessful ones. The code uses itertools module to generate permutations and eval function to evaluate expressions. Four example lists are provided for demonstration.",
+    "details": [
+        {
+            "comment": "The code defines a function \"mix_and_eval\" that takes any number of arguments and evaluates all possible combinations of them using permutations. It then prints the result for successful evaluations and an error message for unsuccessful ones. The code uses itertools module to generate permutations and eval function to evaluate expressions. Four example lists are provided for demonstration.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/math_train/second_training.py\":0-16",
+            "content": "# remember or get some code.\nimport itertools\ndef mix_and_eval(*args):\n    for x in itertools.permutations(args):\n        try:\n            print(eval(\"\".join(x)))\n            print(\"success\",x)\n        except:\n            print(\"error\",x)\nf = [\"1\",\"+\",\"1\"]\nmix_and_eval(*f)\nf0 = [\"1\",\"-\",\"1\"]\nmix_and_eval(*f0)\nf1 = [\"1\",\"1\"]\nmix_and_eval(*f1)"
+        }
+    ]
+}

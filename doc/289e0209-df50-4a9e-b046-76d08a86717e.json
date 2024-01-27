@@ -1,0 +1,10 @@
+{
+    "summary": "This script sets the DISPLAY environment variable to :9, types \"123\" using xdotool, and presses Enter (0xff0d) key. It may be used for automated interaction with a program running on display :9.",
+    "details": [
+        {
+            "comment": "This script sets the DISPLAY environment variable to :9, types \"123\" using xdotool, and presses Enter (0xff0d) key. It may be used for automated interaction with a program running on display :9.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/typ_dosbox.sh\":0-4",
+            "content": "#!/bin/bash\nexport DISPLAY=:9\nxdotool type 123\nxdotool key 0xff0d\n# 25 x 80. so this is it. get the number right?"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code reads all files in the current directory, randomly selects a subset of their keywords, and prints them in colorful format. It uses threading for concurrency and random selection from SystemRandom for unpredictability. If an error occurs during file reading, it is suppressed.",
+    "details": [
+        {
+            "comment": "This code reads all files in the current directory, randomly selects a subset of their keywords, and prints them in colorful format. It uses threading for concurrency and random selection from SystemRandom for unpredictability. If an error occurs during file reading, it is suppressed.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/kw_tool.py\":0-39",
+            "content": "import os\nimport random\nimport threading, time\nfrom colorama import Fore, Style\nrng = random.SystemRandom()\ndef rdk(a):\n    cl=[Fore.RED,Fore.GREEN,Fore.BLUE]\n    return \" \".join([rng.choice(cl)+x+Style.RESET_ALL for x in a])\ndef nb_read(a,b,c):\n    try:\n        c[0] = open(a,b)\n        return c\n    except:\n        return None\nmax_read = 5\nfor x in os.listdir(\".\"):\n    #try:\n    f=[None]\n    t=threading.Thread(target=nb_read,args=(x,\"r\",f))\n    t.setDaemon(True)\n    t.start()\n    time.sleep(0.001)\n    if f[0] is not None:\n        try:\n            f=f[0]\n            k = set(f.read().split())\n            if len(k)<=max_read:\n                pass\n            else:\n                k = rng.sample(k,max_read)\n                print(Fore.YELLOW+\"file name: \"+Style.RESET_ALL,x)\n                print(\">>>keywords: \",rdk(k))\n        except:\n            pass\n    #except:\n    #    print(\"error opening\",x)"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "Code imports parse module and uses it to parse strings, demonstrating basic parsing functionality using findall and formatting. Last line shows how to use template parsing with a specific example.",
+    "details": [
+        {
+            "comment": "Code imports parse module and uses it to parse strings, demonstrating basic parsing functionality using findall and formatting. Last line shows how to use template parsing with a specific example.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/parser_train/first_training.py\":0-10",
+            "content": "# no time to use ANTLR, right?\n# that's because the architecture is simply not right.\n# it can only become a submodule, and that's it.\na = open(\"rbh.log\",\"r\").read()\n#import parse\nfrom parse import *\n#print(a)\nprint(parse(\"It's {}, I love it!\", \"It's spam, I love it!\"))\nprint([x for x in findall(\"-{} \",a)])\nr = parse(\"My quest is {quest[name]}\", \"My quest is to seek the holy grail!\")\nprint(r)"
+        }
+    ]
+}

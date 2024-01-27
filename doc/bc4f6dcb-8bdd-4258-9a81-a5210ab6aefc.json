@@ -1,0 +1,10 @@
+{
+    "summary": "The code is discussing a live streaming implementation using either Python or traditional methods, debating if all components should be dumped, suggesting a RAM-server for available memory management, and mentioning the existence of an old tool in Python to render screen output to HTML. The code also notes the use of Ctrl+D and Ctrl+A D to end and detach, respectively, and warns against using multiedit due to potential chaos and lacks an init command. Directing /dev/null to screen can cause deadlock.",
+    "details": [
+        {
+            "comment": "The code is discussing a live streaming implementation using either Python or traditional methods, debating if all components should be dumped, suggesting a RAM-server for available memory management, and mentioning the existence of an old tool in Python to render screen output to HTML. The code also notes the use of Ctrl+D and Ctrl+A D to end and detach, respectively, and warns against using multiedit due to potential chaos and lacks an init command. Directing /dev/null to screen can cause deadlock.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_share/README\":0-22",
+            "content": "it is about live streaming. either do it in python or some conventional shits.\ndo we need to dump the whole thing out?\nbetter do a ram-server, reporting all absolute location of avaliable ramdisk.\nARCHITECTURE:\n\troot-ramdisk: location-open, used for symlink to other ramdisks or rolinks to local fs.\nthere used to be a tool to render screen output to html. in python.\nto end:\n\tCtrl+D\nto detach:\n\tCtrl+A D\nmultiedit will bring chaos here. it cannot be used for global revision.\nthere's no init command.\ndirect /dev/null to screen will cause dead lock."
+        }
+    ]
+}

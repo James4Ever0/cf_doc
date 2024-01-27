@@ -1,0 +1,10 @@
+{
+    "summary": "This script starts the Wetty SSH terminal emulator on Linux.",
+    "details": [
+        {
+            "comment": "This script starts the Wetty SSH terminal emulator on Linux.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/websh/start.sh\":0-1",
+            "content": "#!/bin/bash\nwetty "
+        }
+    ]
+}

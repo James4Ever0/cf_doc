@@ -1,0 +1,10 @@
+{
+    "summary": "This script configures and runs a virtual machine using QEMU emulator. It checks if the latest version is needed, sets memory limits, selects serial port for communication, and executes the virtual machine.",
+    "details": [
+        {
+            "comment": "This script configures and runs a virtual machine using QEMU emulator. It checks if the latest version is needed, sets memory limits, selects serial port for communication, and executes the virtual machine.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/run_dos_serial.cmd\":0-9",
+            "content": "@echo off\nREM do we need latest?\nREM \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\"  -enable-hax -m 2M,maxmem=5M -mem-path R:\\ -hda c.hd -boot d\n\"E:\\Program Files\\qemu\\qemu-system-x86_64.exe\"  -accel hax -m 2M,slots=2,maxmem=5M  -nographic -serial COM4 -hda c.hd -boot d\nREM \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"\nREM it is\nREM D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\\kvmvapic.bin\nREM this is not native one.\nREM D:\\Program Files\\MATLAB\\R2018a\\toolbox\\idelink\\foundation\\hostapps\\PUTTY.EXE\nREM \"D:\\Program Files (x86)\\com0com\\setupc.exe\""
+        }
+    ]
+}

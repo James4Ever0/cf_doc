@@ -1,0 +1,20 @@
+{
+    "summary": "The script uses Twisted, Tornado.web, and pickle to create a ProcessProtocol class for managing connections, data writing, and error handling in a subprocess via POST requests on port 8888, terminating the program using the process ID.",
+    "details": [
+        {
+            "comment": "This Python script uses the Twisted library to create a ProcessProtocol class called MyPP. It also utilizes tornado.web and pickle, and defines functions for connection management, data writing, and error handling. The process exits when the main thread is terminated.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/hook_bash/tserv.py\":0-37",
+            "content": "from twisted.internet import protocol, reactor\nimport time\nimport tornado.ioloop\nimport tornado.web\nimport pickle\n#from process_tool import getSingleSession as gss\n# import sys\n# import multiprocessing\nimport threading\n# password is a must here. not kidding.\n# called the connection to a process.\nclass MyPP(protocol.ProcessProtocol):\n    def __init__(self):\n        self.db=[]\n    def gen(self,a,b):\n        return {'time':time.time(),'fd':a,'data':b}\n    def connectionMade(self):\n        print('connection made!')\n    def write(self, a):\n        self.db.append(self.gen(0,a))\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        self.db.append(self.gen(1,data))\n    def errReceived(self, data):\n        self.db.append(self.gen(2,data))\n# you are going to serve at a different port?\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()"
+        },
+        {
+            "comment": "Code snippet sets up a Tornado web application with a single handler named \"MainHandler\". It creates a subprocess (pp) using Twisted library, writes data to it, and allows sending POST requests to write more data. The code also includes a function \"theFunc\" that is used to spawn a process and start a thread for handling requests asynchronously.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/hook_bash/tserv.py\":38-70",
+            "content": "    # command = ['screen', '-x']\n    command = ['bash']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    pp.write(b\"parrot\\n\")\n    time.sleep(0.1)\n    # not working here.\n    class MainHandler(tornado.web.RequestHandler):\n        def get(self):\n            self.write(\"hello world\\n\")\n        def post(self):\n            sp = self.request.body\n            pp.write(sp+b\"\\n\")\n            time.sleep(0.1)\n            self.write(pickle.dumps(pp.db))\n            pp.db=[]\n            # pass a function to the place?\n        def make_app():\n            return tornado.web.Application([(r\".+\",MainHandler),])\n    app = MainHandler.make_app()"
+        },
+        {
+            "comment": "The code sets up the Tornado application to listen on port 8888, starts the IOLoop, and terminates the program. There is a comment discussing how to properly terminate the program using the process ID (pid) and questioning if it needs to be done in a thread.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/hook_bash/tserv.py\":71-78",
+            "content": "    app.listen(8888)\n    tornado.ioloop.IOLoop.current().start()\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This script launches the xfwm4 window manager and xfdesktop, which together create a functional desktop environment.",
+    "details": [
+        {
+            "comment": "This script launches the xfwm4 window manager and xfdesktop, which together create a functional desktop environment.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/winauto/xfce_shell.sh\":0-2",
+            "content": "#!/bin/bash\nxfwm4 --replace &\nxfdesktop"
+        }
+    ]
+}

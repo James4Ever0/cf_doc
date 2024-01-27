@@ -1,0 +1,10 @@
+{
+    "summary": "This script is used to terminate all running \"screen\" processes by executing \"killall screen\". It is likely part of a larger system management or monitoring process.",
+    "details": [
+        {
+            "comment": "This script is used to terminate all running \"screen\" processes by executing \"killall screen\". It is likely part of a larger system management or monitoring process.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_share/bailout.sh\":0-1",
+            "content": "#!/bin/bash\nkillall screen"
+        }
+    ]
+}

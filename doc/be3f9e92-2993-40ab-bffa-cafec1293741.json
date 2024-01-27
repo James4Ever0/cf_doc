@@ -1,0 +1,10 @@
+{
+    "summary": "This script reads from a COM port (/dev/ttyS0) and executes commands using bash. It does not distinguish between STDIN, STDOUT, and STDERR and is deprecated. On Android, it uses sh instead of bash. The code suggests considering other COM ports or using a single port to distinguish input/output/error streams. It also mentions exploring the use of FIFOs for better handling and filtering out echo problems.",
+    "details": [
+        {
+            "comment": "This script reads from a COM port (/dev/ttyS0) and executes commands using bash. It does not distinguish between STDIN, STDOUT, and STDERR and is deprecated. On Android, it uses sh instead of bash. The code suggests considering other COM ports or using a single port to distinguish input/output/error streams. It also mentions exploring the use of FIFOs for better handling and filtering out echo problems.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/vbox_serial_connect/server_naive.sh\":0-8",
+            "content": "#!/bin/bash\n# again, this does not distinguish stdin&stdout. shall be deprecated.\ncat /dev/ttyS0 | bash &>/dev/ttyS0\n# on android:\n# cat /dev/ttyS0 | sh &>/dev/ttyS0\n# should we consider utilize other COM ports? or just use a single port to distinguish STDIN/OUT/ERR?\n# shall you explore more. create fifo to utilize things.\n# and filter out the echo problem. maybe?\n# or just use it!"
+        }
+    ]
+}

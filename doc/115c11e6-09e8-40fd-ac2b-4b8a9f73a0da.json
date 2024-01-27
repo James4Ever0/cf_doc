@@ -1,0 +1,15 @@
+{
+    "summary": "The code uses win32 libraries to interact with a specific application window, finding the parent and child window unique IDs. It sends the character 'D' continuously in an infinite loop with 1-second intervals.",
+    "details": [
+        {
+            "comment": "This code uses the win32 libraries to find and interact with a specific application window. It searches for the unique ID of the application's main/parent window, then retrieves the sub/child window's unique ID using the GW_CHILD constant. This approach allows interaction with a particular window within an application.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/windows/winauto/example.py\":0-14",
+            "content": "#you will need the win32 libraries for this snippet of code to work, Links below\nimport win32gui\nimport win32con\nimport win32api\nfrom time import sleep\n#[hwnd] No matter what people tell you, this is the handle meaning unique ID, \n#[\"Notepad\"] This is the application main/parent name, an easy way to check for examples is in Task Manager\n#[\"test - Notepad\"] This is the application sub/child name, an easy way to check for examples is in Task Manager clicking dropdown arrow\n#hwndMain = win32gui.FindWindow(\"Notepad\", \"test - Notepad\") this returns the main/parent Unique ID\nhwndMain = win32gui.FindWindow(\"Notepad\", \"test - Notepad\")\n#[\"hwndMain\"] this is the main/parent Unique ID used to get the sub/child Unique ID\n#[win32con.GW_CHILD] I havent tested it full, but this DOES get a sub/child Unique ID, if there are multiple you'd have too loop through it, or look for other documention, or i may edit this at some point ;)\n#hwndChild = win32gui.GetWindow(hwndMain, win32con.GW_CHILD) this returns the sub/child Unique ID"
+        },
+        {
+            "comment": "The code is continuously sending the character 'D' to a child application window using PostMessage function and printing the returned value. It does this in an infinite loop, waiting 1 second between each iteration.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/windows/winauto/example.py\":15-32",
+            "content": "hwndChild = win32gui.GetWindow(hwndMain, win32con.GW_CHILD)\n#print(hwndMain) #you can use this to see main/parent Unique ID\n#print(hwndChild)  #you can use this to see sub/child Unique ID\n#While(True) Will always run and continue to run indefinitely\nwhile(True):\n    #[hwndChild] this is the Unique ID of the sub/child application/proccess\n    #[win32con.WM_CHAR] This sets what PostMessage Expects for input theres KeyDown and KeyUp as well\n    #[0x44] hex code for D\n    #[0]No clue, good luck!\n    #temp = win32api.PostMessage(hwndChild, win32con.WM_CHAR, 0x44, 0) returns key sent\n    temp = win32api.PostMessage(hwndChild, win32con.WM_CHAR, 0x44, 0)\n# that is the letter D.\n    #print(temp) prints the returned value of temp, into the console\n    print temp \n    #sleep(1) this waits 1 second before looping through again\n    sleep(1)"
+        }
+    ]
+}

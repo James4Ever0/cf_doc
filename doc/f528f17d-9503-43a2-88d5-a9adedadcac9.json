@@ -1,0 +1,10 @@
+{
+    "summary": "This code defines a web application that receives data through POST requests, mixes and evaluates the received data, and prints success or error messages. The app listens on port 8888 using Tornado framework.",
+    "details": [
+        {
+            "comment": "This code defines a web application that receives data through POST requests, mixes and evaluates the received data, and prints success or error messages. The app listens on port 8888 using Tornado framework.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/math_train/third_training.py\":0-31",
+            "content": "# remember or get some code.\nimport itertools\nimport tornado.web\nimport tornado.ioloop\narr=[]\ndef mix_and_eval(*args):\n    for x in itertools.permutations(args):\n        try:\n            print(eval(\"\".join(x)))\n            print(\"success\",x)\n        except:\n            print(\"error\",x)\nclass MainHandler(tornado.web.RequestHandler):\n    def get(self):\n        global arr\n        arr =[]\n        self.write(\"purging the database.\")\n    def post(self):\n        global arr\n        sp = self.request.body\n        arr.append(sp.decode())\n        mix_and_eval(*arr)\n        self.write(\"data received.\")\n    def make_app():\n        return tornado.web.Application([(r\".+\",MainHandler),])\nif __name__ == \"__main__\":\n    app=MainHandler.make_app()\n    app.listen(8888)\n    tornado.ioloop.IOLoop.current().start()"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "Code imports necessary modules, defines a function \"mix_and_eval\" that takes arguments and tries permutations of those arguments to execute commands using the \"scommand\" module. It handles exceptions with traceback printing and resets the system after each attempt before sleeping for 1 second. The last two lines call the \"mix_and_eval\" function with the list \"cmd\".",
+    "details": [
+        {
+            "comment": "Code imports necessary modules, defines a function \"mix_and_eval\" that takes arguments and tries permutations of those arguments to execute commands using the \"scommand\" module. It handles exceptions with traceback printing and resets the system after each attempt before sleeping for 1 second. The last two lines call the \"mix_and_eval\" function with the list \"cmd\".",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/code_train/7th_training.py\":0-20",
+            "content": "# execute the command. see if it works?\nfrom tcx import reset, scommand\nimport itertools\nimport traceback\nimport time\ncmd = [\"ruby\",\"hello.rb\"]\n# new stuff! irb.\ndef mix_and_eval(*args):\n    for x in itertools.permutations(args):\n        try:\n            print(scommand(\" \".join(x)+\"\\n\"))\n            print(\"success\",x)\n        except:\n            traceback.print_exc()\n            print(\"error\",x)\n        finally:\n            reset()\n            time.sleep(1)\nmix_and_eval(*cmd)\n# so which is first?"
+        }
+    ]
+}

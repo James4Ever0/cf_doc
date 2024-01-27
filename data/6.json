@@ -1,0 +1,531 @@
+{
+    "600": {
+        "file_id": 113,
+        "content": "\tfi\nfi\nerr=0\n#./loadram.sh\n# if umount failed, do not delete shit.\n# check lines. if more than one then there must be error.\n# sudo umount /dev/shm/lazero/ramdisk\n# here's the command! do not do this unless it is necessary.\npsk=$(sudo mount | grep /dev/shm/lazero/ramdisk | wc -c)\npsl=$(sudo mount | grep /dev/shm/lazero/ramdisk | wc -l)\nif [ $psk -eq 0 ]\nthen\n\tsudo umount -Afr /dev/shm/lazero/ramdisk\n\tsudo rm -rf /dev/shm/lazero/ramdisk\n\tsudo mkdir -p /dev/shm/lazero/ramdisk\n\tsudo chmod 777 /dev/shm/lazero/ramdisk\n\tsudo mount -t tmpfs -o size=10m myramdisk /dev/shm/lazero/ramdisk\nelse\n\tpsk=$(sudo mount | grep /dev/shm/lazero/ramdisk | grep \"type tmpfs\" | wc -c)\n\tif [ $psk -eq 0 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $psl -ne 1 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $err -ne 0 ]\n\tthen\n\t\tsudo umount -Afr /dev/shm/lazero/ramdisk\n\t\tsudo rm -rf /dev/shm/lazero/ramdisk\n\t\tsudo mkdir -p /dev/shm/lazero/ramdisk\n\t\tsudo chmod 777 /dev/shm/lazero/ramdisk\n\t\tsudo mount -t tmpfs -o size=10m myramdisk /dev/shm/lazero/ramdisk\n\tfi\nfi\n#./loadram.sh",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/simple_jail.sh:43-81"
+    },
+    "601": {
+        "file_id": 113,
+        "content": "This script checks if a temporary filesystem is mounted correctly, and if not, it unmounts, removes, creates, and mounts the filesystem with specific permissions and size.",
+        "type": "comment"
+    },
+    "602": {
+        "file_id": 113,
+        "content": "touch /dev/shm/lazero/ramdisk/tmux\n# if umount failed, do not delete \nproot -0 -r /dev/shm/lazero/root -b /dev/shm/lazero/ramdisk:/ramdisk -b /dev/shm/lazero/ramdisk/tmux:$(which tmux) -w /ramdisk",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/simple_jail.sh:82-84"
+    },
+    "603": {
+        "file_id": 113,
+        "content": "This code creates a temporary tmux session within a chroot environment, and if umount fails, it prevents deletion of the tmux instance. The script uses proot to create an isolated root filesystem, mounts the ramdisk and tmux binary from /dev/shm/lazero, and runs the tmux session in the chroot environment.",
+        "type": "comment"
+    },
+    "604": {
+        "file_id": 114,
+        "content": "/generic/vb_charec_bootstrap/terminal_share/simple_samba_jail.sh",
+        "type": "filepath"
+    },
+    "605": {
+        "file_id": 114,
+        "content": "This script maintains a shared jail, removing and recreating if necessary. It mounts a CIFS share, creates a 10MB RAM disk, and runs proot with Samba root directory using tmux as a wrapper.",
+        "type": "summary"
+    },
+    "606": {
+        "file_id": 114,
+        "content": "#!/bin/bash\n# this is a shared jail.\n#./loadroot.sh\n# you are shitting on me.\n# sudo umount /dev/shm/lazero/root\npsk=$(sudo mount | grep /dev/shm/lazero/sambaroot | wc -c)\npsl=$(sudo mount | grep /dev/shm/lazero/sambaroot | wc -l)\nerr=0\nif [ $psk -eq 0 ]\nthen\n\tsudo umount -A -f /dev/shm/lazero/sambaroot\n\tpsk=$(sudo ls /dev/shm/lazero/sambaroot | wc -c)\n\tif [ $psk -eq 0 ]\n\tthen\n\t\tsudo rm -rf /dev/shm/lazero/sambaroot\n\tfi\n\tsudo mkdir -p /dev/shm/lazero/sambaroot\n\tsudo chmod 777 /dev/shm/lazero/sambaroot\n\tsudo mount --bind -r / /dev/shm/lazero/sambaroot/\nelse\n\tpsk=$(sudo mount | grep /dev/shm/lazero/sambaroot | grep \"errors=remount-ro\" | wc -c)\n\tif [ $psk -eq 0 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $psl -ne 1 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $err -ne 0 ]\n\tthen\n\t\tsudo umount -A -f /dev/shm/lazero/sambaroot\n\t\tpsk=$(sudo ls /dev/shm/lazero/sambaroot | wc -c)\n\t\tif [ $psk -eq 0 ]\n\t\tthen\n\t\t\tsudo rm -rf /dev/shm/lazero/sambaroot\n\t\tfi\n#\t\tsudo rm -rf /dev/shm/lazero/root\n\t\tsudo mkdir -p /dev/shm/lazero/sambaroot\n\t\tsudo chmod 777 /dev/shm/lazero/sambaroot",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/simple_samba_jail.sh:1-41"
+    },
+    "607": {
+        "file_id": 114,
+        "content": "This script creates and mounts a shared jail, ensuring its integrity. It first checks if the jail is empty or in an error state, then removes it if necessary. If the jail is already mounted read-only due to errors, it increments an error counter. If the error counter or number of mounts exceed a certain threshold, the script remounts and recreates the jail. The script also includes a comment referring to another file's content that seems unnecessary based on the code provided.",
+        "type": "comment"
+    },
+    "608": {
+        "file_id": 114,
+        "content": "\t\tsudo mount.cifs -o user=root,pass=password,ro //0.0.0.0/sambashare /dev/shm/lazero/sambaroot/\n\tfi\nfi\nerr=0\n#./loadram.sh\n# if umount failed, do not delete shit.\n# check lines. if more than one then there must be error.\n# sudo umount /dev/shm/lazero/ramdisk\n# here's the command! do not do this unless it is necessary.\npsk=$(sudo mount | grep /dev/shm/lazero/ramdisk | wc -c)\npsl=$(sudo mount | grep /dev/shm/lazero/ramdisk | wc -l)\nif [ $psk -eq 0 ]\nthen\n\tsudo umount -Afr /dev/shm/lazero/ramdisk\n\tsudo rm -rf /dev/shm/lazero/ramdisk\n\tsudo mkdir -p /dev/shm/lazero/ramdisk\n\tsudo chmod 777 /dev/shm/lazero/ramdisk\n\tsudo mount -t tmpfs -o size=10m myramdisk /dev/shm/lazero/ramdisk\nelse\n\tpsk=$(sudo mount | grep /dev/shm/lazero/ramdisk | grep \"type tmpfs\" | wc -c)\n\tif [ $psk -eq 0 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $psl -ne 1 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $err -ne 0 ]\n\tthen\n\t\tsudo umount -Afr /dev/shm/lazero/ramdisk\n\t\tsudo rm -rf /dev/shm/lazero/ramdisk\n\t\tsudo mkdir -p /dev/shm/lazero/ramdisk\n\t\tsudo chmod 777 /dev/shm/lazero/ramdisk",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/simple_samba_jail.sh:42-77"
+    },
+    "609": {
+        "file_id": 114,
+        "content": "The script checks the mounted CIFS share and performs various operations based on its status. If no mount is detected, it unmounts, removes, creates, and sets permissions for a temporary RAM disk. It also checks if the mounted filesystem is of type tmpfs and ensures only one mount command is present.",
+        "type": "comment"
+    },
+    "610": {
+        "file_id": 114,
+        "content": "\t\tsudo mount -t tmpfs -o size=10m myramdisk /dev/shm/lazero/ramdisk\n\tfi\nfi\n#./loadram.sh\ntouch /dev/shm/lazero/ramdisk/tmux\n# if umount failed, do not delete \nproot -0 -r /dev/shm/lazero/sambaroot -b /dev/shm/lazero/ramdisk:/ramdisk -b /dev/shm/lazero/ramdisk/tmux:$(which tmux) -w /ramdisk",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/simple_samba_jail.sh:78-84"
+    },
+    "611": {
+        "file_id": 114,
+        "content": "This code mounts a temporary file system with 10MB size and creates a tmux file in the specified directory. Then it runs proot container with Samba root directory and mapped RAMdisk, using tmux executable from the same directory as a wrapper.",
+        "type": "comment"
+    },
+    "612": {
+        "file_id": 115,
+        "content": "/generic/vb_charec_bootstrap/terminal_share/simple_share_jail.sh",
+        "type": "filepath"
+    },
+    "613": {
+        "file_id": 115,
+        "content": "This script launches a new screen session named \"jailscreen\" to execute the \"simple_bindfs_jail.sh\" script in the background, with the current directory as its working directory.",
+        "type": "summary"
+    },
+    "614": {
+        "file_id": 115,
+        "content": "#!/bin/bash\nscreen -d -m -S jailscreen -s $PWD/simple_bindfs_jail.sh\n#screen -s $PWD/simple_jail.sh",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/simple_share_jail.sh:1-3"
+    },
+    "615": {
+        "file_id": 115,
+        "content": "This script launches a new screen session named \"jailscreen\" to execute the \"simple_bindfs_jail.sh\" script in the background, with the current directory as its working directory.",
+        "type": "comment"
+    },
+    "616": {
+        "file_id": 116,
+        "content": "/generic/vb_charec_bootstrap/test_mc.py",
+        "type": "filepath"
+    },
+    "617": {
+        "file_id": 116,
+        "content": "Reads two image files \"buf0.png\" and \"buf1.png\", applies brightness adjustment function btight, then plots the result using dplot function.",
+        "type": "summary"
+    },
+    "618": {
+        "file_id": 116,
+        "content": "from measure_console import btight, dplot\nimport cv2\nimageA = cv2.imread(\"buf0.png\")\nimageB = cv2.imread(\"buf1.png\")\ncrx = btight(imageA,imageB)\ndplot(crx)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/test_mc.py:1-7"
+    },
+    "619": {
+        "file_id": 116,
+        "content": "Reads two image files \"buf0.png\" and \"buf1.png\", applies brightness adjustment function btight, then plots the result using dplot function.",
+        "type": "comment"
+    },
+    "620": {
+        "file_id": 117,
+        "content": "/generic/vb_charec_bootstrap/trup.py",
+        "type": "filepath"
+    },
+    "621": {
+        "file_id": 117,
+        "content": "This code imports necessary libraries, defines functions for concatenating and generating arrays, reads data from standard input, reshapes the image data, applies a splitting function, creates a dictionary with the split data, and stores it using Redis.",
+        "type": "summary"
+    },
+    "622": {
+        "file_id": 117,
+        "content": "#from xwd_func import mainConv\nfrom ms3 import spilter\n# does this work in pypy? no?\nimport numpy as np\nimport sys, pickle, time\nfrom nparr_redis import npbset\n# i guess python is full of translation here. translating calls into simple reusable stubs.\n# to redis.\ndef concat(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=0)\n    n=np.concatenate((n,b),axis=0)\n    return n\ndef concat_h(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=1)\n    n=np.concatenate((n,b),axis=1)\n    return n\ndef genline_h(a,b):\n    return np.ones((a,1,b))\ndef genline(a,b):\n    return np.ones((1,a,b))\nwith sys.stdin.buffer as f:\n    # reading from stdin.\n    img = np.array(pickle.load(f))\n    x,_ = img.shape\n    img = img.reshape(x,-1,3)    \n#    img=mainConv(f)\n    t0=time.time()\n    s=spilter(img,(25,80))\n    print(\"spilt timing: \",time.time()-t0)\n    s0={str(k):s[k].copy() for k in s.keys()}\n    npbset(s0,0)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/trup.py:1-37"
+    },
+    "623": {
+        "file_id": 117,
+        "content": "This code imports necessary libraries, defines functions for concatenating and generating arrays, reads data from standard input, reshapes the image data, applies a splitting function, creates a dictionary with the split data, and stores it using Redis.",
+        "type": "comment"
+    },
+    "624": {
+        "file_id": 118,
+        "content": "/generic/vb_charec_bootstrap/trwp.sh",
+        "type": "filepath"
+    },
+    "625": {
+        "file_id": 118,
+        "content": "This script copies and processes data from Xvfb screen0, piping it to pypy3 for raw conversion and then to python3 for further processing in trup.py. It emphasizes the importance of using a finite name for registering with something else and obtaining recent commands.",
+        "type": "summary"
+    },
+    "626": {
+        "file_id": 118,
+        "content": "#!/bin/bash\n# must pipe the data to the process.\n# to redis.\ncp /dev/shm/xvfb/Xvfb_screen0 /dev/shm/xvfb/DOS && cat /dev/shm/xvfb/DOS | pypy3  pypy_xwd.py --raw | python3 trup.py\n# whatever your name is. it gotta be finite.\n# must register to something else?\n# get recent command?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/trwp.sh:1-7"
+    },
+    "627": {
+        "file_id": 118,
+        "content": "This script copies and processes data from Xvfb screen0, piping it to pypy3 for raw conversion and then to python3 for further processing in trup.py. It emphasizes the importance of using a finite name for registering with something else and obtaining recent commands.",
+        "type": "comment"
+    },
+    "628": {
+        "file_id": 119,
+        "content": "/generic/vb_charec_bootstrap/tscrap/demo_file_path.py",
+        "type": "filepath"
+    },
+    "629": {
+        "file_id": 119,
+        "content": "This code imports the os module and uses it to obtain the parent directory of the current file. It then prints the file path, which could be useful for navigation in larger codebases or when debugging.",
+        "type": "summary"
+    },
+    "630": {
+        "file_id": 119,
+        "content": "import os\npr = \"/\".join(os.path.realpath(__file__).split(\"/\")[:-1])\n#print(__file__)\nprint(pr)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/tscrap/demo_file_path.py:1-4"
+    },
+    "631": {
+        "file_id": 119,
+        "content": "This code imports the os module and uses it to obtain the parent directory of the current file. It then prints the file path, which could be useful for navigation in larger codebases or when debugging.",
+        "type": "comment"
+    },
+    "632": {
+        "file_id": 120,
+        "content": "/generic/vb_charec_bootstrap/tscrap/test.sh",
+        "type": "filepath"
+    },
+    "633": {
+        "file_id": 120,
+        "content": "This Bash script uses Scrapy, a Python web scraping framework, to crawl a website called 'example'. The output is piped into grep with a context of 5 lines before and after the matching pattern. This allows for easy identification of specific content related to 'localhost' within the scraped data.",
+        "type": "summary"
+    },
+    "634": {
+        "file_id": 120,
+        "content": "#!/bin/bash\nscrapy crawl example | grep -C 5 localhost",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/tscrap/test.sh:1-2"
+    },
+    "635": {
+        "file_id": 120,
+        "content": "This Bash script uses Scrapy, a Python web scraping framework, to crawl a website called 'example'. The output is piped into grep with a context of 5 lines before and after the matching pattern. This allows for easy identification of specific content related to 'localhost' within the scraped data.",
+        "type": "comment"
+    },
+    "636": {
+        "file_id": 121,
+        "content": "/generic/vb_charec_bootstrap/typ_dosbox.sh",
+        "type": "filepath"
+    },
+    "637": {
+        "file_id": 121,
+        "content": "This script sets the DISPLAY environment variable to :9, types \"123\" using xdotool, and presses Enter (0xff0d) key. It may be used for automated interaction with a program running on display :9.",
+        "type": "summary"
+    },
+    "638": {
+        "file_id": 121,
+        "content": "#!/bin/bash\nexport DISPLAY=:9\nxdotool type 123\nxdotool key 0xff0d\n# 25 x 80. so this is it. get the number right?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/typ_dosbox.sh:1-5"
+    },
+    "639": {
+        "file_id": 121,
+        "content": "This script sets the DISPLAY environment variable to :9, types \"123\" using xdotool, and presses Enter (0xff0d) key. It may be used for automated interaction with a program running on display :9.",
+        "type": "comment"
+    },
+    "640": {
+        "file_id": 122,
+        "content": "/generic/vb_charec_bootstrap/unpickle.py",
+        "type": "filepath"
+    },
+    "641": {
+        "file_id": 122,
+        "content": "The code uses image processing and character recognition techniques. It imports libraries, aligns images vertically, and generates lines of ones. Potential issues with threading and GIL are mentioned. The code may require rearrangement or pickling without numpy for use with the spilter function.",
+        "type": "summary"
+    },
+    "642": {
+        "file_id": 122,
+        "content": "#from xwd_func import mainConv\nfrom ms3 import spilter\n# does this work in pypy? no?\nimport cv2\nimport numpy as np\nimport sys, pickle, time\n# i guess python is full of translation here. translating calls into simple reusable stubs.\ndef concat(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=0)\n    n=np.concatenate((n,b),axis=0)\n    return n\ndef concat_h(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=1)\n    n=np.concatenate((n,b),axis=1)\n    return n\ndef genline_h(a,b):\n    return np.ones((a,1,b))\ndef genline(a,b):\n    return np.ones((1,a,b))\nwith sys.stdin.buffer as f:\n    img = np.array(pickle.load(f))\n    x,_ = img.shape\n    img = img.reshape(x,-1,3)    \n#    img=mainConv(f)\n    t0=time.time()\n    s=spilter(img,(25,80))\n    print(\"spilt timing: \",time.time()-t0)\n    # not the problem with this one.\n    # use threading to do char recognition? but there's gil.\n    # same config for that tinycore.\n    rk=list(s.keys())[0]\n    rk=s[rk]\n    _,y,x = rk.shape\n    base_t=None\n    # this is vertical alignment. but what is vertical?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/unpickle.py:1-41"
+    },
+    "643": {
+        "file_id": 122,
+        "content": "The code appears to be related to image processing and character recognition. It imports various libraries, defines functions for concatenation and generating lines of ones, loads an image using pickle, reshapes the image, splits it into parts based on specified dimensions, and then performs vertical alignment. The code also suggests potential issues with threading and Python's Global Interpreter Lock (GIL).",
+        "type": "comment"
+    },
+    "644": {
+        "file_id": 122,
+        "content": "    for x0 in range(80):\n        base = genline(y,x)\n        for y0 in range(25):\n            base=concat(base,genline(y,x),s[(y0,x0)])\n        if base_t is None:\n#            print(\"init\",base.shape)\n            base_t = base.copy()\n        else:\n            z,_,_=base.shape\n#            print(\"looping\",base_t.shape,base.shape)\n            base_t = concat_h(base_t,base,genline_h(z,x))\n    # input class: <class '_io.BufferedReader'>    \n    # paint multiple images onto the same window.\n    # still not good for the spilter function? can we rearrange this? or pickle this without numpy?\n    cv2.imshow(\"sample\",base_t)\n    cv2.waitKey(0)\n    cv2.destroyAllWindows()",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/unpickle.py:42-58"
+    },
+    "645": {
+        "file_id": 122,
+        "content": "Iterates through a range of values, concatenating generated lines and storing them in base_t. Displays the final result as an image using OpenCV. The code may need to be rearranged or pickled without numpy for use with the spilter function.",
+        "type": "comment"
+    },
+    "646": {
+        "file_id": 123,
+        "content": "/generic/vb_charec_bootstrap/vbox.py",
+        "type": "filepath"
+    },
+    "647": {
+        "file_id": 123,
+        "content": "The code imports necessary libraries and handles signals while launching a VirtualBox machine named \"TinyPlus\". It initiates an infinite loop, defines functions init() and shot(), and uses progress variable for waiting until the VM process finishes. A thread reads data from \"lazero\" file, decodes it, and sends keys to console with potential slow parsing issues.",
+        "type": "summary"
+    },
+    "648": {
+        "file_id": 123,
+        "content": "import virtualbox\nimport time\nimport signal, sys\n#from gevent import monkey\n#monkey.patch_all()\n# consider taking that too.\n# the pipe must be initialized. use another thread to initialize the pipe.\nimport threading\nimport subprocess\n# or you can be careless anyway.\nvbox = virtualbox.VirtualBox()\nsession = virtualbox.Session()\nmachine=vbox.find_machine(\"TinyPlus\")\ndef sigint_handler(signal,frame):\n    print(\"interrupted!\")\n    session.console.power_down()\n    time.sleep(0.1)\n    sys.exit(0)\nsignal.signal(signal.SIGINT,sigint_handler)\n#virtualbox.library_ext.machine.IMachine\n#print(dir(machine),type(machine))\n# you can close this window anyway, or minimize it using another thread?\nprogress=machine.launch_vm_process(session,\"gui\",\"\")\nprogress.wait_for_completion()\n# how to pass it around?\n# must be keys. but what is keys?\ntime.sleep(5)\n# not receiving shit.\n# connect to existing session if possible? or close that thing.\ndef init():\n    time.sleep(0.2)\n    subprocess.run([\"./init.sh\"])\n\"\"\"def shot(sess):\n    s=sess.console.display\"\"\"",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vbox.py:1-35"
+    },
+    "649": {
+        "file_id": 123,
+        "content": "The code imports virtualbox and time libraries, handles SIGINT signals, launches a VirtualBox machine named \"TinyPlus\", starts an infinite loop to receive console output, and defines functions init() and shot(). The progress variable is used for waiting until the VM process finishes. It also includes a thread for initializing the pipe and a function called init() that runs a separate script.",
+        "type": "comment"
+    },
+    "650": {
+        "file_id": 123,
+        "content": "t=threading.Thread(target=init)\nt.setDaemon(True)\nt.start()\nwith open(\"lazero\",\"r\") as f:\n    while True:\n        r=f.readline()\n        # be properly decoded.\n        if len(r)==0:\n            pass\n        else:\n            session.console.keyboard.put_keys(r)\n        time.sleep(0.1)\n        print(\">>> visible delay?\",time.time())\n#session.console.keyboard.put_keys(\"Hello, world!\")\n# maybe a dedicated image for dos and more.\n# first we have to check how to read chars from the canvas or something.\n# remember that is way too slow to parse info from console. i mean THAT.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vbox.py:37-53"
+    },
+    "651": {
+        "file_id": 123,
+        "content": "Thread reads data from \"lazero\" file, decodes it, and sends keys to console. It may have slow console parsing issues but plans to read characters from canvas later. Time.sleep() used for delay.",
+        "type": "comment"
+    },
+    "652": {
+        "file_id": 124,
+        "content": "/generic/vb_charec_bootstrap/vbox_serial_connect/LINUX",
+        "type": "filepath"
+    },
+    "653": {
+        "file_id": 124,
+        "content": "This code enables the serial console access and sets up a virtualbox GUI, configuring serial port settings, changing file permissions, and using socat for UNIX-CONNECT.",
+        "type": "summary"
+    },
+    "654": {
+        "file_id": 124,
+        "content": "http://cncc.bingj.com/cache.aspx?q=enable+ttyS0+console&d=4973099763566566&mkt=en-US&setlang=en-US&w=NLK4tpH4nf3VgWpRa28o28_o6KvlJ_Zq\nhttps://docs.cloud.oracle.com/en-us/iaas/Content/Compute/Tasks/enablingserialconsoleaccess.htm\ncat /dev/ttyS0 | bash &> /dev/ttyS0\nvirtualbox gui:\n\tsettings -> serial -> com1 -> host pipe -> uncheck use existing -> /tmp/vbox\nchange /opt/.filetool.ops\nchange /etc/{inittab,securetty}\nfiletool.sh -b\nfiletool.sh -r\nsocat - UNIX-CONNECT:/tmp/vbox",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vbox_serial_connect/LINUX:1-19"
+    },
+    "655": {
+        "file_id": 124,
+        "content": "This code enables the serial console access and sets up a virtualbox GUI, configuring serial port settings, changing file permissions, and using socat for UNIX-CONNECT.",
+        "type": "comment"
+    },
+    "656": {
+        "file_id": 125,
+        "content": "/generic/vb_charec_bootstrap/vbox_serial_connect/UNIVERSAL",
+        "type": "filepath"
+    },
+    "657": {
+        "file_id": 125,
+        "content": "Code sets up a Telnet connection using a specific port and address, likely for communication between VirtualBox serial ports.",
+        "type": "summary"
+    },
+    "658": {
+        "file_id": 125,
+        "content": "use telnet. port is specifically chosen.\nthe address is a numerical value.\nTCP Server: Deselect the Connect to Existing Pipe/Socket check box and specify the port number in the Path/Address field. This is typically 23 or 2023. Note that on UNIX-like systems you will have to use a port a number greater than 1024 for regular users. \nhttps://docs.oracle.com/en/virtualization/virtualbox/6.0/user/serialports.html",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vbox_serial_connect/UNIVERSAL:1-7"
+    },
+    "659": {
+        "file_id": 125,
+        "content": "Code sets up a Telnet connection using a specific port and address, likely for communication between VirtualBox serial ports.",
+        "type": "comment"
+    },
+    "660": {
+        "file_id": 126,
+        "content": "/generic/vb_charec_bootstrap/vbox_serial_connect/WINDOWS",
+        "type": "filepath"
+    },
+    "661": {
+        "file_id": 126,
+        "content": "Installs the Telnet client as part of Windows Features, enabling serial connection via telnet.",
+        "type": "summary"
+    },
+    "662": {
+        "file_id": 126,
+        "content": "install telnet client from windows features",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vbox_serial_connect/WINDOWS:1-1"
+    },
+    "663": {
+        "file_id": 126,
+        "content": "Installs the Telnet client as part of Windows Features, enabling serial connection via telnet.",
+        "type": "comment"
+    },
+    "664": {
+        "file_id": 127,
+        "content": "/generic/vb_charec_bootstrap/vbox_serial_connect/interactive.sh",
+        "type": "filepath"
+    },
+    "665": {
+        "file_id": 127,
+        "content": "The script utilizes the 'socat' command-line tool to establish a UNIX domain socket connection with the specified path, allowing communication between processes.",
+        "type": "summary"
+    },
+    "666": {
+        "file_id": 127,
+        "content": "#!/bin/bash\nsocat - UNIX-CONNECT:/tmp/vbox",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vbox_serial_connect/interactive.sh:1-2"
+    },
+    "667": {
+        "file_id": 127,
+        "content": "The script utilizes the 'socat' command-line tool to establish a UNIX domain socket connection with the specified path, allowing communication between processes.",
+        "type": "comment"
+    },
+    "668": {
+        "file_id": 128,
+        "content": "/generic/vb_charec_bootstrap/vbox_serial_connect/interactive_tcp.cmd",
+        "type": "filepath"
+    },
+    "669": {
+        "file_id": 128,
+        "content": "This command initiates a TCP connection through Telnet to the localhost on port 2000 for interactive communication.",
+        "type": "summary"
+    },
+    "670": {
+        "file_id": 128,
+        "content": "@echo off\ntelnet -e \"\" localhost 2000",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vbox_serial_connect/interactive_tcp.cmd:1-2"
+    },
+    "671": {
+        "file_id": 128,
+        "content": "This command initiates a TCP connection through Telnet to the localhost on port 2000 for interactive communication.",
+        "type": "comment"
+    },
+    "672": {
+        "file_id": 129,
+        "content": "/generic/vb_charec_bootstrap/vbox_serial_connect/interactive_tcp.sh",
+        "type": "filepath"
+    },
+    "673": {
+        "file_id": 129,
+        "content": "Starts a telnet session with localhost on port 2000, likely for interacting with the virtual box serial connection.",
+        "type": "summary"
+    },
+    "674": {
+        "file_id": 129,
+        "content": "#!/bin/bash\ntelnet -e \"\" localhost 2000",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vbox_serial_connect/interactive_tcp.sh:1-2"
+    },
+    "675": {
+        "file_id": 129,
+        "content": "Starts a telnet session with localhost on port 2000, likely for interacting with the virtual box serial connection.",
+        "type": "comment"
+    },
+    "676": {
+        "file_id": 130,
+        "content": "/generic/vb_charec_bootstrap/vbox_serial_connect/server_naive.sh",
+        "type": "filepath"
+    },
+    "677": {
+        "file_id": 130,
+        "content": "This script reads from a COM port (/dev/ttyS0) and executes commands using bash. It does not distinguish between STDIN, STDOUT, and STDERR and is deprecated. On Android, it uses sh instead of bash. The code suggests considering other COM ports or using a single port to distinguish input/output/error streams. It also mentions exploring the use of FIFOs for better handling and filtering out echo problems.",
+        "type": "summary"
+    },
+    "678": {
+        "file_id": 130,
+        "content": "#!/bin/bash\n# again, this does not distinguish stdin&stdout. shall be deprecated.\ncat /dev/ttyS0 | bash &>/dev/ttyS0\n# on android:\n# cat /dev/ttyS0 | sh &>/dev/ttyS0\n# should we consider utilize other COM ports? or just use a single port to distinguish STDIN/OUT/ERR?\n# shall you explore more. create fifo to utilize things.\n# and filter out the echo problem. maybe?\n# or just use it!",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vbox_serial_connect/server_naive.sh:1-9"
+    },
+    "679": {
+        "file_id": 130,
+        "content": "This script reads from a COM port (/dev/ttyS0) and executes commands using bash. It does not distinguish between STDIN, STDOUT, and STDERR and is deprecated. On Android, it uses sh instead of bash. The code suggests considering other COM ports or using a single port to distinguish input/output/error streams. It also mentions exploring the use of FIFOs for better handling and filtering out echo problems.",
+        "type": "comment"
+    },
+    "680": {
+        "file_id": 131,
+        "content": "/generic/vb_charec_bootstrap/ver_reckey.py",
+        "type": "filepath"
+    },
+    "681": {
+        "file_id": 131,
+        "content": "This code continuously retrieves and prints the latest \"recent_keys\" from Redis using a 1.5-second delay between each request. It seems to be monitoring recent key updates or changes.",
+        "type": "summary"
+    },
+    "682": {
+        "file_id": 131,
+        "content": "from nparr_redis import rget\nimport time\nwhile True:\n    print(rget(\"recent_keys\"))\n    time.sleep(1.5)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/ver_reckey.py:1-5"
+    },
+    "683": {
+        "file_id": 131,
+        "content": "This code continuously retrieves and prints the latest \"recent_keys\" from Redis using a 1.5-second delay between each request. It seems to be monitoring recent key updates or changes.",
+        "type": "comment"
+    },
+    "684": {
+        "file_id": 132,
+        "content": "/generic/vb_charec_bootstrap/vint.py",
+        "type": "filepath"
+    },
+    "685": {
+        "file_id": 132,
+        "content": "The code sets up a virtual machine process in headless mode, handling interrupts and exceptions, potentially for game or simulation character. It deals with keys, sleeps, prints global variables but doesn't receive data. The focus is on reading characters from the canvas or console.",
+        "type": "summary"
+    },
+    "686": {
+        "file_id": 132,
+        "content": "import virtualbox\nimport time\nimport signal, sys\n#from gevent import monkey\n#monkey.patch_all()\n# consider taking that too.\n# the pipe must be initialized. use another thread to initialize the pipe.\nimport threading\nimport subprocess\n# or you can be careless anyway.\nvbox = virtualbox.VirtualBox()\nsession = virtualbox.Session()\nmachine=vbox.find_machine(\"TinyPlus\")\ndef sigint_handler(signal,frame):\n    print(\"interrupted!\")\n    session.console.power_down()\n    time.sleep(0.1)\n    sys.exit(0)\ndef my_except_hook(exctype,value,traceback):\n    session.console.power_down()\n    time.sleep(0.1)\n    sys.__excepthook__(exctype,value,traceback)\n    sys.exit(0)\n    # is it lethal?\nsys.excepthook = my_except_hook\nsignal.signal(signal.SIGINT,sigint_handler)\n#signal.signal(signal.SIGKILL,sigint_handler)\n#virtualbox.library_ext.machine.IMachine\n#print(dir(machine),type(machine))\n# you can close this window anyway, or minimize it using another thread?\nprogress=machine.launch_vm_process(session,\"headless\",\"\")\nprogress.wait_for_completion()",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vint.py:1-33"
+    },
+    "687": {
+        "file_id": 132,
+        "content": "Code imports necessary libraries, sets up signal handlers for interrupts and exceptions, and launches a virtual machine process in headless mode.",
+        "type": "comment"
+    },
+    "688": {
+        "file_id": 132,
+        "content": "# how to pass it around?\n# must be keys. but what is keys?\ntime.sleep(5)\nprint(\"ready!\")\nprint(globals())\n# not receiving shit.\n# connect to existing session if possible? or close that thing.\n# maybe a dedicated image for dos and more.\n# first we have to check how to read chars from the canvas or something.\n# remember that is way too slow to parse info from console. i mean THAT.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vint.py:34-43"
+    },
+    "689": {
+        "file_id": 132,
+        "content": "The code seems to be related to a bootstrapping process, potentially for a character in a game or simulation. It is attempting to determine how to receive and pass around information using keys but isn't sure what \"keys\" refers to. The code sleeps for 5 seconds and then prints the global variables, but it's not receiving any data. It considers connecting to an existing session or closing something else. The code also mentions the possibility of a dedicated image for DOS (Distributed Operating System) and more functionality. The main focus appears to be on figuring out how to read characters from the canvas or console, as it currently finds this method too slow.",
+        "type": "comment"
+    },
+    "690": {
+        "file_id": 133,
+        "content": "/generic/vb_charec_bootstrap/vint.sh",
+        "type": "filepath"
+    },
+    "691": {
+        "file_id": 133,
+        "content": "This code is a shell script that executes the Python file \"vint.py\" using the python3 interpreter in interactive mode, allowing for real-time feedback and debugging while running the program.",
+        "type": "summary"
+    },
+    "692": {
+        "file_id": 133,
+        "content": "#!/bin/bash\npython3 -i vint.py",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vint.sh:1-2"
+    },
+    "693": {
+        "file_id": 133,
+        "content": "This code is a shell script that executes the Python file \"vint.py\" using the python3 interpreter in interactive mode, allowing for real-time feedback and debugging while running the program.",
+        "type": "comment"
+    },
+    "694": {
+        "file_id": 134,
+        "content": "/generic/vb_charec_bootstrap/vpasswd.py",
+        "type": "filepath"
+    },
+    "695": {
+        "file_id": 134,
+        "content": "This program initializes a VirtualBox instance, sets up input handling, automates console commands from a file, and suggests using separate screen or xdotool for better input reception.",
+        "type": "summary"
+    },
+    "696": {
+        "file_id": 134,
+        "content": "import virtualbox\nimport time\nimport signal, sys\n#from gevent import monkey\n#monkey.patch_all()\n# consider taking that too.\n# the pipe must be initialized. use another thread to initialize the pipe.\nimport threading\nimport subprocess\n# or you can be careless anyway.\nvbox = virtualbox.VirtualBox()\nsession = virtualbox.Session()\nmachine=vbox.find_machine(\"TinyPlus\")\ndef sigint_handler(signal,frame):\n    print(\"interrupted!\")\n    session.console.power_down()\n    time.sleep(0.1)\n    sys.exit(0)\nsignal.signal(signal.SIGINT,sigint_handler)\n#virtualbox.library_ext.machine.IMachine\n#print(dir(machine),type(machine))\n# you can close this window anyway, or minimize it using another thread?\nprogress=machine.launch_vm_process(session,\"gui\",\"\")\nprogress.wait_for_completion()\n# how to pass it around?\n# must be keys. but what is keys?\ntime.sleep(5)\n# not receiving shit.\n# connect to existing session if possible? or close that thing.\n# the virtualbox can get separate input while dosbox cannot. if want to must use a separate screen. xdotool.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vpasswd.py:1-30"
+    },
+    "697": {
+        "file_id": 134,
+        "content": "Imports necessary libraries, sets up signal handler for interrupts, creates a VirtualBox instance and Session object, finds the machine, launches the VM process with GUI, waits for completion, sleeps for 5 seconds, potentially struggles with input reception, and suggests using separate screen or xdotool to handle input.",
+        "type": "comment"
+    },
+    "698": {
+        "file_id": 134,
+        "content": "def init():\n    time.sleep(0.2)\n    subprocess.run([\"./init.sh\"])\n\"\"\"def shot(sess):\n    s=sess.console.display\"\"\"\ndef typekey(key):\n    session.console.keyboard.put_keys(key)\nt=threading.Thread(target=init)\nt.setDaemon(True)\nt.start()\nbuff=[\"passwd\",\"root\",\"root\",\"su - tc\",\"passwd\",\"tinypluscore\",\"tinypluscore\",\"exit\",\"clear\",\"stty size\"]\n#buff=[\"passwd\",\"root\",\"root\",\"su - tc\",\"passwd\",\"tinypluscore\",\"tinypluscore\",\"exit\",\"clear\",\"bash\",\"echo $LINES\",\"echo $COLUMNS\"]\nfor x in buff:\n    time.sleep(0.2)\n    typekey(x+\"\\n\")\nwith open(\"lazero\",\"r\") as f:\n    while True:\n        r=f.readline()\n        # be properly decoded.\n        # return included.\n        if len(r)==0:\n            pass\n        else:\n            session.console.keyboard.put_keys(r)\n        time.sleep(0.1)\n        print(\">>> visible delay?\",time.time())\n#session.console.keyboard.put_keys(\"Hello, world!\")\n# maybe a dedicated image for dos and more.\n# first we have to check how to read chars from the canvas or something.\n# remember that is way too slow to parse info from console. i mean THAT.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/vpasswd.py:31-63"
+    },
+    "699": {
+        "file_id": 134,
+        "content": "Code initializes a thread to execute an initialization script, then types various commands into the console one by one with small delays in between. It reads commands from a file line by line and sends them to the console with small delays as well. This code automates inputting commands into a console and reading further commands from a file.",
+        "type": "comment"
+    }
+}

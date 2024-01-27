@@ -1,0 +1,10 @@
+{
+    "summary": "This code discusses the compatibility of a qterminal on Windows and mentions using winpty or conpty. It suggests rendering in Electron or considering node, but finds it challenging without rebuilding the entire content. The idea of hosting in a server is proposed or utilizing a ramdisk. Finally, the possibility of using GNU screen for non-Windows systems is considered.",
+    "details": [
+        {
+            "comment": "This code discusses the compatibility of a qterminal on Windows and mentions using winpty or conpty. It suggests rendering in Electron or considering node, but finds it challenging without rebuilding the entire content. The idea of hosting in a server is proposed or utilizing a ramdisk. Finally, the possibility of using GNU screen for non-Windows systems is considered.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_render/README\":0-10",
+            "content": "the qterminal is great. does it work on windows? (maybe not)\nwindows: either winpty or conpty.\nstart rendering in electron. node might work but tough.\nit seems impossible to change content without rebuilding the whole shit. either host it in server or fucked up.\ndo it in ramdisk or something. think about it.\nconsider gnu screen? not on windows. but does it work? serve as a good purpose."
+        }
+    ]
+}

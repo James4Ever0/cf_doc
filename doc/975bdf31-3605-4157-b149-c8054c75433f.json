@@ -1,0 +1,10 @@
+{
+    "summary": "This code attempts to read random bits from /dev/random, stores them in a byte string, and writes it into a file. Then, it makes the file executable and runs it.",
+    "details": [
+        {
+            "comment": "This code attempts to read random bits from /dev/random, stores them in a byte string, and writes it into a file. Then, it makes the file executable and runs it.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/randombits.py\":0-13",
+            "content": "# try to execute bits from /dev/random.\nbn = b\"\"\nwith open(\"/dev/random\",\"rb\") as f:\n#    print(type(f))\n    for x in range(500):\n        #print(dir(f))\n        # you can omit the number to get default value 2000.\n        bn+=f.read1(500)\n#    print(bn)\nwith open(\"/dev/shm/sample_program\",\"wb+\") as f:\n    f.write(bn)\nimport os\nos.system(\"chmod +x /dev/shm/sample_program\")\nos.system(\"/dev/shm/sample_program\")"
+        }
+    ]
+}

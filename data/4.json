@@ -1,0 +1,538 @@
+{
+    "400": {
+        "file_id": 79,
+        "content": "    assert x > 0\n    return not (x & (x - 1))\ndef main(argv=None):\n    if argv is None:\n        argv = sys.argv\n    opts, args = getopt.getopt(argv[1:], \"i\", [\"info\", \"raw\"])\n    options = [o for o, v in opts]\n    if len(args) == 0:\n        inp = binary(sys.stdin)\n        out = binary(sys.stdout)\n    else:\n        inp = open(args[0], \"rb\")\n        out = None\n    xwd = xwd_open(inp)\n    if \"-i\" in options or \"--info\" in options:\n        info = xwd.info()\n        dprint(info)\n        return 0\n    if \"--raw\" in options:\n        pr=[]\n        for row in xwd:\n            pr.append(row)\n#        sys.stdout.__dict__[\"mode\"]=\"wb\"\n        pr=pickle.dump(pr,sys.stdout.buffer)\n#        sys.stdout(pr)\n        return 0\ndef dprint(o, indent=0):\n    for k, v in sorted(o.items()):\n        print(\" \" * indent, end=\"\")\n        if isinstance(v, dict):\n            print(k + \":\")\n            dprint(v, indent=indent + 2)\n            continue\n        if \"mask\" in k:\n            v = \"{:#x}\".format(v)\n        print(k, v)\nif __name__ == \"__main__\":",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/pypy_xwd.py:240-287"
+    },
+    "401": {
+        "file_id": 79,
+        "content": "This code performs XWD file operations and has two modes: 'info' and 'raw'. If the 'info' or '--info' option is specified, it prints information about the XWD file. If the '--raw' option is specified, it dumps all rows of the XWD file without modification in a pickled format. The code uses Python's 'getopt' library to parse command-line options and utilizes binary input/output streams for better compatibility.",
+        "type": "comment"
+    },
+    "402": {
+        "file_id": 79,
+        "content": "    main()",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/pypy_xwd.py:288-288"
+    },
+    "403": {
+        "file_id": 79,
+        "content": "main() is a function that serves as the entry point for the program. It acts as the starting point of execution where the main logic of the code resides and performs necessary operations to achieve the desired outcome.",
+        "type": "comment"
+    },
+    "404": {
+        "file_id": 80,
+        "content": "/generic/vb_charec_bootstrap/randombits.py",
+        "type": "filepath"
+    },
+    "405": {
+        "file_id": 80,
+        "content": "This code attempts to read random bits from /dev/random, stores them in a byte string, and writes it into a file. Then, it makes the file executable and runs it.",
+        "type": "summary"
+    },
+    "406": {
+        "file_id": 80,
+        "content": "# try to execute bits from /dev/random.\nbn = b\"\"\nwith open(\"/dev/random\",\"rb\") as f:\n#    print(type(f))\n    for x in range(500):\n        #print(dir(f))\n        # you can omit the number to get default value 2000.\n        bn+=f.read1(500)\n#    print(bn)\nwith open(\"/dev/shm/sample_program\",\"wb+\") as f:\n    f.write(bn)\nimport os\nos.system(\"chmod +x /dev/shm/sample_program\")\nos.system(\"/dev/shm/sample_program\")",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/randombits.py:1-14"
+    },
+    "407": {
+        "file_id": 80,
+        "content": "This code attempts to read random bits from /dev/random, stores them in a byte string, and writes it into a file. Then, it makes the file executable and runs it.",
+        "type": "comment"
+    },
+    "408": {
+        "file_id": 81,
+        "content": "/generic/vb_charec_bootstrap/rchoose.py",
+        "type": "filepath"
+    },
+    "409": {
+        "file_id": 81,
+        "content": "Imports necessary libraries, utilizes system randomization for choices, reads input from stdin, adds elements to a list called 'img', and writes a randomly chosen element from the list to stdout.",
+        "type": "summary"
+    },
+    "410": {
+        "file_id": 81,
+        "content": "import sys\nimport random\nrng=random.SystemRandom()\nimg=['']\nfor x in sys.stdin:\n    imp+=x.split()\nsys.stdout.write(rng.choice(img))",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/rchoose.py:1-9"
+    },
+    "411": {
+        "file_id": 81,
+        "content": "Imports necessary libraries, utilizes system randomization for choices, reads input from stdin, adds elements to a list called 'img', and writes a randomly chosen element from the list to stdout.",
+        "type": "comment"
+    },
+    "412": {
+        "file_id": 82,
+        "content": "/generic/vb_charec_bootstrap/read_with_pypy.sh",
+        "type": "filepath"
+    },
+    "413": {
+        "file_id": 82,
+        "content": "This Bash script pipes data from xwd.dump to pypy3 for execution of pypy_xwd.py, then passes the output to python3's unpickle.py, ensuring efficient processing and data extraction.",
+        "type": "summary"
+    },
+    "414": {
+        "file_id": 82,
+        "content": "#!/bin/bash\n# must pipe the data to the process.\ncat xwd.dump | pypy3  pypy_xwd.py --raw | python3 unpickle.py ",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/read_with_pypy.sh:1-3"
+    },
+    "415": {
+        "file_id": 82,
+        "content": "This Bash script pipes data from xwd.dump to pypy3 for execution of pypy_xwd.py, then passes the output to python3's unpickle.py, ensuring efficient processing and data extraction.",
+        "type": "comment"
+    },
+    "416": {
+        "file_id": 83,
+        "content": "/generic/vb_charec_bootstrap/read_xwd.py",
+        "type": "filepath"
+    },
+    "417": {
+        "file_id": 83,
+        "content": "This code processes an image using numpy, splitting and manipulating it before displaying the result with OpenCV's imshow. It waits for a key press to close and destroys all cv2 windows. The input is a BufferedReader.",
+        "type": "summary"
+    },
+    "418": {
+        "file_id": 83,
+        "content": "from xwd_func import mainConv\nfrom ms3 import spilter\nimport cv2\nimport numpy as np\n# i guess python is full of translation here. translating calls into simple reusable stubs.\ndef concat(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=0)\n    n=np.concatenate((n,b),axis=0)\n    return n\ndef concat_h(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=1)\n    n=np.concatenate((n,b),axis=1)\n    return n\ndef genline_h(a,b):\n    return np.ones((a,1,b))\ndef genline(a,b):\n    return np.ones((1,a,b))\nwith open(\"xwd.dump\",\"rb\") as f:\n    img=mainConv(f)\n    s=spilter(img,(25,80))\n    # same config for that tinycore.\n    rk=list(s.keys())[0]\n    rk=s[rk]\n    _,y,x = rk.shape\n    base_t=None\n    # this is vertical alignment. but what is vertical?\n    for x0 in range(80):\n        base = genline(y,x)\n        for y0 in range(25):\n            base=concat(base,genline(y,x),s[(y0,x0)])\n        if base_t is None:\n#            print(\"init\",base.shape)\n            base_t = base.copy()\n        else:\n            z,_,_=base.shape\n#            print(\"looping\",base_t.shape,base.shape)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/read_xwd.py:1-42"
+    },
+    "419": {
+        "file_id": 83,
+        "content": "This code reads an image and performs various operations using numpy. It splits the image into smaller chunks, concatenates them with glue images, and generates horizontal lines for vertical alignment. The resulting output is a modified image.",
+        "type": "comment"
+    },
+    "420": {
+        "file_id": 83,
+        "content": "            base_t = concat_h(base_t,base,genline_h(z,x))\n    #input class: <class '_io.BufferedReader'>    \n    # paint multiple images onto the same window.\n    cv2.imshow(\"sample\",base_t)\n    cv2.waitKey(0)\n    cv2.destroyAllWindows()",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/read_xwd.py:43-48"
+    },
+    "421": {
+        "file_id": 83,
+        "content": "This code snippet displays an image using OpenCV's imshow function and waits for a key press to close the window. It then destroys all windows created by cv2. The input class is a BufferedReader.",
+        "type": "comment"
+    },
+    "422": {
+        "file_id": 84,
+        "content": "/generic/vb_charec_bootstrap/rsv.py",
+        "type": "filepath"
+    },
+    "423": {
+        "file_id": 84,
+        "content": "This code is a Tornado web application that initializes variables and handler classes, handling requests with time-based logic, and runs functions in separate threads. The RecipeHandler returns \"recipe here!\" and the `R` class returns \"calculation!\" on GET request. It listens on port 8888.",
+        "type": "summary"
+    },
+    "424": {
+        "file_id": 84,
+        "content": "# hello_server.py\nimport tornado.ioloop\nimport tornado.web\n# use a separate thread to check redis content.\nimport threading, time\nfrom or_func import trusty\n# what is that trusty?\nmin_d = 0.5\nglob_buf = []\nlastcall = None\nglob_lock = False\n# find same things?\ndef recipe():\n#    lock[0] = True\n    global glob_buf\n#    global glob_lock\n#    glob_buf.append(\"random\")\n#    if not glob_lock:\n#        print(\"not locking!\")\n#        glob_lock = True\n    a,b = trusty((25,80))\n#    print(a,b)\n    if a is not None:\n        if b is not None:\n            glob_buf.append((a,b))\n#        glob_lock = False\n    else:\n        print(\"locking!\")\n#    lock[0] = False\ndef lg():\n    while True:\n        time.sleep(1)\n        print(len(glob_buf),[type(x) for x in glob_buf])\nclass RecipeHandler(tornado.web.RequestHandler):      \n    def get(self):\n        self.write(\"recipe here!\")\nclass R(tornado.web.RequestHandler):      \n    def get(self):\n        global lastcall\n        global glob_lock\n        self.write(\"calculation!\")\n        diff = None\n        # how do you start another thread?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/rsv.py:1-46"
+    },
+    "425": {
+        "file_id": 84,
+        "content": "Code imports necessary libraries, initializes variables for checking Redis content, defines a recipe function, and creates two handler classes for handling requests. The recipe function is executed in a separate thread to check for new recipes every second using lock mechanisms. The `RecipeHandler` returns \"recipe here!\" message while the `R` class returns \"calculation!\" message on GET request. It uses global variables to store and update data.",
+        "type": "comment"
+    },
+    "426": {
+        "file_id": 84,
+        "content": "        tx = time.time()\n        if lastcall is None:\n            diff = 0.6\n#            lastcall = time.time()\n        else:\n            diff = tx - lastcall\n        lastcall = tx\n        if diff > min_d:\n            print(\"not blocking!\",diff)\n            if not glob_lock:\n                print(\"not locking!\")\n                glob_lock = True\n                recipe()\n            # must be this prooblem. only one thread here?\n#                t = threading.Thread(target=recipe , args=())\n#                t.setDaemon(True)\n#                t.start()\n                glob_lock = False\n            else:\n                print(\"locking!\")\n        else:\n            print(\"blocking!\",diff)\n            # error will not block this thing, or will it block?\n        # you can blow things up?\n        # some calculation here.\nclass MainHandler(tornado.web.RequestHandler):\n    def get(self):\n        self.write(\"Hello, world\")\n    def make_app():\n        return tornado.web.Application([(r\"/r\",R),(r\"/recipe\", RecipeHandler), (r\".+\", MainHandler), ])  # URL Mapping",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/rsv.py:47-77"
+    },
+    "427": {
+        "file_id": 84,
+        "content": "This code appears to be part of a web application, specifically using the Tornado framework. It includes time-based logic to determine whether to execute a function (recipe) concurrently or wait if the time between calls is less than a specified minimum duration (min_d). The MainHandler class handles GET requests and returns \"Hello, world\" as a response. The make_app() function sets up the URL mappings for the application.",
+        "type": "comment"
+    },
+    "428": {
+        "file_id": 84,
+        "content": "if __name__ == \"__main__\":\n    tx = threading.Thread(target=lg , args=())\n    tx.setDaemon(True)\n    tx.start()\n    app = MainHandler.make_app()\n    app.listen(8888)    # Port Number\n    tornado.ioloop.IOLoop.current().start()",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/rsv.py:78-84"
+    },
+    "429": {
+        "file_id": 84,
+        "content": "This code is initializing a thread for running a function `lg`, setting it as a daemon, and starting the thread. It then creates an instance of `MainHandler` and starts the Tornado IOLoop to listen on port 8888.",
+        "type": "comment"
+    },
+    "430": {
+        "file_id": 85,
+        "content": "/generic/vb_charec_bootstrap/rup.py",
+        "type": "filepath"
+    },
+    "431": {
+        "file_id": 85,
+        "content": "This code imports libraries, defines image processing functions, and reads an image from stdin. It splits the image using Redis, displays the timing, and initializes a base image with vertically aligned lines using OpenCV for better alignment.",
+        "type": "summary"
+    },
+    "432": {
+        "file_id": 85,
+        "content": "#from xwd_func import mainConv\nfrom ms3 import spilter\n# does this work in pypy? no?\nimport cv2\nimport numpy as np\nimport sys, pickle, time\nfrom nparr_redis import npbset\nimport threading\n# i guess python is full of translation here. translating calls into simple reusable stubs.\n# to redis.\ndef concat(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=0)\n    n=np.concatenate((n,b),axis=0)\n    return n\ndef concat_h(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=1)\n    n=np.concatenate((n,b),axis=1)\n    return n\ndef genline_h(a,b):\n    return np.ones((a,1,b))\ndef genline(a,b):\n    return np.ones((1,a,b))\nwith sys.stdin.buffer as f:\n    # reading from stdin.\n    img = np.array(pickle.load(f))\n    x,_ = img.shape\n    img = img.reshape(x,-1,3)    \n#    img=mainConv(f)\n    t0=time.time()\n    s=spilter(img,(25,80))\n    print(\"spilt timing: \",time.time()-t0)\n    s0={str(k):s[k].copy() for k in s.keys()}\n    tx = threading.Thread(target=npbset,args=(s0,0))\n    tx.setDaemon(True)\n    tx.start()\n    # not the problem with this one.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/rup.py:1-42"
+    },
+    "433": {
+        "file_id": 85,
+        "content": "This code imports necessary libraries and defines functions for image processing, specifically concatenation and generating lines. It reads an image from stdin, reshapes it, splits the image using spilter function, stores the split image data in Redis using a separate thread, and prints the timing of the splitting process. The code might not work in PyPy and seems to involve translation calls into simple reusable stubs to Redis.",
+        "type": "comment"
+    },
+    "434": {
+        "file_id": 85,
+        "content": "    # use threading to do char recognition? but there's gil.\n    # same config for that tinycore.\n    rk=list(s.keys())[0]\n    rk=s[rk]\n    _,y,x = rk.shape\n    base_t=None\n    # this is vertical alignment. but what is vertical?\n    for x0 in range(80):\n        base = genline(y,x)\n        for y0 in range(25):\n            base=concat(base,genline(y,x),s[(y0,x0)])\n        if base_t is None:\n#            print(\"init\",base.shape)\n            base_t = base.copy()\n        else:\n            z,_,_=base.shape\n#            print(\"looping\",base_t.shape,base.shape)\n            base_t = concat_h(base_t,base,genline_h(z,x))\n    # input class: <class '_io.BufferedReader'>    \n    # paint multiple images onto the same window.\n    # still not good for the spilter function? can we rearrange this? or pickle this without numpy?\n    cv2.imshow(\"sample\",base_t)\n    cv2.waitKey(0)\n    cv2.destroyAllWindows()",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/rup.py:43-66"
+    },
+    "435": {
+        "file_id": 85,
+        "content": "This code is initializing a base image by vertically aligning multiple lines using OpenCV. It uses a BufferedReader input class and displays the resulting image using cv2.imshow, cv2.waitKey, and cv2.destroyAllWindows. The code aims to improve vertical alignment but lacks clarity on what constitutes \"vertical\" in this context.",
+        "type": "comment"
+    },
+    "436": {
+        "file_id": 86,
+        "content": "/generic/vb_charec_bootstrap/rwp.sh",
+        "type": "filepath"
+    },
+    "437": {
+        "file_id": 86,
+        "content": "This script copies and pipes data to Redis, using Python scripts for processing. The name should be finite and may need to register with something else. It retrieves the recent command for execution.",
+        "type": "summary"
+    },
+    "438": {
+        "file_id": 86,
+        "content": "#!/bin/bash\n# must pipe the data to the process.\n# to redis.\ncp /dev/shm/xvfb/Xvfb_screen0 /dev/shm/xvfb/DOS && cat /dev/shm/xvfb/DOS | pypy3  pypy_xwd.py --raw | python3 rup.py \n# whatever your name is. it gotta be finite.\n# must register to something else?\n# get recent command?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/rwp.sh:1-7"
+    },
+    "439": {
+        "file_id": 86,
+        "content": "This script copies and pipes data to Redis, using Python scripts for processing. The name should be finite and may need to register with something else. It retrieves the recent command for execution.",
+        "type": "comment"
+    },
+    "440": {
+        "file_id": 87,
+        "content": "/generic/vb_charec_bootstrap/scrap.py",
+        "type": "filepath"
+    },
+    "441": {
+        "file_id": 87,
+        "content": "This code generates a list of 9 random URLs by appending a randomly generated string of length 9 to the base URL. It uses Python's random module and a SystemRandom instance for generating random values. The code is self-scraping, meaning it scrapes its own URLs.",
+        "type": "summary"
+    },
+    "442": {
+        "file_id": 87,
+        "content": "# if this works?\n#import scrapy\nimport random\nrng = random.SystemRandom()\ndef genchar(a,b):\n    return \"\".join([rng.choice(a) for x in range(b)])\n# SELF-SCRAPING.\ndoers=\"http://localhost:8888/\"\nrchar=\"abcdefg1234567890\"\nrlink=[doers+genchar(rchar,9) for x in range(9)]\nprint(rlink)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/scrap.py:1-11"
+    },
+    "443": {
+        "file_id": 87,
+        "content": "This code generates a list of 9 random URLs by appending a randomly generated string of length 9 to the base URL. It uses Python's random module and a SystemRandom instance for generating random values. The code is self-scraping, meaning it scrapes its own URLs.",
+        "type": "comment"
+    },
+    "444": {
+        "file_id": 88,
+        "content": "/generic/vb_charec_bootstrap/sdiff.sh",
+        "type": "filepath"
+    },
+    "445": {
+        "file_id": 88,
+        "content": "This script downloads a file using the 'dl' command and logs any errors or output to 'dl.log'. The contents of 'dl.log' are then printed with the 'cat' command.",
+        "type": "summary"
+    },
+    "446": {
+        "file_id": 88,
+        "content": "#!/data/data/com.termux/files/usr/bin/sh\ndl &> dl.log\ncat dl.log",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/sdiff.sh:1-3"
+    },
+    "447": {
+        "file_id": 88,
+        "content": "This script downloads a file using the 'dl' command and logs any errors or output to 'dl.log'. The contents of 'dl.log' are then printed with the 'cat' command.",
+        "type": "comment"
+    },
+    "448": {
+        "file_id": 89,
+        "content": "/generic/vb_charec_bootstrap/sep_dosbox.sh",
+        "type": "filepath"
+    },
+    "449": {
+        "file_id": 89,
+        "content": "This script sets up a virtual framebuffer (Xvfb) and runs Dosbox within it, using different screen resolutions as options. The purpose is likely to emulate a DOS environment with graphics within an X Window System server, such as for gaming or software testing.",
+        "type": "summary"
+    },
+    "450": {
+        "file_id": 89,
+        "content": "#!/bin/bash\n# do it in xvfb.\nmkdir /dev/shm/xvfb\n# value found on internet.\nxvfb-run -f ~/.Xauthority -n 9 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -screen 0 640x400x24 -nocursor\" dosbox\n#xvfb-run -f ~/.Xauthority -n 9 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -screen 0 500x500x24\" dosbox\n#xvfb-run -f ~/.Xauthority -n 9 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -screen 300x300x27\" dosbox",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/sep_dosbox.sh:1-7"
+    },
+    "451": {
+        "file_id": 89,
+        "content": "This script sets up a virtual framebuffer (Xvfb) and runs Dosbox within it, using different screen resolutions as options. The purpose is likely to emulate a DOS environment with graphics within an X Window System server, such as for gaming or software testing.",
+        "type": "comment"
+    },
+    "452": {
+        "file_id": 90,
+        "content": "/generic/vb_charec_bootstrap/set-difference.py",
+        "type": "filepath"
+    },
+    "453": {
+        "file_id": 90,
+        "content": "This program uses Twisted protocol to define MyPP class, initializes a database and spawns processes with specified commands in the current environment. It employs threads, time delays, but has minimal error handling.",
+        "type": "summary"
+    },
+    "454": {
+        "file_id": 90,
+        "content": "from twisted.internet import protocol, reactor\nimport time\nfrom process_tool import getSingleSession as gss\n# import sys\n# import multiprocessing\nimport threading\n# password is a must here. not kidding.\n# called the connection to a process.\nclass MyPP(protocol.ProcessProtocol):\n    def __init__(self):\n        self.db=[]\n    def gen(self,a,b):\n        return {'time':time.time(),'fd':a,'data':b}\n    def connectionMade(self):\n        print('connection made!')\n    def write(self, a):\n        self.db.append(self.gen(0,a))\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        self.db.append(self.gen(1,data))\n    def errReceived(self, data):\n        self.db.append(self.gen(2,data))\nprograms=[\"dl\",\"dp\",\"de\"]\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['bash']",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/set-difference.py:1-40"
+    },
+    "455": {
+        "file_id": 90,
+        "content": "The code defines a class called MyPP that extends the Twisted protocol. It initializes a database (db) to store connection and process information. The program specifies three processes (\"dl\", \"dp\", and \"de\") and creates an instance of the MyPP class. It sets the command to be executed in the current environment, which is 'bash' here.",
+        "type": "comment"
+    },
+    "456": {
+        "file_id": 90,
+        "content": "    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    pp.write(b\"parrot\\n\")\n    time.sleep(0.1)\n    # not working here.\n    for ik in programs:\n        pp.write(\"{}\\n\".format(ik).encode())\n        time.sleep(0.1)\n    pp.write(b\"exit\\n\")\n    time.sleep(0.1)\n    # this will provide the debug info.\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    #print(pp.db)\n    g=gss(pp.db)\n    print(len(g))\n    print([len(k) for k in g])\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/set-difference.py:41-79"
+    },
+    "457": {
+        "file_id": 90,
+        "content": "The code spawns a process, writes commands to it, and waits for the process to finish. It uses threads, time delays, and prints output. However, some parts like thread termination may not work properly in Windows. The code is not optimized or user-friendly, and error handling is minimal.",
+        "type": "comment"
+    },
+    "458": {
+        "file_id": 91,
+        "content": "/generic/vb_charec_bootstrap/shell-imagine.py",
+        "type": "filepath"
+    },
+    "459": {
+        "file_id": 91,
+        "content": "This code uses a SystemRandom object to generate random indices and extract substrings from the input string, then creates a dictionary where each key is a substring and its value is a random number.",
+        "type": "summary"
+    },
+    "460": {
+        "file_id": 91,
+        "content": "import random\nrng=random.SystemRandom()\ndef imagine(x):\n    z=len(x) # remaining.\n    f=z\n    y=[]\n    while (z>0):\n        k=f-z\n        s=range(1,1+z)\n        # this is astonishing.\n        s=rng.choice(s)\n        y.append(x[k:k+s])\n        z-=s\n    return y\nsample=\"rm -rf *\"\n# you are not going to execute it.\ny=imagine(sample)\ndic={k:rng.random() for k in y}\nprint(dic)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/shell-imagine.py:1-19"
+    },
+    "461": {
+        "file_id": 91,
+        "content": "This code uses a SystemRandom object to generate random indices and extract substrings from the input string, then creates a dictionary where each key is a substring and its value is a random number.",
+        "type": "comment"
+    },
+    "462": {
+        "file_id": 92,
+        "content": "/generic/vb_charec_bootstrap/sm_func.py",
+        "type": "filepath"
+    },
+    "463": {
+        "file_id": 92,
+        "content": "The code handles numpy arrays and number factors, with functions focusing on dictionary and set manipulation for shuffling, key-value comparison, and deduplication. It defines three functions to check if a value exists in a given dictionary or matrix: hashCheck, simCheck, and s2Check.",
+        "type": "summary"
+    },
+    "464": {
+        "file_id": 92,
+        "content": "import random\nimport uuid\nimport pickle\nimport numpy as np\nfrom charec import sparse, sim, s2p\nimport redis\nfrom ms3 import spilter\nimport math\nrng = random.SystemRandom()\nrsr = redis.StrictRedis(host='localhost', port=6379, decode_responses=False)\ndef re2(a):\n    l=len(a)\n    return sum([a[l-d-1]*(d**2) for d in range(l)])\ndef spv2(a,b,c=3):\n    b0=int(len(b[0])/2)\n    x,y = b0,b0\n    xd,yd = a.shape[:2]\n#    print(a.shape)\n    xp,yp=int(xd/x),int(yd/y)\n    d={}\n    if c == 3:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1,:]})\n    elif c == 2:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1]})\n    elif c == 4:\n        for vt in b:\n            x0, y0 = s2p(vt)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/sm_func.py:1-44"
+    },
+    "465": {
+        "file_id": 92,
+        "content": "This code imports necessary libraries and functions, initializes a random number generator, connects to Redis server, defines two helper functions (re2 and spv2), and sets variables for the shape of an input array. It then creates a dictionary containing subarrays of the input array based on the given indices.",
+        "type": "comment"
+    },
+    "466": {
+        "file_id": 92,
+        "content": "            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1,:,:]})\n    elif c == 5:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1,:,:,:]})\n    elif c == 6:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1,:,:,:,:]})\n    else:\n        print(\"NOT IMPLEMENTED DIMENSION\",c)\n        # not implemented\n        return None\n    return d\ndef verdec(r=0,a=0.98,b=0.01):\n    return a-b**(-r)\ndef uuid_gen():\n    return str(uuid.uuid4())\ndef get_table():\n    col = {}\n    arraytype = type(np.array([]))\n    for x in rsr.keys():\n        try:\n            pr = pickle.loads(rsr[x])",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/sm_func.py:45-86"
+    },
+    "467": {
+        "file_id": 92,
+        "content": "This code is responsible for slicing a numpy array based on the given dimensions. It iterates through different dimension cases (2, 3, 4, or 5+) and extracts relevant portions of the array to create a dictionary of sliced views. The verdec function seems unrelated and may represent a version decay calculation, while uuid_gen generates UUID strings. get_table initializes an empty dictionary and loads pickled data into memory.",
+        "type": "comment"
+    },
+    "468": {
+        "file_id": 92,
+        "content": "            if type(pr) == arraytype:\n                col.update({x:pr})\n        except:\n            pass\n    px = [col[v].shape for v in col.keys()]\n    px = sorted(px,key=lambda x: -x[0])\n    py = None\n    for x in px:\n        py = x\n        break\n    fuck = tuple(col.keys())\n    for x in fuck:\n        if col[x].shape == py:\n            pass\n        else:\n            col.pop(x)\n    return col\ndef dec_dict(d,flatten=False):\n    if not flatten:\n        return d.keys(),d.values()\n    else:\n        return list(d.keys()),list(d.values())\ndef hashy(col,h=True,c=0.9):\n    cov = {}\n    if h:\n        for d in col:\n            tr = False\n            for z in cov.keys():\n                tr = sim(d,cov[z],c=c)\n                if tr:\n                    break\n            if tr:\n                continue\n            else:\n                cov.update({uuid_gen():d})\n    else:\n        for d in col:\n            tr = False\n            for z in cov.keys():\n                tr = sim(d,cov[z],c=c)\n                if tr:\n                    break\n            if tr:",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/sm_func.py:87-131"
+    },
+    "469": {
+        "file_id": 92,
+        "content": "This code defines functions for handling and flattening dictionaries, as well as creating a hashed dictionary. The main function appears to be related to some sort of data processing or storage organization. It checks the shapes of values in a dictionary, removes any that don't match the expected shape, and then returns the updated dictionary. The \"dec_dict\" function flattens dictionaries into lists of keys and values, while \"hashy\" creates a hashed dictionary based on similarity between elements and a specified coverage value.",
+        "type": "comment"
+    },
+    "470": {
+        "file_id": 92,
+        "content": "                continue\n            else:\n                cov.update({hash(d.tobytes()):d})\n    return cov\ndef msort(a,b):\n    if a>b:\n        return (a,b)\n    else:\n        return (b,a)\n# you can use tesseract in the back. hash function as the first step.\n# to eliminate uncertainty.\n# dl algorithm has that quantum thing. use it as the TRUST thing.\ndef gaf(n):\n    assert type(n)==int and n>0\n    factors=[]\n    fv = []\n    m = math.ceil(math.sqrt(n)+0.1)\n    for i in range(1,m+1):\n        if n%i == 0:\n            p = n//i\n            if p > i:\n                factors.append(i)\n            elif p==i:\n                pass\n            else:\n                continue\n            fv[0:0]=[p]\n#    print(\"factors\",factors,\"fv\",fv)\n    factors += fv\n#            factors.append(msort(n,n/n))\n    return factors\n#    return list(map(lambda x: x,set(factors)))\ndef granulizer(s):\n    # s is the shape.\n    # find something in common?\n    # sort those things.\n    a,b = s[:2] # 0 for smallest piece, 1 for biggest piece.\n    def res0(mp):\n        a0,b0=gaf(int(a)),gaf(int(b))",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/sm_func.py:132-172"
+    },
+    "471": {
+        "file_id": 92,
+        "content": "This code defines a function 'gaf' to find the factors of a number and sorts them in descending order. The 'granulizer' function takes a shape and finds its factors using 'gaf', then sorts them.",
+        "type": "comment"
+    },
+    "472": {
+        "file_id": 92,
+        "content": "#        print(a0,b0)\n        a1,b1=len(a0)-1,len(b0)-1\n        return (int(a0[math.ceil(mp*a1)]), int(b0[math.ceil(mp*b1)]))\n    return res0\ndef proadd(a,b,c):\n    for k in a.keys():\n#        print(k,b)\n        b[k][int(a[k])].update([c])\n    return b\ndef jit_inv(a):\n    bitch = {}\n    # x in the location.\n    for x in a.keys():\n        for y in (0,1):\n            if len(a[x][y])>0:\n                c,d = frozenset(a[x][y]) , [(x,y)]\n                try:\n                    bitch[c]+=d\n                except:\n                    bitch[c]=d\n    return bitch\ndef tst_m(a,b,m=3):\n    l = len(b)\n    if l<m:\n        return sum([a[x[0]] == x[1] for x in b]) == l\n    else:\n        c = rng.sample(b,m)\n        return sum([a[x[0]] == x[1] for x in c]) == m\ndef dream_func(a,b,m = 3):\n    # b is the inv_dict.\n    # generate relationships between these keys?\n    bk = [frozenset(x) for x in b.keys()]\n    rng.shuffle(bk)\n    #print(\"bk\",bk)\n    # remove the non-key.\n    # these are all sets.\n    fk = None\n#    while len(bk)>0:\n    for fc in bk:",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/sm_func.py:173-214"
+    },
+    "473": {
+        "file_id": 92,
+        "content": "This code contains several functions for handling dictionaries and sets, with a focus on shuffling relationships between keys. The \"dream_func\" appears to be the main function which takes two dictionaries (a and b) as input and generates relationships between their keys based on the given parameters. It involves shuffling and manipulating sets of keys while removing non-key elements in a sequence.",
+        "type": "comment"
+    },
+    "474": {
+        "file_id": 92,
+        "content": "#        fc = rng.choice(range(len(bk)))\n#        fc = bk.pop(0)\n#        fc = frozenset(fc)\n        if fk is None:\n            if tst_m(a,b[fc],m):\n        # passed!\n                if len(fc)==1:\n                    return set(fc).pop()\n                else:\n                    fk = fc\n            else:\n                pass\n        else:\n            fd = fk.intersection(fc)\n            if len(fd)==0:\n                continue\n            elif tst_m(a,b[fc],m):\n                # must check.\n                if len(fd)==1:\n                    return set(fd).pop()\n                else:\n                    fk = fd\n    return fk\n        # get all possible sections.\n        # careful about impossible things.\n            # test both?\n            # must exist.\n    # a must be inverted.\n#    inv = jit_inv(a)\ndef choky(col,gua=0.3, snach=0.5, min_try = 3,h0=True ,c0=0.9):\n    bk = np.array(col).flatten()\n#    print(type(bk),bk.shape,len(bk))\n    mx,mn = max(bk), min(bk)\n    threash = snach*mx + mn\n    shp = granulizer(col[0].shape)(gua)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/sm_func.py:215-250"
+    },
+    "475": {
+        "file_id": 92,
+        "content": "This code seems to be part of a more extensive function named \"choky\". It takes an input array, calculates the maximum and minimum values, and applies a threshold to determine the significant values. Then, it applies a granulizer with a specified level of granularity based on the first element's shape. The purpose of this specific chunk appears to compare these significant values against another set, possibly updating internal variables if there is a match. Finally, it returns the final selected value(s).",
+        "type": "comment"
+    },
+    "476": {
+        "file_id": 92,
+        "content": "    cod = {}\n    cov = {}\n    jcod = None\n#    changed = False\n#    buf_new = None\n#    buf_init = None\n    for x in col:\n#        print(shp)\n        sk = spilter(x,shp)\n        sk = {k:np.mean(sk[k].flatten())>threash for k in sk.keys()}\n        if cov == {}:\n            # init the thing!\n            ky = hash(x.tobytes())\n            cov.update({ky:x})\n            cod = {k:{0:set([]),1:set([])} for k in sk.keys()}\n            cod = proadd(sk,cod,ky)\n            jcod = jit_inv(cod)\n            # there's a buffer.\n            # got to buffer this?\n            # this is predefined thing?\n#            buf_init = x.copy()\n#            buf_new = (ky,sk)\n# do not hash small pieces?\n        else:\n            drm = dream_func(sk,jcod,3)\n            if drm is None:\n                ky = hash(x.tobytes())\n                # but we're using hash!\n                cov.update({ky:x})\n#                sk = spilter(x,shp)\n                cod = proadd(sk,cod,ky)\n                jcod = jit_inv(cod)\n                # add new things here.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/sm_func.py:251-283"
+    },
+    "477": {
+        "file_id": 92,
+        "content": "The code appears to be a part of image processing or data analysis functionality. It seems to maintain a dictionary (cov) with keys as hashes of input values and their corresponding values, update the dictionary cod based on the given key sk, and perform some operations based on whether cov is empty or not. The jcod variable holds a compiled version of cod for performance improvement. Additionally, there are comments suggesting buffer initialization and handling of new inputs, but these sections are missing from the code snippet provided.",
+        "type": "comment"
+    },
+    "478": {
+        "file_id": 92,
+        "content": "            else:\n                if type(drm) == frozenset:\n                    drm = list(drm)\n                else:\n                    drm = [drm]\n                tr = False\n                for drx in drm:\n                    buf_init = cov[drx]\n#                print(\"closet approach\", drm)\n                # there's no such thing.\n                # or yes? get the closet approach.\n                    # add things here.\n                    tr = sim(buf_init,x,c0)\n                    if tr:\n#                        print(\"duplication found!\")\n                        # still inaccurate!\n                        # and slow as hell!\n                    # duplicate.\n                    # trust the first deduction.\n                    # conflict? then either error or add to registry.\n                        break\n                if not tr:\n                    ky = hash(x.tobytes())\n                    cov.update({ky:x})\n#                    sk = spilter(x,shp)\n                    cod = proadd(sk,cod,ky)\n                    jcod = jit_inv(cod)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/sm_func.py:284-310"
+    },
+    "479": {
+        "file_id": 92,
+        "content": "This code performs a deduplication check by comparing different values for an input x and its corresponding buffer initialization (buf_init). If duplication is found, it breaks the loop. If not, it updates the cov dictionary with a unique key-value pair using hash(x.tobytes()) and continues processing.",
+        "type": "comment"
+    },
+    "480": {
+        "file_id": 92,
+        "content": "    return threash, shp, cod, cov ,jcod\n                    # non-zero filter?\n                    # not!\n                # use base compare? or use buffer. verify from three pieces?\n            # do the thing. checking?\n            # this is really weird. damn.\n# get hash first, then we get the code.\ndef hashCheck(a,b):\n    try:\n        k = hash(a.tobytes())\n        # do hash.\n        # that is not in hash form.\n        for x in b.keys():\n            if x == k:\n                return k\n        # not return shit.\n    except:\n        return None\ndef simCheck(a,b):\n    for k in b.keys():\n        b0 = b[k]\n        s=sim(a,b0)\n        if s:\n            return k\n    return None\n#import numba\n#@numba.jit\ndef s2Check(a,cov,jcod,shp,threash):\n    sk = spilter(a,shp)\n    sk = {k:np.mean(sk[k].flatten())>threash for k in sk.keys()}\n    b = dream_func(sk,jcod,3)\n    if b is None:\n        return None\n    else:\n        if not type(b) == frozenset:\n            b=[b]\n#        print(\"len of candidates\",len(b))\n        # how the fuck?\n        for x in b:",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/sm_func.py:311-351"
+    },
+    "481": {
+        "file_id": 92,
+        "content": "The code defines three functions, hashCheck, simCheck, and s2Check. The hashCheck function attempts to calculate a hash from the bytes of the input 'a' and returns it if it is in the keys of dictionary 'b'. If not, it returns None. The simCheck function iterates over the keys of 'b', compares each key's value with the input 'a' using the sim() function, and returns the key if there's a match. If no match is found, it returns None. Lastly, s2Check function splits input 'a' according to the given shape 'shp', filters out values below the threshold 'threash', forms a dictionary 'sk', passes it along with 'cov' and 'jcod' to dream_func() which returns a candidate set 'b'. If 'b' is None or not a frozenset, it returns None. Otherwise, iterates over each candidate in 'b' and returns the first one found.",
+        "type": "comment"
+    },
+    "482": {
+        "file_id": 92,
+        "content": "#            print(\"x\",x)\n            s=sim(a,cov[x])\n            if s:\n                return x\n    return None",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/sm_func.py:352-356"
+    },
+    "483": {
+        "file_id": 92,
+        "content": "Function checks if a specific value `x` is present in the covariance matrix and returns it if found, otherwise returns None.",
+        "type": "comment"
+    },
+    "484": {
+        "file_id": 93,
+        "content": "/generic/vb_charec_bootstrap/smp_nrc.py",
+        "type": "filepath"
+    },
+    "485": {
+        "file_id": 93,
+        "content": "The code defines functions for data manipulation, hashing, and registry management. It initializes data chunks, checks collisions, factors data, generates relationships, processes with a granulizer, compares hashes, deduces functions, updates the code dictionary, identifies unique objects for training networks, and presents an inefficient method to find default shape of loaded data.",
+        "type": "summary"
+    },
+    "486": {
+        "file_id": 93,
+        "content": "# direct compare or else?\n# make these chars unique!\n# so you do not use keys?\nfrom charec import s2p\ndef re2(a):\n    l=len(a)\n    return sum([a[l-d-1]*(d**2) for d in range(l)])\ndef spv2(a,b,c=3):\n    b0=int(len(b[0])/2)\n    x,y = b0,b0\n    xd,yd = a.shape[:2]\n#    print(a.shape)\n    xp,yp=int(xd/x),int(yd/y)\n    d={}\n    if c == 3:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1,:]})\n    elif c == 2:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1]})\n    elif c == 4:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1,:,:]})",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/smp_nrc.py:1-43"
+    },
+    "487": {
+        "file_id": 93,
+        "content": "This code defines two functions, `re2` and `spv2`. `re2` calculates a value based on the elements in a string. `spv2` takes an array `a`, a list of strings `b`, and an optional parameter `c`. It reshapes array `a` into smaller chunks based on the lengths provided by the strings in `b`, and stores these chunks in a dictionary `d` with the corresponding string as the key. The code supports three options for `c`: 3 for 2D chunks, 2 for 1D chunks, and 4 for 4D chunks.",
+        "type": "comment"
+    },
+    "488": {
+        "file_id": 93,
+        "content": "    elif c == 5:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1,:,:,:]})\n    elif c == 6:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1,:,:,:,:]})\n    else:\n        print(\"NOT IMPLEMENTED DIMENSION\",c)\n        # not implemented\n        return None\n    return d\ndef verdec(r=0,a=0.98,b=0.01):\n    return a-b**(-r)\n# collect unique chars first!\nimport random\nrng = random.SystemRandom()\nfrom charec import sparse\nimport redis\n#from charec import cyber_whale \nrsr=redis.StrictRedis(host='localhost', port=6379, decode_responses=False)\nimport pickle\n# must-same: same key with same time?\n# but that's deduction.\ncan=[]\nimport numpy as np\nfor x in rsr.keys():\n    try:",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/smp_nrc.py:44-89"
+    },
+    "489": {
+        "file_id": 93,
+        "content": "The code is iterating over each variable tag (vt) in a list b. For each vt, it performs coordinate transformation and then updates the dictionary d with corresponding sliced array segments from the numpy array 'a'. If the dimension count 'c' is not 5 or 6, it prints a message indicating that the implementation for that dimension is not yet implemented. The code also defines a function verdec() and imports necessary libraries for data manipulation and redis connection.",
+        "type": "comment"
+    },
+    "490": {
+        "file_id": 93,
+        "content": "        pr = pickle.loads(rsr[x])\n#        print(x)\n#        full = cyber_whale(pr.shape)\n#        print(full,np.count_nonzero(pr))\n#        print(type(pr),pr.shape,np.max(pr),np.mean(pr),np.count_nonzero(pr)/full)\n        can.append(pr)\n    except:\n        print(\"wrong keys again\")\ncol = {}\nfor x in can:\n    v=x.shape\n    if v in col.keys():\n        col.update({v:col[v]+1})\n    else:\n        col.update({v:1})\npx = [(v,col[v]) for v in col.keys()]\n#print(px)\nfrom charec import sim\nimport uuid\ndef uuid_gen():\n    return str(uuid.uuid4())\npx = sorted(px,key=lambda x: -x[1])\npy = None\nfor x in px:\n    py = x[0]\n    break\nprint(py)\ncol = list(filter(lambda x: x.shape == py, can))\n# use timing.\n# there might be hash collisions. so check this.\n# hash is not quite sure about this.\ndef hashy(col,h=True,c=0.9):\n    cov = {}\n    if h:\n        for d in col:\n            tr = False\n            for z in cov.keys():\n                tr = sim(d,cov[z],c=c)\n                if tr:\n                    break\n            if tr:\n                continue",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/smp_nrc.py:90-133"
+    },
+    "491": {
+        "file_id": 93,
+        "content": "This code is initializing and appending data chunks to a list (can), then counting the shape of each chunk and sorting them in descending order. It uses UUIDs, sorts by count, and checks for hash collisions using simulation. The last lines use timing and check for potential hash collisions.",
+        "type": "comment"
+    },
+    "492": {
+        "file_id": 93,
+        "content": "            else:\n                cov.update({uuid_gen():d})\n    else:\n        for d in col:\n            tr = False\n            for z in cov.keys():\n                tr = sim(d,cov[z],c=c)\n                if tr:\n                    break\n            if tr:\n                continue\n            else:\n                cov.update({hash(d.tobytes()):d})\n    return cov\n# this is quick enough, but not there yet.\nfrom ms3 import spilter\n# determine the size.\n# map to 0 and 1.\nimport math\ndef msort(a,b):\n    if a>b:\n        return (a,b)\n    else:\n        return (b,a)\n# you can use tesseract in the back. hash function as the first step.\n# to eliminate uncertainty.\n# dl algorithm has that quantum thing. use it as the TRUST thing.\ndef gaf(n):\n    assert type(n)==int and n>0\n    factors=[]\n    fv = []\n    m = math.ceil(math.sqrt(n)+0.1)\n    for i in range(1,m+1):\n        if n%i == 0:\n            p = n//i\n            if p > i:\n                factors.append(i)\n            elif p==i:\n                pass\n            else:\n                continue",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/smp_nrc.py:134-174"
+    },
+    "493": {
+        "file_id": 93,
+        "content": "Code snippet defines two functions: `msort` and `gaf`. `msort` compares two numbers in descending order, while `gaf` asserts that the input is a positive integer, initializes factor lists, determines the square root of the number plus 0.1, and loops from 1 to the determined square root. It checks if the current number is a factor of the original number and appends it to the factors list.",
+        "type": "comment"
+    },
+    "494": {
+        "file_id": 93,
+        "content": "            fv[0:0]=[p]\n#    print(\"factors\",factors,\"fv\",fv)\n    factors += fv\n#            factors.append(msort(n,n/n))\n    return factors\n#    return list(map(lambda x: x,set(factors)))\ndef granulizer(s):\n    # s is the shape.\n    # find something in common?\n    # sort those things.\n    a,b = s[:2] # 0 for smallest piece, 1 for biggest piece.\n    def res0(mp):\n        a0,b0=gaf(int(a)),gaf(int(b))\n#        print(a0,b0)\n        a1,b1=len(a0)-1,len(b0)-1\n        return (int(a0[math.ceil(mp*a1)]), int(b0[math.ceil(mp*b1)]))\n    return res0\ndef proadd(a,b,c):\n    for k in a.keys():\n#        print(k,b)\n        b[k][int(a[k])].update([c])\n    return b\ndef jit_inv(a):\n    bitch = {}\n    # x in the location.\n    for x in a.keys():\n        for y in (0,1):\n            if len(a[x][y])>0:\n                c,d = frozenset(a[x][y]) , [(x,y)]\n                try:\n                    bitch[c]+=d\n                except:\n                    bitch[c]=d\n    return bitch\ndef tst_m(a,b,m=3):\n    l = len(b)\n    if l<m:\n        return sum([a[x[0]] == x[1] for x in b]) == l",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/smp_nrc.py:175-215"
+    },
+    "495": {
+        "file_id": 93,
+        "content": "This code contains various functions, including `granulizer`, which takes a shape as input and returns a resizing function. The `proadd` function updates values in a dictionary based on keys. `jit_inv` creates a new dictionary by grouping similar sets of values together. Lastly, `tst_m` compares two lists and checks if they match up to a certain length.",
+        "type": "comment"
+    },
+    "496": {
+        "file_id": 93,
+        "content": "    else:\n        c = rng.sample(b,m)\n        return sum([a[x[0]] == x[1] for x in c]) == m\ndef dream_func(a,b,m = 3):\n    # b is the inv_dict.\n    # generate relationships between these keys?\n    bk = [frozenset(x) for x in b.keys()]\n    rng.shuffle(bk)\n    #print(\"bk\",bk)\n    # remove the non-key.\n    # these are all sets.\n    fk = None\n#    while len(bk)>0:\n    for fc in bk:\n#        fc = rng.choice(range(len(bk)))\n#        fc = bk.pop(0)\n#        fc = frozenset(fc)\n        if fk is None:\n            if tst_m(a,b[fc],m):\n        # passed!\n                if len(fc)==1:\n                    return set(fc).pop()\n                else:\n                    fk = fc\n            else:\n                pass\n        else:\n            fd = fk.intersection(fc)\n            if len(fd)==0:\n                continue\n            elif tst_m(a,b[fc],m):\n                # must check.\n                if len(fd)==1:\n                    return set(fd).pop()\n                else:\n                    fk = fd\n    return fk\n        # get all possible sections.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/smp_nrc.py:216-254"
+    },
+    "497": {
+        "file_id": 93,
+        "content": "The code generates random relationships between keys in a dictionary and checks if they match a given condition. It returns the first matching key or None if no match is found. The process involves shuffling sets of keys, checking conditions, and updating the selected set based on the results.",
+        "type": "comment"
+    },
+    "498": {
+        "file_id": 93,
+        "content": "        # careful about impossible things.\n            # test both?\n            # must exist.\n    # a must be inverted.\n#    inv = jit_inv(a)\ndef choky(col,gua=0.3, snach=0.5, min_try = 3,h0=True ,c0=0.9):\n    bk = np.array(col).flatten()\n    mx,mn = max(bk), min(bk)\n    threash = snach*mx + mn\n    shp = granulizer(col[0].shape)(gua)\n    cod = {}\n    cov = {}\n    jcod = None\n#    changed = False\n#    buf_new = None\n#    buf_init = None\n    for x in col:\n#        print(shp)\n        sk = spilter(x,shp)\n        sk = {k:np.mean(sk[k].flatten())>threash for k in sk.keys()}\n        if cov == {}:\n            # init the thing!\n            ky = hash(x.tobytes())\n            cov.update({ky:x})\n            cod = {k:{0:set([]),1:set([])} for k in sk.keys()}\n            cod = proadd(sk,cod,ky)\n            jcod = jit_inv(cod)\n            # there's a buffer.\n            # got to buffer this?\n            # this is predefined thing?\n#            buf_init = x.copy()\n#            buf_new = (ky,sk)\n# do not hash small pieces?\n        else:",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/smp_nrc.py:255-289"
+    },
+    "499": {
+        "file_id": 93,
+        "content": "The function 'choky' takes a collection of data, applies granulizer with given parameters, iterates over each element, splits them by given shape, checks if values exceed threshold and updates the code dictionary accordingly. It also has initialization logic for first instance.",
+        "type": "comment"
+    }
+}

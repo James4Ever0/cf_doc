@@ -1,0 +1,10 @@
+{
+    "summary": "Starts a Bash shell in the Gotty terminal server with web interface, allowing remote access and interaction.",
+    "details": [
+        {
+            "comment": "Starts a Bash shell in the Gotty terminal server with web interface, allowing remote access and interaction.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/websh/linux_spec/demo_usage.sh\":0-1",
+            "content": "#!/bin/bash\n./gotty -w bash"
+        }
+    ]
+}

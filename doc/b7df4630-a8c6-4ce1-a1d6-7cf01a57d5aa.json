@@ -1,0 +1,10 @@
+{
+    "summary": "This code discusses the development of a custom OS with AI functionality or autonomous actions, possibly using inter-process communication for experimentation and communication. It might involve hardware hacks like network card modifications or protocols such as Matrix Protocol to broadcast information over the network.",
+    "details": [
+        {
+            "comment": "This code discusses the development of a custom OS with AI functionality or autonomous actions, possibly using inter-process communication for experimentation and communication. It might involve hardware hacks like network card modifications or protocols such as Matrix Protocol to broadcast information over the network.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/README.md\":0-10",
+            "content": "inter-process communication. web-scraping. trustworthiness.\nnext step is about native hook, system patching? no that is not general enough.\nthe next step is about to build a kernel or custom OS to be running on top with built-in AI functionality, or autonomous actions.\njust knowledge reviewing? implementing? all could be done within this thing.\nthis is about experimentation and communication.\nprobably has some minimal matrix protocol? or simply broadcast things over the net? network card hack? hardware hack?"
+        }
+    ]
+}

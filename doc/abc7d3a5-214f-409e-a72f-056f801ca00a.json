@@ -1,0 +1,10 @@
+{
+    "summary": "This script checks if there is only one attached session, and if not, it randomly selects a detached session to reattach. The code uses screen commands for managing sessions and fish for generating a random number. It also has comments indicating areas that could be improved or need explanation.",
+    "details": [
+        {
+            "comment": "This script checks if there is only one attached session, and if not, it randomly selects a detached session to reattach. The code uses screen commands for managing sessions and fish for generating a random number. It also has comments indicating areas that could be improved or need explanation.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_share/enumerate.sh\":0-35",
+            "content": "#!/bin/bash\n# you should only observe attached session only.\n#rpd=\"\"\npwx=$( screen -ls | grep jailscreen | grep Detached | wc -l )\nif [ $pwx -eq 1 ]\nthen\n\t./reattach_nocreate.sh\n\t# there's the x command. what is that?\n\t# it won't change shit. always need to reconsider.\nelse\n\tpwy=$( screen -ls | grep Detached | grep -Eo \"[0-9]+\\.jailscreen\" | wc -l)\n\t#pwy=$( echo $pwx | wc -l )\n#\techo $pwy\n#\techo $pwx\n\tpwz=$( fish -c \"random 0 $(( $pwy - 1 ))\" )\n\trz=0\n\tscreen -ls | grep Detached | grep -Eo \"[0-9]+\\.jailscreen\" | while read F;\tdo\n\t\tif [ $rz -eq $pwz ]\n\t\tthen\n\t\t\techo $F > /dev/shm/tmp_store\n#\t\t\techo $F\n#\t\t\tscreen -r $F\n#\t\t\techo bingo $F\n\t\tfi\n#\t\techo $rz\n\t\trz=$(( 1 + $rz ))\n\tdone\n#\techo $arr\n#\techo $pwz\n#\trpd= ${arr[$pwz]}\n# i have to say that this is shit.\n\tscreen -r $( cat /dev/shm/tmp_store )\nfi\n\t# feed arbitrary shit and use option -x.\n# tmux capture-pane -epJ -t 0\n# search it in pip packages."
+        }
+    ]
+}

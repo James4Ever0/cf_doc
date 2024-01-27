@@ -1,0 +1,10 @@
+{
+    "summary": "This script removes the standard touch input device and creates a new dummy input directory with a linked event1 file.",
+    "details": [
+        {
+            "comment": "This script removes the standard touch input device and creates a new dummy input directory with a linked event1 file.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/android/native/root/disable_touch_demo.bat\":0-3",
+            "content": "@echo off\nadb shell su -c \"cd /dev/input \\&\\& mkdir ../dummy\"\nadb shell su -c \"cd /dev/input \\&\\& ln -n event1 ../dummy/event1\"\nadb shell su -c \"cd /dev/input \\&\\& rm -rf event1\""
+        }
+    ]
+}

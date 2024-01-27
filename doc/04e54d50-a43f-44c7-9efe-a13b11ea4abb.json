@@ -1,0 +1,15 @@
+{
+    "summary": "This code processes an image using numpy, splitting and manipulating it before displaying the result with OpenCV's imshow. It waits for a key press to close and destroys all cv2 windows. The input is a BufferedReader.",
+    "details": [
+        {
+            "comment": "This code reads an image and performs various operations using numpy. It splits the image into smaller chunks, concatenates them with glue images, and generates horizontal lines for vertical alignment. The resulting output is a modified image.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/read_xwd.py\":0-41",
+            "content": "from xwd_func import mainConv\nfrom ms3 import spilter\nimport cv2\nimport numpy as np\n# i guess python is full of translation here. translating calls into simple reusable stubs.\ndef concat(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=0)\n    n=np.concatenate((n,b),axis=0)\n    return n\ndef concat_h(a,b,c):\n    # c is glue.\n    n=np.concatenate((a,c),axis=1)\n    n=np.concatenate((n,b),axis=1)\n    return n\ndef genline_h(a,b):\n    return np.ones((a,1,b))\ndef genline(a,b):\n    return np.ones((1,a,b))\nwith open(\"xwd.dump\",\"rb\") as f:\n    img=mainConv(f)\n    s=spilter(img,(25,80))\n    # same config for that tinycore.\n    rk=list(s.keys())[0]\n    rk=s[rk]\n    _,y,x = rk.shape\n    base_t=None\n    # this is vertical alignment. but what is vertical?\n    for x0 in range(80):\n        base = genline(y,x)\n        for y0 in range(25):\n            base=concat(base,genline(y,x),s[(y0,x0)])\n        if base_t is None:\n#            print(\"init\",base.shape)\n            base_t = base.copy()\n        else:\n            z,_,_=base.shape\n#            print(\"looping\",base_t.shape,base.shape)"
+        },
+        {
+            "comment": "This code snippet displays an image using OpenCV's imshow function and waits for a key press to close the window. It then destroys all windows created by cv2. The input class is a BufferedReader.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/read_xwd.py\":42-47",
+            "content": "            base_t = concat_h(base_t,base,genline_h(z,x))\n    #input class: <class '_io.BufferedReader'>    \n    # paint multiple images onto the same window.\n    cv2.imshow(\"sample\",base_t)\n    cv2.waitKey(0)\n    cv2.destroyAllWindows()"
+        }
+    ]
+}

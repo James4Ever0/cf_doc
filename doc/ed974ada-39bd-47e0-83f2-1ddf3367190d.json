@@ -1,0 +1,15 @@
+{
+    "summary": "This code details the integration of virtual and real environments, emphasizing human involvement while maintaining machine functionality. The goal is to explore all possibilities and adapt to modern times without resorting to complex solutions.",
+    "details": [
+        {
+            "comment": "This code outlines a complex structure involving virtual and real environments, networks, machines, humans, and sensors. The human component is key, while maintaining the machine part's integrity. The goal is to take control of either the virtual or real computer environment to virtually explore all possibilities. Robotic interaction with the real world requires a jailbreak-like effort.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/NOTE.md\":0-26",
+            "content": "Structure:\n            [Virtual HID]\n              |\n[Machine] - [HID] - [Human]\n    |\n[Virtual] - [HID] - [Human]\n              |\n            [Virtual HID]\nThe human part is the key structure. However it is important not to destroy the machine part.\nThis structure follows the rule: make both ends come true and then you'll realize the truth.\nEither take full control of the machine or the virtual one. It is not possible to finite all the possibilities unless you virtualize the instance.\n               [Virtual Computer Enviorment]  [Internal Network]\n                           |                     |\n[Real World] - [Real Computer Enviorment] - [Network] - [Virtual Network]\n     |              |                 |        |\n[Virtual World] [Console]           [HID]   [Internet]\n   |        |\n[Sensor] [Interaction]\nRobotic machine can interact with the real world. However that is a real world elevation, which requires nearly the same computational power as a jailbreak.\nOur intention is actually to jailbreak every instance of computer. So minor fixes is not of our concern."
+        },
+        {
+            "comment": "Code snippet discusses adjusting to a new situation, avoiding complex solutions, and emphasizing the importance of adapting to modern times.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/NOTE.md\":28-40",
+            "content": "It is about one simple fix in the mind, not in the head. Complex surgeries or patches are just not the thing.\n>> Getting Used to it. You have to get used to it.\n{What did you say?}\n>> Taking notes are not of our style.\n{Notes? Paper notes?}\n>> This is Age 2020.\n{It shall be 2000 if you wish.}"
+        }
+    ]
+}

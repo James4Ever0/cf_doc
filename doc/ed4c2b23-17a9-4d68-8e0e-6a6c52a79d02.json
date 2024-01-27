@@ -1,0 +1,10 @@
+{
+    "summary": "This code reads input from stdin, tokenizes it into chunks of maximum length 5, and outputs the tokens one by one. It uses a SystemRandom instance to ensure better randomness.",
+    "details": [
+        {
+            "comment": "This code reads input from stdin, tokenizes it into chunks of maximum length 5, and outputs the tokens one by one. It uses a SystemRandom instance to ensure better randomness.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/word_processor.py\":0-16",
+            "content": "import sys\nimport random\nrng = random.SystemRandom()\nmaxToken=5\nfor x in sys.stdin:\n    z=len(x) # remaining.\n    f=z\n    print(\"input: \",x)\n    while (z>0):\n        k=f-z\n        s=range(1,min(maxToken,1+z))\n        s=rng.choice(s)\n        y=x[k:k+s]\n        z-=s\n        print(\"output:\",y)"
+        }
+    ]
+}

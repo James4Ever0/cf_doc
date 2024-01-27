@@ -1,0 +1,10 @@
+{
+    "summary": "This script removes, creates a directory for, and starts an X virtual framebuffer (Xvfb) server. It then runs Gnome Shell with 7 display connections and sets the pixel depths. Finally, it could echo the Xvfb session PID and potentially start an xterm client.",
+    "details": [
+        {
+            "comment": "This script removes, creates a directory for, and starts an X virtual framebuffer (Xvfb) server. It then runs Gnome Shell with 7 display connections and sets the pixel depths. Finally, it could echo the Xvfb session PID and potentially start an xterm client.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/winauto/gnome_virtual.sh\":0-6",
+            "content": "#!/bin/bash\nrm -rf /dev/shm/xvfb\nmkdir /dev/shm/xvfb\nxvfb-run -f ~/.Xauthority -n 7 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -reset -terminate\" gnome-shell --replace \n#echo xvfb_session_pid $!\n#mwm -display :7\n#xvfb-run -f ~/.Xauthority -n 1 -s \"-pixdepths 3 27 -fbdir /dev/shm/xvfb -listen tcp \" xterm"
+        }
+    ]
+}

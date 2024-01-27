@@ -1,0 +1,10 @@
+{
+    "summary": "This code discusses the limitations of machine understanding and the need for self-understanding at a basic level to address errors in human input. It also mentions that compilers are built between machine code, logical language, and human intent, while visual languages can bridge the gap between human intent and machine interpretation.",
+    "details": [
+        {
+            "comment": "This code discusses the limitations of machine understanding and the need for self-understanding at a basic level to address errors in human input. It also mentions that compilers are built between machine code, logical language, and human intent, while visual languages can bridge the gap between human intent and machine interpretation.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/DONT.md\":0-12",
+            "content": "you don't even know why they would build a compiler.\n[Machine code] - [logical language] - [human intent]\n            |\n      [Visual language] - [human intent]\nthey do not know that input coming from humen are not quite right sometimes, and they are lazy to seek for the origin of human intent, which is the source of error.\n[Machine code] - [ports] - [External Needs]\n      |           |\n[self-understanding]\nthe understanding must be coming from the basic level, and without any human-reserved knowledge."
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This script utilizes xdotool, a tool for automating the X Window System, to move the mouse cursor to position (1,1), simulate a left click, and type the character sequence \"123\". It is likely used for UI automation or assistive purposes.",
+    "details": [
+        {
+            "comment": "This script utilizes xdotool, a tool for automating the X Window System, to move the mouse cursor to position (1,1), simulate a left click, and type the character sequence \"123\". It is likely used for UI automation or assistive purposes.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/winauto/1type_key.sh\":0-3",
+            "content": "#!/bin/bash\nexport DISPLAY=:1\nxdotool mousemove 1 1 click 1\nxdotool type 123"
+        }
+    ]
+}

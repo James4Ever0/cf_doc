@@ -1,0 +1,10 @@
+{
+    "summary": "This code is a shell script that executes the Python file \"vint.py\" using the python3 interpreter in interactive mode, allowing for real-time feedback and debugging while running the program.",
+    "details": [
+        {
+            "comment": "This code is a shell script that executes the Python file \"vint.py\" using the python3 interpreter in interactive mode, allowing for real-time feedback and debugging while running the program.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/vint.sh\":0-1",
+            "content": "#!/bin/bash\npython3 -i vint.py"
+        }
+    ]
+}

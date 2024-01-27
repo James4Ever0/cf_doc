@@ -1,0 +1,10 @@
+{
+    "summary": "Starts a telnet session with localhost on port 2000, likely for interacting with the virtual box serial connection.",
+    "details": [
+        {
+            "comment": "Starts a telnet session with localhost on port 2000, likely for interacting with the virtual box serial connection.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/vbox_serial_connect/interactive_tcp.sh\":0-1",
+            "content": "#!/bin/bash\ntelnet -e \"\" localhost 2000"
+        }
+    ]
+}

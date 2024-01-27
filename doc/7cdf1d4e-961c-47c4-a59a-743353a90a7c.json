@@ -1,0 +1,10 @@
+{
+    "summary": "This code defines two functions: \"known_bytes\" and \"given_array\". The \"known_bytes\" function takes an array of bytes as input, creates a set of unique byte values in the array, then constructs a dictionary where keys are the unique byte values and values are lists of indices where that byte value appears in the input array. The \"given_array\" function uses the output of \"known_bytes\" to create a new dictionary, where keys are the same as in the \"known_bytes\" dictionary, but values are lists of subarrays in the original input array where each byte in the subarray matches the key's value.",
+    "details": [
+        {
+            "comment": "This code defines two functions: \"known_bytes\" and \"given_array\". The \"known_bytes\" function takes an array of bytes as input, creates a set of unique byte values in the array, then constructs a dictionary where keys are the unique byte values and values are lists of indices where that byte value appears in the input array. The \"given_array\" function uses the output of \"known_bytes\" to create a new dictionary, where keys are the same as in the \"known_bytes\" dictionary, but values are lists of subarrays in the original input array where each byte in the subarray matches the key's value.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/byte_compare.py\":0-9",
+            "content": "def known_bytes(y):\n    z=set(y)\n    z={k:list(map(lambda f:f==k,y)) for k in z}\n    z={k:[f for f in range(len(z[k])) if z[k][f]] for k in z.keys()}\n    return z\ndef given_array(y):\n    z=known_bytes(y)\n    l=len(y)\n    return {k:[y[d:l] for d in z[k]] for k in z.keys()}"
+        }
+    ]
+}

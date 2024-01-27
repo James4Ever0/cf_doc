@@ -1,0 +1,10 @@
+{
+    "summary": "Ensures the code execution is triggered after saving it to the database. Code from \"third_training.py\" file is read and stored as \"hello_world\" key in the Redis database, then executed using exec() function.",
+    "details": [
+        {
+            "comment": "Ensures the code execution is triggered after saving it to the database. Code from \"third_training.py\" file is read and stored as \"hello_world\" key in the Redis database, then executed using exec() function.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/code_train/second_training.py\":0-10",
+            "content": "# make sure the thing is launched.\ncode = open(\"../dir_train/third_training.py\",\"r\").read()\n#code = \"\"\"print(\"hello world\")\"\"\"\n# store it into the database, without caring how the fuck it is done.\nfrom nparr_redis import rget, rset\nrset(\"hello_world\",code)\nrx = rget(\"hello_world\")\nprint(rx)\nexec(rx)\n# can you prove there's nothing we can do about self-containing?\n# how to get it done? it is my code!"
+        }
+    ]
+}

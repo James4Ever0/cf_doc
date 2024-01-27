@@ -1,0 +1,15 @@
+{
+    "summary": "The code generates and manages base lists, arrays, sparse matrices, and dictionaries for organizing data, then prints the resulting typegen dictionary. It could benefit from improved organization and possible refactoring of the recget function for better efficiency.",
+    "details": [
+        {
+            "comment": "The code defines a function genkey for generating base lists, recget for retrieving elements from the arrays, and tgen to generate a sparse matrix for individual pixels. It creates a dictionary lst with array keys and uses these keys in tgen to create a typegen dictionary with keys as sparse matrix keys and values as lists of corresponding array keys. Finally, it prints the typegen dictionary.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/crdemo.py\":0-42",
+            "content": "import numpy as np\n# use eval or nothing will happen.\n# extract sparse matrix?\ndef genkey(tup):\n    # check args length?\n    # max recursion 3?\n    base_list=[()]\n    for x in range(len(tup)):\n        base_list = [(*z,y) for z in base_list for y in range(tup[x])]\n    return base_list\ndef recget(a,x):\n    tar = a\n    for z in x:\n        tar = tar[z]\n    return tar\n# better use this in pypy? but how? use separate process or one single process? \na = np.array([0,0,0])\nb = np.array([0,1,1])\ne = np.array([1,1,1])\nd = np.array([0,0,1])\nc = np.array([0,0,1])\n# generate sparse matrix for individual pixels.\n# group them together.\ndef tgen(lst,a):\n    shape = a.shape\n    keys = genkey(shape)\n    typegen= {k:{0:[],1:[]} for k in keys}\n    for k in lst.keys():\n        f=lst[k]\n        for x in keys:\n            y=recget(f,x)\n            typegen[x][y].append(k)\n    return typegen\nlst = {\"a\":a,\"b\":b,\"c\":c,\"d\":d,\"e\":e}\ntypegen=tgen(lst,a)\nprint(typegen)\n# how do you map the logic? random plots?\n\"\"\"\nprint(keys)\n# use these keys to get data!\nfor dx in lst:"
+        },
+        {
+            "comment": "This code seems to iterate over the keys and print them along with their corresponding values retrieved from a dictionary (recget function). It suggests improving organization by using a dictionary and potentially refactoring the recget function for better efficiency.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/crdemo.py\":43-47",
+            "content": "    for x in keys:\n        print(x,recget(dx,x))\n\"\"\"\n# classify these things by what? better use a dict.\n# a recursive function?"
+        }
+    ]
+}

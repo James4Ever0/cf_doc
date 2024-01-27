@@ -1,0 +1,10 @@
+{
+    "summary": "These functions, \"reset()\" and \"scommand(s)\", are used to interact with anyControl. \"reset()\" executes the command without providing a specific string value for it, while \"scommand(s)\" allows you to pass a specific string (s) as the value for the command. The result is stored in variable 'r', and then printed out using print(\"reply:\",r).",
+    "details": [
+        {
+            "comment": "These functions, \"reset()\" and \"scommand(s)\", are used to interact with anyControl. \"reset()\" executes the command without providing a specific string value for it, while \"scommand(s)\" allows you to pass a specific string (s) as the value for the command. The result is stored in variable 'r', and then printed out using print(\"reply:\",r).",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/code_train/tcx.py\":0-6",
+            "content": "from wdf import anyControl\ndef reset():\n    r = anyControl(\"9999\",None,False)\n    print(\"reply:\",r)\ndef scommand(s):\n    r = anyControl(\"9999\",s,True)\n    print(\"reply:\",r)"
+        }
+    ]
+}

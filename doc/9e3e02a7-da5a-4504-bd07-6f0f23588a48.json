@@ -1,0 +1,10 @@
+{
+    "summary": "Imports necessary libraries, utilizes system randomization for choices, reads input from stdin, adds elements to a list called 'img', and writes a randomly chosen element from the list to stdout.",
+    "details": [
+        {
+            "comment": "Imports necessary libraries, utilizes system randomization for choices, reads input from stdin, adds elements to a list called 'img', and writes a randomly chosen element from the list to stdout.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/rchoose.py\":0-8",
+            "content": "import sys\nimport random\nrng=random.SystemRandom()\nimg=['']\nfor x in sys.stdin:\n    imp+=x.split()\nsys.stdout.write(rng.choice(img))"
+        }
+    ]
+}

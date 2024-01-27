@@ -1,0 +1,10 @@
+{
+    "summary": "The code discusses the focus on Linux and highlights that it is a custom system lacking thinking strategy. It introduces various features such as self-generated console input, network auto routing, automatic IPC, program cracking, hardware pranking/adapting. The processor's behavior when running fine and the need to put data on VGA are also mentioned.",
+    "details": [
+        {
+            "comment": "The code discusses the focus on Linux and highlights that it is a custom system lacking thinking strategy. It introduces various features such as self-generated console input, network auto routing, automatic IPC, program cracking, hardware pranking/adapting. The processor's behavior when running fine and the need to put data on VGA are also mentioned.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/OS.md\":0-12",
+            "content": "we shall never ignore the fact that we are too focused on linux.\nlinux is just a custom system and nothing else.\nit does not provide the thinking strategy along with it. also it does not mean it is the only way to be.\n[Custom OS] - [Self-generated Console Input]\n            - [Network Auto Routing]\n            - [Automatic IPC]\n            - [Program Cracking]\n            - [Hardware pranking/adapting]\nFor a processor, what is considered to be running just fine? Why the heck it has to put data to the VGA? what we can do to make things work?"
+        }
+    ]
+}

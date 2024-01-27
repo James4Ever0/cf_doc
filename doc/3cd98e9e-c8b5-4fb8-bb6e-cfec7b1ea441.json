@@ -1,0 +1,10 @@
+{
+    "summary": "Code sets up a Telnet connection using a specific port and address, likely for communication between VirtualBox serial ports.",
+    "details": [
+        {
+            "comment": "Code sets up a Telnet connection using a specific port and address, likely for communication between VirtualBox serial ports.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/vbox_serial_connect/UNIVERSAL\":0-6",
+            "content": "use telnet. port is specifically chosen.\nthe address is a numerical value.\nTCP Server: Deselect the Connect to Existing Pipe/Socket check box and specify the port number in the Path/Address field. This is typically 23 or 2023. Note that on UNIX-like systems you will have to use a port a number greater than 1024 for regular users. \nhttps://docs.oracle.com/en/virtualization/virtualbox/6.0/user/serialports.html"
+        }
+    ]
+}

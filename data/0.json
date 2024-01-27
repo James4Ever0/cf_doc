@@ -1,0 +1,529 @@
+{
+    "0": {
+        "file_id": 0,
+        "content": "/README.md",
+        "type": "filepath"
+    },
+    "1": {
+        "file_id": 0,
+        "content": "The Comprehension Framework automates daily computer tasks, emphasizing comprehension and being relevant to the lazero project. The code is focused on experimentation, analysis, reverse-engineering, and hacking purposes, but acknowledges no single solution can save the world.",
+        "type": "summary"
+    },
+    "2": {
+        "file_id": 0,
+        "content": "# The Comprehension Framework\n[![fuck counter](https://img.shields.io/github/search/james5deutschland/cf/fuck.svg)](https://github.com/james5deutschland/cf/search?q=fuck)\n[![shit counter](https://img.shields.io/github/search/james5deutschland/cf/shit.svg)](https://github.com/james5deutschland/cf/search?q=shit)\nThis piece of work is intentionally focused on automating the daily usage of an arbitrary computer. Not only repetitive tasks but also creative tasks like painting and music composing are targeted. Comprehension is the core component of this entire structure, and CF therefore becomes vital to the lazero project.\nContrary to the main lazero project, which is a collection of sketchy code for mindstroming and imagination, this piece of code is focused and concise. It does not grarantee that it would find the answer, but at least it will try. Purposefully designed for code-experimentation, massive scraping, logical analyzing, reverse-engineering, and generally, hacking, it is a virtual hacker who does not need to eat or sleep.",
+        "type": "code",
+        "location": "/README.md:1-10"
+    },
+    "3": {
+        "file_id": 0,
+        "content": "This code provides an overview of the Comprehension Framework, which aims to automate daily computer usage tasks including repetitive and creative ones. It highlights the importance of comprehension in this structure and mentions its relevance to the lazero project. The code is focused and concise compared to the main lazero project, designed for experimentation, scraping, analysis, reverse-engineering, and hacking purposes.",
+        "type": "comment"
+    },
+    "4": {
+        "file_id": 0,
+        "content": "CF won't save the world. In fact, nothing will save the world. But at least it has tried.",
+        "type": "code",
+        "location": "/README.md:12-12"
+    },
+    "5": {
+        "file_id": 0,
+        "content": "This code conveys that CF (likely referring to a platform, technology or organization named \"CF\") has attempted to make an impact or contribute to solving global issues, but ultimately acknowledges that no single solution can save the world.",
+        "type": "comment"
+    },
+    "6": {
+        "file_id": 1,
+        "content": "/android/README",
+        "type": "filepath"
+    },
+    "7": {
+        "file_id": 1,
+        "content": "This code seems to describe the integration of a touch blocker feature, which blocks the background UI and sets screen brightness to zero, using Appium (automated testing tool) with Uiautomator2 for Android and Beaker Browser's matrix protocol. The purpose is unclear but it could be related to security or privacy features.",
+        "type": "summary"
+    },
+    "8": {
+        "file_id": 1,
+        "content": "touch blocker -> background ui (not possible?) -> zero brightness (not recommend?)\nappium -> uiautomator2\nmatrix protocol -> beaker browser",
+        "type": "code",
+        "location": "/android/README:1-5"
+    },
+    "9": {
+        "file_id": 1,
+        "content": "This code seems to describe the integration of a touch blocker feature, which blocks the background UI and sets screen brightness to zero, using Appium (automated testing tool) with Uiautomator2 for Android and Beaker Browser's matrix protocol. The purpose is unclear but it could be related to security or privacy features.",
+        "type": "comment"
+    },
+    "10": {
+        "file_id": 2,
+        "content": "/android/linux_emu/README",
+        "type": "filepath"
+    },
+    "11": {
+        "file_id": 2,
+        "content": "VirtualBox emulation is present, but SDL version might not be superior to the Termux one which relies on pure TTY interface.",
+        "type": "summary"
+    },
+    "12": {
+        "file_id": 2,
+        "content": "there's virtualbox emulation. but it is a sdl version. not better than the termux one, which is pure tty based.",
+        "type": "code",
+        "location": "/android/linux_emu/README:1-1"
+    },
+    "13": {
+        "file_id": 2,
+        "content": "VirtualBox emulation is present, but SDL version might not be superior to the Termux one which relies on pure TTY interface.",
+        "type": "comment"
+    },
+    "14": {
+        "file_id": 3,
+        "content": "/android/native/README",
+        "type": "filepath"
+    },
+    "15": {
+        "file_id": 3,
+        "content": "This code snippet explains that an Android accessibility service can disable part of the screen, directs to check the source code of the screen lock feature, and provides additional links for further information.",
+        "type": "summary"
+    },
+    "16": {
+        "file_id": 3,
+        "content": "android accessibility service can disable part of screen.\ncheck out the source code of screen lock.\n-> interaction control\nhttps://www.makeuseof.com/tag/disable-touchscreen-input-android-iphone/#:~:text=Once%20enabled%2C%20here%E2%80%99s%20how%20to%20use%20it%3A%201,top%20of%20the%20screen%20to%20start%20Guided%20Access.\nhttps://www.nextpit.com/android-accessibility-settings#int",
+        "type": "code",
+        "location": "/android/native/README:1-9"
+    },
+    "17": {
+        "file_id": 3,
+        "content": "This code snippet explains that an Android accessibility service can disable part of the screen, directs to check the source code of the screen lock feature, and provides additional links for further information.",
+        "type": "comment"
+    },
+    "18": {
+        "file_id": 4,
+        "content": "/android/native/init.bat",
+        "type": "filepath"
+    },
+    "19": {
+        "file_id": 4,
+        "content": "This code, located in \"cf/android/native/init.bat\", initializes the PATH variable to include the platform-tools folder from D:\\Android\\SDK, while preserving any existing PATH value.",
+        "type": "summary"
+    },
+    "20": {
+        "file_id": 4,
+        "content": "@echo off\nset PATH=D:\\Android\\SDK\\platform-tools;%PATH%",
+        "type": "code",
+        "location": "/android/native/init.bat:1-2"
+    },
+    "21": {
+        "file_id": 4,
+        "content": "This code, located in \"cf/android/native/init.bat\", initializes the PATH variable to include the platform-tools folder from D:\\Android\\SDK, while preserving any existing PATH value.",
+        "type": "comment"
+    },
+    "22": {
+        "file_id": 5,
+        "content": "/android/native/root/disable_touch_demo.bat",
+        "type": "filepath"
+    },
+    "23": {
+        "file_id": 5,
+        "content": "This script removes the standard touch input device and creates a new dummy input directory with a linked event1 file.",
+        "type": "summary"
+    },
+    "24": {
+        "file_id": 5,
+        "content": "@echo off\nadb shell su -c \"cd /dev/input \\&\\& mkdir ../dummy\"\nadb shell su -c \"cd /dev/input \\&\\& ln -n event1 ../dummy/event1\"\nadb shell su -c \"cd /dev/input \\&\\& rm -rf event1\"",
+        "type": "code",
+        "location": "/android/native/root/disable_touch_demo.bat:1-4"
+    },
+    "25": {
+        "file_id": 5,
+        "content": "This script removes the standard touch input device and creates a new dummy input directory with a linked event1 file.",
+        "type": "comment"
+    },
+    "26": {
+        "file_id": 6,
+        "content": "/android/native/root/enable_touch_demo.bat",
+        "type": "filepath"
+    },
+    "27": {
+        "file_id": 6,
+        "content": "This script uses ADB and su to manage a symbolic link for the touch demo. It creates a directory \"dummy\" in /dev/input, then creates a symbolic link named \"event1\" pointing to the \"dummy/event1\" file, and finally removes the symbolic link if necessary.",
+        "type": "summary"
+    },
+    "28": {
+        "file_id": 6,
+        "content": "@echo off\nREM adb shell su -c \"cd /dev/input \\&\\& mkdir ../dummy\"\nadb shell su -c \"cd /dev/input \\&\\& ln -n ../dummy/event1 event1\"\nREM adb shell su -c \"cd /dev/input \\&\\& rm -rf event1\"",
+        "type": "code",
+        "location": "/android/native/root/enable_touch_demo.bat:1-4"
+    },
+    "29": {
+        "file_id": 6,
+        "content": "This script uses ADB and su to manage a symbolic link for the touch demo. It creates a directory \"dummy\" in /dev/input, then creates a symbolic link named \"event1\" pointing to the \"dummy/event1\" file, and finally removes the symbolic link if necessary.",
+        "type": "comment"
+    },
+    "30": {
+        "file_id": 7,
+        "content": "/generic/README",
+        "type": "filepath"
+    },
+    "31": {
+        "file_id": 7,
+        "content": "The code appears to be a comment expressing the desire to modify and rebuild an existing project, possibly in a LEGO-related context.",
+        "type": "summary"
+    },
+    "32": {
+        "file_id": 7,
+        "content": "remember LEGO? this is the time to remodify the things a little bit.\nman this is it. all we need to do is to rebuild the whole project somehow.",
+        "type": "code",
+        "location": "/generic/README:1-3"
+    },
+    "33": {
+        "file_id": 7,
+        "content": "The code appears to be a comment expressing the desire to modify and rebuild an existing project, possibly in a LEGO-related context.",
+        "type": "comment"
+    },
+    "34": {
+        "file_id": 8,
+        "content": "/generic/vb_charec_bootstrap/BOX.md",
+        "type": "filepath"
+    },
+    "35": {
+        "file_id": 8,
+        "content": "This code describes the hardware architecture of lazero and outlines input sources for a standard PC and phone, recommending developing a hardware hypervisor or custom OS to fully control devices. It also mentions the possibility of diving deeper into existing operating systems.",
+        "type": "summary"
+    },
+    "36": {
+        "file_id": 8,
+        "content": "here's the hardware version of lazero.\nthe input source for a standard PC is easy to establish.\nIt does not grarentee to have the same image or sound.\n[PC] - [USB] - [file sharing/ HID/ camera/ more]\n     - [HDMI] - [screen imaging/ sound]\n     - [sound jack] - [sound io]\n     - [network] - [ipc/ relay]\ndue to limitation of current phone, it is recommend to develop hardware hypervisor to take control of these devices, also applicable for arbitrary OS. anyway, developing a custom OS ordigging deeper into current OS is also great.\n[Phone] - [Main Plug] - [usb/ video]\n        - [audio jack] - [audio io]\n\t- [internal connection] - [video/ audio/ touch]\n\t- [card slot] - [wifi/ storage]\n[custom device] - [standard port emulation]\n                - [supervisor port]",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/BOX.md:1-20"
+    },
+    "37": {
+        "file_id": 8,
+        "content": "This code describes the hardware architecture of lazero and outlines input sources for a standard PC and phone, recommending developing a hardware hypervisor or custom OS to fully control devices. It also mentions the possibility of diving deeper into existing operating systems.",
+        "type": "comment"
+    },
+    "38": {
+        "file_id": 9,
+        "content": "/generic/vb_charec_bootstrap/CRITERION.md",
+        "type": "filepath"
+    },
+    "39": {
+        "file_id": 9,
+        "content": "Ensures that all views have been focused for interaction, preventing interference or closure. Gnome allows system control when idle but cannot interact with multiple windows simultaneously.",
+        "type": "summary"
+    },
+    "40": {
+        "file_id": 9,
+        "content": "Make sure every view has been focused.\nAnd by means of focus, the user must interact with the interface. Otherwise the interface is either being taking over or closed.\n[Window Manager] - [Focused Window]\n               \\\n[Supervisor] - [Unfocused Window]\nFor Gnome, it is impossible to simutaneously interact with 2 or more windows at the same time. However, the system can take control of system when idle or just merely read through content but do nothing about it.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/CRITERION.md:1-9"
+    },
+    "41": {
+        "file_id": 9,
+        "content": "Ensures that all views have been focused for interaction, preventing interference or closure. Gnome allows system control when idle but cannot interact with multiple windows simultaneously.",
+        "type": "comment"
+    },
+    "42": {
+        "file_id": 10,
+        "content": "/generic/vb_charec_bootstrap/DONT.md",
+        "type": "filepath"
+    },
+    "43": {
+        "file_id": 10,
+        "content": "This code discusses the limitations of machine understanding and the need for self-understanding at a basic level to address errors in human input. It also mentions that compilers are built between machine code, logical language, and human intent, while visual languages can bridge the gap between human intent and machine interpretation.",
+        "type": "summary"
+    },
+    "44": {
+        "file_id": 10,
+        "content": "you don't even know why they would build a compiler.\n[Machine code] - [logical language] - [human intent]\n            |\n      [Visual language] - [human intent]\nthey do not know that input coming from humen are not quite right sometimes, and they are lazy to seek for the origin of human intent, which is the source of error.\n[Machine code] - [ports] - [External Needs]\n      |           |\n[self-understanding]\nthe understanding must be coming from the basic level, and without any human-reserved knowledge.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/DONT.md:1-13"
+    },
+    "45": {
+        "file_id": 10,
+        "content": "This code discusses the limitations of machine understanding and the need for self-understanding at a basic level to address errors in human input. It also mentions that compilers are built between machine code, logical language, and human intent, while visual languages can bridge the gap between human intent and machine interpretation.",
+        "type": "comment"
+    },
+    "46": {
+        "file_id": 11,
+        "content": "/generic/vb_charec_bootstrap/NOTE.md",
+        "type": "filepath"
+    },
+    "47": {
+        "file_id": 11,
+        "content": "This code details the integration of virtual and real environments, emphasizing human involvement while maintaining machine functionality. The goal is to explore all possibilities and adapt to modern times without resorting to complex solutions.",
+        "type": "summary"
+    },
+    "48": {
+        "file_id": 11,
+        "content": "Structure:\n            [Virtual HID]\n              |\n[Machine] - [HID] - [Human]\n    |\n[Virtual] - [HID] - [Human]\n              |\n            [Virtual HID]\nThe human part is the key structure. However it is important not to destroy the machine part.\nThis structure follows the rule: make both ends come true and then you'll realize the truth.\nEither take full control of the machine or the virtual one. It is not possible to finite all the possibilities unless you virtualize the instance.\n               [Virtual Computer Enviorment]  [Internal Network]\n                           |                     |\n[Real World] - [Real Computer Enviorment] - [Network] - [Virtual Network]\n     |              |                 |        |\n[Virtual World] [Console]           [HID]   [Internet]\n   |        |\n[Sensor] [Interaction]\nRobotic machine can interact with the real world. However that is a real world elevation, which requires nearly the same computational power as a jailbreak.\nOur intention is actually to jailbreak every instance of computer. So minor fixes is not of our concern.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/NOTE.md:1-27"
+    },
+    "49": {
+        "file_id": 11,
+        "content": "This code outlines a complex structure involving virtual and real environments, networks, machines, humans, and sensors. The human component is key, while maintaining the machine part's integrity. The goal is to take control of either the virtual or real computer environment to virtually explore all possibilities. Robotic interaction with the real world requires a jailbreak-like effort.",
+        "type": "comment"
+    },
+    "50": {
+        "file_id": 11,
+        "content": "It is about one simple fix in the mind, not in the head. Complex surgeries or patches are just not the thing.\n>> Getting Used to it. You have to get used to it.\n{What did you say?}\n>> Taking notes are not of our style.\n{Notes? Paper notes?}\n>> This is Age 2020.\n{It shall be 2000 if you wish.}",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/NOTE.md:29-41"
+    },
+    "51": {
+        "file_id": 11,
+        "content": "Code snippet discusses adjusting to a new situation, avoiding complex solutions, and emphasizing the importance of adapting to modern times.",
+        "type": "comment"
+    },
+    "52": {
+        "file_id": 12,
+        "content": "/generic/vb_charec_bootstrap/NOTES.md",
+        "type": "filepath"
+    },
+    "53": {
+        "file_id": 12,
+        "content": "The code outlines the concept of using virtual machines, sandboxes, isolation, and imagination to ensure safe and efficient emulation. It highlights the importance of ensuring instances are fully polished before taking effect to prevent any potential risks or harm to real-life systems.",
+        "type": "summary"
+    },
+    "54": {
+        "file_id": 12,
+        "content": "Imagination is way better than virtualization, or at some point they differ.\n      [Virtual Machine]\n     /        |         \\\n[Sandbox] [Isolation] [Practice]\n     \\        |        /\n     [Imaginary Machine]\nHereby in order to provide speed of historical emulation, we must either virtualize the instance or simply imagine it.\nA person can be killed in reality, and computers are real and vulnerable. They can launch any attack, drain data quota and send one into prison.\nImagination is the basic functionality and it is in fact the core of computation. For every instance, we make sure it does not take effect unless being fully polished.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/NOTES.md:1-13"
+    },
+    "55": {
+        "file_id": 12,
+        "content": "The code outlines the concept of using virtual machines, sandboxes, isolation, and imagination to ensure safe and efficient emulation. It highlights the importance of ensuring instances are fully polished before taking effect to prevent any potential risks or harm to real-life systems.",
+        "type": "comment"
+    },
+    "56": {
+        "file_id": 13,
+        "content": "/generic/vb_charec_bootstrap/OS.md",
+        "type": "filepath"
+    },
+    "57": {
+        "file_id": 13,
+        "content": "The code discusses the focus on Linux and highlights that it is a custom system lacking thinking strategy. It introduces various features such as self-generated console input, network auto routing, automatic IPC, program cracking, hardware pranking/adapting. The processor's behavior when running fine and the need to put data on VGA are also mentioned.",
+        "type": "summary"
+    },
+    "58": {
+        "file_id": 13,
+        "content": "we shall never ignore the fact that we are too focused on linux.\nlinux is just a custom system and nothing else.\nit does not provide the thinking strategy along with it. also it does not mean it is the only way to be.\n[Custom OS] - [Self-generated Console Input]\n            - [Network Auto Routing]\n            - [Automatic IPC]\n            - [Program Cracking]\n            - [Hardware pranking/adapting]\nFor a processor, what is considered to be running just fine? Why the heck it has to put data to the VGA? what we can do to make things work?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/OS.md:1-13"
+    },
+    "59": {
+        "file_id": 13,
+        "content": "The code discusses the focus on Linux and highlights that it is a custom system lacking thinking strategy. It introduces various features such as self-generated console input, network auto routing, automatic IPC, program cracking, hardware pranking/adapting. The processor's behavior when running fine and the need to put data on VGA are also mentioned.",
+        "type": "comment"
+    },
+    "60": {
+        "file_id": 14,
+        "content": "/generic/vb_charec_bootstrap/PENCIL.md",
+        "type": "filepath"
+    },
+    "61": {
+        "file_id": 14,
+        "content": "This code mentions that software like Word, which can be considered as a \"pencil\", still requires user input and won't write things out automatically.",
+        "type": "summary"
+    },
+    "62": {
+        "file_id": 14,
+        "content": "aoftware like word can be pencil, but it is not gonna write things out all by itself.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/PENCIL.md:1-1"
+    },
+    "63": {
+        "file_id": 14,
+        "content": "This code mentions that software like Word, which can be considered as a \"pencil\", still requires user input and won't write things out automatically.",
+        "type": "comment"
+    },
+    "64": {
+        "file_id": 15,
+        "content": "/generic/vb_charec_bootstrap/QEMU.md",
+        "type": "filepath"
+    },
+    "65": {
+        "file_id": 15,
+        "content": "Code snippet discusses using QEMU to run a DOS system, storing and managing various components like ISO, CPU, RAM, mouse/keyboard, network, disk sharing, and console.",
+        "type": "summary"
+    },
+    "66": {
+        "file_id": 15,
+        "content": "my favourite system will be dos this time, if can be run by qemu.\nbetter store the .iso somewhere in this directory. but it will be changed.\nso store a backup instead? ignore the backup file.\n[QEMU] - [ISO] \n       - [CPU]\n       - [RAM]\n       - [MOUSE/KEYBOARD]\n       - [NETWORK]\n       - [DISK SHARING]\n       - [CONSOLE]",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/QEMU.md:1-11"
+    },
+    "67": {
+        "file_id": 15,
+        "content": "Code snippet discusses using QEMU to run a DOS system, storing and managing various components like ISO, CPU, RAM, mouse/keyboard, network, disk sharing, and console.",
+        "type": "comment"
+    },
+    "68": {
+        "file_id": 16,
+        "content": "/generic/vb_charec_bootstrap/README.md",
+        "type": "filepath"
+    },
+    "69": {
+        "file_id": 16,
+        "content": "The code is discussing generic applications that run on every platform, mentioning the choice of language and a flagged Github account. The situation is described as purposeless software and emphasizes self-teaching rather than teaching others.",
+        "type": "summary"
+    },
+    "70": {
+        "file_id": 16,
+        "content": "We are now talking about some generic apps running on every platform.\nWhich language will you choose? Or what will you analyze?\nAnyway we cannot do this. Specifically, I cannot do this. This is not java virtual machine, or anything like that.\nMy Github account has been flagged!\nSuggestion: do nothing about it.\nLet me define the situation here: all softwares are purposeless.\nYou've got to find your way to it. There's simply no replacement.\nAnd by the way, it is not like teaching another person, which is a completely different story.\nIt is about teaching yourself.\n/root/AGI/lazero/bootstrap/legacy/concentration/brainfuck/theMonkey",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/README.md:1-15"
+    },
+    "71": {
+        "file_id": 16,
+        "content": "The code is discussing generic applications that run on every platform, mentioning the choice of language and a flagged Github account. The situation is described as purposeless software and emphasizes self-teaching rather than teaching others.",
+        "type": "comment"
+    },
+    "72": {
+        "file_id": 17,
+        "content": "/generic/vb_charec_bootstrap/REMINDER.md",
+        "type": "filepath"
+    },
+    "73": {
+        "file_id": 17,
+        "content": "This code appears to be a motivational reminder emphasizing the importance of utilizing one's knowledge and capabilities in hacking, highlighting the significance of thinking carefully before implementing any code. It also suggests that the brain can be both helpful or detrimental depending on its use, encouraging users to think thoroughly about their coding actions.",
+        "type": "summary"
+    },
+    "74": {
+        "file_id": 17,
+        "content": "do what you can do, not what you cannot do.\n[Knowledge] - [Simple Hack] - [Complex Assembly]\n     |                               |\n[Familiar]                     [Non-familiar]\nWhat is this? Just telling us that hacking is the bridge to eternity! Brain is a good thing, or a bad thing, depending on how you use it. If it is painful to think up with a piece of code, then it is probably doing harmful things.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/REMINDER.md:1-7"
+    },
+    "75": {
+        "file_id": 17,
+        "content": "This code appears to be a motivational reminder emphasizing the importance of utilizing one's knowledge and capabilities in hacking, highlighting the significance of thinking carefully before implementing any code. It also suggests that the brain can be both helpful or detrimental depending on its use, encouraging users to think thoroughly about their coding actions.",
+        "type": "comment"
+    },
+    "76": {
+        "file_id": 18,
+        "content": "/generic/vb_charec_bootstrap/REV.md",
+        "type": "filepath"
+    },
+    "77": {
+        "file_id": 18,
+        "content": "The code describes a system-level reversible operation within a virtualbox, allowing for safe execution of various operations including launching potentially malicious viruses. It features memory restoration and differentiates between timelines and virtual restores for operational purposes.",
+        "type": "summary"
+    },
+    "78": {
+        "file_id": 18,
+        "content": "inside the virtualbox we've got the system-level reversable operation.\nand thus we can safely doing all kinds of operation even it is about launching creepy virus!\n[Timeline] - [Memory Restore]\n    |                  |\n[Virtual Timeline] - [Virtual Restore (Operational)]",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/REV.md:1-6"
+    },
+    "79": {
+        "file_id": 18,
+        "content": "The code describes a system-level reversible operation within a virtualbox, allowing for safe execution of various operations including launching potentially malicious viruses. It features memory restoration and differentiates between timelines and virtual restores for operational purposes.",
+        "type": "comment"
+    },
+    "80": {
+        "file_id": 19,
+        "content": "/generic/vb_charec_bootstrap/STEP.md",
+        "type": "filepath"
+    },
+    "81": {
+        "file_id": 19,
+        "content": "The code discusses the current status of character recognition functionality, mentioning platform-specific differences and considering postponing implementation or improving VM interaction. It also explores time-diffing for char mapping and image segmentation, as well as potential whole-word querying for faster results. A character's decision to move away from a pool due to water depth is mentioned in the code snippet.",
+        "type": "summary"
+    },
+    "82": {
+        "file_id": 19,
+        "content": "currently, the charec functionality is done, at least to the skeleton level.\nhowever, to find the best implementation for VM interaction, this is not enough, cause shit will know what can be happening on the computer.\nit requires attension that by the way we code these things, it works on per-app basis, but not in the general way. for android app we need to type command to find the console buffer size, while DOS has a different approach, which can be done by simply filling the entire screen.\ntesseract is a trusted OCR engine. but does it deserves the trust? SimpleOCR can recognize handwritten documents, while tesseract cannot do this.\nby reviewing the things i've done in the past, it is running in a collective way.\nwhile char recognization is a tough thing to do, we may have to postpone this for a while, just to make sure other things will not be too late to discuss about.\nthe last step is about time-diffing for char mapping and image segmentation.\nor maybe not. there could be whole-word querying method to save query time.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/STEP.md:1-15"
+    },
+    "83": {
+        "file_id": 19,
+        "content": "The code discusses the current status of charec functionality and its need for improved VM interaction. It mentions differences in implementation for different platforms like Android and DOS, questioning trust in Tesseract OCR engine, and considering postponing character recognition. The code also explores time-diffing for char mapping and image segmentation, with a mention of potential whole-word querying to save query time.",
+        "type": "comment"
+    },
+    "84": {
+        "file_id": 19,
+        "content": "anyway, the water is so deep that i need to step away from the pool.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/STEP.md:17-17"
+    },
+    "85": {
+        "file_id": 19,
+        "content": "The code snippet describes a character's decision to move away from the pool due to water depth.",
+        "type": "comment"
+    },
+    "86": {
+        "file_id": 20,
+        "content": "/generic/vb_charec_bootstrap/VIRT.md",
+        "type": "filepath"
+    },
+    "87": {
+        "file_id": 20,
+        "content": "The code highlights a critical bug in VirtualBox preventing screenshots and suggests recompiling source after installing missing dependencies. It also recommends alternative solutions such as using qemu for console support.",
+        "type": "summary"
+    },
+    "88": {
+        "file_id": 20,
+        "content": "THE HYPERVISOR\nthere's a critical bug inside virtualbox disallowing us to take screenshot:\nhttps://www.virtualbox.org/ticket/19740\nwhile py2 version of virtualbox-python is broken and not usable, we must recompile the box right up from the source. consider uploading it to elsewhere.\njust assume that all staffs in oracle are dead now.\neither switch to another language or just rebuild the thing.\nofftopic: is it nice to test custom(handcrafted) OS from VM?\nroot@kali ~/A/V/s/l/x/p/src# cat VariantUtils.cpp  | grep -n PyUnicode_FromStringAndSize\n136:                    ret = PyUnicode_FromStringAndSize(NULL, s.Length());\n631:            return PyUnicode_FromStringAndSize( (char *)array_ptr, sequence_size );\n1906:           ret = PyUnicode_FromStringAndSize( ((char *)ns_v.ptr), 1 );\n2023:                   ret = PyUnicode_FromStringAndSize( *((char **)ns_v.ptr), string_size );\n2282:           ret = PyUnicode_FromStringAndSize(&temp, 1);\n2385:                   ret = PyUnicode_FromStringAndSize(t, string_size);",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/VIRT.md:1-21"
+    },
+    "89": {
+        "file_id": 20,
+        "content": "The code is related to a hypervisor and discusses a critical bug in VirtualBox disallowing screenshots, mentions broken py2 version of virtualbox-python, suggests recompiling the source, and briefly touches upon testing custom OS from VM.",
+        "type": "comment"
+    },
+    "90": {
+        "file_id": 20,
+        "content": "understand the system deeper, create some shared nodes between dos and the main OS, via network stack or filesystem or something reasonable. otherwise we can only manually type into the console, which could be slow sometimes.\napt-get install acpica-tools chrpath doxygen g++-multilib libasound2-dev libcap-dev \\\n        libcurl4-openssl-dev libdevmapper-dev libidl-dev libopus-dev libpam0g-dev \\\n        libpulse-dev libqt5opengl5-dev libqt5x11extras5-dev libsdl1.2-dev libsdl-ttf2.0-dev \\\n        libssl-dev libvpx-dev libxcursor-dev libxinerama-dev libxml2-dev libxml2-utils \\\n        libxmu-dev libxrandr-dev make nasm python3-dev python-dev qttools5-dev-tools \\\n        texlive texlive-fonts-extra texlive-latex-extra unzip xsltproc \\\n        \\\n        default-jdk libstdc++5 libxslt1-dev linux-kernel-headers makeself \\\n        mesa-common-dev subversion yasm zlib1g-dev\nthe linux-kernel-headers is missing from package list.\nhttp://cncc.bingj.com/cache.aspx?q=compile+virtualbox+from+source&d=4933624692742038&mkt=en-US&setlang=en-US&w=CNTaoDdCJ9TDjc4K0sV3K4XyB9Py0mTC",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/VIRT.md:23-37"
+    },
+    "91": {
+        "file_id": 20,
+        "content": "Installing various dependencies for compiling VirtualBox from source, missing linux-kernel-headers package.",
+        "type": "comment"
+    },
+    "92": {
+        "file_id": 20,
+        "content": "apt-get install ia32-libs libc6-dev-i386 lib32gcc1 lib32stdc++6\ndpkg: error processing package tex-common (--configure):\n installed tex-common package post-installation script subprocess returned error exit status 1\nErrors were encountered while processing:\n tex-common\nthe problem inside that piece of code is in fact with the sdk(vboxapi), not with virtualbox main infrastructure. so in order to get things working, you need to find how to manually replace and reinstall vboxapi after virtualbox installation.\nconsider qemu for better console support and less computational cost.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/VIRT.md:39-48"
+    },
+    "93": {
+        "file_id": 20,
+        "content": "The code is indicating a failed installation of virtualbox, specifically with the vboxapi SDK. To resolve this issue, one should find a method to manually replace and reinstall vboxapi after the virtualbox installation. Additionally, consider using qemu for better console support and reduced computational cost as an alternative solution.",
+        "type": "comment"
+    },
+    "94": {
+        "file_id": 21,
+        "content": "/generic/vb_charec_bootstrap/blm.py",
+        "type": "filepath"
+    },
+    "95": {
+        "file_id": 21,
+        "content": "This code imports cv2 (OpenCV) and numpy libraries, creates a black image of size 50x50 with a white background, displays it using imshow, waits for any key press to close the window, then destroys all windows.",
+        "type": "summary"
+    },
+    "96": {
+        "file_id": 21,
+        "content": "import cv2 as cv\nimport numpy as np\nblack_screen = np.zeros([50,50,3])\nblack_screen[:, :, 2] = np.ones([50,50])*64/255.0\ncv.imshow(\"Simple_black\", black_screen)\ncv.waitKey(0)\ncv.destroyAllWindows()",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/blm.py:1-9"
+    },
+    "97": {
+        "file_id": 21,
+        "content": "This code imports cv2 (OpenCV) and numpy libraries, creates a black image of size 50x50 with a white background, displays it using imshow, waits for any key press to close the window, then destroys all windows.",
+        "type": "comment"
+    },
+    "98": {
+        "file_id": 22,
+        "content": "/generic/vb_charec_bootstrap/byte_compare.py",
+        "type": "filepath"
+    },
+    "99": {
+        "file_id": 22,
+        "content": "This code defines two functions: \"known_bytes\" and \"given_array\". The \"known_bytes\" function takes an array of bytes as input, creates a set of unique byte values in the array, then constructs a dictionary where keys are the unique byte values and values are lists of indices where that byte value appears in the input array. The \"given_array\" function uses the output of \"known_bytes\" to create a new dictionary, where keys are the same as in the \"known_bytes\" dictionary, but values are lists of subarrays in the original input array where each byte in the subarray matches the key's value.",
+        "type": "summary"
+    }
+}

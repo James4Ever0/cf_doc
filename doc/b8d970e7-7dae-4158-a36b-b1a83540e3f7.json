@@ -1,0 +1,10 @@
+{
+    "summary": "The code reads lines from stdout and stderr in separate threads, collecting them into a list. It stops when the number of collected lines reaches a certain threshold or after a maximum idle time. Finally, it prints all collected lines.",
+    "details": [
+        {
+            "comment": "The code reads lines from stdout and stderr in separate threads, collecting them into a list. It stops when the number of collected lines reaches a certain threshold or after a maximum idle time. Finally, it prints all collected lines.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/listener.py\":0-44",
+            "content": "import threading\nimport time\nMAX_IDLE=3\nMIN_COLLECT=1\nMAX_COLLECT=10\ncol=[]\ndef listen(a):\n    with open(a,'r') as f:\n        while True:\n            r=f.readline()\n            if len(r)==0:\n                pass\n            else:\n#                print(a,r,type(r),len(r))\n                col.append(r)\n            time.sleep(0.1)\n# what if not sleeping?\n# then things will go shit.\nt=threading.Thread(target=listen,args=('stdout',))\nt1=threading.Thread(target=listen,args=('stderr',))\nt.setDaemon(True)\nt1.setDaemon(True)\nt.start()\nt1.start()\n# guess on windows there are pipe apis. offtopic!\n# self-init.\ncounter=0\nwhile True:\n    l=len(col)\n    #print('idle main thread',l,counter)\n    # max idle time 5\n    if l<MIN_COLLECT:\n        pass\n    else:\n        if l >= MAX_COLLECT:\n            break\n        elif counter>=MAX_IDLE:\n            break\n        counter+=1\n    time.sleep(0.1)\n# do random choice here?\nprint(\" \".join(col))"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code describes Docker as a unified syntax provider with variations, mentions Podman's unavailability on Windows except with Superglue, and suggests running a terminal server without Tmux or Screen.",
+    "details": [
+        {
+            "comment": "This code describes Docker as a unified syntax provider with variations, mentions Podman's unavailability on Windows except with Superglue, and suggests running a terminal server without Tmux or Screen.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/docker_ro_image/README\":0-8",
+            "content": "docker is just a unified syntax provider.\nthere are many differences inbetween.\npodman is not avaliable on windows unless using superglue.\nhint: run the terminal server.\nno tmux. screen donno how to take shot."
+        }
+    ]
+}

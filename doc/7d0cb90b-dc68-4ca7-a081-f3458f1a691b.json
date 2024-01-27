@@ -1,0 +1,10 @@
+{
+    "summary": "This code snippet explains that an Android accessibility service can disable part of the screen, directs to check the source code of the screen lock feature, and provides additional links for further information.",
+    "details": [
+        {
+            "comment": "This code snippet explains that an Android accessibility service can disable part of the screen, directs to check the source code of the screen lock feature, and provides additional links for further information.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/android/native/README\":0-8",
+            "content": "android accessibility service can disable part of screen.\ncheck out the source code of screen lock.\n-> interaction control\nhttps://www.makeuseof.com/tag/disable-touchscreen-input-android-iphone/#:~:text=Once%20enabled%2C%20here%E2%80%99s%20how%20to%20use%20it%3A%201,top%20of%20the%20screen%20to%20start%20Guided%20Access.\nhttps://www.nextpit.com/android-accessibility-settings#int"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This script copies necessary files and folders to Python's dist-packages directories for both Python 3 and 2.7, as well as the VirtualBox directory. It ensures the required libraries are in place for the codebase to run properly on Linux with VirtualBox installed.",
+    "details": [
+        {
+            "comment": "This script copies necessary files and folders to Python's dist-packages directories for both Python 3 and 2.7, as well as the VirtualBox directory. It ensures the required libraries are in place for the codebase to run properly on Linux with VirtualBox installed.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/fixer_linux_vboxapi_python_binding/fixer.sh\":0-5",
+            "content": "#!/bin/bash\ncp -R vboxapi /usr/lib/python3/dist-packages/\ncp -R xpcom /usr/lib/python3/dist-packages/\ncp -R vboxapi /usr/lib/python2.7/dist-packages/\ncp -R xpcom  /usr/lib/python2.7/dist-packages/\ncp VBoxPython* /usr/lib/virtualbox/"
+        }
+    ]
+}

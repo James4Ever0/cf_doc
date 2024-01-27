@@ -1,0 +1,10 @@
+{
+    "summary": "Implements a simple Tornado web server using a single handler class to display \"Hello, world\" on all requests. Listens on port 8888 and starts the event loop.",
+    "details": [
+        {
+            "comment": "Implements a simple Tornado web server using a single handler class to display \"Hello, world\" on all requests. Listens on port 8888 and starts the event loop.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/sserv.py\":0-15",
+            "content": "# hello_server.py\nimport tornado.ioloop\nimport tornado.web\nclass MainHandler(tornado.web.RequestHandler):\n    def get(self):\n        self.write(\"Hello, world\")\n# whatever. just try to build something different.\n    def make_app():\n        return tornado.web.Application([ (r\".+\", MainHandler), ])  # URL Mapping\nif __name__ == \"__main__\":\n    app = MainHandler.make_app()\n    app.listen(8888)    # Port Number\n    tornado.ioloop.IOLoop.current().start()\n# -> twisted."
+        }
+    ]
+}

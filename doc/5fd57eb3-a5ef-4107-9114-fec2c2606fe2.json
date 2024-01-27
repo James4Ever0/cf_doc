@@ -1,0 +1,10 @@
+{
+    "summary": "Code imports random module and ethic function, defines lin_repeat to create a repeated pattern of characters with varying lengths, and safe_lr to generate a random string using lin_repeat and ethic function for validation.",
+    "details": [
+        {
+            "comment": "Code imports random module and ethic function, defines lin_repeat to create a repeated pattern of characters with varying lengths, and safe_lr to generate a random string using lin_repeat and ethic function for validation.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/mixer.py\":0-17",
+            "content": "import random\nfrom id_func import ethic\nrng = random.SystemRandom()\ndef lin_repeat(a,b=3):\n    # this is pattern.\n    f=\"\"\n    for x in a:\n        f+=x*rng.choice(range(1,b+1))\n    return f\ndef safe_lr(a,b=3):\n    while True:\n        c = lin_repeat(a,b)\n        c2 = c*2\n        e = ethic(c,c2,c=True,mix=1)\n        if len(e) == 0:\n            return c"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "The code defines functions for checking phrase occurrences and updates a dictionary. It then processes each character in a sample text, counting its occurrences and reoccurrences, and prints the results.",
+    "details": [
+        {
+            "comment": "The code defines functions for checking phrase occurrences and updates a dictionary. It then processes each character in a sample text, counting its occurrences and reoccurrences, and prints the results.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/streamer.py\":0-33",
+            "content": "# check the reoccurance of every phrase.\ndef occur(a,b):\n    return not a==b\ndef reoccur(a,b):\n    return occur(a,b) and a>1\ndef xoccur(a,b,x):\n    return occur(a,b) and a>x\n\"\n\"\"\"\ndef readict(a,d):\n    for x in d.keys():\n        if a==x:\n            return d[a]\n    return 0\n\"\"\"\ndef refdict(a,d):\n    for x in d.keys():\n        if a==x:\n            d[a]+=1\n            return d[a]-1,d[a],d\n    d.update({a:1})\n    return 0,1,d\n# some actions must be taken.\nsample=\"this is a part of sample text.\"\ndic={}\nfor k in sample:\n    a,b,dic=refdict(k,dic)\n    o,r=occur(a,b),reoccur(a,b)\n    print(\"{} occur: \".format(k),o)\n    print(\"{} reoccur: \".format(k),r)"
+        }
+    ]
+}

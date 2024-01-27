@@ -1,0 +1,10 @@
+{
+    "summary": "This script is launching a QEMU virtual machine using KVM acceleration, without graphics (nographic), loading an HDD image from file 'c.hd', and booting from device 'd'.",
+    "details": [
+        {
+            "comment": "This script is launching a QEMU virtual machine using KVM acceleration, without graphics (nographic), loading an HDD image from file 'c.hd', and booting from device 'd'.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/headless_dos.sh\":0-1",
+            "content": "#!/bin/bash\nqemu-system-i386 -enable-kvm -nographic -hda c.hd -boot d"
+        }
+    ]
+}

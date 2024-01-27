@@ -1,0 +1,20 @@
+{
+    "summary": "The script mounts a shared jail directory, performs cleanup tasks, verifies and corrects permissions, size, and mounting. It creates a temporary tmux session within a chroot environment using proot and prevents deletion if umount fails.",
+    "details": [
+        {
+            "comment": "This script creates and mounts a shared jail directory, checks if the mount is successful, and performs cleanup operations if necessary.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_share/simple_jail.sh\":0-41",
+            "content": "#!/bin/bash\n# this is a shared jail.\n#./loadroot.sh\n# you are shitting on me.\n# sudo umount /dev/shm/lazero/root\npsk=$(sudo mount | grep /dev/shm/lazero/root | wc -c)\npsl=$(sudo mount | grep /dev/shm/lazero/root | wc -l)\nerr=0\nif [ $psk -eq 0 ]\nthen\n\tsudo umount -A -f /dev/shm/lazero/root\n\tpsk=$(sudo ls /dev/shm/lazero/root | wc -c)\n\tif [ $psk -eq 0 ]\n\tthen\n\t\tsudo rm -rf /dev/shm/lazero/root\n\tfi\n\tsudo mkdir -p /dev/shm/lazero/root\n\tsudo chmod 777 /dev/shm/lazero/root\n\tsudo mount --bind -r / /dev/shm/lazero/root/\nelse\n\tpsk=$(sudo mount | grep /dev/shm/lazero/root | grep \"errors=remount-ro\" | wc -c)\n\tif [ $psk -eq 0 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $psl -ne 1 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $err -ne 0 ]\n\tthen\n\t\tsudo umount -A -f /dev/shm/lazero/root\n\t\tpsk=$(sudo ls /dev/shm/lazero/root | wc -c)\n\t\tif [ $psk -eq 0 ]\n\t\tthen\n\t\t\tsudo rm -rf /dev/shm/lazero/root\n\t\tfi\n#\t\tsudo rm -rf /dev/shm/lazero/root\n\t\tsudo mkdir -p /dev/shm/lazero/root\n\t\tsudo chmod 777 /dev/shm/lazero/root\n\t\tsudo mount --bind -r / /dev/shm/lazero/root/"
+        },
+        {
+            "comment": "This script checks if a temporary filesystem is mounted correctly, and if not, it unmounts, removes, creates, and mounts the filesystem with specific permissions and size.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_share/simple_jail.sh\":42-80",
+            "content": "\tfi\nfi\nerr=0\n#./loadram.sh\n# if umount failed, do not delete shit.\n# check lines. if more than one then there must be error.\n# sudo umount /dev/shm/lazero/ramdisk\n# here's the command! do not do this unless it is necessary.\npsk=$(sudo mount | grep /dev/shm/lazero/ramdisk | wc -c)\npsl=$(sudo mount | grep /dev/shm/lazero/ramdisk | wc -l)\nif [ $psk -eq 0 ]\nthen\n\tsudo umount -Afr /dev/shm/lazero/ramdisk\n\tsudo rm -rf /dev/shm/lazero/ramdisk\n\tsudo mkdir -p /dev/shm/lazero/ramdisk\n\tsudo chmod 777 /dev/shm/lazero/ramdisk\n\tsudo mount -t tmpfs -o size=10m myramdisk /dev/shm/lazero/ramdisk\nelse\n\tpsk=$(sudo mount | grep /dev/shm/lazero/ramdisk | grep \"type tmpfs\" | wc -c)\n\tif [ $psk -eq 0 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $psl -ne 1 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $err -ne 0 ]\n\tthen\n\t\tsudo umount -Afr /dev/shm/lazero/ramdisk\n\t\tsudo rm -rf /dev/shm/lazero/ramdisk\n\t\tsudo mkdir -p /dev/shm/lazero/ramdisk\n\t\tsudo chmod 777 /dev/shm/lazero/ramdisk\n\t\tsudo mount -t tmpfs -o size=10m myramdisk /dev/shm/lazero/ramdisk\n\tfi\nfi\n#./loadram.sh"
+        },
+        {
+            "comment": "This code creates a temporary tmux session within a chroot environment, and if umount fails, it prevents deletion of the tmux instance. The script uses proot to create an isolated root filesystem, mounts the ramdisk and tmux binary from /dev/shm/lazero, and runs the tmux session in the chroot environment.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_share/simple_jail.sh\":81-83",
+            "content": "touch /dev/shm/lazero/ramdisk/tmux\n# if umount failed, do not delete \nproot -0 -r /dev/shm/lazero/root -b /dev/shm/lazero/ramdisk:/ramdisk -b /dev/shm/lazero/ramdisk/tmux:$(which tmux) -w /ramdisk"
+        }
+    ]
+}

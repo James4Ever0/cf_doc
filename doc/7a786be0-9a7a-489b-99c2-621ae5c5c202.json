@@ -1,0 +1,10 @@
+{
+    "summary": "This script unmounts the ramdisk and deletes its directory, ensuring no residual files or processes remain after an operation.",
+    "details": [
+        {
+            "comment": "This script unmounts the ramdisk and deletes its directory, ensuring no residual files or processes remain after an operation.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/unloadram.sh\":0-2",
+            "content": "#!/bin/bash\nsudo umount ramdisk\nsudo rm -rf ramdisk"
+        }
+    ]
+}

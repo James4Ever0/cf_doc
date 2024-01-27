@@ -1,0 +1,10 @@
+{
+    "summary": "This script contains a single line echo command that outputs \"no hello shit but screw you\". It seems to be used for displaying a message with a negative connotation.",
+    "details": [
+        {
+            "comment": "This script contains a single line echo command that outputs \"no hello shit but screw you\". It seems to be used for displaying a message with a negative connotation.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/math_train/shit.sh\":0-1",
+            "content": "#!/bin/bash\necho \"no hello shit but screw you\""
+        }
+    ]
+}

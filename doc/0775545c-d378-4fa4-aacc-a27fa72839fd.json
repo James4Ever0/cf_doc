@@ -1,0 +1,10 @@
+{
+    "summary": "This Bash script uses telnet to connect to localhost on port 4312. The command \"echo \\\"mode character\\\" |\" is commented out, indicating it may be used for additional functionality but is currently inactive.",
+    "details": [
+        {
+            "comment": "This Bash script uses telnet to connect to localhost on port 4312. The command \"echo \\\"mode character\\\" |\" is commented out, indicating it may be used for additional functionality but is currently inactive.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/connect_telnet_dos.sh\":0-2",
+            "content": "#!/bin/bash\ntelnet -e \"\" localhost 4312 \n#echo \"mode character\" | telnet -e \"\" localhost 4312 "
+        }
+    ]
+}

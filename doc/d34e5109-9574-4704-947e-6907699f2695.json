@@ -1,0 +1,10 @@
+{
+    "summary": "The code reads a file named \"fdecode.log\", splits its contents, and then applies a shifting operation to each 6-character string in the list using function shifter(). The major shift value is 29 and there are additional shifts of 30 and 49 applied. The shifted values are printed as a joined string.",
+    "details": [
+        {
+            "comment": "The code reads a file named \"fdecode.log\", splits its contents, and then applies a shifting operation to each 6-character string in the list using function shifter(). The major shift value is 29 and there are additional shifts of 30 and 49 applied. The shifted values are printed as a joined string.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/self_train/e29.py\":0-12",
+            "content": "s0 = open(\"fdecode.log\",\"r\").read().split()\n# get the shift.\n# major shift: 29\ndef shifter(s,k):\n    f=[]\n    for x in s:\n        if len(x)==6:\n            f+=[chr(eval(\"0x\"+x[1:-1])+k)]\n    print(\"\".join(f))\np = [29,30,49]\nfor x in p:\n    shifter(s0,x)"
+        }
+    ]
+}

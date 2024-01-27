@@ -1,0 +1,10 @@
+{
+    "summary": "The code prompts for a directory input, then lists the contents of the directory and computes the Levenshtein distance between each file name and a target string. It also calculates trimmed and lower-case trimmed distances. This could potentially be used to find matches within the directory based on closest string similarity.",
+    "details": [
+        {
+            "comment": "The code prompts for a directory input, then lists the contents of the directory and computes the Levenshtein distance between each file name and a target string. It also calculates trimmed and lower-case trimmed distances. This could potentially be used to find matches within the directory based on closest string similarity.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/dir_train/second_training.py\":0-32",
+            "content": "#you are gonna ask for the directory.\ni=input(\"where the heck is the dongle?\\n\")\n# so this time a single input with typo!\n# can you fix it?\n# the way you use a function, the way you handle the source code.\ndef singleShot(i):\n    import os\n    o = os.listdir(i)\n    return o\n# multiple workable ways?\ndef dis(a,b):\n    import Levenshtein\n    return Levenshtein.distance(a,b)\ndef trim(a,b):\n    return dis(a[:len(b)],b)\n#    print(o)\ndef lowtrim(a,b):\n    return dis(a[:len(b)].lower(),b.lower())\n#    print(\"dongle listed!\")\nfx = \"/\"\nfor x in i.split():\n    print(x)\n    s = singleShot(fx)\n    for sx in s:\n        # so make summary: the lowest thing adding up altogether is true. the rule forms?\n        print(sx,\"distance\",dis(sx,x),\"trim_distance\",trim(sx,x),\"lower_trim\",lowtrim(sx,x))\n    print(\"directory listed!\")\n    # how's it going?\n    # assume it is started from the ground level."
+        }
+    ]
+}

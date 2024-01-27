@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the os module and uses it to obtain the parent directory of the current file. It then prints the file path, which could be useful for navigation in larger codebases or when debugging.",
+    "details": [
+        {
+            "comment": "This code imports the os module and uses it to obtain the parent directory of the current file. It then prints the file path, which could be useful for navigation in larger codebases or when debugging.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/tscrap/demo_file_path.py\":0-3",
+            "content": "import os\npr = \"/\".join(os.path.realpath(__file__).split(\"/\")[:-1])\n#print(__file__)\nprint(pr)"
+        }
+    ]
+}

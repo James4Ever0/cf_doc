@@ -1,0 +1,10 @@
+{
+    "summary": "The script utilizes the 'socat' command-line tool to establish a UNIX domain socket connection with the specified path, allowing communication between processes.",
+    "details": [
+        {
+            "comment": "The script utilizes the 'socat' command-line tool to establish a UNIX domain socket connection with the specified path, allowing communication between processes.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/vbox_serial_connect/interactive.sh\":0-1",
+            "content": "#!/bin/bash\nsocat - UNIX-CONNECT:/tmp/vbox"
+        }
+    ]
+}

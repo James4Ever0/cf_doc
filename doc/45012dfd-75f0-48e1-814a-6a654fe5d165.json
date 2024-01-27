@@ -1,0 +1,15 @@
+{
+    "summary": "The code imports necessary libraries and handles signals while launching a VirtualBox machine named \"TinyPlus\". It initiates an infinite loop, defines functions init() and shot(), and uses progress variable for waiting until the VM process finishes. A thread reads data from \"lazero\" file, decodes it, and sends keys to console with potential slow parsing issues.",
+    "details": [
+        {
+            "comment": "The code imports virtualbox and time libraries, handles SIGINT signals, launches a VirtualBox machine named \"TinyPlus\", starts an infinite loop to receive console output, and defines functions init() and shot(). The progress variable is used for waiting until the VM process finishes. It also includes a thread for initializing the pipe and a function called init() that runs a separate script.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/vbox.py\":0-34",
+            "content": "import virtualbox\nimport time\nimport signal, sys\n#from gevent import monkey\n#monkey.patch_all()\n# consider taking that too.\n# the pipe must be initialized. use another thread to initialize the pipe.\nimport threading\nimport subprocess\n# or you can be careless anyway.\nvbox = virtualbox.VirtualBox()\nsession = virtualbox.Session()\nmachine=vbox.find_machine(\"TinyPlus\")\ndef sigint_handler(signal,frame):\n    print(\"interrupted!\")\n    session.console.power_down()\n    time.sleep(0.1)\n    sys.exit(0)\nsignal.signal(signal.SIGINT,sigint_handler)\n#virtualbox.library_ext.machine.IMachine\n#print(dir(machine),type(machine))\n# you can close this window anyway, or minimize it using another thread?\nprogress=machine.launch_vm_process(session,\"gui\",\"\")\nprogress.wait_for_completion()\n# how to pass it around?\n# must be keys. but what is keys?\ntime.sleep(5)\n# not receiving shit.\n# connect to existing session if possible? or close that thing.\ndef init():\n    time.sleep(0.2)\n    subprocess.run([\"./init.sh\"])\n\"\"\"def shot(sess):\n    s=sess.console.display\"\"\""
+        },
+        {
+            "comment": "Thread reads data from \"lazero\" file, decodes it, and sends keys to console. It may have slow console parsing issues but plans to read characters from canvas later. Time.sleep() used for delay.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/vbox.py\":36-52",
+            "content": "t=threading.Thread(target=init)\nt.setDaemon(True)\nt.start()\nwith open(\"lazero\",\"r\") as f:\n    while True:\n        r=f.readline()\n        # be properly decoded.\n        if len(r)==0:\n            pass\n        else:\n            session.console.keyboard.put_keys(r)\n        time.sleep(0.1)\n        print(\">>> visible delay?\",time.time())\n#session.console.keyboard.put_keys(\"Hello, world!\")\n# maybe a dedicated image for dos and more.\n# first we have to check how to read chars from the canvas or something.\n# remember that is way too slow to parse info from console. i mean THAT."
+        }
+    ]
+}

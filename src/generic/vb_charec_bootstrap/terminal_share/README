@@ -1,0 +1,23 @@
+it is about live streaming. either do it in python or some conventional shits.
+
+do we need to dump the whole thing out?
+
+better do a ram-server, reporting all absolute location of avaliable ramdisk.
+
+ARCHITECTURE:
+
+	root-ramdisk: location-open, used for symlink to other ramdisks or rolinks to local fs.
+
+there used to be a tool to render screen output to html. in python.
+
+to end:
+	Ctrl+D
+
+to detach:
+	Ctrl+A D
+
+multiedit will bring chaos here. it cannot be used for global revision.
+
+there's no init command.
+
+direct /dev/null to screen will cause dead lock.

@@ -1,0 +1,10 @@
+{
+    "summary": "This script uses the 'screen' command to reattach the user to an existing screen session named 'jailscreen'.",
+    "details": [
+        {
+            "comment": "This script uses the 'screen' command to reattach the user to an existing screen session named 'jailscreen'.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/terminal_share/reattach_nocreate_noexclude.sh\":0-1",
+            "content": "#!/bin/bash\nscreen -x jailscreen"
+        }
+    ]
+}

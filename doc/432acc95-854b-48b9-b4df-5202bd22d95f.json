@@ -1,0 +1,10 @@
+{
+    "summary": "This code enables the serial console access and sets up a virtualbox GUI, configuring serial port settings, changing file permissions, and using socat for UNIX-CONNECT.",
+    "details": [
+        {
+            "comment": "This code enables the serial console access and sets up a virtualbox GUI, configuring serial port settings, changing file permissions, and using socat for UNIX-CONNECT.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/vbox_serial_connect/LINUX\":0-18",
+            "content": "http://cncc.bingj.com/cache.aspx?q=enable+ttyS0+console&d=4973099763566566&mkt=en-US&setlang=en-US&w=NLK4tpH4nf3VgWpRa28o28_o6KvlJ_Zq\nhttps://docs.cloud.oracle.com/en-us/iaas/Content/Compute/Tasks/enablingserialconsoleaccess.htm\ncat /dev/ttyS0 | bash &> /dev/ttyS0\nvirtualbox gui:\n\tsettings -> serial -> com1 -> host pipe -> uncheck use existing -> /tmp/vbox\nchange /opt/.filetool.ops\nchange /etc/{inittab,securetty}\nfiletool.sh -b\nfiletool.sh -r\nsocat - UNIX-CONNECT:/tmp/vbox"
+        }
+    ]
+}

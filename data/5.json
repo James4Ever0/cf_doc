@@ -1,0 +1,532 @@
+{
+    "500": {
+        "file_id": 93,
+        "content": "            drm = dream_func(sk,jcod,3)\n            if drm is None:\n                ky = hash(x.tobytes())\n                # but we're using hash!\n                cov.update({ky:x})\n#                sk = spilter(x,shp)\n                cod = proadd(sk,cod,ky)\n                jcod = jit_inv(cod)\n                # add new things here.\n            else:\n                if type(drm) == frozenset:\n                    drm = list(drm)\n                else:\n                    drm = [drm]\n                tr = False\n                for drx in drm:\n                    buf_init = cov[drx]\n#                print(\"closet approach\", drm)\n                # there's no such thing.\n                # or yes? get the closet approach.\n                    # add things here.\n                    tr = sim(buf_init,x,c0)\n                    if tr:\n#                        print(\"duplication found!\")\n                        # still inaccurate!\n                        # and slow as hell!\n                    # duplicate.\n                    # trust the first deduction.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/smp_nrc.py:290-317"
+    },
+    "501": {
+        "file_id": 93,
+        "content": "The code checks if a function has already been deduced by comparing the hash of the input with previously deduced items. If it's not, it updates a dictionary with the new item and its corresponding code. If it is, it checks for duplicates and trusts the first deduction. The code warns about potential inaccuracies and slowness due to duplicate checking.",
+        "type": "comment"
+    },
+    "502": {
+        "file_id": 93,
+        "content": "                    # conflict? then either error or add to registry.\n                        break\n                if not tr:\n                    ky = hash(x.tobytes())\n                    cov.update({ky:x})\n#                    sk = spilter(x,shp)\n                    cod = proadd(sk,cod,ky)\n                    jcod = jit_inv(cod)\n    return threash, shp, cod, cov ,jcod\n                    # non-zero filter?\n                    # not!\n                # use base compare? or use buffer. verify from three pieces?\n            # do the thing. checking?\n            # this is really weird. damn.\nimport time\ng0 = time.time()\ng = hashy(col,h=False)\nprint(\"hashy:\",time.time()-g0,len(g))\ng1 = time.time()\nthreash,shp,cod,cov,jcod= choky(col,gua =0.6)\n# this is a bad choice. better not to write anything from scratch. train a network instead. see if new candidates are welcomed.\nprint(\"chocky:\",time.time()-g1,len(cov))\n# get hash first, then we get the code.\ndef hashCheck(a,b):\n    try:\n        k = hash(a.tobytes())\n        # do hash.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/smp_nrc.py:318-345"
+    },
+    "503": {
+        "file_id": 93,
+        "content": "This code is related to hashing and checking for conflicts. It uses hashing to identify unique objects and adds them to a registry if there are no conflicts. The code also checks for non-zero filters, compares base values, and measures the time taken for hashing and checking operations. However, it suggests that training a network might be a better approach in some cases.",
+        "type": "comment"
+    },
+    "504": {
+        "file_id": 93,
+        "content": "        for x in b.keys():\n            if x == k:\n                return k\n        # not return shit.\n    except:\n        return None\ndef simCheck(a,b):\n    for k in b.keys():\n        b0 = b[k]\n        s=sim(a,b0)\n        if s:\n            return k\n    return None\n#import numba\n#@numba.jit\ndef s2Check(a,cov,jcod,shp,threash):\n    sk = spilter(a,shp)\n    sk = {k:np.mean(sk[k].flatten())>threash for k in sk.keys()}\n    b = dream_func(sk,jcod,3)\n    if b is None:\n        return None\n    else:\n        if not type(b) == frozenset:\n            b=[b]\n        print(\"len of candidates\",len(b))\n        # how the fuck?\n        for x in b:\n#            print(\"x\",x)\n            s=sim(a,cov[x])\n            if s:\n                return x\n    return None\nrk = rng.choice(col)\nt0 = time.time()\nx = hashCheck(rk,g)\nprint(\"hashCheck\",time.time()-t0,x)\nt0 = time.time()\nx = simCheck(rk,g)\nprint(\"simCheck\",time.time()-t0,x)\nt0 = time.time()\nx = s2Check(rk,cov,jcod,shp,threash)\nprint(\"s2Check\",time.time()-t0,x)\n# so my method is the worst one. I've got it.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/smp_nrc.py:346-390"
+    },
+    "505": {
+        "file_id": 93,
+        "content": "The code defines three functions: hashCheck, simCheck, and s2Check. These functions are used to check some property or condition on a given dataset (a, b). The hashCheck function uses the hash value of an element in a list to determine if it matches a certain key. simCheck iterates over a dictionary's keys, computes a similarity score with the input data, and returns the key of the item with the highest score. s2Check filters the data based on a shape, threshold, and then checks similarities with multiple items, returning the first matching item. The code at the end uses these functions to test their efficiency using different datasets (rk, g) and prints the execution time for each function.",
+        "type": "comment"
+    },
+    "506": {
+        "file_id": 93,
+        "content": "    # naive approach\n    # hash is fast. anyway do that if you can?\n# but we are going to check the thing!\n#for x in col:\n#    if x.shape == py:\n        # do work?\n# i know there are shits.\n    # collect default shape.\n    # no cannot use something like that.\n    # check these things.\n# what to do after loading?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/smp_nrc.py:391-401"
+    },
+    "507": {
+        "file_id": 93,
+        "content": "This code is implementing a naive approach to find the default shape of a loaded data by iterating over the columns, checking their shapes against a given shape (py), and performing some work if they match. It mentions potential issues with this method but does not specify an alternative.",
+        "type": "comment"
+    },
+    "508": {
+        "file_id": 94,
+        "content": "/generic/vb_charec_bootstrap/smp_set.py",
+        "type": "filepath"
+    },
+    "509": {
+        "file_id": 94,
+        "content": "This code defines functions to retrieve slices from 3D numpy arrays and sparse matrices, using input values and handling unimplemented dimensions. The code includes utility function `verdec` and uses `spv2` from the `charec` module.",
+        "type": "summary"
+    },
+    "510": {
+        "file_id": 94,
+        "content": "# direct compare or else?\n# make these chars unique!\n# so you do not use keys?\nfrom charec import s2p\ndef re2(a):\n    l=len(a)\n    return sum([a[l-d-1]*(d**2) for d in range(l)])\ndef spv2(a,b,c=3):\n    b0=int(len(b[0])/2)\n    x,y = b0,b0\n    xd,yd = a.shape[:2]\n#    print(a.shape)\n    xp,yp=int(xd/x),int(yd/y)\n    d={}\n    if c == 3:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1,:]})\n    elif c == 2:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1]})\n    elif c == 4:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1,:,:]})",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/smp_set.py:1-43"
+    },
+    "511": {
+        "file_id": 94,
+        "content": "This code is defining functions `re2`, `spv2` and using them to create a dictionary `d` from the input arguments `a`, `b`, and `c`. The function `re2` calculates a value based on the length of its input string. The function `spv2` determines the sizes of the x and y axes for slicing arrays. The code then iterates over each item in `b` and slices the 3D array `a` according to the input parameters, storing the result in the dictionary `d`.",
+        "type": "comment"
+    },
+    "512": {
+        "file_id": 94,
+        "content": "    elif c == 5:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1,:,:,:]})\n    elif c == 6:\n        for vt in b:\n            x0, y0 = s2p(vt)\n            x0, y0 = re2(x0), re2(y0)\n            x1=x0+1\n            y1=y0+1\n            xv0,xv1=x0*xp,x1*xp\n            yv0,yv1=y0*yp,y1*yp\n            d.update({vt:a[xv0:xv1,yv0:yv1,:,:,:,:]})\n    else:\n        print(\"NOT IMPLEMENTED DIMENSION\",c)\n        # not implemented\n        return None\n    return d\ndef verdec(r=0,a=0.98,b=0.01):\n    return a-b**(-r)\n# collect unique chars first!\nfrom charec import sparse\ns=sparse(2)\nprint(s)\nimport numpy as np\nd=np.array([[1,2,3,4],[3,4,2,3],[3,3,2,2],[3,3,2,6]])\ndp=np.array([[1,3,3,4],[3,4,2,3],[3,3,1,2],[3,3,2,6]])\n# get it checked?\nk=spv2(d,s,c=2)\nk1=spv2(dp,s,c=2)\n# get it ready? a specific thing? equalization?\n#for k0 in k.keys():\n#    print(k0,k[k0])",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/smp_set.py:44-86"
+    },
+    "513": {
+        "file_id": 94,
+        "content": "This code defines a function that retrieves specific slices of a numpy array based on input values and a sparse matrix. The function handles arrays with dimensions up to 6, but unimplemented dimensions will result in a warning message. The code also includes a utility function `verdec` and uses the `spv2` function from the `charec` module for converting numpy arrays to sparse matrices.",
+        "type": "comment"
+    },
+    "514": {
+        "file_id": 95,
+        "content": "/generic/vb_charec_bootstrap/sserv.py",
+        "type": "filepath"
+    },
+    "515": {
+        "file_id": 95,
+        "content": "Implements a simple Tornado web server using a single handler class to display \"Hello, world\" on all requests. Listens on port 8888 and starts the event loop.",
+        "type": "summary"
+    },
+    "516": {
+        "file_id": 95,
+        "content": "# hello_server.py\nimport tornado.ioloop\nimport tornado.web\nclass MainHandler(tornado.web.RequestHandler):\n    def get(self):\n        self.write(\"Hello, world\")\n# whatever. just try to build something different.\n    def make_app():\n        return tornado.web.Application([ (r\".+\", MainHandler), ])  # URL Mapping\nif __name__ == \"__main__\":\n    app = MainHandler.make_app()\n    app.listen(8888)    # Port Number\n    tornado.ioloop.IOLoop.current().start()\n# -> twisted.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/sserv.py:1-16"
+    },
+    "517": {
+        "file_id": 95,
+        "content": "Implements a simple Tornado web server using a single handler class to display \"Hello, world\" on all requests. Listens on port 8888 and starts the event loop.",
+        "type": "comment"
+    },
+    "518": {
+        "file_id": 96,
+        "content": "/generic/vb_charec_bootstrap/streamer.py",
+        "type": "filepath"
+    },
+    "519": {
+        "file_id": 96,
+        "content": "The code defines functions for checking phrase occurrences and updates a dictionary. It then processes each character in a sample text, counting its occurrences and reoccurrences, and prints the results.",
+        "type": "summary"
+    },
+    "520": {
+        "file_id": 96,
+        "content": "# check the reoccurance of every phrase.\ndef occur(a,b):\n    return not a==b\ndef reoccur(a,b):\n    return occur(a,b) and a>1\ndef xoccur(a,b,x):\n    return occur(a,b) and a>x\n\"\n\"\"\"\ndef readict(a,d):\n    for x in d.keys():\n        if a==x:\n            return d[a]\n    return 0\n\"\"\"\ndef refdict(a,d):\n    for x in d.keys():\n        if a==x:\n            d[a]+=1\n            return d[a]-1,d[a],d\n    d.update({a:1})\n    return 0,1,d\n# some actions must be taken.\nsample=\"this is a part of sample text.\"\ndic={}\nfor k in sample:\n    a,b,dic=refdict(k,dic)\n    o,r=occur(a,b),reoccur(a,b)\n    print(\"{} occur: \".format(k),o)\n    print(\"{} reoccur: \".format(k),r)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/streamer.py:1-34"
+    },
+    "521": {
+        "file_id": 96,
+        "content": "The code defines functions for checking phrase occurrences and updates a dictionary. It then processes each character in a sample text, counting its occurrences and reoccurrences, and prints the results.",
+        "type": "comment"
+    },
+    "522": {
+        "file_id": 97,
+        "content": "/generic/vb_charec_bootstrap/tc_redis.py",
+        "type": "filepath"
+    },
+    "523": {
+        "file_id": 97,
+        "content": "This code initializes a VirtualBox machine, captures screenshots in PNG format, and enters guest sessions with provided credentials. Future improvements could include reading console characters and using dedicated images.",
+        "type": "summary"
+    },
+    "524": {
+        "file_id": 97,
+        "content": "# run with python2! bug present.\n# fixed?\nimport virtualbox\nimport time\nimport signal, sys\nimport cv2\nimport numpy as np\nfrom gas_tc import grill\n#from gevent import monkey\n#monkey.patch_all()\n# consider taking that too.\n# the pipe must be initialized. use another thread to initialize the pipe.\nimport threading\nimport subprocess\n# or you can be careless anyway.\nvbox = virtualbox.VirtualBox()\nsession = virtualbox.Session()\nmachine = vbox.find_machine(\"TinyPlus\")\ndef sigint_handler(signal,frame):\n    print(\"interrupted!\")\n    session.console.power_down()\n    time.sleep(0.1)\n    sys.exit(0)\ndef my_except_hook(exctype,value,traceback):\n    session.console.power_down()\n    time.sleep(0.1)\n    sys.__excepthook__(exctype,value,traceback)\n    sys.exit(0)\n    # is it lethal?\nsys.excepthook = my_except_hook\nsignal.signal(signal.SIGINT,sigint_handler)\n#signal.signal(signal.SIGKILL,sigint_handler)\n#virtualbox.library_ext.machine.IMachine\n#print(dir(machine),type(machine))\n# you can close this window anyway, or minimize it using another thread?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/tc_redis.py:1-37"
+    },
+    "525": {
+        "file_id": 97,
+        "content": "This code sets up an environment to interact with a VirtualBox machine named \"TinyPlus\". It imports necessary libraries, establishes signal handlers for interrupts and exceptions, and initializes the virtual machine. The code also includes error handling to ensure the machine powers down properly in case of interruption or exception. The purpose is to control and manage the VirtualBox machine within the Python script.",
+        "type": "comment"
+    },
+    "526": {
+        "file_id": 97,
+        "content": "progress=machine.launch_vm_process(session,\"gui\",\"\")\nprogress.wait_for_completion()\n# how to pass it around?\n# must be keys. but what is keys?\ntime.sleep(5)\n# not receiving shit.\n# connect to existing session if possible? or close that thing.\ndef init():\n    time.sleep(0.2)\n    subprocess.run([\"./init.sh\"])\ndef shot(sess):\n    t0=time.time()\n#    png = virtualbox.library.BitmapFormat(541544016) \n    res = sess.console.display.get_screen_resolution(0)\n    arr = sess.console.display.take_screen_shot_to_array(0,res[0],res[1],virtualbox.library.BitmapFormat.png)\n    arr = np.fromstring(arr,dtype='uint8')\n    arr = cv2.imdecode(arr,flags=1)\n#    cv2.imshow(\"sample\",img)\n#    cv2.waitKey(0)\n    print(\"shot_shape: \", arr.shape,type(arr))\n    grill(arr,t0)\n# check this?\n    # taking pictures?\n\"\"\"def shot(sess):\n    s=sess.console.display\"\"\"\ndef shotsess(sess):\n    while True:\n        shot(sess)\n        time.sleep(1)\nt = threading.Thread(target=shotsess,args=(session,))\nt.setDaemon(True)\nt.start()\nwhile True:\n    print('main thread sleeping.')",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/tc_redis.py:38-76"
+    },
+    "527": {
+        "file_id": 97,
+        "content": "The code sets up a thread to continuously take screenshots of a virtual machine's console and stores them in an array. It then displays the images and keeps the main thread running indefinitely by sleeping for 1 second between each iteration.",
+        "type": "comment"
+    },
+    "528": {
+        "file_id": 97,
+        "content": "    time.sleep(2)\n# session.console.display\n# make init user and then prepare for login.\n# get_screen_resolution\n# take_screen_shot_to_array\n# take_screen_shot_to_array(self, screen_id, width, height, bitmap_format)\n# \"PNG\"\n# virtualbox.library.BitmapFormat\n# BitmapFormat(541544016) -> PNG\n\"\"\"\n>>> res = session.console.display.get_screen_resolution(0)\n>>> res\n(720, 400, 0, 0, 0, GuestMonitorStatus(1))\n>>> arr = session.console.display.take_screen_shot_to_array(0,res[0],res[1],\"PNG\")\n\"\"\"\n#guest_session = session.console.guest.create_session(\"tc\",\"root\")\n#session.console.keyboard.put_keys(\"Hello, world!\")\n# maybe a dedicated image for dos and more.\n# first we have to check how to read chars from the canvas or something.\n# remember that is way too slow to parse info from console. i mean THAT.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/tc_redis.py:77-96"
+    },
+    "529": {
+        "file_id": 97,
+        "content": "This code snippet is responsible for initializing a virtual machine and capturing its screen in PNG format. It first adjusts the screen resolution, then takes a screenshot, creates a guest session with specific credentials, and enters some keys on the keyboard. The comments suggest future improvements for reading characters from the console and potentially using dedicated images.",
+        "type": "comment"
+    },
+    "530": {
+        "file_id": 98,
+        "content": "/generic/vb_charec_bootstrap/terminal_render/README",
+        "type": "filepath"
+    },
+    "531": {
+        "file_id": 98,
+        "content": "This code discusses the compatibility of a qterminal on Windows and mentions using winpty or conpty. It suggests rendering in Electron or considering node, but finds it challenging without rebuilding the entire content. The idea of hosting in a server is proposed or utilizing a ramdisk. Finally, the possibility of using GNU screen for non-Windows systems is considered.",
+        "type": "summary"
+    },
+    "532": {
+        "file_id": 98,
+        "content": "the qterminal is great. does it work on windows? (maybe not)\nwindows: either winpty or conpty.\nstart rendering in electron. node might work but tough.\nit seems impossible to change content without rebuilding the whole shit. either host it in server or fucked up.\ndo it in ramdisk or something. think about it.\nconsider gnu screen? not on windows. but does it work? serve as a good purpose.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_render/README:1-11"
+    },
+    "533": {
+        "file_id": 98,
+        "content": "This code discusses the compatibility of a qterminal on Windows and mentions using winpty or conpty. It suggests rendering in Electron or considering node, but finds it challenging without rebuilding the entire content. The idea of hosting in a server is proposed or utilizing a ramdisk. Finally, the possibility of using GNU screen for non-Windows systems is considered.",
+        "type": "comment"
+    },
+    "534": {
+        "file_id": 99,
+        "content": "/generic/vb_charec_bootstrap/terminal_render/alter_content.sh",
+        "type": "filepath"
+    },
+    "535": {
+        "file_id": 99,
+        "content": "This script copies a modified \"demo_altered.cast\" file to the \"ramdisk/demo.cast\" location, replacing the original content.",
+        "type": "summary"
+    },
+    "536": {
+        "file_id": 99,
+        "content": "#!/bin/bash\ncp demo_altered.cast ramdisk/demo.cast",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_render/alter_content.sh:1-2"
+    },
+    "537": {
+        "file_id": 99,
+        "content": "This script copies a modified \"demo_altered.cast\" file to the \"ramdisk/demo.cast\" location, replacing the original content.",
+        "type": "comment"
+    },
+    "538": {
+        "file_id": 100,
+        "content": "/generic/vb_charec_bootstrap/terminal_render/hide_button.js",
+        "type": "filepath"
+    },
+    "539": {
+        "file_id": 100,
+        "content": "This code defines a function that sets the dynamic content as the poster for an HTML element. The function takes no parameters and assigns the string \"data:text/plain,This will be printed as poster\\n\\rThis in second line\" to the \"plnrep\" variable. It then uses document.getElementById(\"main_player_window\") to find the desired HTML element and set its \"poster\" attribute using setAttribute with the value of \"plnrep\". The code aims for a dynamic solution rather than relying on external web requests.",
+        "type": "summary"
+    },
+    "540": {
+        "file_id": 100,
+        "content": "// where do we store the dynamic content?\n// request it from the web? nice but dumb! we need to be dynamic.\nfunction myFunction(){\nvar plnrep=\"data:text/plain,This will be printed as poster\\n\\rThis in second line\";\ndocument.getElementById(\"main_player_window\").setAttribute(\"poster\",plnrep);}",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_render/hide_button.js:1-5"
+    },
+    "541": {
+        "file_id": 100,
+        "content": "This code defines a function that sets the dynamic content as the poster for an HTML element. The function takes no parameters and assigns the string \"data:text/plain,This will be printed as poster\\n\\rThis in second line\" to the \"plnrep\" variable. It then uses document.getElementById(\"main_player_window\") to find the desired HTML element and set its \"poster\" attribute using setAttribute with the value of \"plnrep\". The code aims for a dynamic solution rather than relying on external web requests.",
+        "type": "comment"
+    },
+    "542": {
+        "file_id": 101,
+        "content": "/generic/vb_charec_bootstrap/terminal_render/loadram.sh",
+        "type": "filepath"
+    },
+    "543": {
+        "file_id": 101,
+        "content": "This script executes a series of commands: runs unloadram.sh, creates a ramdisk directory with permissions, and mounts a 10MiB tmpfs filesystem named myramdisk into the ramdisk directory.",
+        "type": "summary"
+    },
+    "544": {
+        "file_id": 101,
+        "content": "#!/bin/bash\n./unloadram.sh\nsudo mkdir ramdisk\nsudo chmod 777 ramdisk\nsudo mount -t tmpfs -o size=10m myramdisk ramdisk",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/loadram.sh:1-5"
+    },
+    "545": {
+        "file_id": 101,
+        "content": "This script executes a series of commands: runs unloadram.sh, creates a ramdisk directory with permissions, and mounts a 10MiB tmpfs filesystem named myramdisk into the ramdisk directory.",
+        "type": "comment"
+    },
+    "546": {
+        "file_id": 102,
+        "content": "/generic/vb_charec_bootstrap/terminal_render/original_content.sh",
+        "type": "filepath"
+    },
+    "547": {
+        "file_id": 102,
+        "content": "This script copies the 'demo.cast' file to 'ramdisk/demo.cast'. It seems to be a simple file copy operation for the given file path and name.",
+        "type": "summary"
+    },
+    "548": {
+        "file_id": 102,
+        "content": "#!/bin/bash\ncp demo.cast ramdisk/demo.cast",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_render/original_content.sh:1-2"
+    },
+    "549": {
+        "file_id": 102,
+        "content": "This script copies the 'demo.cast' file to 'ramdisk/demo.cast'. It seems to be a simple file copy operation for the given file path and name.",
+        "type": "comment"
+    },
+    "550": {
+        "file_id": 103,
+        "content": "/generic/vb_charec_bootstrap/terminal_render/tserv.py",
+        "type": "filepath"
+    },
+    "551": {
+        "file_id": 103,
+        "content": "The code establishes a Tornado web server with two handlers for content display and update on port 8888, while possibly terminating a thread related to terminal rendering using the 'p' object's 'terminate' method.",
+        "type": "summary"
+    },
+    "552": {
+        "file_id": 103,
+        "content": "from twisted.internet import protocol, reactor\nimport time\nimport tornado.ioloop\nimport tornado.web\n#from process_tool import getSingleSession as gss\n# import sys\n# import multiprocessing\n# password is a must here. not kidding.\n# called the connection to a process.\ncontent = open(\"demo.cast\",\"r\").read()\naltered = open(\"demo_altered.cast\",\"r\").read()\nif __name__ == \"__main__\":\n    # not working here.\n    # do we need a callback here?\n    class RHandler(tornado.web.RequestHandler):\n        def get(self):\n            global content, altered\n            content = altered\n            self.write(\"content changed!\\n\")\n    class MainHandler(tornado.web.RequestHandler):\n        def get(self):\n            global content\n            self.write(content)\n        def make_app():\n            return tornado.web.Application([(r\"/demo.cast\",MainHandler),(r\"/refresh\",RHandler)])\n    app = MainHandler.make_app()\n    app.listen(8888)\n    tornado.ioloop.IOLoop.current().start()\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_render/tserv.py:1-32"
+    },
+    "553": {
+        "file_id": 103,
+        "content": "The code sets up a Tornado web server with two handlers, one for displaying the original content and another for updating the content. When accessed, \"/demo.cast\" displays the initial content and \"/refresh\" updates it, then starts the server on port 8888.",
+        "type": "comment"
+    },
+    "554": {
+        "file_id": 103,
+        "content": "    # p.terminate()\n    # must be thread?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_render/tserv.py:33-34"
+    },
+    "555": {
+        "file_id": 103,
+        "content": "This code snippet appears to be terminating a thread, possibly related to terminal rendering. The comment suggests that this may involve the 'p' object and its 'terminate' method. The specific functionality requires understanding the context of 'p' in the program.",
+        "type": "comment"
+    },
+    "556": {
+        "file_id": 104,
+        "content": "/generic/vb_charec_bootstrap/terminal_render/unloadram.sh",
+        "type": "filepath"
+    },
+    "557": {
+        "file_id": 104,
+        "content": "This script unmounts the ramdisk and deletes its directory, ensuring no residual files or processes remain after an operation.",
+        "type": "summary"
+    },
+    "558": {
+        "file_id": 104,
+        "content": "#!/bin/bash\nsudo umount ramdisk\nsudo rm -rf ramdisk",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/dos_runner/unloadram.sh:1-3"
+    },
+    "559": {
+        "file_id": 104,
+        "content": "This script unmounts the ramdisk and deletes its directory, ensuring no residual files or processes remain after an operation.",
+        "type": "comment"
+    },
+    "560": {
+        "file_id": 105,
+        "content": "/generic/vb_charec_bootstrap/terminal_share/README",
+        "type": "filepath"
+    },
+    "561": {
+        "file_id": 105,
+        "content": "The code is discussing a live streaming implementation using either Python or traditional methods, debating if all components should be dumped, suggesting a RAM-server for available memory management, and mentioning the existence of an old tool in Python to render screen output to HTML. The code also notes the use of Ctrl+D and Ctrl+A D to end and detach, respectively, and warns against using multiedit due to potential chaos and lacks an init command. Directing /dev/null to screen can cause deadlock.",
+        "type": "summary"
+    },
+    "562": {
+        "file_id": 105,
+        "content": "it is about live streaming. either do it in python or some conventional shits.\ndo we need to dump the whole thing out?\nbetter do a ram-server, reporting all absolute location of avaliable ramdisk.\nARCHITECTURE:\n\troot-ramdisk: location-open, used for symlink to other ramdisks or rolinks to local fs.\nthere used to be a tool to render screen output to html. in python.\nto end:\n\tCtrl+D\nto detach:\n\tCtrl+A D\nmultiedit will bring chaos here. it cannot be used for global revision.\nthere's no init command.\ndirect /dev/null to screen will cause dead lock.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/README:1-23"
+    },
+    "563": {
+        "file_id": 105,
+        "content": "The code is discussing a live streaming implementation using either Python or traditional methods, debating if all components should be dumped, suggesting a RAM-server for available memory management, and mentioning the existence of an old tool in Python to render screen output to HTML. The code also notes the use of Ctrl+D and Ctrl+A D to end and detach, respectively, and warns against using multiedit due to potential chaos and lacks an init command. Directing /dev/null to screen can cause deadlock.",
+        "type": "comment"
+    },
+    "564": {
+        "file_id": 106,
+        "content": "/generic/vb_charec_bootstrap/terminal_share/SAMBA",
+        "type": "filepath"
+    },
+    "565": {
+        "file_id": 106,
+        "content": "Code snippet explains how to install and configure Samba, reload the smbd daemon, set a user password, and mount CIFS for file sharing between Android and computer. It also suggests using a Linux distribution within Termux to access cifs utils.",
+        "type": "summary"
+    },
+    "566": {
+        "file_id": 106,
+        "content": "/etc/samba/smb.conf # which is absent from termux.\n# termux lacks of minix head files.\nhttps://ubuntu.com/tutorials/install-and-configure-samba#3-setting-up-samba\nhttps://help.ubuntu.com/community/Samba/SambaServerGuide?_ga=2.32623417.682961562.1603725963-1670033026.1592242164\nsudo smbd reload\nlaunch smbd -> killall smbd -> relaunch\nsmbpassword -a <existing username>\nmount -t cifs -o user=root,pass=password,ro //0.0.0.0/sambashare sambashare/\nmount.cifs -o user=root,pass=password,ro //0.0.0.0/sambashare sambashare/\nand thus we can share content from android to computer, though we cannot do nothing on it?\nusually we can call from linux distro inside termux, which can have cifs utils.\nlibnfs.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/SAMBA:1-23"
+    },
+    "567": {
+        "file_id": 106,
+        "content": "Code snippet explains how to install and configure Samba, reload the smbd daemon, set a user password, and mount CIFS for file sharing between Android and computer. It also suggests using a Linux distribution within Termux to access cifs utils.",
+        "type": "comment"
+    },
+    "568": {
+        "file_id": 107,
+        "content": "/generic/vb_charec_bootstrap/terminal_share/bailout.sh",
+        "type": "filepath"
+    },
+    "569": {
+        "file_id": 107,
+        "content": "This script is used to terminate all running \"screen\" processes by executing \"killall screen\". It is likely part of a larger system management or monitoring process.",
+        "type": "summary"
+    },
+    "570": {
+        "file_id": 107,
+        "content": "#!/bin/bash\nkillall screen",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/bailout.sh:1-2"
+    },
+    "571": {
+        "file_id": 107,
+        "content": "This script is used to terminate all running \"screen\" processes by executing \"killall screen\". It is likely part of a larger system management or monitoring process.",
+        "type": "comment"
+    },
+    "572": {
+        "file_id": 108,
+        "content": "/generic/vb_charec_bootstrap/terminal_share/enumerate.sh",
+        "type": "filepath"
+    },
+    "573": {
+        "file_id": 108,
+        "content": "This script checks if there is only one attached session, and if not, it randomly selects a detached session to reattach. The code uses screen commands for managing sessions and fish for generating a random number. It also has comments indicating areas that could be improved or need explanation.",
+        "type": "summary"
+    },
+    "574": {
+        "file_id": 108,
+        "content": "#!/bin/bash\n# you should only observe attached session only.\n#rpd=\"\"\npwx=$( screen -ls | grep jailscreen | grep Detached | wc -l )\nif [ $pwx -eq 1 ]\nthen\n\t./reattach_nocreate.sh\n\t# there's the x command. what is that?\n\t# it won't change shit. always need to reconsider.\nelse\n\tpwy=$( screen -ls | grep Detached | grep -Eo \"[0-9]+\\.jailscreen\" | wc -l)\n\t#pwy=$( echo $pwx | wc -l )\n#\techo $pwy\n#\techo $pwx\n\tpwz=$( fish -c \"random 0 $(( $pwy - 1 ))\" )\n\trz=0\n\tscreen -ls | grep Detached | grep -Eo \"[0-9]+\\.jailscreen\" | while read F;\tdo\n\t\tif [ $rz -eq $pwz ]\n\t\tthen\n\t\t\techo $F > /dev/shm/tmp_store\n#\t\t\techo $F\n#\t\t\tscreen -r $F\n#\t\t\techo bingo $F\n\t\tfi\n#\t\techo $rz\n\t\trz=$(( 1 + $rz ))\n\tdone\n#\techo $arr\n#\techo $pwz\n#\trpd= ${arr[$pwz]}\n# i have to say that this is shit.\n\tscreen -r $( cat /dev/shm/tmp_store )\nfi\n\t# feed arbitrary shit and use option -x.\n# tmux capture-pane -epJ -t 0\n# search it in pip packages.",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/enumerate.sh:1-36"
+    },
+    "575": {
+        "file_id": 108,
+        "content": "This script checks if there is only one attached session, and if not, it randomly selects a detached session to reattach. The code uses screen commands for managing sessions and fish for generating a random number. It also has comments indicating areas that could be improved or need explanation.",
+        "type": "comment"
+    },
+    "576": {
+        "file_id": 109,
+        "content": "/generic/vb_charec_bootstrap/terminal_share/notmux.sh",
+        "type": "filepath"
+    },
+    "577": {
+        "file_id": 109,
+        "content": "This script is an evasion tool, preventing its execution by terminating the tmux server and potentially killing screen processes.",
+        "type": "summary"
+    },
+    "578": {
+        "file_id": 109,
+        "content": "#!/bin/bash\n# it is an evasion tool! do not let it run.\ntmux kill-server\n#killall screen",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/notmux.sh:1-4"
+    },
+    "579": {
+        "file_id": 109,
+        "content": "This script is an evasion tool, preventing its execution by terminating the tmux server and potentially killing screen processes.",
+        "type": "comment"
+    },
+    "580": {
+        "file_id": 110,
+        "content": "/generic/vb_charec_bootstrap/terminal_share/reattach_nocreate.sh",
+        "type": "filepath"
+    },
+    "581": {
+        "file_id": 110,
+        "content": "This script is used to reattach to an existing screen session named \"jailscreen\" without creating a new one.",
+        "type": "summary"
+    },
+    "582": {
+        "file_id": 110,
+        "content": "#!/bin/bash\nscreen -r jailscreen",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/reattach_nocreate.sh:1-2"
+    },
+    "583": {
+        "file_id": 110,
+        "content": "This script is used to reattach to an existing screen session named \"jailscreen\" without creating a new one.",
+        "type": "comment"
+    },
+    "584": {
+        "file_id": 111,
+        "content": "/generic/vb_charec_bootstrap/terminal_share/reattach_nocreate_noexclude.sh",
+        "type": "filepath"
+    },
+    "585": {
+        "file_id": 111,
+        "content": "This script uses the 'screen' command to reattach the user to an existing screen session named 'jailscreen'.",
+        "type": "summary"
+    },
+    "586": {
+        "file_id": 111,
+        "content": "#!/bin/bash\nscreen -x jailscreen",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/reattach_nocreate_noexclude.sh:1-2"
+    },
+    "587": {
+        "file_id": 111,
+        "content": "This script uses the 'screen' command to reattach the user to an existing screen session named 'jailscreen'.",
+        "type": "comment"
+    },
+    "588": {
+        "file_id": 112,
+        "content": "/generic/vb_charec_bootstrap/terminal_share/simple_bindfs_jail.sh",
+        "type": "filepath"
+    },
+    "589": {
+        "file_id": 112,
+        "content": "The code sets up a shared jail, initializes a RAM disk, and mounts the tmpfs filesystem with proper permissions while preparing a virtual environment.",
+        "type": "summary"
+    },
+    "590": {
+        "file_id": 112,
+        "content": "#!/bin/bash\n# this is a shared jail.\n#./loadroot.sh\n# you are shitting on me.\n# sudo umount /dev/shm/lazero/root\npsk=$(sudo mount | grep /dev/shm/lazero/bindroot | wc -c)\npsl=$(sudo mount | grep /dev/shm/lazero/bindroot | wc -l)\nerr=0\nif [ $psk -eq 0 ]\nthen\n\tsudo umount -A -f /dev/shm/lazero/bindroot\n\tpsk=$(sudo ls /dev/shm/lazero/bindroot | wc -c)\n\tif [ $psk -eq 0 ]\n\tthen\n\t\tsudo rm -rf /dev/shm/lazero/bindroot\n\tfi\n\tsudo mkdir -p /dev/shm/lazero/bindroot\n\tsudo chmod 777 /dev/shm/lazero/bindroot\n\tsudo bindfs -r / /dev/shm/lazero/bindroot/\nelse\n\tpsk=$(sudo mount | grep /dev/shm/lazero/bindroot | grep \"errors=remount-ro\" | wc -c)\n\tif [ $psk -eq 0 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $psl -ne 1 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $err -ne 0 ]\n\tthen\n\t\tsudo umount -A -f /dev/shm/lazero/bindroot\n\t\tpsk=$(sudo ls /dev/shm/lazero/bindroot | wc -c)\n\t\tif [ $psk -eq 0 ]\n\t\tthen\n\t\t\tsudo rm -rf /dev/shm/lazero/bindroot\n\t\tfi\n#\t\tsudo rm -rf /dev/shm/lazero/root\n\t\tsudo mkdir -p /dev/shm/lazero/bindroot\n\t\tsudo chmod 777 /dev/shm/lazero/bindroot",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/simple_bindfs_jail.sh:1-41"
+    },
+    "591": {
+        "file_id": 112,
+        "content": "Creates a shared jail, checks if the bindfs mount is active, and performs cleanup or remount in case of errors.",
+        "type": "comment"
+    },
+    "592": {
+        "file_id": 112,
+        "content": "\t\tsudo bindfs -r / /dev/shm/lazero/bindroot/\n\tfi\nfi\nerr=0\n#./loadram.sh\n# if umount failed, do not delete shit.\n# check lines. if more than one then there must be error.\n# sudo umount /dev/shm/lazero/ramdisk\n# here's the command! do not do this unless it is necessary.\npsk=$(sudo mount | grep /dev/shm/lazero/ramdisk | wc -c)\npsl=$(sudo mount | grep /dev/shm/lazero/ramdisk | wc -l)\nif [ $psk -eq 0 ]\nthen\n\tsudo umount -Afr /dev/shm/lazero/ramdisk\n\tsudo rm -rf /dev/shm/lazero/ramdisk\n\tsudo mkdir -p /dev/shm/lazero/ramdisk\n\tsudo chmod 777 /dev/shm/lazero/ramdisk\n\tsudo mount -t tmpfs -o size=10m myramdisk /dev/shm/lazero/ramdisk\nelse\n\tpsk=$(sudo mount | grep /dev/shm/lazero/ramdisk | grep \"type tmpfs\" | wc -c)\n\tif [ $psk -eq 0 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $psl -ne 1 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $err -ne 0 ]\n\tthen\n\t\tsudo umount -Afr /dev/shm/lazero/ramdisk\n\t\tsudo rm -rf /dev/shm/lazero/ramdisk\n\t\tsudo mkdir -p /dev/shm/lazero/ramdisk\n\t\tsudo chmod 777 /dev/shm/lazero/ramdisk\n\t\tsudo mount -t tmpfs -o size=10m myramdisk /dev/shm/lazero/ramdisk",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/simple_bindfs_jail.sh:42-78"
+    },
+    "593": {
+        "file_id": 112,
+        "content": "Code initializes a RAM disk, checks if it's already mounted, and if not, creates it, sets permissions, mounts the tmpfs filesystem, and ensures only one instance exists.",
+        "type": "comment"
+    },
+    "594": {
+        "file_id": 112,
+        "content": "\tfi\nfi\n#./loadram.sh\ntouch /dev/shm/lazero/ramdisk/tmux\n# if umount failed, do not delete \nproot -0 -r /dev/shm/lazero/bindroot -b /dev/shm/lazero/ramdisk:/ramdisk -b /dev/shm/lazero/ramdisk/tmux:$(which tmux) -w /ramdisk",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/simple_bindfs_jail.sh:79-84"
+    },
+    "595": {
+        "file_id": 112,
+        "content": "The code is executing a script that prepares a virtual environment. It first checks for the existence of files and then proceeds to mount, load, and set up necessary resources in the bindfs jail. The umount failure condition is handled by ensuring that certain files are not deleted.",
+        "type": "comment"
+    },
+    "596": {
+        "file_id": 113,
+        "content": "/generic/vb_charec_bootstrap/terminal_share/simple_jail.sh",
+        "type": "filepath"
+    },
+    "597": {
+        "file_id": 113,
+        "content": "The script mounts a shared jail directory, performs cleanup tasks, verifies and corrects permissions, size, and mounting. It creates a temporary tmux session within a chroot environment using proot and prevents deletion if umount fails.",
+        "type": "summary"
+    },
+    "598": {
+        "file_id": 113,
+        "content": "#!/bin/bash\n# this is a shared jail.\n#./loadroot.sh\n# you are shitting on me.\n# sudo umount /dev/shm/lazero/root\npsk=$(sudo mount | grep /dev/shm/lazero/root | wc -c)\npsl=$(sudo mount | grep /dev/shm/lazero/root | wc -l)\nerr=0\nif [ $psk -eq 0 ]\nthen\n\tsudo umount -A -f /dev/shm/lazero/root\n\tpsk=$(sudo ls /dev/shm/lazero/root | wc -c)\n\tif [ $psk -eq 0 ]\n\tthen\n\t\tsudo rm -rf /dev/shm/lazero/root\n\tfi\n\tsudo mkdir -p /dev/shm/lazero/root\n\tsudo chmod 777 /dev/shm/lazero/root\n\tsudo mount --bind -r / /dev/shm/lazero/root/\nelse\n\tpsk=$(sudo mount | grep /dev/shm/lazero/root | grep \"errors=remount-ro\" | wc -c)\n\tif [ $psk -eq 0 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $psl -ne 1 ]\n\tthen\n\t\terr=$(( 1 + $err ))\n\tfi\n\tif [ $err -ne 0 ]\n\tthen\n\t\tsudo umount -A -f /dev/shm/lazero/root\n\t\tpsk=$(sudo ls /dev/shm/lazero/root | wc -c)\n\t\tif [ $psk -eq 0 ]\n\t\tthen\n\t\t\tsudo rm -rf /dev/shm/lazero/root\n\t\tfi\n#\t\tsudo rm -rf /dev/shm/lazero/root\n\t\tsudo mkdir -p /dev/shm/lazero/root\n\t\tsudo chmod 777 /dev/shm/lazero/root\n\t\tsudo mount --bind -r / /dev/shm/lazero/root/",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/terminal_share/simple_jail.sh:1-42"
+    },
+    "599": {
+        "file_id": 113,
+        "content": "This script creates and mounts a shared jail directory, checks if the mount is successful, and performs cleanup operations if necessary.",
+        "type": "comment"
+    }
+}

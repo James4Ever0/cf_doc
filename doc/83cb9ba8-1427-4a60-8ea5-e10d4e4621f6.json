@@ -1,0 +1,10 @@
+{
+    "summary": "Code snippet is storing a simple Python code (print(\"hello world\")) in the database using nparr_redis library, retrieving it, and executing it. The purpose might be to demonstrate launching something or testing the storage/retrieval functionality of the database.",
+    "details": [
+        {
+            "comment": "Code snippet is storing a simple Python code (print(\"hello world\")) in the database using nparr_redis library, retrieving it, and executing it. The purpose might be to demonstrate launching something or testing the storage/retrieval functionality of the database.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/code_train/first_training.py\":0-8",
+            "content": "# make sure the thing is launched.\ncode = \"\"\"print(\"hello world\")\"\"\"\n# store it into the database, without caring how the fuck it is done.\nfrom nparr_redis import rget, rset\nrset(\"hello_world\",code)\nrx = rget(\"hello_world\")\nprint(rx)\neval(rx)\n# can you prove there's nothing we can do about self-containing?"
+        }
+    ]
+}

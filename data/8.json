@@ -1,0 +1,531 @@
+{
+    "800": {
+        "file_id": 147,
+        "content": "the language must be interactive. therefore, it must have response, which can be internal, but eventually must have external feedback.\nthe language can be harmless when running virtually or symbolically, or running inside a sandbox. natural language can he harmless since it has nothing to do with machine language, and prolog can achieve that too since the only harm it can do is freezing the cpu. (does it?)\njust make sure it has proper response and be harmless.",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/LANG.md:1-5"
+    },
+    "801": {
+        "file_id": 147,
+        "content": "This code emphasizes the importance of interactive languages with external feedback and highlights that natural language or Prolog can be harmless if properly controlled. It encourages ensuring proper response while keeping the language safe within a system.",
+        "type": "comment"
+    },
+    "802": {
+        "file_id": 148,
+        "content": "/generic/webfs_system_surf/README",
+        "type": "filepath"
+    },
+    "803": {
+        "file_id": 148,
+        "content": "Storage location: \"cf/generic/webfs_system_surf/README\":0-0\nCode: \n```\nSCID? what is that? to make things complicated or simple?\n```\nComment: SCID is a system identifier, used for organizing and categorizing data.",
+        "type": "summary"
+    },
+    "804": {
+        "file_id": 148,
+        "content": "SCID? what is that? to make things complicated or simple?",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/README:1-1"
+    },
+    "805": {
+        "file_id": 148,
+        "content": "Storage location: \"cf/generic/webfs_system_surf/README\":0-0\nCode: \n```\nSCID? what is that? to make things complicated or simple?\n```\nComment: SCID is a system identifier, used for organizing and categorizing data.",
+        "type": "comment"
+    },
+    "806": {
+        "file_id": 149,
+        "content": "/generic/webfs_system_surf/README.md",
+        "type": "filepath"
+    },
+    "807": {
+        "file_id": 149,
+        "content": "This code discusses the development of a custom OS with AI functionality or autonomous actions, possibly using inter-process communication for experimentation and communication. It might involve hardware hacks like network card modifications or protocols such as Matrix Protocol to broadcast information over the network.",
+        "type": "summary"
+    },
+    "808": {
+        "file_id": 149,
+        "content": "inter-process communication. web-scraping. trustworthiness.\nnext step is about native hook, system patching? no that is not general enough.\nthe next step is about to build a kernel or custom OS to be running on top with built-in AI functionality, or autonomous actions.\njust knowledge reviewing? implementing? all could be done within this thing.\nthis is about experimentation and communication.\nprobably has some minimal matrix protocol? or simply broadcast things over the net? network card hack? hardware hack?",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/README.md:1-11"
+    },
+    "809": {
+        "file_id": 149,
+        "content": "This code discusses the development of a custom OS with AI functionality or autonomous actions, possibly using inter-process communication for experimentation and communication. It might involve hardware hacks like network card modifications or protocols such as Matrix Protocol to broadcast information over the network.",
+        "type": "comment"
+    },
+    "810": {
+        "file_id": 150,
+        "content": "/generic/webfs_system_surf/code_train/4th_training.py",
+        "type": "filepath"
+    },
+    "811": {
+        "file_id": 150,
+        "content": "The code imports necessary modules, defines a keyword and stores it in the database. It then retrieves the stored code, prints it, splits it by line, and loops through global variables. For each variable, it concatenates the keyword with the variable's name, converts it to bytes, and attempts to execute it using exec(). The code seems to have issues executing the stored code effectively and needs improvement for better functionality.",
+        "type": "summary"
+    },
+    "812": {
+        "file_id": 150,
+        "content": "# make sure the thing is launched.\nfrom names import genames\n# design a keyword.\nimport re\ncode = \"\"\"print\"\"\"\n# store it into the database, without caring how the fuck it is done.\nfrom nparr_redis import rget, rset\nrset(\"hello_world\",code)\nrx = rget(\"hello_world\")\nprint(rx)\n#ry = rx.split(b\"\\n\")\n#print(ry)\n# what type?\ngenames(100,globals())\nkeys = list(globals().keys())\nfor x in keys:\n#    esc = re.escape(str(globals()[x])).encode()\n    esc = globals()[x]\n    es = rx+b\"(esc)\"\n    print(es)\n    # cannot execute the thing.\n    # rename it. do the hack.\n    exec(es)\n# nothing in return.\n# now you need to change, or execute it one by one?\n# can you prove there's nothing we can do about self-containing?\n# how to get it done? it is my code!",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/4th_training.py:1-27"
+    },
+    "813": {
+        "file_id": 150,
+        "content": "The code imports necessary modules, defines a keyword and stores it in the database. It then retrieves the stored code, prints it, splits it by line, and loops through global variables. For each variable, it concatenates the keyword with the variable's name, converts it to bytes, and attempts to execute it using exec(). The code seems to have issues executing the stored code effectively and needs improvement for better functionality.",
+        "type": "comment"
+    },
+    "814": {
+        "file_id": 151,
+        "content": "/generic/webfs_system_surf/code_train/5th_training.py",
+        "type": "filepath"
+    },
+    "815": {
+        "file_id": 151,
+        "content": "Ensures that the program is launched and uses Redis for data storage. It updates a function with a new code snippet, then executes it and prints the result.",
+        "type": "summary"
+    },
+    "816": {
+        "file_id": 151,
+        "content": "# make sure the thing is launched.\n# so how does other languages goes like? especially for some bash syntax.\n# bash syntax could trigger shutdown.:\nfrom nparr_redis import rget, rset\n# it is about editing! how do you change code? how do you modify the code?\n# find the possible change.\nrf=\"\"\"def simpleChange(a):\n    return \"[{}]\".format(a)\"\"\"\nrset(\"remote_function\",rf)\nrg = rget(\"remote_function\")\nexec(rg)\nprint(simpleChange(\"simple change\"))",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/5th_training.py:1-12"
+    },
+    "817": {
+        "file_id": 151,
+        "content": "Ensures that the program is launched and uses Redis for data storage. It updates a function with a new code snippet, then executes it and prints the result.",
+        "type": "comment"
+    },
+    "818": {
+        "file_id": 152,
+        "content": "/generic/webfs_system_surf/code_train/6th_training.py",
+        "type": "filepath"
+    },
+    "819": {
+        "file_id": 152,
+        "content": "This code retrieves and executes two functions stored in Redis, \"remote_function\" and \"rm_f\". These functions are then executed with their names changed to \"simpleChange\" and \"smc\", respectively. The code outputs the results of both function calls.",
+        "type": "summary"
+    },
+    "820": {
+        "file_id": 152,
+        "content": "# make sure the thing is launched.\n# so how does other languages goes like? especially for some bash syntax.\n# bash syntax could trigger shutdown.:\nfrom nparr_redis import rget, rset\n# it is about editing! how do you change code? how do you modify the code?\n# find the possible change.\nrf=\"\"\"def simpleChange(a):\n    return \"[{}]\".format(a)\"\"\"\nrd=\"\"\"def smc(a):\n    return \"{\"+a+\"}\" \"\"\"\nrset(\"remote_function\",rf)\nrset(\"rm_f\",rd)\nrg = rget(\"remote_function\")\nexec(rg)\nrg = rget(\"rm_f\")\nexec(rg)\n# do a smart exec, change the name before execute!\npc = simpleChange(smc(\"simple_change\"))\npr = smc(simpleChange(\"simple_change\"))\nprint(pc)\nprint(pr)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/6th_training.py:1-22"
+    },
+    "821": {
+        "file_id": 152,
+        "content": "This code retrieves and executes two functions stored in Redis, \"remote_function\" and \"rm_f\". These functions are then executed with their names changed to \"simpleChange\" and \"smc\", respectively. The code outputs the results of both function calls.",
+        "type": "comment"
+    },
+    "822": {
+        "file_id": 153,
+        "content": "/generic/webfs_system_surf/code_train/7th_training.py",
+        "type": "filepath"
+    },
+    "823": {
+        "file_id": 153,
+        "content": "Code imports necessary modules, defines a function \"mix_and_eval\" that takes arguments and tries permutations of those arguments to execute commands using the \"scommand\" module. It handles exceptions with traceback printing and resets the system after each attempt before sleeping for 1 second. The last two lines call the \"mix_and_eval\" function with the list \"cmd\".",
+        "type": "summary"
+    },
+    "824": {
+        "file_id": 153,
+        "content": "# execute the command. see if it works?\nfrom tcx import reset, scommand\nimport itertools\nimport traceback\nimport time\ncmd = [\"ruby\",\"hello.rb\"]\n# new stuff! irb.\ndef mix_and_eval(*args):\n    for x in itertools.permutations(args):\n        try:\n            print(scommand(\" \".join(x)+\"\\n\"))\n            print(\"success\",x)\n        except:\n            traceback.print_exc()\n            print(\"error\",x)\n        finally:\n            reset()\n            time.sleep(1)\nmix_and_eval(*cmd)\n# so which is first?",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/7th_training.py:1-21"
+    },
+    "825": {
+        "file_id": 153,
+        "content": "Code imports necessary modules, defines a function \"mix_and_eval\" that takes arguments and tries permutations of those arguments to execute commands using the \"scommand\" module. It handles exceptions with traceback printing and resets the system after each attempt before sleeping for 1 second. The last two lines call the \"mix_and_eval\" function with the list \"cmd\".",
+        "type": "comment"
+    },
+    "826": {
+        "file_id": 154,
+        "content": "/generic/webfs_system_surf/code_train/EXAMPLE",
+        "type": "filepath"
+    },
+    "827": {
+        "file_id": 154,
+        "content": "The code represents two levels of nesting for a \"simple change\". At level 1, it is represented as [simple change], and at level 2, it is represented as {[simple change]}. This indicates that the \"simple change\" is further encapsulated or organized within this specific codebase.",
+        "type": "summary"
+    },
+    "828": {
+        "file_id": 154,
+        "content": "simple change -> [simple change]\nlv2: simple change -> {[simple change]}",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/EXAMPLE:1-3"
+    },
+    "829": {
+        "file_id": 154,
+        "content": "The code represents two levels of nesting for a \"simple change\". At level 1, it is represented as [simple change], and at level 2, it is represented as {[simple change]}. This indicates that the \"simple change\" is further encapsulated or organized within this specific codebase.",
+        "type": "comment"
+    },
+    "830": {
+        "file_id": 155,
+        "content": "/generic/webfs_system_surf/code_train/TARGETS",
+        "type": "filepath"
+    },
+    "831": {
+        "file_id": 155,
+        "content": "The code aims to reuse and adapt code for different purposes by providing interfaces for creating different names. It also includes a function that requires input, ensuring proper direction of data like numpy, browsers, or mupdf. The user is advised to check how to use Ruby without online assistance.",
+        "type": "summary"
+    },
+    "832": {
+        "file_id": 155,
+        "content": "to reuse the code, even if not directly usable.\nprovide interface to create different names.\nneed a function that needs input.\nmake sure the things are going to the right direction. such as nparr go to numpy, URL go to browser, and PDF go to mupdf.\nfirst of all, check how you use ruby without online hint.",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/TARGETS:1-9"
+    },
+    "833": {
+        "file_id": 155,
+        "content": "The code aims to reuse and adapt code for different purposes by providing interfaces for creating different names. It also includes a function that requires input, ensuring proper direction of data like numpy, browsers, or mupdf. The user is advised to check how to use Ruby without online assistance.",
+        "type": "comment"
+    },
+    "834": {
+        "file_id": 156,
+        "content": "/generic/webfs_system_surf/code_train/byte_compare.py",
+        "type": "filepath"
+    },
+    "835": {
+        "file_id": 156,
+        "content": "This code defines two functions: \"known_bytes\" and \"given_array\". The \"known_bytes\" function takes an array of bytes as input, creates a set of unique byte values in the array, then constructs a dictionary where keys are the unique byte values and values are lists of indices where that byte value appears in the input array. The \"given_array\" function uses the output of \"known_bytes\" to create a new dictionary, where keys are the same as in the \"known_bytes\" dictionary, but values are lists of subarrays in the original input array where each byte in the subarray matches the key's value.",
+        "type": "summary"
+    },
+    "836": {
+        "file_id": 156,
+        "content": "def known_bytes(y):\n    z=set(y)\n    z={k:list(map(lambda f:f==k,y)) for k in z}\n    z={k:[f for f in range(len(z[k])) if z[k][f]] for k in z.keys()}\n    return z\ndef given_array(y):\n    z=known_bytes(y)\n    l=len(y)\n    return {k:[y[d:l] for d in z[k]] for k in z.keys()}",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/byte_compare.py:1-10"
+    },
+    "837": {
+        "file_id": 156,
+        "content": "This code defines two functions: \"known_bytes\" and \"given_array\". The \"known_bytes\" function takes an array of bytes as input, creates a set of unique byte values in the array, then constructs a dictionary where keys are the unique byte values and values are lists of indices where that byte value appears in the input array. The \"given_array\" function uses the output of \"known_bytes\" to create a new dictionary, where keys are the same as in the \"known_bytes\" dictionary, but values are lists of subarrays in the original input array where each byte in the subarray matches the key's value.",
+        "type": "comment"
+    },
+    "838": {
+        "file_id": 157,
+        "content": "/generic/webfs_system_surf/code_train/first_training.py",
+        "type": "filepath"
+    },
+    "839": {
+        "file_id": 157,
+        "content": "Code snippet is storing a simple Python code (print(\"hello world\")) in the database using nparr_redis library, retrieving it, and executing it. The purpose might be to demonstrate launching something or testing the storage/retrieval functionality of the database.",
+        "type": "summary"
+    },
+    "840": {
+        "file_id": 157,
+        "content": "# make sure the thing is launched.\ncode = \"\"\"print(\"hello world\")\"\"\"\n# store it into the database, without caring how the fuck it is done.\nfrom nparr_redis import rget, rset\nrset(\"hello_world\",code)\nrx = rget(\"hello_world\")\nprint(rx)\neval(rx)\n# can you prove there's nothing we can do about self-containing?",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/first_training.py:1-9"
+    },
+    "841": {
+        "file_id": 157,
+        "content": "Code snippet is storing a simple Python code (print(\"hello world\")) in the database using nparr_redis library, retrieving it, and executing it. The purpose might be to demonstrate launching something or testing the storage/retrieval functionality of the database.",
+        "type": "comment"
+    },
+    "842": {
+        "file_id": 158,
+        "content": "/generic/webfs_system_surf/code_train/hello.rb",
+        "type": "filepath"
+    },
+    "843": {
+        "file_id": 158,
+        "content": "This code prints the string \"hello world\" to the console, greeting the user or indicating a successful execution.",
+        "type": "summary"
+    },
+    "844": {
+        "file_id": 158,
+        "content": "print(\"hello world.\")",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/hello.rb:1-1"
+    },
+    "845": {
+        "file_id": 158,
+        "content": "This code prints the string \"hello world\" to the console, greeting the user or indicating a successful execution.",
+        "type": "comment"
+    },
+    "846": {
+        "file_id": 159,
+        "content": "/generic/webfs_system_surf/code_train/names.py",
+        "type": "filepath"
+    },
+    "847": {
+        "file_id": 159,
+        "content": "The code imports the random module and defines a function genames that generates mysterious names using random values. It updates a dictionary with \"a_\" + index as key and random value as the corresponding value. The main section calls the genames function with argument 100 to generate 100 such names.",
+        "type": "summary"
+    },
+    "848": {
+        "file_id": 159,
+        "content": "import random\n# cannot get mysterious names.\ndef genames(a,b = globals()):\n    for x in range(a):\n        b.update({\"a_\"+str(x):random.random()})\nif __name__ == \"__main__\":\n    genames(100)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/names.py:1-7"
+    },
+    "849": {
+        "file_id": 159,
+        "content": "The code imports the random module and defines a function genames that generates mysterious names using random values. It updates a dictionary with \"a_\" + index as key and random value as the corresponding value. The main section calls the genames function with argument 100 to generate 100 such names.",
+        "type": "comment"
+    },
+    "850": {
+        "file_id": 160,
+        "content": "/generic/webfs_system_surf/code_train/nparr_redis.py",
+        "type": "filepath"
+    },
+    "851": {
+        "file_id": 160,
+        "content": "This code imports Redis and numpy libraries for efficient data storage. It defines functions for setting, getting, and picking/unpickling values with expiration. The threading function processes key-value pairs one by one.",
+        "type": "summary"
+    },
+    "852": {
+        "file_id": 160,
+        "content": "import redis\nimport numpy as np\nimport pickle\nimport threading\nr=redis.StrictRedis(host='localhost', port=6379, decode_responses=False)\n#r.set(\"sample_np_array\",arr.tobytes())\ndef npset(x,arr):\n    # use batch mode.\n    # and with expiration.\n    try:\n        orig = pickle.dumps(arr)\n        r.set(x,orig)\n        return True\n    except:\n        return False\ndef rset(k,x):\n    try:\n        r.set(k,x)\n#        print(\"setting\",k,x)\n        return True\n    except:\n#        print(\"error setting\",k,x)\n        return False\ndef rsetex(k,x,ex=1):\n    try:\n        r.setex(k,ex,x)\n#        print(\"setting\",k,x)\n        return True\n    except:\n#        print(\"error setting\",k,x)\n        return False\ndef rget(k):\n    try:\n        return r[k]\n    except:\n        return None\n# learning one by one.\ndef sov(dic,key,gple):\n    dic[key] = pickle.dumps(dic[key])\n    gple[0]+=1\ndef sod(dic,key,gple):\n    dic[key] = pickle.loads(dic[key])\n    gple[0]+=1\ndef bp_changer(x_arr):\n    lst,i=[0],len(list(x_arr.keys()))\n    for k in x_arr.keys():\n        tx = threading.Thread(target = sov,args=(x_arr,k,lst))",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/nparr_redis.py:1-53"
+    },
+    "853": {
+        "file_id": 160,
+        "content": "This code imports Redis and numpy libraries, defines functions for setting and getting values from Redis cache with expiration. It also includes a function to pickle and unpickle numpy arrays before storing them in Redis. Lastly, it has a threading function to process key-value pairs one by one.",
+        "type": "comment"
+    },
+    "854": {
+        "file_id": 160,
+        "content": "        tx.setDaemon(True)\n        tx.start()\n    while True:\n        if lst[0] == i:\n            break\n        time.sleep(0.001)\n#    print(\"conv complete!\")\n#    print(x_arr)\n    return x_arr\ndef npbset(x_arr,exp=2):\n    pipe = r.pipeline()\n    # use batch mode.\n    # and with expiration.\n    # threading?\n    x_arr = bp_changer(x_arr)\n    if exp == 0:\n        for key in x_arr.keys():\n            pipe.set(key, x_arr[key])\n        pipe.execute()\n    elif exp > 0 and type(exp) == int:\n        for key in x_arr.keys():\n            pipe.setex(key, exp, x_arr[key])\n        pipe.execute()\n    else:\n        print(\"invalid expire time!\")\n        return False\n#    print(\"execution done!\")\n# check keys then.\n#        orig = pickle.dumps(arr)\n#       r.set(x,orig)\n    return True\n#    except:\n#        return False\ndef npret(x):\n    try:\n        f=r.get(x)\n        return pickle.loads(f)\n    except:\n        return None\n#    else:",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/nparr_redis.py:54-95"
+    },
+    "855": {
+        "file_id": 160,
+        "content": "This code appears to handle the interaction with Redis, a data storage server. The \"npbset\" function uses Redis' pipeline feature and can set or setex (with expiration) multiple keys in batch mode. It takes an array of key-value pairs as input. The \"npret\" function retrieves values from Redis using the provided key. The code also includes functions for threading, time-based operations, and error handling.",
+        "type": "comment"
+    },
+    "856": {
+        "file_id": 161,
+        "content": "/generic/webfs_system_surf/code_train/process_tool.py",
+        "type": "filepath"
+    },
+    "857": {
+        "file_id": 161,
+        "content": "The code processes dictionaries, retrieves unique elements, and calculates intersection hashes. It defines functions for finding the most frequent characters in a list and organizing data into hierarchical structures.",
+        "type": "summary"
+    },
+    "858": {
+        "file_id": 161,
+        "content": "def combine(b):\n    f=list(filter(lambda x:x['fd']==0,b))\n    f0=list(filter(lambda x:x['fd']!=0,b))\n    return f,f0\n#fuck efficiency.\nimport random\nrng=random.SystemRandom()\ndef still(a):\n    return list(map(lambda x:x['data'],a))\ndef flat(a):\n    return \"\\x00\".join([b.decode() for b in a])\ndef comb(a):\n    c,d=combine(a)\n    return {flat(still(c)):still(d)}\nfrom byte_compare import given_array as func\ndef tailer(a):\n    t=func(a)\n    return t\ndef reform(h):\n    y={}\n    for x in h:\n        y.update(x)\n    return y\ndef merge_dict(a,b):\n    bk=list(b.keys())\n    for k in a.keys():\n        if k in bk:\n            b[k]+=a[k]\n        else:\n            b.update({k:a[k]})\n    return b\nimport statistics as math\ndef hascode(a,b):\n    return len(a.intersection(b))>0\ndef getjob(a):\n    a0=[a[x] for x in a.keys()]\n    a1=set([])\n    for x in a0:\n        a1.update(x)\n    return a1\ndef hashope(a,b):\n    a0,b0=getjob(a),getjob(b)\n    return hascode(a0,b0)\ndef enf(f):\n    #print('start',f)\n    prev,pk=None,None\n    dx,dy=[],[]\n    for x in range(len(f)):",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/process_tool.py:1-58"
+    },
+    "859": {
+        "file_id": 161,
+        "content": "The code defines several functions for manipulating and comparing dictionaries of data, including combining lists based on a specific field value, converting lists to binary strings, merging dictionaries, and calculating intersection hashes. It also includes functions for retrieving unique elements from a dictionary, creating a set of keys in the dictionary, and returning the intersection hash. The code begins processing a list called \"f\".",
+        "type": "comment"
+    },
+    "860": {
+        "file_id": 161,
+        "content": "        #print('loop',x)\n        x0=f[x]\n        x0=[(k,x0[k]) for k in x0.keys()]\n        if len(x0)==0 or x == len(f)-1:\n            #print('here')\n            if len(f)==1:\n                x0=list(x0)[0]\n                pk,prev=x0\n                dx+=[pk]\n                dy+=[len(prev)]\n            return dx,dy\n        x0=reversed(sorted(x0))\n        if prev is not None:\n            if hashope(f[x-1],f[x]):\n                i=False\n                for k,y in x0:\n                    #print(k,y)\n                    h=hascode(prev,y)\n                    if h:\n                        prev,pk=y,k\n                        dx+=[k]\n                        dy+=[len(y)]\n                        #print(dx,dy)\n                        i=True\n                        continue\n                if i:\n                    continue\n                else:\n                    #print('pop')\n                    f[x-1].pop(k)\n                    return enf(f)\n            else:\n                #print('hopeless')\n                return dx,dy\n        else:",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/process_tool.py:59-93"
+    },
+    "861": {
+        "file_id": 161,
+        "content": "This code appears to be part of a function that iterates through a list of dictionaries (f) and checks for overlapping keys. If an overlap is found, it appends the key to the dx list and its length to dy. The code also handles edge cases where the list is empty or contains only one dictionary. It continues the iteration in a reversed order if no overlap is found.",
+        "type": "comment"
+    },
+    "862": {
+        "file_id": 161,
+        "content": "            x0=list(x0)[0]\n            pk,prev=x0\n            dx+=[pk]\n            dy+=[len(prev)]\n    return dx,dy\ndef rush(b,enforce=True):\n    f=min([len(x) for x in b])\n    if not enforce:\n        df=[]\n        dy=[]\n        for x in range(f):\n            st=[k[x] for k in b]\n            sv=set(st)\n            sd={k:st.count(k) for k in sv}\n            sm=max([sd[k] for k in sd.keys()])\n            dy.append(sm)\n            sp=[k for k in sd.keys() if sd[k]==sm]\n            sg=len(sp)\n            sk=None\n            if sg>1:\n                sk=rng.choice(sp)\n            else:\n                sk=sp[0]\n            df.append(sk)\n        return df, math.mean(dy)\n    else:\n        f0=[]\n        for x in range(f):\n            st=[k[x] for k in b]\n            sd=set(st)\n            sp={k:set([v for v in range(len(st)) if st[v]==k]) for k in sd}\n            f0.append(sp)\n        df,dy= enf(f0)\n        #print(df,dy)\n        return df, math.mean(dy)\ndef pdict(a,enforce=True):\n    for k in a.keys():\n        b=a[k]\n        a[k]=rush(b,enforce)",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/process_tool.py:94-134"
+    },
+    "863": {
+        "file_id": 161,
+        "content": "The code defines a function `rush` that takes a list of character sequences (b) and returns a list (df) containing the most frequent characters in each sequence and the mean length of the sequences. It also provides an optional parameter `enforce` which, if False, calculates df and the average length separately. The function `pdict` applies the rush function to each key-value pair in a dictionary.",
+        "type": "comment"
+    },
+    "864": {
+        "file_id": 161,
+        "content": "    return a\ndef getSingleSession(a):\n    fb,bf=[],[]\n    for b in a:\n        fd=b['fd']\n        if fd == 0:\n            #print(b)\n            if bf!=[]:\n                fb.append(bf)\n            bf=[b]\n        else:\n            bf.append(b)\n    fb.append(bf)\n    # here.\n    h=list(map(lambda x:comb(x),fb))\n    h=reform(h)\n    #print(h)\n    for x in h.keys():\n        dx=h[x]\n        hd={}\n        #print(dx)\n        for z in dx:\n            t=tailer(z)\n            merge_dict(t,hd)\n        #phd=pdict(hd,enforce=False)\n        phd=pdict(hd,enforce=True)\n        print(phd)\n            #print(t)\n        '''t=tailer(dx)\n        print(t)'''\n    return fb\n# logical cluster.\n# do we need time cluster?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/process_tool.py:135-168"
+    },
+    "865": {
+        "file_id": 161,
+        "content": "The code defines a function 'getSingleSession' that takes in a list of dictionaries (a) and processes them into a hierarchical dictionary structure. It first separates the items based on their 'fd' value, then uses mapping and additional functions to form a nested dictionary structure. Finally, it prints out the resulting dictionary. The purpose of this function seems to be organizing data into a specific format, potentially for further processing or analysis.",
+        "type": "comment"
+    },
+    "866": {
+        "file_id": 162,
+        "content": "/generic/webfs_system_surf/code_train/sdiff.py",
+        "type": "filepath"
+    },
+    "867": {
+        "file_id": 162,
+        "content": "The code defines a protocol class for handling connections and processes using Twisted library. It spawns a subprocess, executes commands one by one with threading and reactor, and prints debug information before terminating the program.",
+        "type": "summary"
+    },
+    "868": {
+        "file_id": 162,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n#from process_tool import getSingleSession as gss\n# import sys\n# import multiprocessing\nimport threading\n# password is a must here. not kidding.\n# called the connection to a process.\nclass MyPP(protocol.ProcessProtocol):\n    def __init__(self):\n        self.db=[]\n    def gen(self,a,b):\n        return {'time':time.time(),'fd':a,'data':b}\n    def connectionMade(self):\n        print('connection made!')\n    def write(self, a):\n        self.db.append(self.gen(0,a))\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        self.db.append(self.gen(1,data))\n    def errReceived(self, data):\n        self.db.append(self.gen(2,data))\nprograms=[\"dl\",\"dp\",\"de\"]\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['judger/x86_64/libjudger.so','--exe_path=/bin/bash','--env=\"TX=xterm-256color\"']",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/sdiff.py:1-40"
+    },
+    "869": {
+        "file_id": 162,
+        "content": "Code defines a protocol class MyPP for handling connections and processes, uses Twisted library for networking, and specifies multiple commands to execute in separate processes. It creates an instance of the protocol class, initializes and runs it, and handles process output and errors.",
+        "type": "comment"
+    },
+    "870": {
+        "file_id": 162,
+        "content": "    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    pp.write(b\"parrot\\n\")\n    time.sleep(0.1)\n    # not working here.\n    for ik in programs:\n        pp.write(\"{}\\n\".format(ik).encode())\n        time.sleep(0.1)\n    pp.write(b\"exit\\n\")\n    time.sleep(0.1)\n    # this will provide the debug info.\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    print(pp.db)\n#    g=gss(pp.db)\n#    print(len(g))\n#    print([len(k) for k in g])\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/sdiff.py:41-79"
+    },
+    "871": {
+        "file_id": 162,
+        "content": "The code appears to be attempting to execute a series of commands in a subprocess using threading and reactor. It spawns a process (pp) with an xterm, writes commands one by one, and sleeps for 0.1 seconds between each command. Finally, it prints the debug information from pp.db before terminating the program. The code includes comments indicating that certain sections may not work as intended or are subject to change.",
+        "type": "comment"
+    },
+    "872": {
+        "file_id": 163,
+        "content": "/generic/webfs_system_surf/code_train/second_training.py",
+        "type": "filepath"
+    },
+    "873": {
+        "file_id": 163,
+        "content": "Ensures the code execution is triggered after saving it to the database. Code from \"third_training.py\" file is read and stored as \"hello_world\" key in the Redis database, then executed using exec() function.",
+        "type": "summary"
+    },
+    "874": {
+        "file_id": 163,
+        "content": "# make sure the thing is launched.\ncode = open(\"../dir_train/third_training.py\",\"r\").read()\n#code = \"\"\"print(\"hello world\")\"\"\"\n# store it into the database, without caring how the fuck it is done.\nfrom nparr_redis import rget, rset\nrset(\"hello_world\",code)\nrx = rget(\"hello_world\")\nprint(rx)\nexec(rx)\n# can you prove there's nothing we can do about self-containing?\n# how to get it done? it is my code!",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/second_training.py:1-11"
+    },
+    "875": {
+        "file_id": 163,
+        "content": "Ensures the code execution is triggered after saving it to the database. Code from \"third_training.py\" file is read and stored as \"hello_world\" key in the Redis database, then executed using exec() function.",
+        "type": "comment"
+    },
+    "876": {
+        "file_id": 164,
+        "content": "/generic/webfs_system_surf/code_train/set-difference.py",
+        "type": "filepath"
+    },
+    "877": {
+        "file_id": 164,
+        "content": "This program uses Twisted protocol to define MyPP class, initializes a database and spawns processes with specified commands in the current environment. It employs threads, time delays, but has minimal error handling.",
+        "type": "summary"
+    },
+    "878": {
+        "file_id": 164,
+        "content": "from twisted.internet import protocol, reactor\nimport time\nfrom process_tool import getSingleSession as gss\n# import sys\n# import multiprocessing\nimport threading\n# password is a must here. not kidding.\n# called the connection to a process.\nclass MyPP(protocol.ProcessProtocol):\n    def __init__(self):\n        self.db=[]\n    def gen(self,a,b):\n        return {'time':time.time(),'fd':a,'data':b}\n    def connectionMade(self):\n        print('connection made!')\n    def write(self, a):\n        self.db.append(self.gen(0,a))\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        self.db.append(self.gen(1,data))\n    def errReceived(self, data):\n        self.db.append(self.gen(2,data))\nprograms=[\"dl\",\"dp\",\"de\"]\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['bash']",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/set-difference.py:1-40"
+    },
+    "879": {
+        "file_id": 164,
+        "content": "The code defines a class called MyPP that extends the Twisted protocol. It initializes a database (db) to store connection and process information. The program specifies three processes (\"dl\", \"dp\", and \"de\") and creates an instance of the MyPP class. It sets the command to be executed in the current environment, which is 'bash' here.",
+        "type": "comment"
+    },
+    "880": {
+        "file_id": 164,
+        "content": "    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    pp.write(b\"parrot\\n\")\n    time.sleep(0.1)\n    # not working here.\n    for ik in programs:\n        pp.write(\"{}\\n\".format(ik).encode())\n        time.sleep(0.1)\n    pp.write(b\"exit\\n\")\n    time.sleep(0.1)\n    # this will provide the debug info.\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    #print(pp.db)\n    g=gss(pp.db)\n    print(len(g))\n    print([len(k) for k in g])\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?",
+        "type": "code",
+        "location": "/generic/vb_charec_bootstrap/set-difference.py:41-79"
+    },
+    "881": {
+        "file_id": 164,
+        "content": "The code spawns a process, writes commands to it, and waits for the process to finish. It uses threads, time delays, and prints output. However, some parts like thread termination may not work properly in Windows. The code is not optimized or user-friendly, and error handling is minimal.",
+        "type": "comment"
+    },
+    "882": {
+        "file_id": 165,
+        "content": "/generic/webfs_system_surf/code_train/sserv.py",
+        "type": "filepath"
+    },
+    "883": {
+        "file_id": 165,
+        "content": "This code is a Tornado web server implementation written in Python. It defines a single handler class, MainHandler, with GET and POST methods. The GET method returns \"Hello, world\" while the POST method reads and prints the posted data. The make_app function creates a Tornado application instance using the defined handler and listens on port 8888.",
+        "type": "summary"
+    },
+    "884": {
+        "file_id": 165,
+        "content": "# hello_server.py\nimport tornado.ioloop\nimport tornado.web\n# glue it up? use stdin.\n# or worse?\nclass MainHandler(tornado.web.RequestHandler):\n    def get(self):\n        self.write(\"Hello, world\")\n    def post(self):\n        sp=self.request.body\n#        sp=self.get_argument(\"data\",\"no data received\")\n        print(\"posted data\",sp)\n        self.write('normal post received.')\n# whatever. just try to build something different.\n    def make_app():\n        return tornado.web.Application([ (r\".+\", MainHandler), ])  # URL Mapping\nif __name__ == \"__main__\":\n    app = MainHandler.make_app()\n    app.listen(8888)    # Port Number\n    tornado.ioloop.IOLoop.current().start()\n# -> twisted.",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/sserv.py:1-22"
+    },
+    "885": {
+        "file_id": 165,
+        "content": "This code is a Tornado web server implementation written in Python. It defines a single handler class, MainHandler, with GET and POST methods. The GET method returns \"Hello, world\" while the POST method reads and prints the posted data. The make_app function creates a Tornado application instance using the defined handler and listens on port 8888.",
+        "type": "comment"
+    },
+    "886": {
+        "file_id": 166,
+        "content": "/generic/webfs_system_surf/code_train/tcx.py",
+        "type": "filepath"
+    },
+    "887": {
+        "file_id": 166,
+        "content": "These functions, \"reset()\" and \"scommand(s)\", are used to interact with anyControl. \"reset()\" executes the command without providing a specific string value for it, while \"scommand(s)\" allows you to pass a specific string (s) as the value for the command. The result is stored in variable 'r', and then printed out using print(\"reply:\",r).",
+        "type": "summary"
+    },
+    "888": {
+        "file_id": 166,
+        "content": "from wdf import anyControl\ndef reset():\n    r = anyControl(\"9999\",None,False)\n    print(\"reply:\",r)\ndef scommand(s):\n    r = anyControl(\"9999\",s,True)\n    print(\"reply:\",r)",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/tcx.py:1-7"
+    },
+    "889": {
+        "file_id": 166,
+        "content": "These functions, \"reset()\" and \"scommand(s)\", are used to interact with anyControl. \"reset()\" executes the command without providing a specific string value for it, while \"scommand(s)\" allows you to pass a specific string (s) as the value for the command. The result is stored in variable 'r', and then printed out using print(\"reply:\",r).",
+        "type": "comment"
+    },
+    "890": {
+        "file_id": 167,
+        "content": "/generic/webfs_system_surf/code_train/third_training.py",
+        "type": "filepath"
+    },
+    "891": {
+        "file_id": 167,
+        "content": "The code reads the Python script from a file, stores it in the database without worrying about the implementation details, and then splits the retrieved code into individual lines. The purpose is unclear as there's no explicit execution or modification of the code.",
+        "type": "summary"
+    },
+    "892": {
+        "file_id": 167,
+        "content": "# make sure the thing is launched.\ncode = open(\"../dir_train/third_training.py\",\"r\").read()\n#code = \"\"\"print(\"hello world\")\"\"\"\n# store it into the database, without caring how the fuck it is done.\nfrom nparr_redis import rget, rset\nrset(\"hello_world\",code)\nrx = rget(\"hello_world\")\nprint(rx)\nry = rx.split(b\"\\n\")\nprint(ry)\n# now you need to change, or execute it one by one?\n# can you prove there's nothing we can do about self-containing?\n# how to get it done? it is my code!",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/third_training.py:1-13"
+    },
+    "893": {
+        "file_id": 167,
+        "content": "The code reads the Python script from a file, stores it in the database without worrying about the implementation details, and then splits the retrieved code into individual lines. The purpose is unclear as there's no explicit execution or modification of the code.",
+        "type": "comment"
+    },
+    "894": {
+        "file_id": 168,
+        "content": "/generic/webfs_system_surf/code_train/treserv.py",
+        "type": "filepath"
+    },
+    "895": {
+        "file_id": 168,
+        "content": "The code uses the Tornado framework for web applications, sets up a server, checks process ID, terminates processes if necessary, and handles user input in POST requests. The code effectively terminates processes using `os.kill()` with `signal.SIGKILL`, considering alternative methods for non-thread processes.",
+        "type": "summary"
+    },
+    "896": {
+        "file_id": 168,
+        "content": "import tornado.ioloop\nimport tornado.web\nfrom wdf import termControl\nimport subprocess, sys, os\nimport signal\n# password is a must here. not kidding.\n# called the connection to a process.\npid = None\ndef getPid():\n    return subprocess.Popen([sys.executable,\"tserv.py\"],close_fds=True).pid\nclass MainHandler(tornado.web.RequestHandler):\n    def get(self):\n        global pid\n        if pid is None:\n            pass\n        else:\n            os.kill(pid,signal.SIGKILL)\n        pid = getPid()\n        self.write(\"resetting server on 8888\\n\")\n    def post(self):\n        # you can post things here. relay to 8888.\n        sp = self.request.body\n        rg = termControl(sp)\n        if rg is None:\n            self.write(\"\")\n        else:\n            self.write(rg)\n        # pass a function to the place?\n    def make_app():\n        return tornado.web.Application([(r\".+\",MainHandler),])\nif __name__ == \"__main__\":\n    pid = getPid()\n    app = MainHandler.make_app()\n    app.listen(9999)\n    tornado.ioloop.IOLoop.current().start()\n    if pid is not None:",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/treserv.py:1-36"
+    },
+    "897": {
+        "file_id": 168,
+        "content": "This code uses Tornado framework for web applications. It sets up a server to listen on port 9999, and when the main handler is accessed, it checks if the process ID (PID) is None. If it's not None, it terminates the process with the PID using signal.SIGKILL. In the POST request, the code receives input data from the user, passes it to a function called termControl, and writes the returned value back to the user. The make_app function creates a Tornado web application with the MainHandler class for handling requests, and the server starts listening using tornado.ioloop.IOLoop.current().start().",
+        "type": "comment"
+    },
+    "898": {
+        "file_id": 168,
+        "content": "        os.kill(pid,signal.SIGKILL)\n    exit()\n    # sys.exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?",
+        "type": "code",
+        "location": "/generic/webfs_system_surf/code_train/treserv.py:37-43"
+    },
+    "899": {
+        "file_id": 168,
+        "content": "The code snippet attempts to terminate a process identified by its PID (Process ID) using the `os.kill()` function with the `signal.SIGKILL` signal. If the process is not a thread, it suggests alternative methods like `sys.exit()`, but ultimately finds that `os.kill(pid, signal.SIGKILL)` works effectively for termination. The code comments also express confusion about whether `p.terminate()` is necessary or applicable, implying that the process may need to be a thread specifically.",
+        "type": "comment"
+    }
+}

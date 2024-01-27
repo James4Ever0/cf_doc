@@ -1,0 +1,10 @@
+{
+    "summary": "This code sets up a virtual display and framebuffer using Xvfb, creates a terminal session with gnome-terminal, runs xfce4-session to start an Xfce desktop environment, and provides links for troubleshooting remote sessions and managing window managers.",
+    "details": [
+        {
+            "comment": "This code sets up a virtual display and framebuffer using Xvfb, creates a terminal session with gnome-terminal, runs xfce4-session to start an Xfce desktop environment, and provides links for troubleshooting remote sessions and managing window managers.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/linux/README\":0-35",
+            "content": "use virtual display, virtual framebuffer.\n-> xvfb. or check the headless firefox implementation.\nXvfb -pixdepths 3 27 -fbdir /dev/shm/xvfb :1\ngnome-terminal -display :1 & echo $!\nxwud -in /dev/shm/xvfb/Xvfb_screen0\n-> xvfb-run\nwww.jedi.be\nwiki.c2.com\n-> DISPLAY=:1\nenv -i /bin/sh -c \"export PATH=$PATH;\n                   export XAUTHORITY=$XAUTHORITY;\n                   export DISPLAY=$DISPLAY;\n                   export HOME=$HOME;\n                   export LOGNAME=$LOGNAME;\n                   export USER=$USER;\n                   /usr/bin/xfce4-session\"\nxdm gdm kdm\nhttps://unix.stackexchange.com/questions/164216/remote-xfce-session-in-a-separate-console\nxfrun4 xfdesktop xfwm4\nwmaker\nhttps://wiki.archlinux.org/index.php/Window_manager\nhttps://forum.xfce.org/viewtopic.php?id=11046"
+        }
+    ]
+}

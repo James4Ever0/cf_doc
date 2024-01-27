@@ -1,0 +1,10 @@
+{
+    "summary": "The code snippet adds two numbers, 1 and 1, resulting in the output of 2. It is a basic example of performing addition using the '+' operator.",
+    "details": [
+        {
+            "comment": "The code snippet adds two numbers, 1 and 1, resulting in the output of 2. It is a basic example of performing addition using the '+' operator.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/parser_train/EXAMPLE\":0-0",
+            "content": "(+ 1 1) -> 2"
+        }
+    ]
+}

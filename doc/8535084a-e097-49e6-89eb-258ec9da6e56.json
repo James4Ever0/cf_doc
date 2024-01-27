@@ -1,0 +1,10 @@
+{
+    "summary": "The code outlines the concept of using virtual machines, sandboxes, isolation, and imagination to ensure safe and efficient emulation. It highlights the importance of ensuring instances are fully polished before taking effect to prevent any potential risks or harm to real-life systems.",
+    "details": [
+        {
+            "comment": "The code outlines the concept of using virtual machines, sandboxes, isolation, and imagination to ensure safe and efficient emulation. It highlights the importance of ensuring instances are fully polished before taking effect to prevent any potential risks or harm to real-life systems.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/NOTES.md\":0-12",
+            "content": "Imagination is way better than virtualization, or at some point they differ.\n      [Virtual Machine]\n     /        |         \\\n[Sandbox] [Isolation] [Practice]\n     \\        |        /\n     [Imaginary Machine]\nHereby in order to provide speed of historical emulation, we must either virtualize the instance or simply imagine it.\nA person can be killed in reality, and computers are real and vulnerable. They can launch any attack, drain data quota and send one into prison.\nImagination is the basic functionality and it is in fact the core of computation. For every instance, we make sure it does not take effect unless being fully polished."
+        }
+    ]
+}

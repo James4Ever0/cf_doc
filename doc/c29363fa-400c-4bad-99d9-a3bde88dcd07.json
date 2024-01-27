@@ -1,0 +1,10 @@
+{
+    "summary": "This code is a Tornado web server implementation written in Python. It defines a single handler class, MainHandler, with GET and POST methods. The GET method returns \"Hello, world\" while the POST method reads and prints the posted data. The make_app function creates a Tornado application instance using the defined handler and listens on port 8888.",
+    "details": [
+        {
+            "comment": "This code is a Tornado web server implementation written in Python. It defines a single handler class, MainHandler, with GET and POST methods. The GET method returns \"Hello, world\" while the POST method reads and prints the posted data. The make_app function creates a Tornado application instance using the defined handler and listens on port 8888.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/code_train/sserv.py\":0-21",
+            "content": "# hello_server.py\nimport tornado.ioloop\nimport tornado.web\n# glue it up? use stdin.\n# or worse?\nclass MainHandler(tornado.web.RequestHandler):\n    def get(self):\n        self.write(\"Hello, world\")\n    def post(self):\n        sp=self.request.body\n#        sp=self.get_argument(\"data\",\"no data received\")\n        print(\"posted data\",sp)\n        self.write('normal post received.')\n# whatever. just try to build something different.\n    def make_app():\n        return tornado.web.Application([ (r\".+\", MainHandler), ])  # URL Mapping\nif __name__ == \"__main__\":\n    app = MainHandler.make_app()\n    app.listen(8888)    # Port Number\n    tornado.ioloop.IOLoop.current().start()\n# -> twisted."
+        }
+    ]
+}

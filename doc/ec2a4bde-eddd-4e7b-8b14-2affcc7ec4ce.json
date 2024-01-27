@@ -1,0 +1,10 @@
+{
+    "summary": "This script launches a virtual machine with the QEMU emulator, enabling KVM acceleration and configuring serial output over Telnet. The VM boots from the specified hard disk (c.hd) and uses the provided disk image (-hda).",
+    "details": [
+        {
+            "comment": "This script launches a virtual machine with the QEMU emulator, enabling KVM acceleration and configuring serial output over Telnet. The VM boots from the specified hard disk (c.hd) and uses the provided disk image (-hda).",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/kvm_telnet_dos.sh\":0-2",
+            "content": "#!/bin/bash\n#qemu-system-i386 -nographic  -serial telnet:localhost:4312,server,nowait  -hda c.hd -boot d\nqemu-system-i386 -nographic -enable-kvm -serial telnet:localhost:4312,server,nowait  -hda c.hd -boot d"
+        }
+    ]
+}

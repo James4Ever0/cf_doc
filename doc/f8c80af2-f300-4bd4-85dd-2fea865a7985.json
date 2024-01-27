@@ -1,0 +1,10 @@
+{
+    "summary": "The code represents two levels of nesting for a \"simple change\". At level 1, it is represented as [simple change], and at level 2, it is represented as {[simple change]}. This indicates that the \"simple change\" is further encapsulated or organized within this specific codebase.",
+    "details": [
+        {
+            "comment": "The code represents two levels of nesting for a \"simple change\". At level 1, it is represented as [simple change], and at level 2, it is represented as {[simple change]}. This indicates that the \"simple change\" is further encapsulated or organized within this specific codebase.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/code_train/EXAMPLE\":0-2",
+            "content": "simple change -> [simple change]\nlv2: simple change -> {[simple change]}"
+        }
+    ]
+}

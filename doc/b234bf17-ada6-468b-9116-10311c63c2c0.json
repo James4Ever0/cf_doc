@@ -1,0 +1,10 @@
+{
+    "summary": "This code, located in \"cf/android/native/init.bat\", initializes the PATH variable to include the platform-tools folder from D:\\Android\\SDK, while preserving any existing PATH value.",
+    "details": [
+        {
+            "comment": "This code, located in \"cf/android/native/init.bat\", initializes the PATH variable to include the platform-tools folder from D:\\Android\\SDK, while preserving any existing PATH value.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/android/native/init.bat\":0-1",
+            "content": "@echo off\nset PATH=D:\\Android\\SDK\\platform-tools;%PATH%"
+        }
+    ]
+}

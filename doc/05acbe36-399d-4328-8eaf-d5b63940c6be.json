@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports cv2 (OpenCV) and numpy libraries, creates a black image of size 50x50 with a white background, displays it using imshow, waits for any key press to close the window, then destroys all windows.",
+    "details": [
+        {
+            "comment": "This code imports cv2 (OpenCV) and numpy libraries, creates a black image of size 50x50 with a white background, displays it using imshow, waits for any key press to close the window, then destroys all windows.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/blm.py\":0-8",
+            "content": "import cv2 as cv\nimport numpy as np\nblack_screen = np.zeros([50,50,3])\nblack_screen[:, :, 2] = np.ones([50,50])*64/255.0\ncv.imshow(\"Simple_black\", black_screen)\ncv.waitKey(0)\ncv.destroyAllWindows()"
+        }
+    ]
+}

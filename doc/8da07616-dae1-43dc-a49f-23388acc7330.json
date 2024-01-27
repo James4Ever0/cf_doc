@@ -1,0 +1,10 @@
+{
+    "summary": "Code runs two separate shell scripts: one executing a walker.sh and another running listener.py, using subprocess Popen to spawn processes. Threading is used for communication with the walker.sh process. Communication result is printed from both stdout and stderr of the listener.py script.",
+    "details": [
+        {
+            "comment": "Code runs two separate shell scripts: one executing a walker.sh and another running listener.py, using subprocess Popen to spawn processes. Threading is used for communication with the walker.sh process. Communication result is printed from both stdout and stderr of the listener.py script.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/commander.py\":0-9",
+            "content": "# run another shell script? or spawn a process.\nimport subprocess\nimport threading\ns=subprocess.Popen([\"./walker.sh\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\ns0=subprocess.Popen([\"python3\",\"listener.py\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\nt=threading.Thread(target=s.communicate)\nt.start()\nstdout,stderr = s0.communicate()\nprint(\"communication result: \",stdout,stderr)"
+        }
+    ]
+}

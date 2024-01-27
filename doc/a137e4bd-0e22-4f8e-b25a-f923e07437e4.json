@@ -1,0 +1,10 @@
+{
+    "summary": "Ensures that all views have been focused for interaction, preventing interference or closure. Gnome allows system control when idle but cannot interact with multiple windows simultaneously.",
+    "details": [
+        {
+            "comment": "Ensures that all views have been focused for interaction, preventing interference or closure. Gnome allows system control when idle but cannot interact with multiple windows simultaneously.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/CRITERION.md\":0-8",
+            "content": "Make sure every view has been focused.\nAnd by means of focus, the user must interact with the interface. Otherwise the interface is either being taking over or closed.\n[Window Manager] - [Focused Window]\n               \\\n[Supervisor] - [Unfocused Window]\nFor Gnome, it is impossible to simutaneously interact with 2 or more windows at the same time. However, the system can take control of system when idle or just merely read through content but do nothing about it."
+        }
+    ]
+}

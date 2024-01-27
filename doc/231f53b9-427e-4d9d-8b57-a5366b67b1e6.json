@@ -1,0 +1,10 @@
+{
+    "summary": "The code defines a function called 'max' that returns the maximum of two numbers. It then defines 'short_mem', which checks if its first or second argument has changed and assigns it to 'shortmem'. If neither have changed, it sets 'result' to nil. The code includes commented out test print statements for testing purposes. Finally, there is a function 'remem' that uses the 'max' and 'short_mem' functions to return either 'memo' or nil based on a random chance.",
+    "details": [
+        {
+            "comment": "The code defines a function called 'max' that returns the maximum of two numbers. It then defines 'short_mem', which checks if its first or second argument has changed and assigns it to 'shortmem'. If neither have changed, it sets 'result' to nil. The code includes commented out test print statements for testing purposes. Finally, there is a function 'remem' that uses the 'max' and 'short_mem' functions to return either 'memo' or nil based on a random chance.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/core.lua\":0-50",
+            "content": "function max(num1, num2)\n   if (num1 > num2) then\n      result = num1;\n   else\n      result = num2;\n   end\n   return result; \nend\nshortmem = nil\nfunction short_mem(mem0, mem1)\n\tresult = nil\n\tif (mem0 ~= shortmem) then\n\t\tif (mem0 ~= nil) then\n\t\t\tresult = mem0;\n\t\telse if (mem1 ~= nil) then\n\t\t\tresult = mem1;\n\t\tend\n\tend\n\telse if (mem1 ~= shortmem) then\n\t\tif (mem1 ~= nil) then\n\t\t\tresult = mem1;\n\t\tend\n\t\telse if (mem0 ~= nil) then\n\t\t\tresult = mem0;\n\t\tend\n\tend\nend\n\tshortmem = result;\n\treturn result;\nend\n--[[ print(short_mem(1,2))\nprint(short_mem(1,2))\nprint(short_mem(1,2))\n]]\nfunction remem(memo)\n\tmath.randomseed(os.time())\n\trandom = math.random(0,1)\n\tif (random >= 0.5) then\n\t\tresult = short_mem(memo,nil)\n\telse\n\t\tresult = short_mem(nil,memo)\n\tend\n\treturn result;\nend\n-- print(max(2,1))\n-- this is not the end. just tell me what happened? what do you need to process?"
+        }
+    ]
+}

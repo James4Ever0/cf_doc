@@ -1,0 +1,10 @@
+{
+    "summary": "Code opens a file, reads its content, and then replaces the 4th character with the word \"fuck\" in random positions of the string.",
+    "details": [
+        {
+            "comment": "Code opens a file, reads its content, and then replaces the 4th character with the word \"fuck\" in random positions of the string.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/webfs_system_surf/math_train/replace.py\":0-10",
+            "content": "a = open(\"anytext.sh\",\"r\").read()\nprint(a)\n# find and replace? or what?\n#print(a.replace(\"world\",\"fuck\"))\n# insert a fuck somehow.\nimport random\na = [x for x in a]\ns = random.choice(range(len(a)))\nfor k in range(4):\n    a[s+k]=\"fuck\"[k]\nprint(\"\".join(a))"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This batch file is launching an Android emulator using QEMU on a Windows system. It checks if the latest version is needed and sets the memory configuration, path to BIOS files, and hard disk file for booting. The command also includes options for a serial connection, potential fallback to MATLAB's IDELink, and possibly using Com0Com software for the serial port emulation.",
+    "details": [
+        {
+            "comment": "This batch file is launching an Android emulator using QEMU on a Windows system. It checks if the latest version is needed and sets the memory configuration, path to BIOS files, and hard disk file for booting. The command also includes options for a serial connection, potential fallback to MATLAB's IDELink, and possibly using Com0Com software for the serial port emulation.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/dos_runner/run_dos_android_emu_serial.cmd\":0-9",
+            "content": "@echo off\nREM do we need latest?\nREM \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\"  -enable-hax -m 2M,maxmem=5M -mem-path R:\\ -hda c.hd -boot d\n\"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\qemu\\windows-x86_64\\qemu-system-x86_64.exe\" -L \"D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\" -L \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"  -m 2M,slots=2,maxmem=5M  -nographic -serial COM3  -hda c.hd -boot d\nREM \"D:\\Android\\SDK\\emulator\\lib\\pc-bios\"\nREM it is\nREM D:\\Program Files (x86)\\Android\\android-sdk\\tools\\lib\\pc-bios\\kvmvapic.bin\nREM this is not native one.\nREM D:\\Program Files\\MATLAB\\R2018a\\toolbox\\idelink\\foundation\\hostapps\\PUTTY.EXE\nREM \"D:\\Program Files (x86)\\com0com\\setupc.exe\""
+        }
+    ]
+}

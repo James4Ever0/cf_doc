@@ -1,0 +1,15 @@
+{
+    "summary": "This code defines functions for pattern matching and difference calculation using fuzzy logic. The \"ethic\" function searches for exact matches between two arguments and returns the list of matches found.",
+    "details": [
+        {
+            "comment": "This code defines functions for pattern matching and difference calculation. It uses fuzzy logic to find repeated patterns in a given string 'a' within another string 'b'. If the argument 'c' is True, it returns all possible matches; otherwise, it returns only the first match found. The code also makes use of numpy library for efficient array operations.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/id_demo.py\":0-49",
+            "content": "a,b = \"abcde\", \"bcdef\"\na,b = a*20, b*20\nb = \"random stuff of unrelated shits\"+b\nb = b*2\n# fuzzy logic.\n# what is repeating anyway?\nimport numpy as np\ndef uniq(a):\n    # start with 0.\n    i = 0\n    d={}\n    k=[]\n    for x in a:\n        if x in d.keys():\n            pass\n        else:\n            d.update({x:i})\n            i+=1\n        k.append(d[x])\n    return np.array(k),d\ndef du(a):\n    return np.diff(a)\ndef ethic(a,b,c=True):\n    # slide the b.\n    ad, _ = uniq(a)\n    N = len(a)\n    N0 = N-1\n    ln = len(b)-N0\n    if not c:\n        for x in range(ln):\n            bn = b[x:x+N]\n            bd, _ = uniq(bn)\n#            print(\"x\",x,\"bd\",bd)\n            if np.all(ad == bd):\n            # check all possible match? maybe later.\n                return bn\n        return None\n    else:\n        can = []\n        preb = 0\n        for x in range(ln):\n            xpreb = x+preb\n            if xpreb<ln:\n                bn = b[xpreb:xpreb+N]\n                bd, _ = uniq(bn)\n                if np.all(ad == bd):\n                # must skip.\n                    preb+=N0"
+        },
+        {
+            "comment": "This code defines a function \"ethic\" that takes two arguments, 'a' and 'b'. It iterates through each item in the range starting from zero until it finds an exact match between 'a' and 'b'. If no match is found, the loop breaks. The function returns the list of matches found ('can'). The code then calls \"ethic(a, b, False)\" and \"ethic(a, b)\" to test the function with different parameters.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/id_demo.py\":50-58",
+            "content": "                    can.append(bn)\n            else:\n                break\n        return can \nprint(ethic(a,b,False))\nprint(ethic(a,b))\n# find the exact match. using what?\n# i mean it is what? learning to forget?"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "summary": "This code sets up a recursive program with signal and exception handlers, functions for executing commands, and threads to continuously run the main command using xdotool. It also creates a daemon thread 't0' to run an unknown function 'run_main', starts a new thread 't' for execution, and keeps the main thread idle by printing \"idle main thread\".",
+    "details": [
+        {
+            "comment": "This code sets up a recursive program with signal and exception handlers, multiple functions for executing commands, and a thread to continuously run the main command. It also defines an environment variable and creates a thread to repeatedly execute a given command.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/cmd_dosbox.py\":0-41",
+            "content": "# this is recursive programming.\n# 25 x 80\nimport threading\nimport subprocess\nimport signal, sys\nimport time\ndef sigint_handler(signal,frame):\n    print(\"interrupted!\")\n    time.sleep(0.1)\n    sys.exit(0)\ndef my_except_hook(exctype,value,traceback):\n    time.sleep(0.1)\n    sys.__excepthook__(exctype,value,traceback)\n    sys.exit(0)\n    # is it lethal?\nsys.excepthook = my_except_hook\nsignal.signal(signal.SIGINT,sigint_handler)\ndef run_main_v2(cmdline,env):\n    for x in cmdline:\n        subprocess.run(x,env=env)\n        print(\"completed!\",cmdline)\ndef run_main(cmdline):\n    subprocess.run(cmdline)\n    print(\"completed!\",cmdline)\ndef rep_main(cmdline,env):\n    while True:\n        time.sleep(0.5)\n        run_main_v2(cmdline,env)\n    # right into the output.\n    #subprocess.run([\"./sep_dosbox.sh\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n    # where's the output?\n    # if you cannot count, why bother math?\nimport os\nenv = os.environ.copy()\n#env = copy.deepcopy(os.environ)\nenv[\"DISPLAY\"]=\":9\"\ncraft=(\"0123456789\")*20\nt0=threading.Thread(target=rep_main,args=(["
+        },
+        {
+            "comment": "Code executes commands using xdotool to simulate typing and pressing enter key on craft variable, creates a daemon thread 't0' to run an unknown function 'run_main', starts a new thread 't' with arguments \"./sep_dosbox.sh\" for execution, keeps the main thread idle by printing \"idle main thread\" every second until terminated or closed properly.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/cmd_dosbox.py\":42-56",
+            "content": "[\"xdotool\", \"type\", craft],\n[\"xdotool\", \"key\", \"0xff0d\"]\n    ],env))\nt0.setDaemon(True)\nt0.start()\n# better end this thread? check if properly closed.\nt=threading.Thread(target=run_main,args=([\"./sep_dosbox.sh\"],))\nt.setDaemon(True)\nt.start()\n# better end this thread? check if properly closed.\nwhile True:\n    time.sleep(1)\n    print(\"idle main thread\")"
+        }
+    ]
+}

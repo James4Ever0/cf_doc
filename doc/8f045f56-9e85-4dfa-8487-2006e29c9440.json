@@ -1,0 +1,15 @@
+{
+    "summary": "The code discusses the current status of character recognition functionality, mentioning platform-specific differences and considering postponing implementation or improving VM interaction. It also explores time-diffing for char mapping and image segmentation, as well as potential whole-word querying for faster results. A character's decision to move away from a pool due to water depth is mentioned in the code snippet.",
+    "details": [
+        {
+            "comment": "The code discusses the current status of charec functionality and its need for improved VM interaction. It mentions differences in implementation for different platforms like Android and DOS, questioning trust in Tesseract OCR engine, and considering postponing character recognition. The code also explores time-diffing for char mapping and image segmentation, with a mention of potential whole-word querying to save query time.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/STEP.md\":0-14",
+            "content": "currently, the charec functionality is done, at least to the skeleton level.\nhowever, to find the best implementation for VM interaction, this is not enough, cause shit will know what can be happening on the computer.\nit requires attension that by the way we code these things, it works on per-app basis, but not in the general way. for android app we need to type command to find the console buffer size, while DOS has a different approach, which can be done by simply filling the entire screen.\ntesseract is a trusted OCR engine. but does it deserves the trust? SimpleOCR can recognize handwritten documents, while tesseract cannot do this.\nby reviewing the things i've done in the past, it is running in a collective way.\nwhile char recognization is a tough thing to do, we may have to postpone this for a while, just to make sure other things will not be too late to discuss about.\nthe last step is about time-diffing for char mapping and image segmentation.\nor maybe not. there could be whole-word querying method to save query time."
+        },
+        {
+            "comment": "The code snippet describes a character's decision to move away from the pool due to water depth.",
+            "location": "\"/media/root/Prima/works/generated_docs/cf_doc/src/generic/vb_charec_bootstrap/STEP.md\":16-16",
+            "content": "anyway, the water is so deep that i need to step away from the pool."
+        }
+    ]
+}
