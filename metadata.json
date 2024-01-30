@@ -1,13 +1,13 @@
 {
     "url": {
         "full": "https://gitee.com/x00e0d991e368/cf",
-        "partial": "/x00e0d991e368/cf"
+        "partial": "x00e0d991e368/cf"
     },
     "file_mapping": {
         "0": {
             "filepath": "/README.md",
             "entry_id": 0,
-            "language_id": "markdown"
+            "language_id": "plain-text"
         },
         "1": {
             "filepath": "/android/README",
@@ -87,7 +87,7 @@
         "16": {
             "filepath": "/generic/vb_charec_bootstrap/README.md",
             "entry_id": 68,
-            "language_id": "markdown"
+            "language_id": "plain-text"
         },
         "17": {
             "filepath": "/generic/vb_charec_bootstrap/REMINDER.md",
